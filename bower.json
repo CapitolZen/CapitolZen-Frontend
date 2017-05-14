@@ -1,0 +1,6 @@
+{
+  "name": "downdraft-client",
+  "dependencies": {
+    "hammer.js": "2.0.6"
+  }
+}
