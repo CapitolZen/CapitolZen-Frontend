@@ -1,1 +1,18 @@
-{{outlet}}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Register Now</h3>
+        {{#bs-form formLayout=formLayout model=this onSubmit=(action "register") as |form|}}
+          {{form.element controlType="textfield" label="Organization Name" property="organization"}}
+          {{form.element controlType="email" label="Email" placeholder="Email" property="email" required=true}}
+          {{form.element controlType="password" label="Password" placeholder="Password" property="password"
+                         required=true
+                         helpText="Minimum 6 characters"}}
+          {{form.element controlType="password" label="Confirm" property="confirmPassword" required=true}}
+          {{bs-button defaultText="Create Account" type="primary" buttonType="submit" class="btn-xs-block"}}
+        {{/bs-form}}
+      </div>
+    </div>
+  </div>
+</div>
