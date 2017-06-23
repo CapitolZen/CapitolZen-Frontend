@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'downdraft-client',
+    modulePrefix: 'capitolzen-client',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
@@ -20,8 +20,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
   };
+  let apiHost = '', clientHost = '';
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -29,6 +30,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    apiHost = 'http://localhost:8000';
+    clientHost = 'http://localhost:4200';
   }
 
   if (environment === 'test') {
@@ -45,6 +48,37 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
+  ENV.apiURL = apiHost;
+  ENV.clientUrl = clientHost;
+
+  ENV.APP.usingCors = true;
+  ENV.APP.corsWithCreds = true;
+
+  ENV.contentSecurityPolicy = {
+    // ... other stuff here
+    'connect-src': `'self' http://localhost:8000`
+  };
+
+  ENV['ember-simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authorizer: 'authorizer:application',
+    crossOriginWhiteList: ['*'],
+    routeAfterAuthentication: 'dashboard'
+  };
+
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: `${apiHost}/api-token-auth/`,
+    identificationField: 'username',
+    passwordField: 'password',
+    tokenPropertyName: 'token',
+    refreshAccessTokens: true,
+    serverTokenRefreshEndpoint: `${apiHost}/api-token-verify/`,
+    tokenExpireName: 'exp',
+    refreshLeeway: 300,
+    crossOriginWhitelist: ['*']
+  };
+
 
   return ENV;
 };
