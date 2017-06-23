@@ -1,1 +1,5 @@
-{{outlet}}
+{{#bs-form model=this onSubmit=(action "login") as |form|}}
+  {{form.element controlType="email" label="Email" placeholder="Email" property="identification"}}
+  {{form.element controlType="password" label="Password" placeholder="Password" property="password"}}
+  {{bs-button defaultText="Login" type="primary" buttonType="submit"}}
+{{/bs-form}}
