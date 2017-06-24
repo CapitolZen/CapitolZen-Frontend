@@ -6,10 +6,18 @@ module.exports = function(defaults) {
     'ember-bootstrap': {
       'bootstrapVersion': 4,
       'importBootstrapFont': false,
-      'importBootstrapCSS': true
+      'importBootstrapCSS': false
+    },
+    sourcemaps: {
+      enabled: EmberApp.env() !== 'production',
+      extensions: ['js']
+    },
+    'ember-cli-babel': {
+      // disable comments
+      includePolyfill: true
     },
     fingerprint: {
-      enabled: true
+      enabled: (EmberApp.env() === 'production' || EmberApp.env() === 'qa')
     },
     'ember-font-awesome': {
       includeFontFiles: true
