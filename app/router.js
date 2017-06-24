@@ -22,8 +22,8 @@ Router.map(function() {
   });
 
   this.route('organization', function() {
-    this.route('detail');
-    this.route('edit');
+    this.route('detail', {path: '/:id'});
+    this.route('edit', {path: '/:id'});
   });
 
   this.route('user', function() {
@@ -34,18 +34,18 @@ Router.map(function() {
     this.route('detail', {path: '/:id'});
     this.route('add');
     this.route('search');
-    this.route('comments');
-    this.route('notes');
-    this.route('share');
-    this.route('source');
+    this.route('comments', {path: '/:id/comments'});
+    this.route('notes', {path: '/:id/notes'});
+    this.route('share', {path: '/:id/share'});
+    this.route('source', {path: '/:id/source'});
   });
   this.route('groups', function() {
-    this.route('edit');
+    this.route('edit', {path: '/:id'});
     this.route('add');
-    this.route('contacts');
-    this.route('bills');
-    this.route('message');
-    this.route('reports', function() {
+    this.route('contacts', {path: '/:id/contacts'});
+    this.route('bills', {path: '/:id/bills'});
+    this.route('message', {path: '/:id/message'});
+    this.route('reports', {path: '/:id/reports'}, function() {
       this.route('edit');
       this.route('list');
     });
