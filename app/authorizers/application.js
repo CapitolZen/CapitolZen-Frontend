@@ -8,8 +8,8 @@ export default Base.extend({
     if (Ember.testing) {
       block('Authorization', 'asdf');
     }
-    if (this.get('session.isAuthenticated') && data.token) {
-      block('Authorization', data.token);
+    if (this.get('session.isAuthenticated') && data.data.token) {
+      block('Authorization', `Bearer ${data.data.token}`);
     }
   }
 });

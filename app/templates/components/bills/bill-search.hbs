@@ -1,0 +1,34 @@
+<h3>Search Bills</h3>
+
+{{#bs-form model=this onSubmit=(perform searchBills) as |form|}}
+  {{#form.element placeholder="Search" property="terms" as |el|}}
+    <div class="input-group">
+      <input value="{{el.value}}" class="form-control input-lg" placeholder="Search" oninput={{action (mut el.value) value="target.value"}} onchange={{action (mut el.value) value="target.value"}} id={{el.id}} type="text">
+      <span class="input-group-btn">
+        {{bs-button defaultText="Search" type="primary" buttonType="submit"}}
+      </span>
+
+    </div>
+  {{/form.element}}
+{{/bs-form}}
+
+{{#if searchBills.isRunning}}
+  {{ui/loading-animation}}
+{{else}}
+  <div class="list-group mt-md-5">
+  {{#each results as |bill|}}
+    <div class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="mb-2 d-flex w-100 justify-content-between">
+        <h5>{{bill.stateId}}</h5>
+        <small>{{bill.title}}</small>
+      </div>
+      <p class="text-muted">{{bill.summary}}</p>
+      <div class="mt-2 d-flex w-100 justify-content-between">
+        {{#link-to "bills.detail" bill.id class="btn btn-default"}}View{{/link-to}}
+        {{bills/add-to-group}}
+      </div>
+    </div>
+
+  {{/each}}
+  </div>
+{{/if}}

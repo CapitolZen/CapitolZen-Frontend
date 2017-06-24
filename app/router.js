@@ -31,7 +31,7 @@ Router.map(function() {
     this.route('edit');
   });
   this.route('bills', function() {
-    this.route('detail');
+    this.route('detail', {path: '/:id'});
     this.route('add');
     this.route('search');
     this.route('comments');

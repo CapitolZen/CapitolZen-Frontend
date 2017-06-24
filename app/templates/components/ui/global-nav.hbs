@@ -1,35 +1,37 @@
-<nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  {{#link-to "index" class="navbar-brand"}}
-    LOGO
-  {{/link-to}}
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      {{#if isAuthenticated}}
+<div class="container">
+  <nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    {{#link-to "index" class="navbar-brand"}}
+      <strong>Capitol Zen</strong>
+    {{/link-to}}
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {{#if isAuthenticated}}
 
-        {{#active-link class="nav-item"}}
-          {{#link-to "groups.index" class="nav-link"}}Groups{{/link-to}}
-        {{/active-link}}
-        {{#active-link class="nav-item"}}
-          {{#link-to "bills.index" class="nav-link"}}Bills{{/link-to}}
-        {{/active-link}}
+          {{#active-link class="nav-item"}}
+            {{#link-to "groups.index" class="nav-link"}}Groups{{/link-to}}
+          {{/active-link}}
+          {{#active-link class="nav-item"}}
+            {{#link-to "bills.index" class="nav-link"}}Bills{{/link-to}}
+          {{/active-link}}
 
-        <li class="nav-item">
-          <button class="nav-link btn btn-link my-2 my-sm-0" {{action "invalidateSession"}}>Logout</button>
-        </li>
-      {{else}}
+          <li class="nav-item">
+            <button class="nav-link btn btn-link my-2 my-sm-0" {{action "invalidateSession"}}>Logout</button>
+          </li>
+        {{else}}
 
-        {{#active-link class="nav-item"}}
-          {{#link-to "login" class="nav-link"}}Login{{/link-to}}
-        {{/active-link}}
-        {{#active-link class="nav-item"}}
-          {{#link-to "register" class="nav-link"}}Register{{/link-to}}
-        {{/active-link}}
+          {{#active-link class="nav-item"}}
+            {{#link-to "login" class="nav-link"}}Login{{/link-to}}
+          {{/active-link}}
+          {{#active-link class="nav-item"}}
+            {{#link-to "register" class="nav-link"}}Register{{/link-to}}
+          {{/active-link}}
 
-      {{/if}}
-    </ul>
-  </div>
-</nav>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+</div>

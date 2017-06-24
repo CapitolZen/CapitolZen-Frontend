@@ -71,7 +71,7 @@ module.exports = function(environment) {
     serverTokenEndpoint: `${apiHost}/api-token-auth/`,
     identificationField: 'username',
     passwordField: 'password',
-    tokenPropertyName: 'token',
+    tokenPropertyName: 'data.token',
     refreshAccessTokens: true,
     serverTokenRefreshEndpoint: `${apiHost}/api-token-verify/`,
     tokenExpireName: 'exp',
