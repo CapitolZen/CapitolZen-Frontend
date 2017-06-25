@@ -2015,6 +2015,10 @@ d@1:
   dependencies:
     es5-ext "^0.10.9"
 
+dag-map@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/dag-map/-/dag-map-2.0.2.tgz#9714b472de82a1843de2fba9b6876938cab44c68"
+
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -2177,6 +2181,10 @@ dot-prop@^4.1.0:
   dependencies:
     is-obj "^1.0.0"
 
+dotenv@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-1.2.0.tgz#7cd73e16e07f057c8072147a5bc3a8677f0ab5c6"
+
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -2323,7 +2331,7 @@ ember-cli-deploy-aws-pack@^1.0.0:
     ember-cli-deploy-manifest "^1.0.0"
     ember-cli-deploy-s3 "^1.0.0"
 
-ember-cli-deploy-build@^1.0.0:
+ember-cli-deploy-build@^1.0.0, ember-cli-deploy-build@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-deploy-build/-/ember-cli-deploy-build-1.1.0.tgz#44ef2e09301319a1fc5807e9ec30491a753e2483"
   dependencies:
@@ -2332,7 +2340,7 @@ ember-cli-deploy-build@^1.0.0:
     glob "^7.1.1"
     rsvp "^3.5.0"
 
-ember-cli-deploy-cloudfront@^1.0.0:
+ember-cli-deploy-cloudfront@^1.0.0, ember-cli-deploy-cloudfront@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-deploy-cloudfront/-/ember-cli-deploy-cloudfront-1.1.0.tgz#420f4939f8c39e2e46a600248eebc75a4434392e"
   dependencies:
@@ -2352,7 +2360,7 @@ ember-cli-deploy-gzip@^1.0.0:
     minimatch "^3.0.3"
     rsvp "^3.5.0"
 
-ember-cli-deploy-manifest@^1.0.0:
+ember-cli-deploy-manifest@^1.0.0, ember-cli-deploy-manifest@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-deploy-manifest/-/ember-cli-deploy-manifest-1.1.0.tgz#096c4d1502c00935cabdbb9a38619ee3195ef927"
   dependencies:
@@ -2370,7 +2378,11 @@ ember-cli-deploy-plugin@^0.2.1, ember-cli-deploy-plugin@^0.2.2, ember-cli-deploy
     core-object "2.0.6"
     lodash.clonedeep "^4.5.0"
 
-ember-cli-deploy-s3@^1.0.0:
+ember-cli-deploy-progress@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-deploy-progress/-/ember-cli-deploy-progress-1.3.0.tgz#18663deed25b4d5397476332f25eed3c3fdf225a"
+
+ember-cli-deploy-s3@^1.0.0, ember-cli-deploy-s3@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-deploy-s3/-/ember-cli-deploy-s3-1.1.0.tgz#626126c21c7b2ef0347978c01c1338e6a16b02ab"
   dependencies:
@@ -2383,6 +2395,19 @@ ember-cli-deploy-s3@^1.0.0:
     minimatch "^3.0.3"
     proxy-agent "^2.0.0"
     rsvp "^3.5.0"
+
+ember-cli-deploy@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-deploy/-/ember-cli-deploy-1.0.1.tgz#6024c4fa0d8f8c09dfa57d251a7aca14e0ae2226"
+  dependencies:
+    chalk "^1.1.3"
+    core-object "^2.0.0"
+    dag-map "^2.0.1"
+    dotenv "^1.2.0"
+    ember-cli-deploy-progress "^1.3.0"
+    lodash "^4.0.0"
+    rsvp "^3.3.3"
+    silent-error "^1.0.0"
 
 ember-cli-eslint@^3.0.0:
   version "3.1.0"
@@ -4084,13 +4109,9 @@ https-proxy-agent@1:
     debug "2"
     extend "3"
 
-iconv-lite@0.4.15:
+iconv-lite@0.4.15, iconv-lite@^0.4.5, iconv-lite@~0.4.13:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
-
-iconv-lite@^0.4.5, iconv-lite@~0.4.13:
-  version "0.4.18"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.18.tgz#23d8656b16aae6742ac29732ea8f0336a4789cf2"
 
 ieee754@^1.1.4:
   version "1.1.8"
