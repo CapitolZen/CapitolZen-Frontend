@@ -1,0 +1,49 @@
+{{#if isEditing}}
+  {{#bs-form formLayout=formLayout model=group onSubmit=(action "saveGroup") as |form|}}
+    {{form.element controlType="textfield" label="Name" placeholder="Group Name" property="title" required=true}}
+    <div class="row">
+      <div class="col-md-6">
+        <div class="well">
+          Logo to go here
+        </div>
+      </div>
+      <div class="col-md-6">
+        {{form.element controlType="textarea" label="Description" property="description"}}
+      </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="button-group">
+      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+      {{#if toggleEnabled}}
+        <button class="btn-link btn" {{action "toggleEditing"}}>Cancel</button>
+      {{/if}}
+    </div>
+  {{/bs-form}}
+{{else}}
+  <div class="list-group">
+    <div class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Description</h5>
+      </div>
+      <p>{{group.description}}</p>
+    </div>
+
+    {{#if group.attachments}}
+      <div class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Available Attachments</h5>
+        </div>
+        <ul>
+          {{#each group.attachments as |docs|}}
+            <li><a href="{{doc.url}}" target="_blank">{{doc.title}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+  </div>
+  <button class="btn btn-link" {{action "toggleEditing"}}>{{fa-icon "pencil"}} Edit</button>
+{{/if}}
+

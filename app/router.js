@@ -40,7 +40,8 @@ Router.map(function() {
     this.route('source', {path: '/:id/source'});
   });
   this.route('groups', function() {
-    this.route('edit', {path: '/:id'});
+    this.route('detail', {path: '/:id'});
+    this.route('edit', {path: '/:id/edit'});
     this.route('add');
     this.route('contacts', {path: '/:id/contacts'});
     this.route('bills', {path: '/:id/bills'});

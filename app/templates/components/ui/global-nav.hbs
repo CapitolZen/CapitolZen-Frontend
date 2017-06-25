@@ -8,7 +8,7 @@
       <strong>Capitol Zen</strong>
     {{/link-to}}
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav d-flex justify-content-start">
         {{#if isAuthenticated}}
 
           {{#active-link class="nav-item"}}
@@ -18,8 +18,8 @@
             {{#link-to "bills.search" class="nav-link"}}Bills{{/link-to}}
           {{/active-link}}
 
-          <li class="nav-item">
-            <button class="nav-link btn btn-link my-2 my-sm-0" {{action "invalidateSession"}}>Logout</button>
+          <li class="nav-item ml-auto">
+            <button class="nav-link btn btn-link mt-1" {{action "invalidateSession"}}>Logout</button>
           </li>
         {{else}}
 
