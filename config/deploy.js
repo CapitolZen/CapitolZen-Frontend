@@ -8,7 +8,7 @@ module.exports = function(deployTarget) {
     },
     s3: {},
     cloudfront: {},
-
+    's3-index': {},
   };
 
 
@@ -33,8 +33,10 @@ module.exports = function(deployTarget) {
     ENV.cloudfront.secretAccessKey = process.env.AWS_SECRET;
     ENV.cloudfront.distribution = process.env.PRODUCTION_DISTRIBUTION;
 
-    //ENV['s3-index']['accessKeyId']= process.env.AWS_KEY;
-    //ENV['s3-index']['secretAccessKey']= process.env.AWS_SECRET;
+    ENV['s3-index']['accessKeyId']= process.env.AWS_KEY;
+    ENV['s3-index']['secretAccessKey']= process.env.AWS_SECRET;
+    ENV['s3-index']['bucket'] = process.env.PRODUCTION_BUCKET;
+    ENV['s3-index']['region'] = process.env.PRODUCTION_REGION;
 
 
   }
