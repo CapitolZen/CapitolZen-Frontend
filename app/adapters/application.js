@@ -16,6 +16,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     return ENV.APP.API_HOST;
   }),
 
+  // Deals with django
   buildURL(modelName, id, snapshot, requestType, query) {
     //
     // Fixup the filter formatting until:
