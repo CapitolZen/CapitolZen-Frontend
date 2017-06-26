@@ -4,7 +4,6 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   isActive: DS.attr('boolean'),
   userIsOwner: DS.attr('boolean'),
-  demographicOrgType: DS.attr('string'),
   billingName: DS.attr('string'),
   billingEmail: DS.attr('string'),
   billingPhone: DS.attr('string'),
