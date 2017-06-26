@@ -1,0 +1,22 @@
+machine:
+  node:
+    version: 6.1.0
+
+dependencies:
+  pre:
+    - rm -r ~/$CIRCLE_PROJECT_REPONAME/node_modules || echo 0
+    - rm -r /home/ubuntu/.cache/bower || echo 0
+    - rm -r ~/$CIRCLE_PROJECT_REPONAME/dist || echo 0
+    - npm install -g bower
+    - npm install -g ember-cli
+    - npm install -g phantomjs
+  override:
+    - yarn install
+    - bower install
+    - npm rebuild node-sass
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - ember deploy production --activate=true
