@@ -32,6 +32,17 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     apiHost = 'http://localhost:8000';
     clientHost = 'http://localhost:4200';
+
+    ENV.contentSecurityPolicy = {
+      'script-src': "'self' 'unsafe-inline'",
+      'connect-src': "'self' http://localhost:*",
+      'default-src': "'none'",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+      'font-src': "'self' fonts.gstatic.com data: ",
+      'img-src': "'self' *.gravatar.com *.wp.com data:",
+      'media-src': "'self'"
+    };
+
   }
 
   if (environment === 'test') {
@@ -46,6 +57,19 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    apiHost = 'https://api.capitolzen.com';
+    clientHost = 'https://app.capitolzen.com';
+
+    ENV.contentSecurityPolicy = {
+      'script-src': "'self' 'unsafe-inline'",
+      'connect-src': "'self' http://localhost:*",
+      'default-src': "'none'",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+      'font-src': "'self' fonts.gstatic.com data: ",
+      'img-src': "'self' *.gravatar.com *.wp.com data:",
+      'media-src': "'self'"
+    };
+
 
   }
 
@@ -54,11 +78,6 @@ module.exports = function(environment) {
 
   ENV.APP.usingCors = true;
   ENV.APP.corsWithCreds = true;
-
-  ENV.contentSecurityPolicy = {
-    // ... other stuff here
-    'connect-src': `'self' http://localhost:8000`
-  };
 
   ENV['ember-simple-auth'] = {
     store: 'simple-auth-session-store:local-storage',

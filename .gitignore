@@ -16,4 +16,7 @@
 npm-debug.log*
 testem.log
 
+.env.deploy.*
+.env
+.DS_Store
 .idea
