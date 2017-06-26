@@ -28,7 +28,8 @@ export default Ember.Service.extend({
     return get(this, 'organization.name')
   }),
   orgId: computed('organization.id', function() {
-    return get(this, 'organization.id')
+    let org = get(this, 'organization');
+    return org.get('id');
   }),
 
   /**
@@ -37,6 +38,7 @@ export default Ember.Service.extend({
   getServerData: task(function * () {
       let user = yield get(this, 'store').queryRecord('user', {currentUser: true});
       let org = yield get(user, 'organizations');
+      org = org.get('firstObject');
       set(this, 'user', user);
       set(this, 'organization', org);
   }).drop(),
