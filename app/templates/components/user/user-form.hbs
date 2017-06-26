@@ -1,0 +1,5 @@
+{{#bs-form formLayout=formLayout model=changeset onSubmit=(action "submit") as |form|}}
+  {{form.element controlType="textfield" label="Name" property="name" required=true}}
+  {{form.element controlType="email" label="Email" placeholder="Email" property="username" required=true}}
+  {{bs-button defaultText="Save" type="primary" buttonType="submit" class="btn-block"}}
+{{/bs-form}}

@@ -28,8 +28,7 @@ export default Ember.Service.extend({
     return get(this, 'organization.name')
   }),
   orgId: computed('organization.id', function() {
-    let org = get(this, 'organization');
-    return org.get('id');
+    return get(this, 'organization.id')
   }),
 
   /**

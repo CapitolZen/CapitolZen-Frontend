@@ -8,6 +8,11 @@ export default ApplicationAdapter.extend({
       return `${this._super(...arguments)}/current`;
     }
 
+    if (query.currentOrg) {
+      delete query.currentOrg;
+      return `${this._super(...arguments)}/current_org`;
+    }
+
     return this._super(...arguments);
   }
 });
