@@ -1,5 +1,30 @@
-{{#if hasBlock}}
-  {{yield}}
+
+
+{{#if isActive}}
+  <div class="clearfix">
+    <div class="pull-right ml-3">
+      <button type="button" class="close" aria-label="Close" {{action "toggleActive"}}>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <strong>Select Groups</strong>
+  </div>
+  <div class="add-group-list">
+    {{#if listGroups.isRunning}}
+      {{#ui/inline-loading}}Loading{{/ui/inline-loading}}
+    {{/if}}
+    <ul class="list-group">
+      {{#each groupList as |group|}}
+        <button class="list-group-item list-group-item-action" onclick={{perform addToGroup group}}>
+          {{group.title}}
+        </button>
+      {{/each}}
+    </ul>
+
+  </div>
+
+
+
 {{else}}
-  Add To Group
+  <button class="btn btn-outline-primary" {{action "toggleActive"}}>{{fa-icon 'plus'}} Add To Group</button>
 {{/if}}
