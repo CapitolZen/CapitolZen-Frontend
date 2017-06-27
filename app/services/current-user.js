@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import { task } from 'ember-concurrency';
 const {
   inject:
       { service },
   get,
   set,
-  computed
+  computed,
+  RSVP
   } = Ember;
 
 export default Ember.Service.extend({
@@ -31,33 +31,17 @@ export default Ember.Service.extend({
     return get(this, 'organization.id')
   }),
 
-  /**
-   * @private
-   */
-  getServerData: task(function * () {
-      let user = yield get(this, 'store').queryRecord('user', {currentUser: true});
-      let org = yield get(user, 'organizations');
-      org = org.get('firstObject');
-      set(this, 'user', user);
-      set(this, 'organization', org);
-  }).drop(),
-
-  /**
-   * Load Current User into store/service
-   * @public
-   */
   load() {
     if (get(this, 'session.isAuthenticated')) {
-      try {
-        get(this, 'getServerData').perform()
-        return true
-      } catch (e) {
-        return false;
-      }
+      return get(this, 'store').queryRecord('user', {currentUser: true})
+        .then(user => {
+          get(user, 'organizations').then(orgs => {
+            set(this, 'user', user);
+            set(this, 'organization', orgs.get('firstObject'));
+          })
+        })
     } else {
-      return false;
+      return RSVP.resolve()
     }
-  }
-
-
+  },
 });
