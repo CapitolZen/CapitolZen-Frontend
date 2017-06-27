@@ -1,14 +1,12 @@
 import Ember from 'ember';
 
-const {inject: {service}} = Ember;
+const {inject: {service}, RSVP} = Ember;
 export default Ember.Route.extend({
   currentUser: service(),
   model() {
-    let currentOrg = this.get('currentUser.organization');
-    if (currentOrg) {
-      return currentOrg;
-    }
-
-
+    return RSVP.hash({
+      user: this.get('currentUser').load(),
+      organization: this.get('currentUser.organization')
+    })
   }
 });

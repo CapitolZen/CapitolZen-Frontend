@@ -4,13 +4,13 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   isActive: DS.attr('boolean'),
   userIsOwner: DS.attr('boolean'),
-  billingName: DS.attr('string'),
-  billingEmail: DS.attr('string'),
-  billingPhone: DS.attr('string'),
-  billingAddressOne: DS.attr('string'),
-  billingAddressTwo: DS.attr('string'),
-  billingCity: DS.attr('string'),
-  billingState: DS.attr('string'),
-  billingZipCode: DS.attr('string'),
-  planType: DS.attr('string')
+  billing_name: DS.attr('string'),
+  billing_email: DS.attr('string'),
+  billing_phone: DS.attr('string'),
+  billing_address_one: DS.attr('string'),
+  billing_address_two: DS.attr('string'),
+  billing_city: DS.attr('string'),
+  billing_state: DS.attr('string'),
+  billing_zip_code: DS.attr('string'),
+  plan_type: DS.attr('string')
 });

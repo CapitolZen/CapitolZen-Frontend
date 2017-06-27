@@ -9,9 +9,9 @@ export default Ember.Component.extend({
   flashMessages: service(),
   isEditing: false,
   changeset: null,
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    let org = get(this, 'org');
+    let org = get(this, 'org') || {};
     this.changeset = new Changeset(org, lookupValidator(OrganizationValidations), OrganizationValidations);
   },
   actions: {
