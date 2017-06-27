@@ -1,5 +1,5 @@
 {{#if isEditing}}
-  {{#bs-form formLayout=formLayout model=group onSubmit=(action "saveGroup") as |form|}}
+  {{#bs-form formLayout=formLayout model=group onSubmit=(action groupAction) as |form|}}
     {{form.element controlType="textfield" label="Name" placeholder="Group Name" property="title" required=true}}
     <div class="row">
       <div class="col-md-6">

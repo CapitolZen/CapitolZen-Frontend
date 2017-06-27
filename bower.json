@@ -1,6 +1,0 @@
-{
-  "name": "capitolzen-client",
-  "dependencies": {
-    "hammer.js": "2.0.6"
-  }
-}

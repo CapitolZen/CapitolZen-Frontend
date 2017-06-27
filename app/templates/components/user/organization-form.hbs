@@ -1,0 +1,43 @@
+
+
+{{#if isEditing}}
+  {{#bs-form formLayout=formLayout model=changeset onSubmit=(action "updateOrganization") as |form|}}
+    {{form.element controlType="textfield" label="Organization Name" property="name" required=true}}
+    <fieldset>
+      <legend>Billing</legend>
+      {{form.element label="Billing Contact Name" controlType="text" property="billing_name"}}
+      {{form.element label="Billing Email" controlType="text" property="billing_email"}}
+      {{form.element label="Billing Phone" controlType="text" property="billing_phone"}}
+      {{#form.group}}
+        {{form.element label="Billing Address" controlType="text" property="billing_address_one"}}
+        {{form.element label="Address 2" controlType="text" property="billing_address_two"}}
+        <div class="row">
+          <div class="col-md-6">
+            {{form.element label="City" controlType="text" property="billing_city"}}
+          </div>
+          <div class="col-md-3">
+            {{form.element label="State" controlType="text" property="billing_state"}}
+          </div>
+          <div class="col-md-3">
+            {{form.element label="Zip Code" controlType="text" property="billing_zip_code"}}
+          </div>
+        </div>
+      {{/form.group}}
+    </fieldset>
+    <div class="button-group">
+      {{bs-button defaultText="Submit" type="primary" buttonType="submit" }}
+      <button class="btn btn-link" {{action "toggleEditing"}}>{{fa-icon "times"}} Cancel</button>
+    </div>
+
+  {{/bs-form}}
+{{else}}
+  <dl class="row">
+    <dt class="col-sm-3">Organization Name</dt>
+    <dd class="col-sm-9">{{org.name}}</dd>
+
+    <dt class="col-sm-3">Organization Billing Contact</dt>
+    <dd class="col-sm-9">{{org.billing_name}}</dd>
+    <dd class="col-sm-9 offset-sm-3">{{org.billing_phone}} | {{org.billing_email}}</dd>
+  </dl>
+  <button class="btn btn-link" {{action "toggleEditing"}}>{{fa-icon "pencil"}} Edit</button>
+{{/if}}

@@ -27,7 +27,6 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       includePaths: [
-        'bower_components',
         'vendor',
         'node_modules',
       ]

@@ -22,12 +22,10 @@ Router.map(function() {
   });
 
   this.route('organization', function() {
-    this.route('detail', {path: '/:id'});
     this.route('edit', {path: '/:id'});
   });
 
   this.route('user', function() {
-    this.route('detail');
     this.route('edit');
   });
   this.route('bills', function() {
