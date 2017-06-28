@@ -1,1 +1,14 @@
-{{yield}}
+{{#bs-nav justified=true as |nav|}}
+  {{#nav.item}}
+    {{#nav.link-to "groups.bills" group}}{{fa-icon "file-text"}} <span class="hidden-sm-down">Bills</span>{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "groups.message" group}}{{fa-icon "paper-plane"}} <span class="hidden-sm-down">Message</span>{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "groups.reports.index" group}}{{fa-icon "tachometer"}} <span class="hidden-sm-down">Reports</span>{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "groups.contacts" group}}{{fa-icon "users"}} <span class="hidden-sm-down">Contacts</span>{{/nav.link-to}}
+  {{/nav.item}}
+{{/bs-nav}}

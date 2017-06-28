@@ -28,7 +28,12 @@
         {{bills/add-to-group bill=bill}}
       </div>
     </div>
-
+  {{else}}
+    {{#if searchTerms}}
+      <p class="text-center"><em>No results matching <code>{{searchTerms}}</code> </em></p>
+    {{else}}
+      <p class="text-center">Enter a search term to get started</p>
+    {{/if}}
   {{/each}}
   </div>
 {{/if}}
