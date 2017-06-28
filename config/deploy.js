@@ -9,6 +9,9 @@ module.exports = function(deployTarget) {
     s3: {},
     cloudfront: {},
     's3-index': {},
+    slack: {
+      webhookURL: 'https://hooks.slack.com/services/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'
+    }
   };
 
 

@@ -4,6 +4,7 @@ const {inject: {service}} = Ember;
 export default Ember.Component.extend({
   store: service(),
   session: service(),
+  router: service('-routing'),
   actions: {
     register(user) {
       let { email:username, password, name, organizationName } = user;
@@ -24,7 +25,7 @@ export default Ember.Component.extend({
               newOrg.save()
             })
             .then(() => {
-              this.transitionToRoute('index');
+              this.get('router').transitionToRoute('index');
             });
         });
     },

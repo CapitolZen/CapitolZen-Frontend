@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   store: service(),
   currentUser: service(),
   flashMessages: service(),
+  routing: service('-routing'),
   isEditing: false,
   toggleEnabled: true,
   init() {
@@ -27,11 +28,18 @@ export default Ember.Component.extend({
       let org = this.get('store').peekRecord('organization', curorg.get('id'));
       data.set('organization', org);
 
-      data.save().then(() => {
-        this.get('flashMessages').success('Group Created!')
+      let group = this.get('store').createRecord('group', {
+        organization: org,
+        title: data.title,
+        description: data.description
+      });
+
+    group.save().then(() => {
+        this.get('flashMessages').success('Group Created!');
+        this.get('routing').transitionTo('groups');
       })
         .catch(() => {
-          this.get('flashMessages').danger("We're sorry, there is an error and our team is notified!")
+          this.get('flashMessages').danger("We're sorry, there is an error and our team is notified!");
         });
     },
     toggleEditing() {
