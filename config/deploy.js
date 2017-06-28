@@ -7,7 +7,9 @@ module.exports = function(deployTarget) {
       activateOnDeploy: true,
     },
     s3: {},
-    cloudfront: {},
+    cloudfront: {
+      objectPaths: ['/*', '/assets/*', '/index.html']
+    },
     's3-index': {},
     slack: {
       webhookURL: 'https://hooks.slack.com/services/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'
