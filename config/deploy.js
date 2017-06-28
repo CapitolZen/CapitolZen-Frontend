@@ -10,7 +10,9 @@ module.exports = function(deployTarget) {
     cloudfront: {
       objectPaths: ['/*', '/assets/*', '/index.html']
     },
-    's3-index': {},
+    's3-index': {
+      cacheControl: 'max - age = 0, no - cache, no - store, must - revalidate'
+    },
     slack: {
       webhookURL: 'https://hooks.slack.com/services/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'
     }
