@@ -7,10 +7,9 @@
       {{#navbar.nav as |nav|}}
         {{#if isAuthenticated}}
 
+          {{#nav.item}}{{#nav.link-to "bills.search"}}Search{{/nav.link-to}}{{/nav.item}}
           {{#nav.item}}{{#nav.link-to "groups"}}Groups{{/nav.link-to}}{{/nav.item}}
-
-          {{#nav.item}}{{#nav.link-to "bills.search"}}Bills{{/nav.link-to}}{{/nav.item}}
-
+          {{#nav.item}}{{#nav.link-to "bills.index"}}Bills{{/nav.link-to}}{{/nav.item}}
           {{#nav.item}}{{#nav.link-to "organization"}}My Account{{/nav.link-to}}{{/nav.item}}
 
           {{#nav.item class="pull-right"}}
