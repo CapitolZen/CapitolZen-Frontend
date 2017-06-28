@@ -6,7 +6,9 @@ module.exports = function(deployTarget) {
     pipeline: {
       activateOnDeploy: true,
     },
-    s3: {},
+    s3: {
+      filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,html}',
+    },
     cloudfront: {
       objectPaths: ['/*', '/assets/*', '/index.html']
     },
