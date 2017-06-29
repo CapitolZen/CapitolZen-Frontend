@@ -1,9 +1,16 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-const {inject: {service}} = Ember;
-export default Ember.Route.extend(ApplicationRouteMixin, {
+const {
+  Route,
+  inject: {
+    service
+  }
+} = Ember;
+
+export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
+
   beforeModel() {
     return this._loadCurrentUser();
   },

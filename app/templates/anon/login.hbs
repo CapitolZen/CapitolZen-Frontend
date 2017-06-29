@@ -1,0 +1,25 @@
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="col-6 offset-3">
+      <div class="header">
+        <h1>
+          Capitol Zen
+        </h1>
+      </div>
+      <div class="card">
+        {{#bs-form model=this onSubmit=(action "login") as |form|}}
+          <div class="card-block">
+            <h4 class="card-title">Welcome Back</h4>
+            {{form.element controlType="email" label="Email" placeholder="Email" property="identification"}}
+            {{form.element controlType="password" label="Password" placeholder="Password" property="password"}}
+            {{#link-to 'anon.forgot-password' class=""}}Need Help?{{/link-to}}
+          </div>
+          <div class="card-footer">
+            {{bs-button defaultText="Login" type="primary" buttonType="submit"}}
+            {{#link-to 'anon.register' class="pull-right btn btn-secondary"}}Create New Account{{/link-to}}
+          </div>
+        {{/bs-form}}
+      </div>
+    </div>
+  </div>
+</div>
