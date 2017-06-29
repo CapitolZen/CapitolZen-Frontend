@@ -70,7 +70,6 @@ module.exports = function(environment) {
       'media-src': "'self'"
     };
 
-
   }
 
   ENV.apiURL = apiHost;
