@@ -82,6 +82,7 @@ module.exports = function(environment) {
     store: 'simple-auth-session-store:local-storage',
     authorizer: 'authorizer:application',
     crossOriginWhiteList: ['*'],
+    authenticationRoute: 'anon.login',
     routeAfterAuthentication: 'dashboard'
   };
 
