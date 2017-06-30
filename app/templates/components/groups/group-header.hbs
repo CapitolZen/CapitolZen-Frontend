@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="group-header row">
     {{#if group.logo}}
@@ -10,4 +11,6 @@
     </div>
   </div>
 </div>
-{{ui/group-nav group=group}}
+{{#if group.id}}
+  {{ui/group-nav group=group}}
+{{/if}}

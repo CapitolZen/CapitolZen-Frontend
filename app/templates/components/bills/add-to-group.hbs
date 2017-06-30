@@ -16,8 +16,11 @@
     {{/if}}
     <ul class="list-group mt-2">
       {{#each groupList as |group|}}
-          <button class="list-group-item list-group-item-action">
-            {{group.name}}
+          <button class="list-group-item list-group-item-action" onclick={{perform addBillToGroup group}}>
+            {{#if addBillToGroup.isRunning}}
+              {{ui/inline-loading}}
+            {{/if}}
+            {{group.title}}
           </button>
       {{/each}}
     </ul>
