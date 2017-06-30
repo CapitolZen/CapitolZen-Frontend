@@ -367,7 +367,7 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-aws-sdk@^2.1.48, aws-sdk@^2.40.0, aws-sdk@^2.6.12:
+aws-sdk@^2.40.0, aws-sdk@^2.6.12:
   version "2.76.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.76.0.tgz#2c37bf04e37ab4a26b5ff7c7583d596034c76309"
   dependencies:
@@ -1783,6 +1783,12 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
+coffee-script@~1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.7.1.tgz#62996a861780c75e6d5069d13822723b73404bfc"
+  dependencies:
+    mkdirp "~0.3.5"
+
 colors@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.0.3.tgz#0433f44d809680fdeb60ed260f1b0c262e82a40b"
@@ -2411,7 +2417,7 @@ ember-cli-deploy-manifest@^1.0.0, ember-cli-deploy-manifest@^1.1.0:
     minimatch "^3.0.3"
     rsvp "^3.5.0"
 
-ember-cli-deploy-plugin@^0.2.1, ember-cli-deploy-plugin@^0.2.2, ember-cli-deploy-plugin@^0.2.3, ember-cli-deploy-plugin@^0.2.6, ember-cli-deploy-plugin@^0.2.9, ember-cli-deploy-plugin@~0.2.9:
+ember-cli-deploy-plugin@^0.2.1, ember-cli-deploy-plugin@^0.2.2, ember-cli-deploy-plugin@^0.2.3, ember-cli-deploy-plugin@^0.2.6, ember-cli-deploy-plugin@~0.2.9:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/ember-cli-deploy-plugin/-/ember-cli-deploy-plugin-0.2.9.tgz#a3d395b8adad7ef68d8bacdd0b0f4a61bcf9e651"
   dependencies:
@@ -2435,16 +2441,6 @@ ember-cli-deploy-revision-data@^1.0.0:
     rsvp "^3.5.0"
     simple-git "^1.57.0"
 
-ember-cli-deploy-s3-index@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-deploy-s3-index/-/ember-cli-deploy-s3-index-1.0.0.tgz#9353b459d794962916b6075494138cdb87ceee36"
-  dependencies:
-    aws-sdk "^2.1.48"
-    core-object "^2.0.6"
-    ember-cli-deploy-plugin "^0.2.9"
-    mime-types "^2.1.9"
-    rsvp "^3.0.18"
-
 ember-cli-deploy-s3@^1.0.0, ember-cli-deploy-s3@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-deploy-s3/-/ember-cli-deploy-s3-1.1.0.tgz#626126c21c7b2ef0347978c01c1338e6a16b02ab"
@@ -2458,6 +2454,18 @@ ember-cli-deploy-s3@^1.0.0, ember-cli-deploy-s3@^1.1.0:
     minimatch "^3.0.3"
     proxy-agent "^2.0.0"
     rsvp "^3.5.0"
+
+ember-cli-deploy-slack@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-deploy-slack/-/ember-cli-deploy-slack-1.0.0.tgz#b7449ffa2c568bbed0db0a9afc99274af01f749e"
+  dependencies:
+    chalk "^1.0.0"
+    core-object "^2.0.0"
+    ember-cli-deploy-plugin "^0.2.3"
+    moment "^2.17.1"
+    node-slackr "^0.1.0"
+    rsvp "^3.5.0"
+    silent-error "^1.0.0"
 
 ember-cli-deploy@^1.0.1:
   version "1.0.1"
@@ -4956,7 +4964,7 @@ lodash@^3.10.0, lodash@^3.10.1, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1, lodash@~4.17.4:
+lodash@^4.0.0, lodash@^4.11.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1, lodash@~4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -5130,7 +5138,7 @@ micromatch@^2.1.5, micromatch@^2.3.7:
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1"
 
-mime-types@^2.1.11, mime-types@^2.1.12, mime-types@^2.1.9, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.7:
+mime-types@^2.1.11, mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.7:
   version "2.1.15"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.15.tgz#a4ebf5064094569237b8cf70046776d09fc92aed"
   dependencies:
@@ -5170,7 +5178,7 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
-mkdirp@^0.3.5:
+mkdirp@^0.3.5, mkdirp@~0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.5.tgz#de3e5f8961c88c787ee1368df849ac4413eca8d7"
 
@@ -5184,7 +5192,7 @@ moment-timezone@~0.5.11:
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.9.0", moment@^2.18.0, moment@^2.18.1:
+"moment@>= 2.9.0", moment@^2.17.1, moment@^2.18.0, moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
@@ -5330,6 +5338,14 @@ node-sass@^4.1.0:
     request "^2.79.0"
     sass-graph "^2.1.1"
     stdout-stream "^1.4.0"
+
+node-slackr@^0.1.0:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/node-slackr/-/node-slackr-0.1.4.tgz#625da8ac93c00f251b7ad6d713d6009e75ffa3ca"
+  dependencies:
+    coffee-script "~1.7.1"
+    lodash "^4.11.1"
+    request "^2.72.0"
 
 node-uuid@~1.4.7:
   version "1.4.8"
@@ -6211,7 +6227,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-request@2, request@^2.74.0, request@~2.74.0:
+request@2, request@^2.72.0, request@^2.74.0, request@~2.74.0:
   version "2.74.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.74.0.tgz#7693ca768bbb0ea5c8ce08c084a45efa05b892ab"
   dependencies:

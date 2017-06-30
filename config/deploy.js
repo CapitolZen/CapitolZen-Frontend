@@ -6,9 +6,18 @@ module.exports = function(deployTarget) {
     pipeline: {
       activateOnDeploy: true,
     },
-    s3: {},
-    cloudfront: {},
-    's3-index': {},
+    s3: {
+      filePattern: '**/*.{js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,html}',
+    },
+    cloudfront: {
+      objectPaths: ['/*', '/assets/*', '/index.html']
+    },
+    's3-index': {
+      cacheControl: 'max - age = 0, no - cache, no - store, must - revalidate'
+    },
+    slack: {
+      webhookURL: 'https://hooks.slack.com/services/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'
+    }
   };
 
 
