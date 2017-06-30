@@ -9,15 +9,16 @@
     </div>
     <strong>Select Groups</strong>
   </div>
+  <hr>
   <div class="add-group-list">
     {{#if listGroups.isRunning}}
       {{#ui/inline-loading}}Loading{{/ui/inline-loading}}
     {{/if}}
-    <ul class="list-group">
+    <ul class="list-group mt-2">
       {{#each groupList as |group|}}
-        <button class="list-group-item list-group-item-action" onclick={{perform addToGroup group}}>
-          {{group.title}}
-        </button>
+          <button class="list-group-item list-group-item-action">
+            {{group.name}}
+          </button>
       {{/each}}
     </ul>
 
@@ -26,5 +27,5 @@
 
 
 {{else}}
-  <button class="btn btn-outline-primary" {{action "toggleActive"}}>{{fa-icon 'plus'}} Add To Group</button>
+  <button class="btn btn-primary" {{action "toggleActive"}}>{{fa-icon 'plus'}} Add To Group</button>
 {{/if}}
