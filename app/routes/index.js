@@ -5,9 +5,9 @@ export default Ember.Route.extend({
   beforeModel() {
     let session = this.get('session');
     if (session.isAuthenticated) {
-      this.transitionTo('dashboard');
+      this.transitionTo('anon.dashboard');
     } else {
-      this.transitionTo('register');
+      this.transitionTo('anon.register');
     }
   }
 });

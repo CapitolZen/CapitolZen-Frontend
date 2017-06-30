@@ -5,17 +5,25 @@
 // Settings
 $enable-rounded: false;
 
-$body-bg: #fdfdfd;
-$font-weight-normal: 300;
+$cz-white: #FBF9FB;
+$cz-grey-lt: #e3e1e3;
+$cz-grey: #666564;
+$cz-navy: #343239;
+$cz-green: #009e83;
 
-// Typography
-$font-family-sans-serif: 'Open Sans', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-family-serif: Georgia, "Times New Roman", Times, serif;
-$font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$font-family-base: $font-family-sans-serif;
+$brand-primary: $cz-green;
+$gray-light: $cz-grey;
+$gray-lighter: $cz-grey-lt;
+$gray-lightest: $cz-white;
+
+$body-bg: $cz-white;
+$link-color: $cz-navy;
+
+
+$font-weight-normal: 300;
 
 
 //
 // CUSTOM VARIABLES
 // -------------------------------------------------
-$body-font-color: black;
+
