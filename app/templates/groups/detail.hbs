@@ -1,2 +1,6 @@
 {{groups/group-header group=model}}
-{{groups/group-form group=model groupAction="saveGroup"}}
+{{#ui/ui-card}}
+  {{#block-slot "content"}}
+    {{groups/group-form group=model groupAction="saveGroup"}}
+  {{/block-slot}}
+{{/ui/ui-card}}

@@ -1,6 +1,12 @@
-{{groups/group-header group=model}}
+{{groups/group-header group=model.group}}
 
 {{#ui/ui-card}}
   {{#block-slot 'title'}}Saved Bills{{/block-slot}}
-
+  {{#block-slot 'content'}}
+    <div class="list-group">
+      {{#each model.wrappers as |wrapper|}}
+        {{bills/wrapper-detail wrapper=wrapper}}
+      {{/each}}
+    </div>
+  {{/block-slot}}
 {{/ui/ui-card}}

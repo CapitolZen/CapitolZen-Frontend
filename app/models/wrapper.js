@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   bill: DS.belongsTo('bill'),
-  groups: DS.attr(),
+  group: DS.belongsTo('group'),
   organization: DS.belongsTo('organization'),
   notes: DS.attr()
 });

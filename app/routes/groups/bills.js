@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   model(params) {
     return RSVP.hash({
       group: this.store.findRecord('group', params.id),
-      wrappers: this.store.query('wrappers', {groups_in: params.id})
+      wrappers: this.store.findAll('wrapper')
     })
   }
 });

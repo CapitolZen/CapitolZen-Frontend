@@ -1,1 +1,15 @@
-{{yield}}
+<div class="d-flex w-100 justify-content-between">
+  <h5 class="mb-1">
+    {{wrapper.bill.state}} {{wrapper.bill.stateId}}
+    <small>{{wrapper.bill.status}}</small>
+  </h5>
+  <span class="fa fa-arrow-circle-{{if active "down" "left"}}" {{action "toggleActive"}}></span>
+</div>
+
+{{#if active}}
+  <div class="mt-1 d-flex row">
+    <div class="col-md-6">
+      <p><strong>Group Position:</strong> {{groupPosition}}</p>
+    </div>
+  </div>
+{{/if}}

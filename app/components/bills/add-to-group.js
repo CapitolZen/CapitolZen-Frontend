@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   store: service(),
   currentUser: service(),
   classNames: ['w-100'],
-  groupList: [],
+  groupList: null,
   isActive: false,
   bill: null,
   listGroups: task(function * () {
@@ -15,8 +15,8 @@ export default Ember.Component.extend({
     set(this, 'groupList', groups);
   }),
   addBillToGroup: task(function * (group) {
-    let {state_id} = get(this, 'bill');
-    let wrapper = yield this.get('store').query('wrapper', {bill__state_id: state_id});
+    let bill = get(this, 'bill');
+    let wrapper = yield this.get('store').query('wrapper', {bill__state_id: bill.get('stateId'), bill__state: bill.get('state')});
     let groupData = {group_id: group.id};
 
     if (wrapper.get('length')) {
@@ -30,8 +30,7 @@ export default Ember.Component.extend({
         organization: get(this, 'currentUser.organization')
       });
     }
-    get(this, 'groupList').removeObject('groupList');
-    if (get(this, 'groupList').get('groupList') == 0) {
+    if (get(this, 'groupList').get('length') == 0) {
       this.toggleProperty('isActive');
     }
     wrapper.save();

@@ -5,7 +5,8 @@ export default DS.Model.extend({
   sponsor: DS.attr('string'),
   state: DS.attr('string'),
   summary: DS.attr('string'),
-  history: DS.attr('string'),
+  history: DS.attr(),
   stateId: DS.attr('string'),
-  committee: DS.attr('string')
+  currentCommittee: DS.attr('string'),
+  status: DS.attr('string')
 });
