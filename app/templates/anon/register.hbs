@@ -1,14 +1,35 @@
-<div class="app flex-row align-items-center">
-  <div class="container">
-    <div class="col-6 offset-3">
-      <div class="header">
-        <h1>
-          Capitol Zen
+<div class="app flex-row align-items-top pt-5 justify-content-center">
+  <div class="col-5 hidden-md-down">
+    <div class="card">
+      <card class="card-block">
+        <h1 class="card-title">
+          <img src="/assets/images/capitolzenwordmark_logo.svg" width="200px"/>
+          <span class="sr-only">Capitol Zen</span>
         </h1>
+        <p class="card-text lead">
+          <strong>Zen, Adj</strong>
+        </p>
+        <p class="card-text lead">
+          <ol>
+            <li>Enlightenment by Intuition</li>
+          </ol>
+        </p>
+      </card>
+
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-offset-1 col-sm-12">
+
+    <div class="card">
+      <div class="card-title">
+        <div class="header hidden-sm-up">
+          <h1 class="card-title">
+            <img src="/assets/images/capitolzenwordmark_logo.svg" width="200px"/>
+            <span class="sr-only">Capitol Zen</span>
+          </h1>
+        </div>
       </div>
-      <div class="card">
-        {{user/user-register}}
-      </div>
+      {{user/user-register}}
     </div>
   </div>
 </div>

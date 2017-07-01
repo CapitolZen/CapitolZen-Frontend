@@ -23,9 +23,6 @@ export default Ember.Component.extend({
             .then(() => {
               let newOrg = this.get('store').createRecord('organization', {name: organizationName})
               newOrg.save()
-            })
-            .then(() => {
-              this.get('router').transitionToRoute('index');
             });
         });
     },

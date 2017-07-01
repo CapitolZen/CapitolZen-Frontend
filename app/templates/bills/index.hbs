@@ -1,0 +1,13 @@
+asdfasd
+<ul>
+  {{#each model.wrappers as |wrapper|}}
+    <li>{{model.wrappers.bill}}
+        <p>
+          {{#each wrapper.groups as |group|}}
+            {{group.id}}
+          {{/each}}
+        </p>
+    </li>
+  {{/each}}
+
+</ul>
