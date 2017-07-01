@@ -17,23 +17,18 @@ export default Ember.Component.extend({
   addBillToGroup: task(function * (group) {
     let bill = get(this, 'bill');
     let wrapper = yield this.get('store').query('wrapper', {bill__state_id: bill.get('stateId'), bill__state: bill.get('state')});
-    let groupData = {group_id: group.id};
 
-    if (wrapper.get('length')) {
-      wrapper = wrapper.get('firstObject');
-      wrapper.get('groups').pushObject(groupData);
-
-    } else {
+    if (!wrapper.get('length')) {
       wrapper = this.get('store').createRecord('wrapper', {
         bill: get(this, 'bill'),
-        groups: [groupData],
+        group: group,
         organization: get(this, 'currentUser.organization')
       });
+      wrapper.save();
     }
     if (get(this, 'groupList').get('length') == 0) {
       this.toggleProperty('isActive');
     }
-    wrapper.save();
   }),
   actions: {
     toggleActive() {

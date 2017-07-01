@@ -82,7 +82,8 @@ module.exports = function(environment) {
     store: 'simple-auth-session-store:local-storage',
     authorizer: 'authorizer:application',
     crossOriginWhiteList: ['*'],
-    routeAfterAuthentication: 'dashboard'
+    routeAfterAuthentication: 'dashboard',
+    authenticationRoute: 'anon.login'
   };
 
   ENV['ember-simple-auth-token'] = {

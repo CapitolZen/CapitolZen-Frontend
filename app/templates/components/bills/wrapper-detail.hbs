@@ -1,6 +1,8 @@
 <div class="d-flex w-100 justify-content-between">
   <h5 class="mb-1">
-    {{wrapper.bill.state}} {{wrapper.bill.stateId}}
+    {{#link-to "bills.detail" wrapper.bill.id}}
+      {{wrapper.bill.state}} {{wrapper.bill.stateId}}
+    {{/link-to}}
     <small>{{wrapper.bill.status}}</small>
   </h5>
   <span class="fa fa-arrow-circle-{{if active "down" "left"}}" {{action "toggleActive"}}></span>
@@ -8,8 +10,17 @@
 
 {{#if active}}
   <div class="mt-1 d-flex row">
-    <div class="col-md-6">
-      <p><strong>Group Position:</strong> {{groupPosition}}</p>
+    <div class="col-md-12">
+      <h6>Group Position</h6>
+      {{#if wrapper.position}}
+        <p>{{wrapper.position}}</p>
+      {{else}}
+        <button class="btn btn-default btn-sm">{{fa-icon "plus-circle"}} Add</button>
+      {{/if}}
+
+      <h6>Bill Details</h6>
+      <p><strong>Sponsor:</strong><br>{{wrapper.bill.sponsor}}</p>
+      <p><strong>Summary:</strong><br>{{wrapper.bill.summary}}</p>
     </div>
   </div>
 {{/if}}

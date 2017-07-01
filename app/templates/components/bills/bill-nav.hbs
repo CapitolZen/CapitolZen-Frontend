@@ -1,1 +1,27 @@
-{{yield}}
+{{#bs-nav justified=true as |nav|}}
+  {{#nav.item}}
+    {{#nav.link-to "bills.detail" bill.id}}
+      {{fa-icon "book"}}
+      <span class="hidden-sm-down pl-3">Detail</span>
+      {{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "bills.comments" bill.id}}
+      {{fa-icon "comments"}}
+        <span class="hidden-sm-down pl-3">Comments</span>
+      {{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "bills.notes" bill.id}}
+      {{fa-icon "sticky-note"}}
+        <span class="hidden-sm-down pl-3">Notes</span>
+      {{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "bills.share" bill.id}}
+      {{fa-icon "paper-plane"}}
+        <span class="hidden-sm-down pl-3">Share</span>
+      {{/nav.link-to}}
+  {{/nav.item}}
+
+{{/bs-nav}}
