@@ -1,14 +1,16 @@
 import Ember from 'ember';
+
 const {
   inject:
       { service },
   get,
   set,
   computed,
-  RSVP
+  RSVP,
+  Service,
   } = Ember;
 
-export default Ember.Service.extend({
+export default Service.extend({
   ajax: service(),
   session: service(),
   store: service(),
@@ -18,15 +20,19 @@ export default Ember.Service.extend({
   email: computed('user.username', function() {
     return get(this, 'user.username');
   }),
+
   id: computed('user.id', function() {
     return get(this, 'user.id');
   }),
+
   name: computed('user.name', function () {
     return get(this, 'user.name')
   }),
+
   orgName: computed('organization.name', function() {
     return get(this, 'organization.name')
   }),
+
   orgId: computed('organization.id', function() {
     return get(this, 'organization.id')
   }),
