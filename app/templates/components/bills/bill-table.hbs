@@ -23,27 +23,7 @@
     {{#t.foot fixed=true as |columns|}}
       <tr>
         <td class="align-center" colspan={{columns.length}}>
-
-          <ul class="pagination justify-content-center">
-            <li class="{{if (eq page 1) 'disabled'}} page-item">
-              <a {{action 'setPage' (dec page)}} href="#" class="page-link" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            {{#each (range 1 meta.pagination.pages true) as |p index|}}
-              {{#if (and (lt p currentPageMax) (gt p currentPageMin))}}
-                <li class="{{if (eq p page) 'active'}} page-item">
-                  <a {{action 'setPage' p}} href="#" class="page-link">{{p}}</a>
-                </li>
-
-              {{/if}}
-            {{/each}}
-            <li class="{{if (eq page meta.totalPages) 'disabled'}} page-item">
-              <a {{action 'setPage' (inc page)}} href="#" class="page-link" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
+            {{ui/table-pagintor page=page meta=meta pageAction=(action 'setPage')}}
         </td>
       </tr>
     {{/t.foot}}
