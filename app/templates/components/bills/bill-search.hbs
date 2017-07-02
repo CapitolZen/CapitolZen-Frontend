@@ -23,12 +23,18 @@
         <small>{{bill.title}}</small>
       </div>
       <p class="text-muted">{{bill.summary}}</p>
-      <div class="mt-2 d-flex w-100 justify-content-between">
-        {{#link-to "bills.detail" bill.id class="btn btn-default"}}View{{/link-to}}
-        {{bills/add-to-group bill=bill}}
-      </div>
-    </div>
+      <p>{{#link-to "bills.detail" bill.id}}View{{/link-to}}</p>
 
+      {{bills/add-to-group bill=bill}}
+
+
+    </div>
+  {{else}}
+    {{#if searchTerms}}
+      <p class="text-center"><em>No results matching <code>{{searchTerms}}</code> </em></p>
+    {{else}}
+      <p class="text-center">Enter a search term to get started</p>
+    {{/if}}
   {{/each}}
   </div>
 {{/if}}

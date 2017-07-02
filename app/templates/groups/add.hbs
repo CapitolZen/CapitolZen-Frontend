@@ -1,3 +1,7 @@
 {{groups/group-header group=(hash title="Create New Group") }}
 {{partial "partials/group-nav"}}
-{{groups/group-form group=model groupAction="createGroup" isEditing=true toggleEnabled=false}}
+{{#ui/ui-card}}
+  {{#block-slot "content"}}
+    {{groups/group-form group=model groupAction="createGroup" isEditing=true toggleEnabled=false}}
+  {{/block-slot}}
+{{/ui/ui-card}}

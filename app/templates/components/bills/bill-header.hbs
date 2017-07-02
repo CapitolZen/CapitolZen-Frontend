@@ -1,0 +1,8 @@
+<h3>{{bill.stateId}} <small>{{bill.state}}</small></h3>
+<h5>{{bill.sponsor}}</h5>
+{{#if bill.cosponsor}}
+<h5>Cosponsors:</h5>
+
+{{/if}}
+
+{{bills/bill-nav bill=bill}}

@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('anon.register', {path: 'register'});
   this.route('anon.forgot-password', {path: 'forgot-password'});
 
+
   this.route('app', {resetNamespace: true, path: ''}, function() {
     this.route('index', {resetNamespace: true, path: ''});
     this.route('dashboard', {resetNamespace: true, });
