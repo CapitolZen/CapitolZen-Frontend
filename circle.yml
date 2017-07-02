@@ -17,6 +17,10 @@ dependencies:
     - yarn install
     - npm rebuild node-sass
 
+test:
+  override:
+    - echo "Skipping BAF tests"
+
 deployment:
   production:
     branch: master
