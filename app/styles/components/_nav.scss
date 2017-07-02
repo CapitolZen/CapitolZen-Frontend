@@ -1,3 +1,6 @@
+.navbar.navbar-light {
+  background:#fff;
+}
 
 .ember-burger-menu {
   flex: 1;
@@ -13,8 +16,6 @@
 }
 
 .hamburger {
-  position: absolute;
-  padding: 10px 20px;
   z-index: 100;
   font-size: 30px;
   cursor: pointer;
@@ -23,6 +24,7 @@
   -webkit-transition: opacity .4s;
   color: #fff;
 }
+
 .ember-burger-menu .bm-menu {
   h2 {
     margin: 0;
@@ -65,5 +67,8 @@
     -webkit-transition: background .4s;
     transition: background .4s;
     cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

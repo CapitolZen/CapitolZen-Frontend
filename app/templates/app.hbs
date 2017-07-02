@@ -3,12 +3,11 @@
     <a class="close" {{action burger.state.actions.close}}><i aria-hidden="true" class="fa fa-close"></i></a>
 
     <h2>
-      Capitol Zen
+      Menu
     </h2>
 
     <ul>
       {{#menu.item}}
-
         {{#link-to "groups"}}Groups{{/link-to}}
       {{/menu.item}}
 
@@ -27,16 +26,6 @@
   {{/burger.menu}}
 
   {{#burger.outlet}}
-    <a class="hamburger" {{action burger.state.actions.toggle}}><i aria-hidden="true" class="fa fa-bars"></i></a>
-
-    <div class="app-container">
-      {{ui/app-page-title}}
-      <div class="content-container container-fluid">
-        {{outlet}}
-      </div>
-      {{ui/app-footer}}
-
-    </div>
-
+    {{partial "partials/app"}}
   {{/burger.outlet}}
 {{/burger-menu}}

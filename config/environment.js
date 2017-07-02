@@ -17,12 +17,24 @@ module.exports = function(environment) {
       }
     },
 
+
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
   };
   let apiHost = '', clientHost = '';
+
+  ENV.metricsAdapters = [
+    {
+      name: 'Mixpanel',
+      environments: ['production'],
+      config: {
+        token: '697313648bce64aa237fc55a76d00567'
+      }
+    },
+  ];
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
