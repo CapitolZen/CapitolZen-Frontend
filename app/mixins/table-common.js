@@ -25,6 +25,33 @@ export default Ember.Mixin.create({
   columns: null,
   table: null,
 
+  maxPagerCount: 18,
+  currentPageRange: computed('meta.pagination.pages', 'page', function () {
+    let totalPages = this.get('meta.pagination.pages');
+    let currentPage = this.get('page');
+    let maxDisplay = this.get('maxPagerCount');
+    let half = Math.round(maxDisplay / 2);
+    if (totalPages < maxDisplay) {
+      return [false, false];
+    }
+
+    let min = currentPage - half;
+    min = (min < 0) ? 0 : min;
+
+    let max = currentPage + half;
+    max = (max > totalPages) ? totalPages : max;
+
+    return [min, max];
+  }),
+  currentPageMax: computed('currentPageRange', function () {
+    return this.get('currentPageRange')[1];
+  }),
+  currentPageMin: computed('currentPageRange', 'page', function () {
+    return this.get('currentPageRange')[0];
+  }),
+
+
+
   /**
    *
    */
@@ -82,6 +109,18 @@ export default Ember.Mixin.create({
         this.set('sort', (column.ascending ? '' : '-') + column.get('valuePath'));
         this.resetTable();
       }
+    },
+    setPage(page) {
+      let totalPages = this.get('meta.pagination.pages');
+      let currPage = this.get('page');
+
+      if (page < 1 || page > totalPages || page === currPage) {
+        return;
+      }
+
+      this.set('page', page);
+      this.get('model').clear();
+      this.get('fetchRecords').perform();
     }
-  }
+  },
 });
