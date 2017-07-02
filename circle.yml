@@ -19,6 +19,7 @@ dependencies:
 
 test:
   override:
+    - ember build
     - echo "Skipping BAF tests"
 
 deployment:
