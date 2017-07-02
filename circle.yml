@@ -8,7 +8,7 @@ dependencies:
     - rm -r /home/ubuntu/.cache/bower || echo 0
     - rm -r ~/$CIRCLE_PROJECT_REPONAME/dist || echo 0
     - yarn global add ember-cli
-    - yarn global add phantomjs@1.9
+    #- yarn global add phantomjs@1.9
   override:
     - yarn install
     - npm rebuild node-sass
