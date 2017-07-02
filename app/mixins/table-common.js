@@ -3,28 +3,31 @@ import Table from 'ember-light-table';
 import {task} from 'ember-concurrency';
 
 const {
-  inject,
+  inject: {
+    service
+  },
   isEmpty,
   computed
 } = Ember;
 
 export default Ember.Mixin.create({
-  store: inject.service(),
-
+  store: service(),
   page: 0,
-  limit: 10,
-  dir: 'asc',
-  sort: 'firstName',
-
+  page_size: 100,
+  sort: 'name',
+  recordType: null,
+  recordQuery: {},
   isLoading: computed.oneWay('fetchRecords.isRunning'),
   canLoadMore: true,
   enableSync: true,
-
   model: null,
   meta: null,
   columns: null,
   table: null,
 
+  /**
+   *
+   */
   init() {
     this._super(...arguments);
 
@@ -39,13 +42,33 @@ export default Ember.Mixin.create({
     this.set('table', table);
   },
 
+  /**
+   *
+   */
   fetchRecords: task(function*() {
-    let records = yield this.get('store').query('user', this.getProperties(['page', 'limit', 'sort', 'dir']));
+    let query = this.getProperties(['page', 'page_size', 'sort']);
+
+    query = Ember.assign(query, this.get('recordQuery'));
+    let records = yield this.get('store').query(this.get('recordType'), query);
     this.get('model').pushObjects(records.toArray());
     this.set('meta', records.get('meta'));
-    this.set('canLoadMore', !isEmpty(records));
+    this.set('canLoadMore', !isEmpty(records.get('meta').next));
   }).restartable(),
 
+  /**
+   *
+   */
+  resetTable() {
+    this.setProperties({
+      canLoadMore: true,
+      page: 0
+    });
+    this.get('model').clear();
+  },
+
+  /**
+   *
+   */
   actions: {
     onScrolledToBottom() {
       if (this.get('canLoadMore')) {
@@ -56,13 +79,8 @@ export default Ember.Mixin.create({
 
     onColumnClick(column) {
       if (column.sorted) {
-        this.setProperties({
-          dir: column.ascending ? 'asc' : 'desc',
-          sort: column.get('valuePath'),
-          canLoadMore: true,
-          page: 0
-        });
-        this.get('model').clear();
+        this.set('sort', (column.ascending ? '' : '-') + column.get('valuePath'));
+        this.resetTable();
       }
     }
   }

@@ -1,13 +1,5 @@
-asdfasd
-<ul>
-  {{#each model.wrappers as |wrapper|}}
-    <li>{{model.wrappers.bill}}
-        <p>
-          {{#each wrapper.groups as |group|}}
-            {{group.id}}
-          {{/each}}
-        </p>
-    </li>
-  {{/each}}
-
-</ul>
+{{#ui/ui-card}}
+  {{#block-slot 'content'}}
+    {{bills/bill-table model=model recordType="bill"}}
+  {{/block-slot}}
+{{/ui/ui-card}}
