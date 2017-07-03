@@ -58,3 +58,18 @@ footer {
   background: #f1f1f1;
   flex: 1;
 }
+
+//
+// Light table styling
+//////////////////////////////////////////
+.lt-head-wrap {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: $border-default;
+}
+
+.lt-foot-wrap {
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: $border-default;
+}
