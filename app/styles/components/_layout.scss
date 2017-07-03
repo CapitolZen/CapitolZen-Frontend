@@ -1,9 +1,11 @@
+//
+// App Layout
+//////////////////////////////////////////
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-
 
 body > .ember-view {
   display: -ms-flexbox;
@@ -23,14 +25,10 @@ body > .ember-view {
   color: #fff;
 }
 
-.align-items-center {
-  align-items: center !important;
-}
 
-.flex-row {
-  flex-direction: row !important;
-}
-
+//
+// Light table styling
+//////////////////////////////////////////
 .header > h1 {
   text-align: center;
   margin-bottom:30px;
@@ -70,6 +68,16 @@ body > .ember-view {
   float:right;
 }
 
+//
+// Page Title
+//////////////////////////////////////////
+h1.page-title {
+  font-weight:300;
+}
+
+//
+// Responsive
+//////////////////////////////////////////
 @include media-breakpoint-up(xs) {
 
 }

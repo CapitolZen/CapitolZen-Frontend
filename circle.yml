@@ -14,6 +14,7 @@ dependencies:
     - phantomjs --version
     - ember --version
   override:
+    - bower install
     - yarn install
     - npm rebuild node-sass
 
