@@ -50,13 +50,14 @@ body > .ember-view {
 }
 
 .ember-burger-menu > .bm-outlet > .bm-content {
-  background: #fdfdfd;
+  background: #efefef;
   flex: 1;
 }
 
 .header {
   background: #fff;
   padding:6px;
+  text-align: center;
 }
 
 .hamburger-wrapper {
@@ -65,7 +66,7 @@ body > .ember-view {
 }
 
 .brand {
-  float:right;
+  display: inline-block;
 }
 
 //
