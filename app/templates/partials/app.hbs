@@ -1,0 +1,21 @@
+{{#bs-navbar as |navbar|}}
+  {{#navbar.content}}
+    <a class="hamburger" {{action burger.state.actions.toggle}}><i aria-hidden="true" class="fa fa-bars"></i></a>
+  {{/navbar.content}}
+
+  <div class="navbar-header navbar-right">
+    {{#link-to "dashboard"}}
+      <img src="/assets/images/capitolzenwordmark_logo.svg" width="200px"/>
+    {{/link-to}}
+  </div>
+
+{{/bs-navbar}}
+
+<div class="app-container">
+  {{ui/app-page-title}}
+  <div class="content-container container-fluid">
+    {{outlet}}
+  </div>
+  {{ui/app-footer}}
+
+</div>
