@@ -4,6 +4,7 @@
   min-height: 100vh;
 }
 
+
 body > .ember-view {
   display: -ms-flexbox;
   display: flex;
@@ -35,15 +36,11 @@ body > .ember-view {
   margin-bottom:30px;
 }
 
-.app-container {
-  padding: 5rem 10rem;
-}
-
 .page-header {
   margin-bottom: 30px;
 }
 
-footer {
+.footer {
   border-top:1px solid rgba(0,0,0,.3);
   font-size:90%;
   margin-top:30px;
@@ -55,21 +52,44 @@ footer {
 }
 
 .ember-burger-menu > .bm-outlet > .bm-content {
-  background: #f1f1f1;
+  background: #fdfdfd;
   flex: 1;
 }
 
-//
-// Light table styling
-//////////////////////////////////////////
-.lt-head-wrap {
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-bottom: $border-default;
+.header {
+  background: #fff;
+  padding:6px;
 }
 
-.lt-foot-wrap {
-  padding-top: 0.5rem;
-  margin-top: 0.5rem;
-  border-top: $border-default;
+.hamburger-wrapper {
+  float:left;
+  padding: 0px 8px;
+}
+
+.brand {
+  float:right;
+}
+
+@include media-breakpoint-up(xs) {
+
+}
+
+@include media-breakpoint-up(sm) {
+
+}
+
+@include media-breakpoint-up(md) {
+  .app-container {
+    padding: 2rem 6rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .app-container {
+    padding: 5rem 10rem;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+
 }

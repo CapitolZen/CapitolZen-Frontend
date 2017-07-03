@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend({
-  pageTitleRaw: "MVCS",
+  pageTitleRaw: null,
   pageDescriptionRaw: null,
 
   pageTitle: Ember.computed('pageTitleRaw', function() {
