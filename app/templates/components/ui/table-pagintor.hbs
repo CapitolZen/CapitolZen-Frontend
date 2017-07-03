@@ -1,0 +1,20 @@
+
+
+<li class="{{if (eq page 1) 'disabled'}} page-item">
+  <a {{action 'privateSetPage' (dec page)}} href="#" class="page-link" aria-label="Previous">
+    <span aria-hidden="true">&laquo;</span>
+  </a>
+</li>
+{{#each (range 1 meta.pagination.pages true) as |p index|}}
+  {{#if (and (lt p currentPageMax) (gt p currentPageMin))}}
+    <li class="{{if (eq p page) 'active'}} page-item">
+      <a {{action 'privateSetPage' p}} href="#" class="page-link">{{p}}</a>
+    </li>
+
+  {{/if}}
+{{/each}}
+<li class="{{if (eq page meta.totalPages) 'disabled'}} page-item">
+  <a {{action 'privateSetPage' (inc page)}} href="#" class="page-link" aria-label="Next">
+    <span aria-hidden="true">&raquo;</span>
+  </a>
+</li>

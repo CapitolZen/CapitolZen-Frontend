@@ -34,6 +34,7 @@ Router.map(function() {
     // Bills
     this.route('bills', {resetNamespace: true}, function() {
       this.route('detail', {path: '/:id'});
+      this.route('saved');
       this.route('add');
       this.route('search');
       this.route('comments', {path: '/:id/comments'});
@@ -70,7 +71,6 @@ Router.map(function() {
       this.route('detail');
     });
   });
-
 });
 
 export default Router;

@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       bill: this.store.findRecord('bill', params.id),
       wrappers: this.store.query('wrapper', {bill__id: params.id})
-    });
+    })
 
   }
 });
