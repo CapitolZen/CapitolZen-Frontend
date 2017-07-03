@@ -101,6 +101,10 @@ module.exports = function(environment) {
     }
   };
 
+  mediumEditorOptions: {
+    theme: 'bootstrap'
+  }
+
 
   return ENV;
 };

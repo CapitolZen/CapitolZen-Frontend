@@ -14,7 +14,7 @@ export default ApplicationAdapter.extend({
       delete query.logoUpload;
       let id = query.orgId;
       delete query.orgId;
-      let url = `${this._super(...arguments)}/${id}/logo_upload`;
+      let url = `${this._super(...arguments)}/${id}/asset_upload`;
 
       if (query.groupId) {
         url += `?group_id=${query.groupId}`;

@@ -16,6 +16,7 @@ export default Ember.Component.extend({
   },
   actions: {
     updateOrganization(changeset) {
+      console.log("Hello from the other side. I must've called a thousand times");
       changeset.execute();
       changeset.save()
         .then(() => {
@@ -23,6 +24,7 @@ export default Ember.Component.extend({
           set(this, 'isEditing', false);
         })
         .catch(() => {
+          console.log('uh oh...hot dog');
           get(this, 'flashMessages').success('Error Creating Organization');
           get(this, 'organization.errors').forEach(({attribute, message}) => {
             changeset.pushErrors(attribute, message);
