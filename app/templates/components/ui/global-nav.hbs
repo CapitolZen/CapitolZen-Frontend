@@ -1,4 +1,6 @@
 
+
+{{!--
 {{#bs-navbar fluid=true as |navbar|}}
     <div class="navbar-header">
       {{navbar.toggle class="navbar-toggler-right"}}
@@ -6,25 +8,13 @@
     </div>
     {{#navbar.content}}
       {{#navbar.nav as |nav|}}
-        {{#if isAuthenticated}}
-
-          {{#nav.item}}{{#nav.link-to "bills.search"}}Search{{/nav.link-to}}{{/nav.item}}
           {{#nav.item}}{{#nav.link-to "groups"}}Groups{{/nav.link-to}}{{/nav.item}}
-          {{#nav.item}}{{#nav.link-to "bills.index"}}Bills{{/nav.link-to}}{{/nav.item}}
+          {{#nav.item}}{{#nav.link-to "bills.search"}}Bills{{/nav.link-to}}{{/nav.item}}
           {{#nav.item}}{{#nav.link-to "organization"}}My Account{{/nav.link-to}}{{/nav.item}}
-
           {{#nav.item class="pull-right"}}
             <a href="#" class="nav-link text-muted" {{action "invalidateSession"}}>Logout</a>
           {{/nav.item}}
-
-        {{else}}
-
-          {{#nav.item}}{{#nav.link-to "login"}}Login{{/nav.link-to}}{{/nav.item}}
-
-          {{#nav.item}}{{#nav.link-to "register"}}Register{{/nav.link-to}}{{/nav.item}}
-
-        {{/if}}
       {{/navbar.nav}}
     {{/navbar.content}}
-
 {{/bs-navbar}}
+--}}
