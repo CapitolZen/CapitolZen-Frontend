@@ -2258,6 +2258,12 @@ ember-ajax@^3.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
+ember-assign-helper@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ember-assign-helper/-/ember-assign-helper-0.1.2.tgz#3d1d575f3d4457b3662b214d4c6e671bd462cad0"
+  dependencies:
+    ember-cli-babel "^6.0.0-beta.9"
+
 ember-assign-polyfill@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ember-assign-polyfill/-/ember-assign-polyfill-2.0.1.tgz#cbd040e9d2105baf90893c2f2a6b85074a12acb0"
@@ -2347,7 +2353,7 @@ ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7, ember-cl
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.1.0, ember-cli-babel@^6.4.1:
+ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.0.0-beta.9, ember-cli-babel@^6.1.0, ember-cli-babel@^6.4.1:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.4.1.tgz#785a1c24fe3250eb0776b1ab3cee857863b44542"
   dependencies:
@@ -2616,13 +2622,7 @@ ember-cli-lodash-subset@^1.0.11, ember-cli-lodash-subset@^1.0.7:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-1.0.12.tgz#af2e77eba5dcb0d77f3308d3a6fd7d3450f6e537"
 
-ember-cli-medium-editor@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/ember-cli-medium-editor/-/ember-cli-medium-editor-1.2.4.tgz#ce0c01afd18c62363ca2697b22bd4eb72c012c98"
-  dependencies:
-    ember-cli-babel "^5.1.5"
-
-ember-cli-moment-shim@^3.3.1:
+ember-cli-moment-shim@^3.1.0, ember-cli-moment-shim@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.3.1.tgz#5868095247ca3df6cf24ee413889423342e39549"
   dependencies:
@@ -3023,7 +3023,7 @@ ember-maybe-import-regenerator@^0.1.5:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-moment@^7.3.1:
+ember-moment@^7.3.0, ember-moment@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/ember-moment/-/ember-moment-7.3.1.tgz#20cf679f4a10abd839633afead1dd816963bf3d2"
   dependencies:
@@ -3044,6 +3044,17 @@ ember-page-title@^3.1.6:
     ember-cli-babel "^6.0.0"
     ember-cli-head "^0.2.1"
     ember-cli-htmlbars "^2.0.1"
+
+ember-power-calendar@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-power-calendar/-/ember-power-calendar-0.5.0.tgz#fd3e312d0725fb6e621c595b1900deab0912fa01"
+  dependencies:
+    ember-assign-helper "0.1.2"
+    ember-cli-babel "^6.0.0"
+    ember-cli-htmlbars "^1.1.1"
+    ember-cli-moment-shim "^3.1.0"
+    ember-concurrency "^0.8.1"
+    ember-moment "^7.3.0"
 
 ember-power-select@^1.8.2:
   version "1.8.5"
