@@ -67,9 +67,11 @@ Router.map(function() {
       this.route('contacts', {path: '/:id/contacts'});
       this.route('bills', {path: '/:id/bills'});
       this.route('message', {path: '/:id/message'});
-      this.route('reports', {path: '/:id/reports'}, function() {
-        this.route('edit');
-        this.route('list');
+      this.route('reports', function() {
+        this.route('index', {path: '/:id/reports'});
+        this.route('edit', {path: '/:id/reports/:report'});
+        this.route('add', {path: '/:id/reports/add'});
+        this.route('detail', {path: '/:id/reports/:report'});
       });
     });
   });
@@ -86,6 +88,7 @@ Router.map(function() {
       this.route('detail');
     });
   });
+
 });
 
 export default Router;
