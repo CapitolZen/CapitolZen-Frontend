@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model({id}) {
-    return this.store.findRecord('group', id);
+  model(params) {
+    return Ember.RSVP.hash({
+      group: this.store.findRecord('group', params.id)
+    });
   }
 });
