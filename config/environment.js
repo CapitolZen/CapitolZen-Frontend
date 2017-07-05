@@ -41,7 +41,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.API_HOST = 'http://localhost:8000';
+    ENV.APP.API_HOST = 'http://localhost:8000';
     ENV.clientUrl = 'http://localhost:4200';
 
     ENV.contentSecurityPolicy = {
@@ -68,7 +68,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.API_HOST = 'https://api.capitolzen.com';
+    ENV.APP.API_HOST = 'https://api.capitolzen.com';
     ENV.clientUrl = 'https://app.capitolzen.com';
 
     ENV.contentSecurityPolicy = {
