@@ -1,7 +1,6 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  console.log(environment)
   var ENV = {
     modulePrefix: 'capitolzen-client',
     environment: environment,
@@ -19,14 +18,11 @@ module.exports = function(environment) {
     },
 
 
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
   };
-
-  let apiHost = 'https://api.capitolzen.com', clientHost = 'https://app.capitolzen.com';
 
   ENV.metricsAdapters = [
     {
@@ -44,8 +40,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    apiHost = 'http://localhost:8000';
-    clientHost = 'http://localhost:4200';
+
+    ENV.apiURL = 'http://localhost:8000';
+    ENV.clientUrl = 'http://localhost:4200';
 
     ENV.contentSecurityPolicy = {
       'script-src': "'self' 'unsafe-inline'",
@@ -71,8 +68,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    apiHost = 'https://api.capitolzen.com';
-    clientHost = 'https://app.capitolzen.com';
+    ENV.apiURL = 'https://api.capitolzen.com';
+    ENV.clientUrl = 'https://app.capitolzen.com';
 
     ENV.contentSecurityPolicy = {
       'script-src': "'self' 'unsafe-inline'",
@@ -86,8 +83,7 @@ module.exports = function(environment) {
 
   }
 
-  ENV.apiURL = apiHost;
-  ENV.clientUrl = clientHost;
+
 
   ENV.APP.usingCors = true;
   ENV.APP.corsWithCreds = true;
