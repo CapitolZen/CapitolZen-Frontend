@@ -97,12 +97,12 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: `${ENV.API_HOST}/api-token-auth/`,
+    serverTokenEndpoint: `${ENV.APP.API_HOST}/api-token-auth/`,
     identificationField: 'username',
     passwordField: 'password',
     tokenPropertyName: 'data.token',
     refreshAccessTokens: true,
-    serverTokenRefreshEndpoint: `${ENV.API_HOST}/api-token-verify/`,
+    serverTokenRefreshEndpoint: `${ENV.APP.API_HOST}/api-token-verify/`,
     tokenExpireName: 'exp',
     refreshLeeway: 300,
     crossOriginWhitelist: ['*'],
