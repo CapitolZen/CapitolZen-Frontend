@@ -1,6 +1,7 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
+  console.log(environment)
   var ENV = {
     modulePrefix: 'capitolzen-client',
     environment: environment,
@@ -24,7 +25,8 @@ module.exports = function(environment) {
       // when it is created
     },
   };
-  let apiHost = '', clientHost = '';
+
+  let apiHost = 'https://api.capitolzen.com', clientHost = 'https://app.capitolzen.com';
 
   ENV.metricsAdapters = [
     {
