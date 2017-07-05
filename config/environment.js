@@ -41,7 +41,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.apiURL = 'http://localhost:8000';
+    ENV.API_HOST = 'http://localhost:8000';
     ENV.clientUrl = 'http://localhost:4200';
 
     ENV.contentSecurityPolicy = {
@@ -68,7 +68,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiURL = 'https://api.capitolzen.com';
+    ENV.API_HOST = 'https://api.capitolzen.com';
     ENV.clientUrl = 'https://app.capitolzen.com';
 
     ENV.contentSecurityPolicy = {
@@ -97,12 +97,12 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: `${ENV.apiURL}/api-token-auth/`,
+    serverTokenEndpoint: `${ENV.API_HOST}/api-token-auth/`,
     identificationField: 'username',
     passwordField: 'password',
     tokenPropertyName: 'data.token',
     refreshAccessTokens: true,
-    serverTokenRefreshEndpoint: `${ENV.apiURL}/api-token-verify/`,
+    serverTokenRefreshEndpoint: `${ENV.API_HOST}/api-token-verify/`,
     tokenExpireName: 'exp',
     refreshLeeway: 300,
     crossOriginWhitelist: ['*'],
