@@ -13,6 +13,9 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     return Ember.String.pluralize(underscored);
   },
   host: computed(function () {
+    console.log(ENV.APP.API_HOST);
+    console.log(ENV.environment);
+
     return ENV.APP.API_HOST;
   }),
 
