@@ -58,15 +58,24 @@ body > .ember-view {
   background: #fff;
   padding:6px;
   text-align: center;
+  position: relative;
 }
 
 .hamburger-wrapper {
   float:left;
   padding: 0px 8px;
+  position: relative;
+  z-index: 2;
 }
 
 .brand {
-  display: inline-block;
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  padding: 4px;
 }
 
 //

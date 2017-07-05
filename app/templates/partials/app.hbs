@@ -7,6 +7,36 @@
       <img src="/assets/images/capitolzenwordmark_logo.svg" width="200px"/>
     {{/link-to}}
   </div>
+  <ul class="user-menu-wrapper nav">
+    {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
+      {{#dd.toggle}}
+        <i class="fa fa-hand-o-right"></i> <span class="hidden-sm-down">Organization</span>
+      {{/dd.toggle}}
+      {{#dd.menu align="left" as |menu|}}
+
+        {{#menu.item}}
+          {{#menu.link-to 'organization'}}Edit{{/menu.link-to}}
+        {{/menu.item}}
+
+      {{/dd.menu}}
+    {{/bs-dropdown}}
+    {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
+      {{#dd.toggle}}
+        <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
+      {{/dd.toggle}}
+      {{#dd.menu align="left" as |menu|}}
+
+        {{#menu.item}}
+          {{#menu.link-to 'user'}}Edit{{/menu.link-to}}
+        {{/menu.item}}
+
+        {{#menu.item}}
+          <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
+        {{/menu.item}}
+
+      {{/dd.menu}}
+    {{/bs-dropdown}}
+  </ul>
 </div>
 
 <div class="app-container">
