@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   store: service(),
   session: service(),
   router: service('-routing'),
+  defaultObject: Ember.Object.create(),
   actions: {
     register(user) {
       let { email:username, password, name, organizationName } = user;

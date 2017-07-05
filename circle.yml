@@ -19,13 +19,13 @@ dependencies:
 
 test:
   override:
-    - ember build --environment="production"
     - echo "Skipping BAF tests"
 
 deployment:
   production:
     branch: master
     commands:
+      - ember build --environment=production
       - |
         cat >~/.netrc <<EOF
         machine api.heroku.com

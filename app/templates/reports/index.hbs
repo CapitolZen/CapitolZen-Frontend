@@ -1,0 +1,14 @@
+{{groups/group-header group=model.group}}
+{{#link-to "reports.add" class="btn btn-primary"}}{{fa-icon "circle-plus"}} Create New Report{{/link-to}}
+{{#ui/ui-card}}
+  {{#block-slot "content"}}
+    {{#each model.reports as |report|}}
+      {{report.id}}
+    {{else}}
+      No reports yet
+    {{/each}}
+  {{/block-slot}}
+
+{{/ui/ui-card}}
+
+{{outlet}}
