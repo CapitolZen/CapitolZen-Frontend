@@ -67,12 +67,14 @@ Router.map(function() {
       this.route('contacts', {path: '/:id/contacts'});
       this.route('bills', {path: '/:id/bills'});
       this.route('message', {path: '/:id/message'});
-      this.route('reports', function() {
-        this.route('index', {path: '/:id/reports'});
-        this.route('edit', {path: '/:id/reports/:report'});
-        this.route('add', {path: '/:id/reports/add'});
-        this.route('detail', {path: '/:id/reports/:report'});
-      });
+    });
+
+    //
+    // Reports
+    this.route('reports', {path: '/:group/reports', resetNamespace: true}, function () {
+      this.route('edit', {path: '/:report/edit'});
+      this.route('add', {path: '/add'});
+      this.route('detail', {path: '/:report'});
     });
   });
 
