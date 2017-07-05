@@ -2,16 +2,15 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: 'module'
+    sourceType: "module"
   },
-  extends: 'eslint:recommended',
+  extends: ["prettier"],
   env: {
     browser: true
   },
-  rules: {
-  },
+  rules: {},
   globals: {
-    'Promise': true,
-    'MediumEditor': true,
+    Promise: true,
+    MediumEditor: true
   }
 };
