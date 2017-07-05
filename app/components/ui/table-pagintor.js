@@ -4,7 +4,7 @@ const {computed} = Ember;
 export default Ember.Component.extend({
   tagName: 'ul',
   classNames: ['pagination', 'justify-content-center'],
-  maxPagerCount: 18,
+  maxPagerCount: 10,
   meta: null,
   page: null,
   currentPageRange: computed('meta.pagination.pages', 'page', function () {
@@ -21,6 +21,10 @@ export default Ember.Component.extend({
 
     let max = currentPage + half;
     max = (max > totalPages) ? totalPages : max;
+
+    if (min === 0) {
+      max = maxDisplay;
+    }
 
     return [min, max];
   }),
