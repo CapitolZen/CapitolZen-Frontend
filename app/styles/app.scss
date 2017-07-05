@@ -62,12 +62,14 @@
 @import "bootstrap/scss/utilities";
 
 @import 'ember-burger-menu';
+@import "ember-power-calendar";
 
 //
 // APP COMPONENTS
 // -------------------------------------------------
-@import "ember-power-calendar";
+@import "components/utils";
 @import "components/layout";
 @import "components/nav";
+@import "components/tables";
 @import "components/animations";
 

@@ -18,13 +18,11 @@ module.exports = function(environment) {
     },
 
 
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
   };
-  let apiHost = '', clientHost = '';
 
   ENV.metricsAdapters = [
     {
@@ -42,8 +40,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    apiHost = 'http://localhost:8000';
-    clientHost = 'http://localhost:4200';
+
+    ENV.APP.API_HOST = 'http://localhost:8000';
+    ENV.clientUrl = 'http://localhost:4200';
 
     ENV.contentSecurityPolicy = {
       'script-src': "'self' 'unsafe-inline'",
@@ -69,8 +68,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    apiHost = 'https://api.capitolzen.com';
-    clientHost = 'https://app.capitolzen.com';
+    ENV.APP.API_HOST = 'https://api.capitolzen.com';
+    ENV.clientUrl = 'https://app.capitolzen.com';
 
     ENV.contentSecurityPolicy = {
       'script-src': "'self' 'unsafe-inline'",
@@ -84,8 +83,7 @@ module.exports = function(environment) {
 
   }
 
-  ENV.apiURL = apiHost;
-  ENV.clientUrl = clientHost;
+
 
   ENV.APP.usingCors = true;
   ENV.APP.corsWithCreds = true;
@@ -99,12 +97,12 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: `${apiHost}/api-token-auth/`,
+    serverTokenEndpoint: `${ENV.APP.API_HOST}/api-token-auth/`,
     identificationField: 'username',
     passwordField: 'password',
     tokenPropertyName: 'data.token',
     refreshAccessTokens: true,
-    serverTokenRefreshEndpoint: `${apiHost}/api-token-verify/`,
+    serverTokenRefreshEndpoint: `${ENV.APP.API_HOST}/api-token-verify/`,
     tokenExpireName: 'exp',
     refreshLeeway: 300,
     crossOriginWhitelist: ['*'],
