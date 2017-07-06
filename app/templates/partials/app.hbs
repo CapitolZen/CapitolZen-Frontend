@@ -1,17 +1,52 @@
-{{#bs-navbar toggleBreakpoint="xl" as |navbar|}}
-  {{#navbar.content}}
+<div class="header clearfix">
+  <div class="hamburger-wrapper">
     <a class="hamburger" {{action burger.state.actions.toggle}}><i aria-hidden="true" class="fa fa-bars"></i></a>
-  {{/navbar.content}}
-
-  <div class="navbar-header navbar-right">
+  </div>
+  <div class="brand">
     {{#link-to "dashboard"}}
       <img src="/assets/images/capitolzenwordmark_logo.svg" width="200px"/>
     {{/link-to}}
   </div>
+  <ul class="user-menu-wrapper nav">
+    {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
+      {{#dd.toggle}}
+        <i class="fa fa-hand-o-right"></i> <span class="hidden-sm-down">Organization</span>
+      {{/dd.toggle}}
+      {{#dd.menu align="left" as |menu|}}
 
-{{/bs-navbar}}
+        {{#menu.item}}
+          {{#menu.link-to 'organization.index'}}Edit{{/menu.link-to}}
+        {{/menu.item}}
 
-<div class="app-container p-lg-5">
+        {{#menu.item}}
+          {{#menu.link-to 'organization.team'}}Team{{/menu.link-to}}
+        {{/menu.item}}
+
+        {{#menu.item}}
+          {{#menu.link-to 'organization.billing'}}Billing{{/menu.link-to}}
+        {{/menu.item}}
+      {{/dd.menu}}
+    {{/bs-dropdown}}
+    {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
+      {{#dd.toggle}}
+        <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
+      {{/dd.toggle}}
+      {{#dd.menu align="left" as |menu|}}
+
+        {{#menu.item}}
+          {{#menu.link-to 'user'}}Edit{{/menu.link-to}}
+        {{/menu.item}}
+
+        {{#menu.item}}
+          <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
+        {{/menu.item}}
+
+      {{/dd.menu}}
+    {{/bs-dropdown}}
+  </ul>
+</div>
+
+<div class="app-container">
   {{ui/app-page-title}}
   <div class="content-container container-fluid">
     {{#each flashMessages.queue as |flash|}}
@@ -20,5 +55,4 @@
     {{outlet}}
   </div>
   {{ui/app-footer}}
-
 </div>

@@ -1,8 +1,6 @@
-.navbar.navbar-light {
-  background:#fff;
-}
 
-.ember-burger-menu {
+
+  .ember-burger-menu {
   flex: 1;
   flex-direction: column;
   display: flex;
@@ -68,6 +66,20 @@
     transition: background .4s;
     cursor: pointer;
     &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.user-menu-wrapper {
+  float:right;
+  position: relative;
+  z-index: 2;
+  > li > a {
+    padding: 11px;
+    display: block;
+    &:hover,
+    &:focus {
       text-decoration: none;
     }
   }

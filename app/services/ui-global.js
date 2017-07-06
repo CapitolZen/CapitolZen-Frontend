@@ -1,15 +1,14 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Service.extend({
-  pageTitleRaw: "Capitol Zen",
+  pageTitleRaw: null,
   pageDescriptionRaw: null,
 
-  pageTitle: Ember.computed('pageTitleRaw', function() {
-    return this.get('pageTitleRaw');
+  pageTitle: Ember.computed("pageTitleRaw", function() {
+    return this.get("pageTitleRaw");
   }),
 
-  pageDescription: Ember.computed('pageDescriptionRaw', function() {
-    return this.get('pageDescriptionRaw');
-  }),
-
+  pageDescription: Ember.computed("pageDescriptionRaw", function() {
+    return this.get("pageDescriptionRaw");
+  })
 });

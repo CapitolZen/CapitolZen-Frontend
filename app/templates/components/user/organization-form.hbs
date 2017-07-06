@@ -1,5 +1,3 @@
-
-
 {{#if isEditing}}
 
   {{#ui/ui-card}}
@@ -47,6 +45,18 @@
       <small class="badge">{{org.isActive}}</small>
     {{/block-slot}}
     {{#block-slot "content"}}
+      {{ui/simple-form-group label="Created" value=org.created}}
+
+      {{#ui/simple-form-group}}
+        {{moment-format org.created locale='es' timeZone='America/Los_Angeles'}}
+      {{/ui/simple-form-group}}
+
+      {{ui/simple-form-group label="Modified" value=org.modified}}
+
+      {{#ui/simple-form-group}}
+        {{moment-format org.modified locale='es' timeZone='America/Los_Angeles'}}
+      {{/ui/simple-form-group}}
+
       <h5><strong>Billing Contact</strong></h5>
       <p><strong>Name: </strong></p>
       <blockquote class="blockquote">
