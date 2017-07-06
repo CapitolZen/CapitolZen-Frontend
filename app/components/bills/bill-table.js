@@ -8,7 +8,7 @@ export default Ember.Component.extend(TableCommon, {
   pager: true,
   init() {
     this._super(...arguments);
-    this.send('setPage', 1);
+    this.send('setPage', 0);
   },
   columns: computed(function() {
     return [

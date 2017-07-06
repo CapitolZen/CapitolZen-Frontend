@@ -1,4 +1,4 @@
-{{#bs-navbar as |navbar|}}
+{{#bs-navbar toggleBreakpoint="xl" as |navbar|}}
   {{#navbar.content}}
     <a class="hamburger" {{action burger.state.actions.toggle}}><i aria-hidden="true" class="fa fa-bars"></i></a>
   {{/navbar.content}}
@@ -11,7 +11,7 @@
 
 {{/bs-navbar}}
 
-<div class="app-container">
+<div class="app-container p-lg-5">
   {{ui/app-page-title}}
   <div class="content-container container-fluid">
     {{#each flashMessages.queue as |flash|}}
