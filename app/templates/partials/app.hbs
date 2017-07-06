@@ -15,9 +15,16 @@
       {{#dd.menu align="left" as |menu|}}
 
         {{#menu.item}}
-          {{#menu.link-to 'organization'}}Edit{{/menu.link-to}}
+          {{#menu.link-to 'organization.index'}}Edit{{/menu.link-to}}
         {{/menu.item}}
 
+        {{#menu.item}}
+          {{#menu.link-to 'organization.team'}}Team{{/menu.link-to}}
+        {{/menu.item}}
+
+        {{#menu.item}}
+          {{#menu.link-to 'organization.billing'}}Billing{{/menu.link-to}}
+        {{/menu.item}}
       {{/dd.menu}}
     {{/bs-dropdown}}
     {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
