@@ -1,3 +1,36 @@
-{{#bs-form}}
+<form onsubmit={{action "createReport"}}>
+  <div class="form-group">
+    <label for="titleInput">Title</label>
+    {{input type="textfield" value=model.title id="titleInput" class="form-control"}}
+  </div>
+  <div class="form-group">
+    <label for="description">Summary</label>
+    {{textarea value=model.description class="form-control" id="description"}}
+  </div>
+  <div class="form-group">
 
-{{/bs-form}}
+  </div>
+  <div class="checkbox">
+    <label>
+      {{input type="checkbox" checked=useAllWrappers change=(perform getWrappers)}}
+      Use All Bills In Group
+    </label>
+  </div>
+  {{#if (not useAllWrappers)}}
+    <div class="form-group">
+      <h5>Customize Bills</h5>
+      {{#if getWrappers.isRunning}}
+        {{ui/loading-animation}}
+      {{/if}}
+      <ul>
+        {{#each wrapperList as |wrapper|}}
+          <li>{{wrapper.bill.state_id}} {{wrapper.bill.summary}}</li>
+        {{/each}}
+      </ul>
+
+    </div>
+  {{/if}}
+
+
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

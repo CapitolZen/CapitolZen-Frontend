@@ -34,11 +34,6 @@ body > .ember-view {
   margin-bottom:30px;
 }
 
-
-.page-header {
-  margin-bottom: 30px;
-}
-
 .footer {
   border-top:1px solid rgba(0,0,0,.3);
   font-size:90%;
@@ -80,7 +75,7 @@ body > .ember-view {
 }
 
 //
-// Light table styling
+// Light table styling?
 //////////////////////////////////////////
 .lt-head-wrap {
   padding-bottom: 0.5rem;
@@ -96,7 +91,8 @@ body > .ember-view {
 
 // Page Title
 h1.page-title {
-  font-weight:300;
+  font-weight: 300;
+}
 //
 // Responsive
 //////////////////////////////////////////
@@ -120,4 +116,3 @@ h1.page-title {
   }
 }
 
-@include media-breakpoint-up(xl) {

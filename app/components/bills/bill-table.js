@@ -1,41 +1,42 @@
-import Ember from 'ember';
-import TableCommon from '../../mixins/table-common';
+import Ember from "ember";
+import TableCommon from "../../mixins/table-common";
 
 const { computed } = Ember;
 export default Ember.Component.extend(TableCommon, {
-  model: 'bills',
-  tableHeight: '100vh',
+  model: "bills",
+  tableHeight: "75vh",
   pager: true,
+  page: 1,
   init() {
     this._super(...arguments);
-    this.send('setPage', 0);
+    // this.send('setPage', 0);
   },
   columns: computed(function() {
     return [
       {
-        label: 'State ID',
-        valuePath: 'stateId',
-        width: '100px',
+        label: "State ID",
+        valuePath: "stateId",
+        width: "100px",
         sortable: true
       },
       {
-        label: 'State',
-        valuePath: 'state',
+        label: "State",
+        valuePath: "state",
         sortable: true,
-        breakpoints: ['desktop', 'jumbo']
+        breakpoints: ["desktop", "jumbo"]
       },
       {
-        label: 'Sponsor',
-        valuePath: 'sponsor',
+        label: "Sponsor",
+        valuePath: "sponsor",
         sortable: true,
-        breakpoints: ['desktop', 'jumbo']
+        breakpoints: ["desktop", "jumbo"]
       },
       {
-        label: 'Status',
-        valuePath: 'status',
+        label: "Status",
+        valuePath: "status",
         sortable: true,
-        breakpoints: ['desktop', 'jumbo']
+        breakpoints: ["desktop", "jumbo"]
       }
-    ]
+    ];
   })
 });
