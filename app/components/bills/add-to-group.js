@@ -10,6 +10,7 @@ export default Ember.Component.extend({
   groupList: null,
   isActive: false,
   bill: null,
+  buttonSize: false,
   listGroups: task(function*() {
     let groups = yield get(this, "store").findAll("group");
     set(this, "groupList", groups);

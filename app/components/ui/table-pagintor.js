@@ -12,7 +12,8 @@ export default Ember.Component.extend({
     let currentPage = this.get("page");
     let maxDisplay = this.get("maxPagerCount");
     let half = Math.round(maxDisplay / 2);
-    if (totalPages < maxDisplay) {
+
+    if (this.get("meta.pagination.count") < this.get("pageSize")) {
       return [false, false];
     }
 

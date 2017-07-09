@@ -1,4 +1,4 @@
-{{#light-table table height=tableHeight as |t|}}
+{{#light-table table responsive=true height=tableHeight as |t|}}
 
   {{t.head
     onColumnClick=(action 'onColumnClick')
@@ -8,7 +8,8 @@
   }}
 
   {{#t.body
-    canSelect=false
+    canExpand=true
+    multiRowExpansion=false
     onScrolledToBottom=(action 'onScrolledToBottom')
   as |body|
   }}
@@ -17,13 +18,16 @@
         {{ui/loading-animation}}
       {{/body.loader}}
     {{/if}}
+    {{#body.expanded-row as |row|}}
+      {{bills/bill-table-row row=row}}
+    {{/body.expanded-row}}
   {{/t.body}}
 
   {{#if meta}}
     {{#t.foot fixed=true as |columns|}}
       <tr>
         <td class="align-center" colspan={{columns.length}}>
-            {{ui/table-pagintor page=page meta=meta pageAction=(action 'setPage')}}
+            {{ui/table-pagintor page=page pageSize=page_size meta=meta pageAction=(action 'setPage')}}
         </td>
       </tr>
     {{/t.foot}}
