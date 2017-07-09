@@ -9,11 +9,16 @@
           <img src="{{group.logo}}" alt="" class="card-img-top">
         {{/if}}
         <div class="card-block">
-          <h4 class="card-title">{{group.title}}</h4>
-          {{#if group.description}}
-            <p class="card-text">{{group.description}}</p>
+          <h4 class="card-title">
+            {{#link-to "groups.detail" group.id class="pull-right btn btn-secondary btn-sm"}}View{{/link-to}}
+            {{#link-to "groups.detail" group.id}}
+              {{group.title}}
+            {{/link-to}}
+          </h4>
+          {{ui/group-nav group=group view=true}}
+            {{#if group.description}}
+            <p class="card-text text-muted">{{group.description}}</p>
           {{/if}}
-          {{#link-to "groups.detail" group.id}}View{{/link-to}}
         </div>
       </div>
     </div>

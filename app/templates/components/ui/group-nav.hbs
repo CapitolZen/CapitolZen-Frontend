@@ -1,4 +1,4 @@
-{{#bs-nav justified=true as |nav|}}
+{{#bs-nav justified=true class="p-lg-0" as |nav|}}
   {{#nav.item}}
     {{#nav.link-to "groups.bills" group.id}}{{fa-icon "file-text"}} <span class="hidden-sm-down pl-3">Bills</span>{{/nav.link-to}}
   {{/nav.item}}
@@ -6,9 +6,10 @@
     {{#nav.link-to "reports" group.id}}{{fa-icon "tachometer"}} <span class="hidden-sm-down pl-3">Reports</span>{{/nav.link-to}}
   {{/nav.item}}
   {{#nav.item}}
-    {{#nav.link-to "groups.message" group.id}}{{fa-icon "paper-plane"}} <span class="hidden-sm-down pl-3">Message</span>{{/nav.link-to}}
+    {{#nav.link-to "groups.filters" group.id}}{{fa-icon "filter"}} <span class="hidden-sm-down pl-3">Filters</span>{{/nav.link-to}}
   {{/nav.item}}
   {{#nav.item}}
     {{#nav.link-to "groups.contacts" group.id}}{{fa-icon "users"}} <span class="hidden-sm-down pl-3">Contacts</span>{{/nav.link-to}}
   {{/nav.item}}
+
 {{/bs-nav}}

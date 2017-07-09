@@ -10,12 +10,16 @@
   <ul class="user-menu-wrapper nav">
     {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
       {{#dd.toggle}}
-        <i class="fa fa-hand-o-right"></i> <span class="hidden-sm-down">Organization</span>
+        <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
       {{/dd.toggle}}
       {{#dd.menu align="left" as |menu|}}
 
         {{#menu.item}}
-          {{#menu.link-to 'organization.index'}}Edit{{/menu.link-to}}
+          {{#menu.link-to 'user'}}Edit{{/menu.link-to}}
+        {{/menu.item}}
+
+        {{#menu.item}}
+          {{#menu.link-to 'organization.index'}}Organization{{/menu.link-to}}
         {{/menu.item}}
 
         {{#menu.item}}
@@ -24,17 +28,6 @@
 
         {{#menu.item}}
           {{#menu.link-to 'organization.billing'}}Billing{{/menu.link-to}}
-        {{/menu.item}}
-      {{/dd.menu}}
-    {{/bs-dropdown}}
-    {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
-      {{#dd.toggle}}
-        <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
-      {{/dd.toggle}}
-      {{#dd.menu align="left" as |menu|}}
-
-        {{#menu.item}}
-          {{#menu.link-to 'user'}}Edit{{/menu.link-to}}
         {{/menu.item}}
 
         {{#menu.item}}

@@ -1,5 +1,5 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Component.extend({
-  classNames: ['group-nav-wrapper']
+  classNames: ["group-nav-wrapper", "mw-100"]
 });
