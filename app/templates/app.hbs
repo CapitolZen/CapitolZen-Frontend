@@ -7,12 +7,16 @@
     </h2>
 
     <ul>
-      {{#menu.item}}
+      {{#menu.item dismissOnClick=true}}
         {{#link-to "groups"}}Groups{{/link-to}}
       {{/menu.item}}
 
-      {{#menu.item}}
-        {{#link-to "bills.search"}}Bills{{/link-to}}
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "bills.search"}}Search{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "bills"}}Bills{{/link-to}}
       {{/menu.item}}
 
     </ul>

@@ -5,7 +5,9 @@
     <span aria-hidden="true">&laquo;</span>
   </a>
 </li>
+{{log meta.pagination.pages}}
 {{#each (range 1 meta.pagination.pages true) as |p index|}}
+  {{log 'sup'}}
   {{#if (and (lt p currentPageMax) (gt p currentPageMin))}}
     <li class="{{if (eq p page) 'active'}} page-item">
       <a {{action 'privateSetPage' p}} href="#" class="page-link">{{p}}</a>

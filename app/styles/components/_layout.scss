@@ -34,10 +34,6 @@ body > .ember-view {
   margin-bottom:30px;
 }
 
-.page-header {
-  margin-bottom: 30px;
-}
-
 .footer {
   border-top:1px solid rgba(0,0,0,.3);
   font-size:90%;
@@ -79,12 +75,24 @@ body > .ember-view {
 }
 
 //
-// Page Title
+// Light table styling?
 //////////////////////////////////////////
-h1.page-title {
-  font-weight:300;
+.lt-head-wrap {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: $border-default;
 }
 
+.lt-foot-wrap {
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: $border-default;
+}
+
+// Page Title
+h1.page-title {
+  font-weight: 300;
+}
 //
 // Responsive
 //////////////////////////////////////////
@@ -108,6 +116,3 @@ h1.page-title {
   }
 }
 
-@include media-breakpoint-up(xl) {
-
-}

@@ -12,3 +12,31 @@
   margin-top: 0.5rem;
   border-top: $border-default;
 }
+
+.lt-body {
+  .lt-row {
+    padding: ($spacer-y *.5) ($spacer-x * .5) !important;
+
+    &:hover {
+      background-color: $cz-white;
+    }
+
+    &.is-expanded {
+      border-top: 1px solid $cz-navy;
+      &:hover {
+        background-color: transparent !important;
+      }
+    }
+
+    &.lt-expanded-row {
+      border-top: 0;
+      border-bottom: 1px solid $cz-navy;
+      &:hover {
+        background-color: transparent !important;
+
+      }
+    }
+
+
+  }
+}

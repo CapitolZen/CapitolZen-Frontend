@@ -67,6 +67,7 @@ Router.map(function() {
       this.route("contacts", { path: "/:id/contacts" });
       this.route("bills", { path: "/:id/bills" });
       this.route("message", { path: "/:id/message" });
+      this.route("filters", { path: "/:id/filters" });
     });
 
     //
