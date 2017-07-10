@@ -1,34 +1,19 @@
 
-
-{{#if isActive}}
-  <div class="clearfix">
-    <div class="pull-right ml-3">
-      <button type="button" class="close" aria-label="Close" {{action "toggleActive"}}>
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <strong>Select Groups</strong>
-  </div>
-  <hr>
-  <div class="add-group-list">
+{{#bs-dropdown onShow=(perform listGroups) as |dd|}}
+  {{#dd.button type=buttonType}}
     {{#if listGroups.isRunning}}
-      {{#ui/inline-loading}}Loading{{/ui/inline-loading}}
+      {{ui/inline-loading}}
+    {{else}}
+      {{fa-icon "plus"}}
     {{/if}}
-    <ul class="list-group mt-2">
-      {{#each groupList as |group|}}
-          <button class="list-group-item list-group-item-action" onclick={{perform addBillToGroup group}}>
-            {{#if addBillToGroup.isRunning}}
-              {{ui/inline-loading}}
-            {{/if}}
-            {{group.title}}
-          </button>
-      {{/each}}
-    </ul>
+    Add To Group
+  {{/dd.button}}
+  {{#dd.menu as |menu|}}
+    {{#each groupList as |group|}}
+      {{#menu.item class="dropdown-item" tagName="li"}}
+        <a href="#">{{group.title}}</a>
+      {{/menu.item}}
+    {{/each}}
+  {{/dd.menu}}
 
-  </div>
-
-
-
-{{else}}
-  <button class="btn btn-primary {{if buttonSize buttonSize}}" {{action "toggleActive"}}>{{fa-icon 'plus'}} Add To Group</button>
-{{/if}}
+{{/bs-dropdown}}
