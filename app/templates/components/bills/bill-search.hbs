@@ -23,9 +23,12 @@
         <small>{{bill.title}}</small>
       </div>
       <p class="text-muted">{{bill.summary}}</p>
-      <p>{{#link-to "bills.detail" bill.id}}View{{/link-to}}</p>
+      <p></p>
+      <div class="btn-group">
+        {{#link-to "bills.detail" bill.id class="btn btn-secondary"}}View{{/link-to}}
+        {{bills/add-to-group bill=bill}}
+      </div>
 
-      {{bills/add-to-group bill=bill}}
 
 
     </div>

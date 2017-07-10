@@ -8,9 +8,9 @@ export default Ember.Component.extend({
   currentUser: service(),
   classNames: ["w-100"],
   groupList: null,
-  isActive: false,
   bill: null,
   buttonSize: false,
+  buttonType: "secondary",
   listGroups: task(function*() {
     let groups = yield get(this, "store").findAll("group");
     set(this, "groupList", groups);
@@ -30,13 +30,9 @@ export default Ember.Component.extend({
       });
       wrapper.save();
     }
-    if (get(this, "groupList").get("length") == 0) {
-      this.toggleProperty("isActive");
-    }
   }),
   actions: {
     toggleActive() {
-      this.toggleProperty("isActive");
       get(this, "listGroups").perform();
     }
   }
