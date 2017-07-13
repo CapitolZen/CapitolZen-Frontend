@@ -14,10 +14,9 @@
 
   {{!-- Default yield --}}
   {{yield}}
-
-  {{#yield-slot 'footer'}}
-    <div class="card-footer text-muted clearfix">
-      {{yield}}
-    </div>
-  {{/yield-slot}}
 </div>
+{{#yield-slot 'footer'}}
+  <div class="card-footer text-muted clearfix">
+    {{yield}}
+  </div>
+{{/yield-slot}}
