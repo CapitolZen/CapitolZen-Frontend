@@ -1,41 +1,48 @@
 import Ember from "ember";
 import TableCommon from "../../mixins/table-common";
 
-const { computed } = Ember;
-export default Ember.Component.extend(TableCommon, {
-  model: "bills",
+const { computed, Component } = Ember;
+
+export default Component.extend(TableCommon, {
+  model: "wrappers",
+  recordType: "wrapper",
   tableHeight: "100vh",
-  pager: true,
+  pager: false,
   columns: computed(function() {
     return [
       {
         label: "State ID",
-        valuePath: "stateId",
+        valuePath: "bill.stateId",
         width: "100px",
         sortable: true
       },
       {
+        label: "Position",
+        valuePath: "position",
+        sortable: true
+      },
+      {
         label: "Sponsor",
-        valuePath: "sponsor",
+        valuePath: "bill.sponsor",
         sortable: true,
         breakpoints: ["desktop"]
       },
       {
         label: "Committee",
-        valuePath: "currentCommittee",
+        valuePath: "bill.currentCommittee",
         sortable: true,
         breakpoints: ["tablet", "desktop"]
       },
       {
         label: "Last Action",
-        valuePath: "lastActionDate",
+        valuePath: "bill.lastActionDate",
         cellComponent: "bills/bill-table-date",
         sortable: true,
         breakpoints: ["mobile", "tablet", "desktop"]
       },
       {
         label: "Status",
-        valuePath: "status",
+        valuePath: "bill.status",
         cellComponent: "bills/bill-table-status",
         sortable: true,
         breakpoints: ["mobile", "tablet", "desktop"]

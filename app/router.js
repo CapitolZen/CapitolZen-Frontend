@@ -94,6 +94,7 @@ Router.map(function() {
       this.route("detail");
     });
   });
+  this.route("freestyle");
 });
 
 export default Router;

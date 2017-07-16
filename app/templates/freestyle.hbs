@@ -1,0 +1,68 @@
+{{#freestyle-guide
+  title='Capitol Zen Style Components'
+  subtitle='Living Style Guide'
+  }}
+
+  {{#freestyle-section name='Visual Style' as |section|}}
+
+    {{#section.subsection name='Typography'}}
+
+      {{#freestyle-usage 'typography-times' title='System Font'}}
+        {{freestyle-typeface fontFamily='-system-ui'}}
+      {{/freestyle-usage}}
+
+    {{/section.subsection}}
+
+    {{#section.subsection name='Color'}}
+
+      {{#freestyle-usage 'fp' title='Freestyle Palette' usageTitle='Usage'}}
+        {{freestyle-palette
+        colorPalette=colorPalette
+        title='Capitol Zen Color Palette'
+        description='Please complain to shawn white about color selections'
+        }}
+      {{/freestyle-usage}}
+
+    {{/section.subsection}}
+
+  {{/freestyle-section}}
+
+  {{#freestyle-section name="UI Components" as |section|}}
+    {{#section.subsection name="bootstrap"}}
+      {{#freestyle-usage "bootstrap-components"}}
+        {{#bs-button type="primary"}}BUTTON{{/bs-button}}
+      {{/freestyle-usage}}
+      {{#freestyle-note "bootstrap-components--notes"}}
+        **NOTE:**
+        Please use provided bootstrap components rather than typing your own markup
+      {{/freestyle-note}}
+    {{/section.subsection}}
+    {{#section.subsection name="icons"}}
+      {{#freestyle-usage "font-awesome-components"}}
+        {{fa-icon "cloud"}}
+      {{/freestyle-usage}}
+      {{#freestyle-note "font-awesome-components--notes"}}
+        **NOTE:**
+        Please use provided font awesome helper rather than typing your own markup
+      {{/freestyle-note}}
+    {{/section.subsection}}
+    {{#section.subsection name="loaders"}}
+      {{#freestyle-usage "loading-spinner" title="Full Component Loading"}}
+        {{ui/loading-animation}}
+      {{/freestyle-usage}}
+      {{#freestyle-usage "inline-loader" title="inline loading"}}
+        {{ui/inline-loading}}
+      {{/freestyle-usage}}
+    {{/section.subsection}}
+  {{/freestyle-section}}
+
+  {{#freestyle-section name="Navs" as |section|}}
+    {{#section.subsection name="group-nav"}}
+      {{#freestyle-usage "group-nav" title="Group Navigation"}}
+        {{ui/group-nav group=(hash id="asdf-1234-asdf")}}
+      {{/freestyle-usage}}
+    {{/section.subsection}}
+  {{/freestyle-section}}
+
+
+{{/freestyle-guide}}
