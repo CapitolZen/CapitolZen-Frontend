@@ -3,10 +3,9 @@
 {{#ui/ui-card}}
   {{#block-slot 'title'}}Saved Bills{{/block-slot}}
   {{#block-slot 'content'}}
-    <div class="list-group">
-      {{#each model.wrappers as |wrapper|}}
-        {{bills/wrapper-detail wrapper=wrapper}}
-      {{/each}}
-    </div>
+    {{bills/wrapper-table
+      recordQuery=(hash group=model.group.id)
+      model=model.wrappers
+    }}
   {{/block-slot}}
 {{/ui/ui-card}}

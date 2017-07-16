@@ -2,7 +2,7 @@ import Ember from "ember";
 import Table from "ember-light-table";
 import { task } from "ember-concurrency";
 
-const { inject: { service }, isEmpty, computed } = Ember;
+const { merge, inject: { service }, isEmpty, computed } = Ember;
 
 export default Ember.Mixin.create({
   store: service(),
@@ -46,7 +46,7 @@ export default Ember.Mixin.create({
   fetchRecords: task(function*() {
     let query = this.getProperties(["page", "page_size", "sort"]);
 
-    query = Ember.assign(query, this.get("recordQuery"));
+    query = merge(this.get("recordQuery"), query);
     let records = yield this.get("store").query(this.get("recordType"), query);
     this.get("model").pushObjects(records.toArray());
     this.set("meta", records.get("meta"));
