@@ -1,0 +1,19 @@
+{{#if isEditing}}
+  <div class="input-group">
+    {{input value=displaySummary}}
+    <span class="input-group-button">
+      <div class="btn-group">
+        <button class="btn btn-primary" {{action "saveSummary" displaySummary}}>Save</button>
+        <button class="btn btn-secondary" {{action "toggleEditing"}}>Cancel</button>
+      </div>
+    </span>
+  </div>
+
+{{else}}
+  {{#if summary}}
+    {{summary}}
+  {{else}}
+    {{wrapper.bill.summary}}
+  {{/if}}
+  <button class="btn-link" {{action "toggleEditing"}}>{{fa-icon "pencil"}}</button>
+{{/if}}

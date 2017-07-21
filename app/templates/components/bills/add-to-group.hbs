@@ -11,7 +11,7 @@
   {{#dd.menu as |menu|}}
     {{#each groupList as |group|}}
       {{#menu.item class="dropdown-item" tagName="li"}}
-        <a href="#">{{group.title}}</a>
+        <a href="#" onclick={{perform addBillToGroup group}}>{{group.title}}</a>
       {{/menu.item}}
     {{/each}}
   {{/dd.menu}}
