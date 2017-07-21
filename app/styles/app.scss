@@ -61,8 +61,13 @@
 // Utility classes
 @import "bootstrap/scss/utilities";
 
+//
+// ADDONS
+//--------------------------------------------------
 @import 'ember-burger-menu';
 @import "ember-power-calendar";
+@import 'ember-power-select/themes/bootstrap';
+@import 'ember-power-select';
 
 //
 // APP COMPONENTS

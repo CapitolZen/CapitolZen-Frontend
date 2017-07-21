@@ -1,0 +1,24 @@
+{{#ui/ui-card}}
+  {{#block-slot "title"}}
+    <span class="badge badge-default pull-right">{{bill-status bill.status}}</span>
+    {{bill.stateId}}
+    {{tools/favorite-item model=bill}}
+  {{/block-slot}}
+  {{#block-slot "content"}}
+    {{log wrapper}}
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Sponsor</h5>
+        {{bill.sponsor}}
+        <h5>Position</h5>
+        {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
+        <h5>Summary</h5>
+        {{wrappers/wrapper-summary wrapper=wrapper}}
+      </div>
+      <div class="col-md-6">
+        <h3>Notes</h3>
+      </div>
+    </div>
+  {{/block-slot}}
+
+{{/ui/ui-card}}

@@ -6,10 +6,11 @@ export default DS.Model.extend({
   state: DS.attr("string"),
   summary: DS.attr("string"),
   history: DS.attr(),
+  versions: DS.attr(),
   stateId: DS.attr("string"),
   currentCommittee: DS.attr("string"),
   status: DS.attr("string"),
-  affectedSecion: DS.attr("string"),
+  affectedSection: DS.attr("string"),
   lastActionDate: DS.attr("date"),
   remoteUrl: DS.attr("string")
 });

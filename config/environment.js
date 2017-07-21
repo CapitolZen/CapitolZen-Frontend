@@ -84,6 +84,10 @@ module.exports = function(environment) {
     };
   }
 
+  ENV.intercom = {
+    appId: "lqg6n3a1"
+  };
+
   ENV.APP.usingCors = true;
   ENV.APP.corsWithCreds = true;
 

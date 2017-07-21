@@ -1,0 +1,8 @@
+{{#power-select
+  selected=filterType
+  options=filterOptions
+  onchange=(action (mut filterType))
+  as |filter|
+}}
+  {{filter}}
+{{/power-select}}

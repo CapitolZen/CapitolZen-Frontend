@@ -11,6 +11,6 @@ module.exports = {
   rules: {},
   globals: {
     Promise: true,
-    MediumEditor: true
+    document: true
   }
 };
