@@ -4,7 +4,7 @@
   {{#block-slot "content"}}
     <ul class="list-group">
       {{#each model.reports as |report|}}
-        <li class="list-group-item justify-content-between">
+        <li class="list-group-item d-flex flex-nowrap justify-content-between">
           {{#link-to "reports.detail" report.id}}
             {{report.title}}
           {{/link-to}}

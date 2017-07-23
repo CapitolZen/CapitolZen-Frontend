@@ -1,9 +1,9 @@
 {{#ui/ui-card}}
   {{#block-slot "title"}}
-      <span class="pull-right">
-        {{reports/report-download report=report type="secondary"}}
-      </span>
-      <span class="pull-left">Report Details</span>
+    <span class="d-flex justify-content-between">
+      Report Details
+      {{reports/report-download report=report type="secondary"}}
+    </span>
   {{/block-slot}}
   {{#block-slot "content"}}
     <h5>Summary</h5>
