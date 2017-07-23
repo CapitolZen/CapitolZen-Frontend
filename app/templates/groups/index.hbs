@@ -1,7 +1,7 @@
 {{ui-page-property "Groups" property="title"}}
 
-{{partial "partials/group-nav"}}
-<div class="row">
+{{#link-to "groups.add" class="btn btn-primary"}}Add Group{{/link-to}}
+<div class="row mt-1">
   {{#each model as |group|}}
     <div class="col-lg-6 mt-md-3">
       <div class="card">

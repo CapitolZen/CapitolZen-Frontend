@@ -1,0 +1,8 @@
+{{#if download.isRunning}}
+  {{ui/inline-loading}}
+{{/if}}
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  Download Report
+{{/if}}

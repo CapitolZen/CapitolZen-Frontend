@@ -1,1 +1,15 @@
-{{yield}}
+{{#ui/ui-card}}
+  {{#block-slot "title"}}
+      <span class="pull-right">
+        {{reports/report-download report=report type="secondary"}}
+      </span>
+      <span class="pull-left">Report Details</span>
+  {{/block-slot}}
+  {{#block-slot "content"}}
+    <h5>Summary</h5>
+    {{report.description}}
+  {{/block-slot}}
+  {{#block-slot "footer"}}
+
+  {{/block-slot}}
+{{/ui/ui-card}}

@@ -1,1 +1,4 @@
-{{outlet}}
+{{ui-page-property model.report.title property="title"}}
+{{groups/group-header group=model.group}}
+{{#link-to "reports.index"}}All Reports{{/link-to}}
+{{reports/report-detail report=model.report}}
