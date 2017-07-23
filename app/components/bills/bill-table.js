@@ -11,7 +11,6 @@ export default Ember.Component.extend(TableCommon, {
       {
         label: "State ID",
         valuePath: "stateId",
-        width: "100px",
         sortable: true
       },
       {
@@ -41,7 +40,7 @@ export default Ember.Component.extend(TableCommon, {
         breakpoints: ["mobile", "tablet", "desktop"]
       },
       {
-        label: "More",
+        label: "Actions",
         cellComponent: "bills/bill-table-actions",
         sortable: false
       }

@@ -10,7 +10,10 @@ export default Ember.Component.extend({
   groupList: null,
   bill: null,
   buttonSize: false,
+  displayText: true,
+  buttonText: "Add to Group",
   buttonType: "secondary",
+  menuAlign: "left",
   listGroups: task(function*() {
     let groups = yield get(this, "store").findAll("group");
     set(this, "groupList", groups);
