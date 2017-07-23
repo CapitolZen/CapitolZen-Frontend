@@ -1,1 +1,4 @@
-{{fa-icon (if row.expanded "arrow-circle-down" "arrow-circle-left") class="mx-auto fa-2x"}}
+<div class="btn-group btn-group-sm" role="group" aria-label="Bill Actions">
+  {{#link-to "bills.detail" row.id class="btn btn-secondary btn-sm"}}View{{/link-to}}
+  {{bills/add-to-group bill=row buttonSize="sm" displayText=false menuAlign="right"}}
+</div>

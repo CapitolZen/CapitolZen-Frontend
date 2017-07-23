@@ -4,9 +4,9 @@
 {{#yield-slot 'image'}}
   <img class="card-img-top" src="{{yield.url}}" alt="{{yield.alt}}">
 {{/yield-slot}}
-<div class="card-block">
+<div class="card-block clearfix">
   {{#yield-slot 'title'}}
-    <h4 class="card-title">{{yield}}</h4>
+    <h4 class="card-title clearfix">{{yield}}</h4>
   {{/yield-slot}}
   {{#yield-slot 'content'}}
       {{yield}}

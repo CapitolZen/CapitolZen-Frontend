@@ -2,11 +2,18 @@
 {{#link-to "reports.add" class="btn btn-primary"}}{{fa-icon "circle-plus"}} Create New Report{{/link-to}}
 {{#ui/ui-card}}
   {{#block-slot "content"}}
-    {{#each model.reports as |report|}}
-      {{report.id}}
-    {{else}}
+    <ul class="list-group">
+      {{#each model.reports as |report|}}
+        <li class="list-group-item d-flex flex-nowrap justify-content-between">
+          {{#link-to "reports.detail" report.id}}
+            {{report.title}}
+          {{/link-to}}
+          {{reports/report-download report=report type="secondary" size="btn-sm"}}
+        </li>
+      {{else}}
       No reports yet
     {{/each}}
+    </ul>
   {{/block-slot}}
 
 {{/ui/ui-card}}

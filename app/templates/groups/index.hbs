@@ -1,17 +1,20 @@
 {{ui-page-property "Groups" property="title"}}
 
-{{partial "partials/group-nav"}}
-<div class="row">
+{{#link-to "groups.add" class="btn btn-primary"}}Add Group{{/link-to}}
+<div class="row mt-1">
   {{#each model as |group|}}
     <div class="col-lg-6 mt-md-3">
       <div class="card">
-        {{#if group.logo}}
-          <img src="{{group.logo}}" alt="" class="card-img-top">
-        {{/if}}
+
         <div class="card-block">
           <h4 class="card-title">
-            {{#link-to "groups.detail" group.id class="pull-right btn btn-secondary btn-sm"}}View{{/link-to}}
+            {{#link-to "groups.detail" group.id class="pull-right btn btn-secondary btn-sm"}}
+              View
+            {{/link-to}}
             {{#link-to "groups.detail" group.id}}
+              {{#if group.logo}}
+                <img src="{{group.logo}}" alt="{{group.title}}" class="img-thumbnail w-25">
+              {{/if}}
               {{group.title}}
             {{/link-to}}
           </h4>

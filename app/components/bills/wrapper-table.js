@@ -13,12 +13,11 @@ export default Component.extend(TableCommon, {
       {
         label: "State ID",
         valuePath: "bill.stateId",
-        width: "100px",
         sortable: true
       },
       {
         label: "Position",
-        valuePath: "position",
+        cellComponent: "wrappers/wrapper-table-position",
         sortable: true
       },
       {
@@ -38,18 +37,18 @@ export default Component.extend(TableCommon, {
         valuePath: "bill.lastActionDate",
         cellComponent: "bills/bill-table-date",
         sortable: true,
-        breakpoints: ["mobile", "tablet", "desktop"]
+        breakpoints: ["tablet", "desktop"]
       },
       {
         label: "Status",
         valuePath: "bill.status",
         cellComponent: "bills/bill-table-status",
         sortable: true,
-        breakpoints: ["mobile", "tablet", "desktop"]
+        breakpoints: ["tablet", "desktop"]
       },
       {
         label: "More",
-        cellComponent: "bills/bill-table-actions",
+        cellComponent: "wrappers/wrapper-table-actions",
         sortable: false
       }
     ];
