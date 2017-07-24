@@ -1,7 +1,8 @@
 import Ember from "ember";
 import config from "./config/environment";
+import IntercomRoute from "ember-intercom-io/mixins/intercom-route";
 
-const Router = Ember.Router.extend({
+const Router = Ember.Router.extend(IntercomRoute, {
   location: config.locationType,
   rootURL: config.rootURL,
   metrics: Ember.inject.service(),
