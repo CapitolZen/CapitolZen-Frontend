@@ -15,7 +15,7 @@ export default Ember.Component.extend(TableCommon, {
       },
       {
         label: "Sponsor",
-        valuePath: "sponsor",
+        valuePath: "sponsor.fullName",
         sortable: true,
         breakpoints: ["desktop"]
       },
@@ -32,13 +32,13 @@ export default Ember.Component.extend(TableCommon, {
         sortable: true,
         breakpoints: ["mobile", "tablet", "desktop"]
       },
-      {
-        label: "Status",
-        valuePath: "status",
-        cellComponent: "bills/bill-table-status",
-        sortable: true,
-        breakpoints: ["mobile", "tablet", "desktop"]
-      },
+      // {
+      //   label: "Status",
+      //   valuePath: "status",
+      //   cellComponent: "bills/bill-table-status",
+      //   sortable: true,
+      //   breakpoints: ["mobile", "tablet", "desktop"]
+      // },
       {
         label: "Actions",
         cellComponent: "bills/bill-table-actions",

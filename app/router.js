@@ -85,6 +85,10 @@ Router.map(function() {
         this.route("detail", { path: "/:report" });
       }
     );
+
+    this.route("legislators", { resetNamespace: true }, function() {
+      this.route("detail", { path: "/:id" });
+    });
   });
 
   //

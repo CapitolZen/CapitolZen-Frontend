@@ -24,7 +24,6 @@ export default Ember.Component.extend({
       bill__state_id: bill.get("stateId"),
       bill__state: bill.get("state")
     });
-
     if (!wrapper.get("length")) {
       wrapper = this.get("store").createRecord("wrapper", {
         bill: get(this, "bill"),

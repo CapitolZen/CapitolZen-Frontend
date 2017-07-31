@@ -1,5 +1,6 @@
 <h3>{{bill.stateId}} <small>{{bill.state}}</small></h3>
-<h5>{{bill.sponsor}}</h5>
+<h5>{{get bill.sponsor "fullName"}}</h5>
+<p><span class="badge badge-default">{{get bill.sponsor "party"}}</span> {{!--{{#link-to "legislators.detail" bill.sponsor.id}}View{{/link-to}}--}}</p>
 {{#if bill.cosponsor}}
 <h5>Cosponsors:</h5>
 

@@ -47,7 +47,7 @@ export default Service.extend({
           get(user, "organizations").then(orgs => {
             set(this, "user", user);
             set(this, "organization", orgs.get("firstObject"));
-            get(this, "intercom").update(get(this, "intercomData"));
+            get(this, "intercom").set("user", get(this, "intercomData"));
           });
         });
     } else {

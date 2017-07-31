@@ -2,15 +2,17 @@ import DS from "ember-data";
 
 export default DS.Model.extend({
   title: DS.attr("string"),
-  sponsor: DS.attr("string"),
+  sponsor: DS.belongsTo("legislator"),
   state: DS.attr("string"),
-  summary: DS.attr("string"),
-  history: DS.attr(),
-  versions: DS.attr(),
   stateId: DS.attr("string"),
-  currentCommittee: DS.attr("string"),
+  history: DS.attr(),
+  documents: DS.attr(),
   status: DS.attr("string"),
-  affectedSection: DS.attr("string"),
+  chamber: DS.attr("string"),
+  actionDates: DS.attr(),
   lastActionDate: DS.attr("date"),
-  remoteUrl: DS.attr("string")
+  type: DS.attr("string"),
+  sources: DS.attr(),
+  cosponsors: DS.attr(),
+  votes: DS.attr()
 });

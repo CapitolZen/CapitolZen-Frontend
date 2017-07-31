@@ -3,8 +3,6 @@
   {{#dd.button type=buttonType size=buttonSize}}
     {{#if listGroups.isRunning}}
       {{ui/inline-loading}}
-    {{else}}
-      {{fa-icon "plus"}}
     {{/if}}
     {{#if displayText}}
       {{buttonText}}
@@ -13,7 +11,7 @@
   {{#dd.menu align=menuAlign as |menu|}}
     {{#each groupList as |group|}}
       {{#menu.item class="dropdown-item" tagName="li"}}
-        <a href="#" onclick={{perform addBillToGroup group}}>{{group.title}}</a>
+        <span {{action (perform addBillToGroup group)}}>{{fa-icon "plus"}} {{group.title}}</span>
       {{/menu.item}}
     {{/each}}
   {{/dd.menu}}
