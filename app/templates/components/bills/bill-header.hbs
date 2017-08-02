@@ -5,10 +5,3 @@
 <h5>Cosponsors:</h5>
 {{/if}}
 
-{{#if model.wrappers}}
-  <h5>Saved For</h5>
-  {{#each model.wrappers as |wrapper|}}
-    <p>{{#link-to "groups.bill.detail" wrapper.id}} {{wrapper.group.title}} {{wrapper.position}} {{/link-to}}</p>
-  {{/each}}
-{{/if}}
-

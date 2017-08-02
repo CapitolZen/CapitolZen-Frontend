@@ -13,6 +13,12 @@
       {{#menu.item class="dropdown-item" tagName="li"}}
         <span {{action (perform addBillToGroup group)}}>{{fa-icon "plus"}} {{group.title}}</span>
       {{/menu.item}}
+    {{else}}
+      {{#if listGroups.isRunning}}
+        {{ui/inline-loading}}
+      {{else}}
+        <span><em>Bill saved for all groups</em></span>
+      {{/if}}
     {{/each}}
   {{/dd.menu}}
 
