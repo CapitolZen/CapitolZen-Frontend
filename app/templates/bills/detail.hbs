@@ -1,35 +1,31 @@
 {{bills/bill-header bill=model.bill}}
 {{#ui/ui-card}}
   {{#block-slot "content"}}
-    <div class="col-md-3">
-      <h5>Summary</h5>
-      <p>{{model.bill.title}}</p>
-      {{#if model.wrappers}}
-        <h5>Saved For</h5>
-        {{#each model.wrappers as |wrapper|}}
-          <p>{{#link-to "groups.bill.detail" wrapper.id}} {{wrapper.group.title}} {{wrapper.position}} {{/link-to}}</p>
-        {{/each}}
-      {{/if}}
-      <h5>History</h5>
-      <div class="item-list">
-        {{#each model.bill.history as |history|}}
+   <div class="row">
+     <div class="col-md-4">
+       <h5>Summary</h5>
+       <p>{{model.bill.title}}</p>
+       <div class="btn-group">
+         <a href="{{model.bill.remoteUrl}}" target="_blank" class="btn btn-secondary">View Source</a>
+         {{bills/add-to-group bill=bill}}
+       </div>
 
-        {{/each}}
-      </div>
-    </div>
-    <div class="col-md-3">
-      <h5>Documents</h5>
-      <div class="item-list">
-      {{#each model.bill.documents as |doc|}}
+     </div>
+     <div class="col-md-4">
+       <h5>Documents</h5>
+       <div class="list-group">
+         {{#each model.bill.documents as |doc|}}
 
-          <div class="list-item">
-            {{doc.url}}
-          </div>
-      {{/each}}
-      </div>
-    </div>
-
-
-
+           <div class="list-group-item justify-content-between">
+             <strong>{{doc.name}}</strong>
+             <a href="{{doc.url}}" target="_blank">View</a>
+           </div>
+         {{/each}}
+       </div>
+     </div>
+     <div class="col-md-4">
+       {{bills/bill-history bill=model.bill}}
+     </div>
+   </div>
   {{/block-slot}}
 {{/ui/ui-card}}

@@ -14,5 +14,7 @@ export default DS.Model.extend({
   type: DS.attr("string"),
   sources: DS.attr(),
   cosponsors: DS.attr(),
-  votes: DS.attr()
+  votes: DS.attr(),
+  remoteUrl: DS.attr("string"),
+  billVersions: DS.attr()
 });
