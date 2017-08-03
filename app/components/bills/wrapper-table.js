@@ -22,7 +22,7 @@ export default Component.extend(TableCommon, {
       },
       {
         label: "Sponsor",
-        valuePath: "bill.sponsor",
+        valuePath: "bill.sponsor.full_name",
         sortable: true,
         breakpoints: ["desktop"]
       },
