@@ -9,7 +9,6 @@ export default Component.extend({
   actions: {
     search() {
       let term = get(this, "currentQuery");
-      debugger;
       get(this, "billSearch").search(term);
     }
   }

@@ -1,16 +1,20 @@
 <div class="card-block">
   <div class="title">
-    <h4 class="card-title">{{bill.stateId}} <small>{{bill.sponsor.fullName}}</small></h4>
+    <h4 class="card-title">{{bill.stateId}} <small>{{bill.sponsor.fullName}}
+      <span class="badge badge-default">{{bill.sponsor.party}}</span></small></h4>
     <h6 class="card-subtitle"></h6>
   </div>
-  <div class="bill-detail-body justify-content-between">
-    <div class="details w-50">
+  <div class="bill-detail-body row">
+    <div class="details col-8">
       <p class="card-text">{{bill.title}}</p>
     </div>
-    <div class="btn-group">
-      {{#link-to "bills.detail" bill.id class="btn btn-secondary"}}View{{/link-to}}
-      {{bills/add-to-group bill=bill buttonType="primary"}}
+    <div class="col-4">
+      <div class="btn-group pull-right">
+        {{#link-to "bills.detail" bill.id class="btn btn-secondary btn-block"}}View{{/link-to}}
+        {{bills/add-to-group bill=bill buttonType="primary"}}
+      </div>
     </div>
+
   </div>
 
 </div>
