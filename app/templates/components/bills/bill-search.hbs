@@ -1,37 +1,22 @@
 {{ui-page-property "Search Bills" property="title"}}
 
-{{#bs-form model=this onSubmit=(perform searchBills) as |form|}}
-  {{#form.element placeholder="Search" property="terms" as |el|}}
+<div class="row">
+  <div class="col-sm-12">
     <div class="input-group">
-      <input value="{{el.value}}" class="form-control input-lg" placeholder="Search" oninput={{action (mut el.value) value="target.value"}} onchange={{action (mut el.value) value="target.value"}} id={{el.id}} type="text">
+      {{input class="form-control" placeholder="Search for..." value=currentQuery}}
       <span class="input-group-btn">
-        {{bs-button defaultText="Search" type="primary" buttonType="submit"}}
+        <button class="btn btn-primary" type="button" {{action "search"}}>Search</button>
       </span>
-
     </div>
-  {{/form.element}}
-{{/bs-form}}
+  </div>
+</div>
 
 {{#if searchBills.isRunning}}
   {{ui/loading-animation}}
 {{else}}
-  <div class="list-group mt-md-5">
+  <div class="search-result-list mt-md-5">
   {{#each results as |bill|}}
-    <div class="list-group-item list-group-item-action flex-column align-items-start">
-      <div class="mb-2 d-flex w-100 justify-content-between">
-        <h5>{{bill.stateId}}</h5>
-        <small>{{bill.title}}</small>
-      </div>
-      <p class="text-muted">{{bill.summary}}</p>
-      <p></p>
-      <div class="btn-group">
-        {{#link-to "bills.detail" bill.id class="btn btn-secondary"}}View{{/link-to}}
-        {{bills/add-to-group bill=bill}}
-      </div>
-
-
-
-    </div>
+    {{bills/bill-preview bill=bill class="mb-2"}}
   {{else}}
     {{#if searchTerms}}
       <p class="text-center"><em>No results matching <code>{{searchTerms}}</code> </em></p>
