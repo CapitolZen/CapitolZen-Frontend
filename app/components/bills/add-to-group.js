@@ -6,6 +6,7 @@ const { inject: { service }, get, set, Component, assert } = Ember;
 export default Component.extend({
   store: service(),
   currentUser: service(),
+  flashMessages: service(),
   classNames: ["w-100"],
   groupList: null,
   bill: null,
@@ -68,6 +69,9 @@ export default Component.extend({
         organization: get(this, "currentUser.organization")
       });
       wrapper.save();
+      get(this, "flashMessages").success(
+        `${wrapper.get("state_id")} saved for ${group.get("title")}`
+      );
     }
   }),
   actions: {
