@@ -55,7 +55,7 @@ export default Component.extend(TableCommon, {
 
     if (get(this, "displayGroups")) {
       let group = {
-        label: "Group",
+        label: "Client",
         valuePath: "wrapper.group.title",
         sortable: true
       };
