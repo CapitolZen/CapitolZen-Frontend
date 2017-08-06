@@ -7,5 +7,7 @@ export default DS.Model.extend({
   organization: DS.belongsTo("organization"),
   logo: DS.attr("string"),
   created: DS.attr("date"),
-  modified: DS.attr("date")
+  modified: DS.attr("date"),
+  starred: DS.attr("boolean"),
+  active: DS.attr("boolean")
 });

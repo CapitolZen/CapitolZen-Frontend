@@ -5,6 +5,10 @@
   {{#block-slot "content"}}
     {{#bs-form formLayout=formLayout model=model onSubmit=(action "saveGroup") as |form|}}
       {{form.element controlType="textfield" label="Name" placeholder="Group Name" property="title" required=true}}
+      {{form.element controlType="checkbox" label="Active" property="active"}}
+      {{form.element controlType="checkbox" label="Favorite" property="starred"}}
+      {{form.element controlType="textarea" label="Description" property="description"}}
+
       <div class="row">
         <div class="col-md-6">
           {{#if model.logo}}
@@ -17,7 +21,7 @@
 
         </div>
         <div class="col-md-6">
-          {{form.element controlType="textarea" label="Description" property="description"}}
+          UPDATE IMAGE
         </div>
       </div>
       <div class="row">

@@ -13,6 +13,7 @@ export default DS.Model.extend({
   attachments: DS.attr(),
   scheduled: DS.attr("boolean"),
   publishDate: DS.attr("date"),
+  created: DS.attr("date"),
   downloadUrl: computed(function() {
     return this.get("attachments")["output-url"].url || false;
   })

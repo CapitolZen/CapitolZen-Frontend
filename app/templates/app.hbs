@@ -7,6 +7,7 @@
     </h2>
 
     <ul>
+
       {{#menu.item dismissOnClick=true}}
         {{#link-to "groups"}}Groups{{/link-to}}
       {{/menu.item}}
@@ -16,7 +17,11 @@
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills"}}Bills{{/link-to}}
+        {{#link-to "bills.saved"}}Saved Bills{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "bills"}}All Bills{{/link-to}}
       {{/menu.item}}
 
     </ul>

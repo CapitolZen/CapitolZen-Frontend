@@ -1,7 +1,7 @@
 import Ember from "ember";
-const { inject: { service }, get, $ } = Ember;
+const { inject: { service }, get, Component } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   store: service(),
   currentUser: service(),
   flashMessages: service(),
@@ -19,7 +19,9 @@ export default Ember.Component.extend({
       model.save();
     },
     saveGroup(group) {
-      group.save();
+      group.save().then(() => {
+        get(this, "flashMessages").success("Group Updated!");
+      });
     }
   }
 });

@@ -1,9 +1,9 @@
 import Ember from "ember";
 import { task, hash } from "ember-concurrency";
 
-const { inject: { service }, get, set, RSVP } = Ember;
+const { inject: { service }, get, set, Component, assert } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   store: service(),
   currentUser: service(),
   classNames: ["w-100"],
@@ -11,9 +11,12 @@ export default Ember.Component.extend({
   bill: null,
   buttonSize: false,
   displayText: true,
-  buttonText: "Add to Group",
+  buttonText: "Add to Client",
   buttonType: "secondary",
-  menuAlign: "left",
+  menuAlign: "right",
+  didInsertAttrs() {
+    assert("Bill is required ", get(this, "bill"));
+  },
   listGroups: task(function*() {
     let bill = get(this, "bill");
 
@@ -41,23 +44,26 @@ export default Ember.Component.extend({
       console.log(filteredList);
       set(this, "groupList", filteredList);
     } else {
-      console.log("sup");
       set(this, "groupList", groups);
     }
   }),
   addBillToGroup: task(function*(group) {
     let bill = get(this, "bill");
-    console.log(group);
-    console.log(group.get("id"));
-    let wrapper = yield this.get("store").query("wrapper", {
-      bill__state_id: bill.get("stateId"),
-      bill__state: bill.get("state"),
-      group: group.get("id")
-    });
+
+    let storeHash = {
+      wrapper: get(this, "store").query("wrapper", {
+        bill__state_id: bill.get("stateId"),
+        bill__state: bill.get("state"),
+        group: group.get("id")
+      }),
+      model: get(this, "store").findRecord("bill", get(bill, "id"))
+    };
+
+    let { wrapper, model } = yield hash(storeHash);
 
     if (!wrapper.get("length")) {
       wrapper = this.get("store").createRecord("wrapper", {
-        bill: get(this, "bill"),
+        bill: model,
         group: group,
         organization: get(this, "currentUser.organization")
       });
