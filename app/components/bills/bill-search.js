@@ -1,14 +1,15 @@
-import Ember from 'ember';
-import  { task } from 'ember-concurrency';
+import Ember from "ember";
+import { task } from "ember-concurrency";
 
-const {inject: {service}, set} = Ember;
-export default Ember.Component.extend({
-  store: service(),
-  results: null,
-  searchTerms: null,
-  searchBills: task(function * ({terms}) {
-    set(this, 'searchTerms', terms);
-    let results = yield this.get('store').query('bill', {search: terms});
-    set(this, 'results', results);
-  }).drop()
+const { inject: { service }, Component, computed, get } = Ember;
+export default Component.extend({
+  billSearch: service(),
+  results: computed.alias("billSearch.results"),
+  currentQuery: computed.alias("billSearch.query"),
+  actions: {
+    search() {
+      let term = get(this, "currentQuery");
+      get(this, "billSearch").search(term);
+    }
+  }
 });

@@ -1,7 +1,7 @@
 import Ember from "ember";
 import TableCommon from "../../mixins/table-common";
 
-const { computed, Component } = Ember;
+const { computed, Component, get } = Ember;
 
 export default Component.extend(TableCommon, {
   model: "wrappers",
@@ -9,7 +9,7 @@ export default Component.extend(TableCommon, {
   tableHeight: "100vh",
   pager: false,
   columns: computed(function() {
-    return [
+    let cols = [
       {
         label: "State ID",
         valuePath: "bill.stateId",
@@ -22,7 +22,7 @@ export default Component.extend(TableCommon, {
       },
       {
         label: "Sponsor",
-        valuePath: "bill.sponsor",
+        valuePath: "bill.sponsor.fullName",
         sortable: true,
         breakpoints: ["desktop"]
       },
@@ -52,5 +52,16 @@ export default Component.extend(TableCommon, {
         sortable: false
       }
     ];
+
+    if (get(this, "displayGroups")) {
+      let group = {
+        label: "Client",
+        valuePath: "wrapper.group.title",
+        sortable: true
+      };
+      cols.splice(2, 0, group);
+    }
+
+    return cols;
   })
 });

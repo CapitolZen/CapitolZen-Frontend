@@ -7,7 +7,7 @@ const { merge, inject: { service }, isEmpty, computed } = Ember;
 export default Ember.Mixin.create({
   store: service(),
   page: 0,
-  page_size: 100,
+  page_size: 50,
   sort: "name",
   recordType: null,
   recordQuery: {},

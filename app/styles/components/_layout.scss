@@ -78,6 +78,9 @@ body > .ember-view {
   max-height: 100px;
 }
 
+.card-title {
+  border-bottom: 1px solid $gray-lighter;
+}
 
 //
 // Light table styling?
@@ -120,4 +123,14 @@ h1.page-title {
     padding: 5rem 10rem;
   }
 }
+
+.file-upload-container {
+  border: 1px solid $gray-lighter;
+  background-color: $gray-lightest;
+  &.file-upload-valid {
+    border-color: $brand-success;
+
+  }
+}
+
 

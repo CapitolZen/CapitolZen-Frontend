@@ -61,7 +61,7 @@ Router.map(function() {
 
     //
     // Groups
-    this.route("groups", { resetNamespace: true }, function() {
+    this.route("groups", { resetNamespace: true, path: "clients" }, function() {
       this.route("detail", { path: "/:id" });
       this.route("edit", { path: "/:id/edit" });
       this.route("add");
@@ -85,6 +85,10 @@ Router.map(function() {
         this.route("detail", { path: "/:report" });
       }
     );
+
+    this.route("legislators", { resetNamespace: true }, function() {
+      this.route("detail", { path: "/:id" });
+    });
   });
 
   //
