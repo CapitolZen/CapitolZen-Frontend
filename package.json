@@ -80,7 +80,8 @@
     "husky": "^0.14.3",
     "lint-staged": "^4.0.0",
     "loader.js": "^4.5.1",
-    "prettier": "^1.5.2"
+    "prettier": "^1.5.2",
+    "ember-cli-opbeat": "donaldwasserman/ember-cli-opbeat#master"
   },
   "engines": {
     "node": ">= 4"
