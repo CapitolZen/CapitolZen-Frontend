@@ -124,3 +124,13 @@ h1.page-title {
   }
 }
 
+.file-upload-container {
+  border: 1px solid $gray-lighter;
+  background-color: $gray-lightest;
+  &.file-upload-valid {
+    border-color: $brand-success;
+
+  }
+}
+
+

@@ -1,4 +1,11 @@
 {{#ui/ui-card}}
+  {{#if model.hasDirtyAttribtues}}
+    {{#block-slot "title"}}
+      <span class="text-warning">
+        Save to keep changes...
+      </span>
+    {{/block-slot}}
+  {{/if}}
 
   {{#block-slot "content"}}
     {{#bs-form formLayout=formLayout model=model onSubmit=(action "saveGroup") as |form|}}
@@ -8,24 +15,22 @@
       {{form.element controlType="textarea" label="Description" property="description"}}
 
       <div class="row">
-        <div class="col-md-6">
-          {{#if model.logo}}
-            Logo Name: {{model.logo}}
+        <div class="col-6">
+          {{#if changeLogo}}
+            {{tools/upload-tool group=model accept="image/*" resultAction=(action "handleResponse") class="mb-1"}}
           {{else}}
-            <div class="well">
-              {{tools/upload-tool group=model accept="image/*" resultAction=(action "handleResponse")}}
-            </div>
+            <p><strong>Logo Name:</strong> <br>{{logoName}}</p>
           {{/if}}
-
-        </div>
-        <div class="col-md-6">
-          UPDATE IMAGE
+          {{#if model.logo}}
+            <p>
+              <button class="btn btn-secondary btn-sm" {{action "changeLogo"}}>
+                {{if changeLogo "Cancel" "Change Logo"}}
+              </button>
+            </p>
+          {{/if}}
         </div>
       </div>
-      <div class="row">
-
-      </div>
-      <div class="button-group">
+      <div class="mt-2">
         {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
       </div>
     {{/bs-form}}
