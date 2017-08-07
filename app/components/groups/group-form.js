@@ -43,6 +43,7 @@ export default Component.extend({
       group.save().then(() => {
         get(this, "flashMessages").success("Group Updated!");
       });
-    }
+    },
+    saveGroupToUser() {}
   }
 });

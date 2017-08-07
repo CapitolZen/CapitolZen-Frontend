@@ -2,13 +2,13 @@
   <div class="card-block">
     <h4 class="card-title">Register Now</h4>
 
-    {{form.element controlType="textfield" label="Your Name" property="name"}}
-    {{form.element controlType="textfield" label="Organization Name" property="organizationName"}}
+    {{form.element controlType="textfield" label="Your Name" property="name" required=true}}
+    {{form.element controlType="textfield" label="Organization Name" property="organizationName" required=true}}
     {{form.element controlType="email" label="Email" placeholder="Email" property="email" required=true}}
     {{form.element controlType="password" label="Password" placeholder="Password" property="password"
                    required=true
-                   helpText="Minimum 6 characters"}}
-    {{form.element controlType="password" label="Confirm" property="confirmPassword" required=true}}
+                   helpText="Minimum 8 characters"}}
+    {{form.element controlType="password" label="Confirm" placeholder="Confirm" property="confirmPassword" required=true}}
 </div>
 <div class="card-footer">
   {{bs-button defaultText="Create Account" type="primary" buttonType="submit" class="ceneter-block"}}
