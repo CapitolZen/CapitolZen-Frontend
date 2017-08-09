@@ -33,9 +33,6 @@ export default Service.extend({
 
   intercomData: computed("user", "organization", function() {
     let user = this.getProperties(get(this, "intercomUserProps"));
-    let company = this.getProperties(get(this, "intercomCompanyProps"));
-
-    user.companies = [company];
     return user;
   }),
 
