@@ -14,14 +14,20 @@ export default Component.extend({
   accept: "*/*",
   acl: "public-read",
   upload: task(function*(file) {
+    let org =
+      get(this, "group.organization") || get(this, "currentUser.organization");
+    let group = get(this, "group") || false;
+    let uploadParams = {
+      group: group,
+      name: get(file, "name"),
+      organization: org,
+      acl: get(this, "acl")
+    };
+
     let { data: { params: { url, fields } } } = yield get(
       this,
       "fetch"
-    ).getAssetUploadUrl(
-      get(this, "group"),
-      get(file, "name"),
-      get(this, "acl")
-    );
+    ).getAssetUploadUrl(uploadParams);
     fields["acl"] = get(this, "acl");
     fields["success_action_status"] = "201";
     let response = yield file.upload({
