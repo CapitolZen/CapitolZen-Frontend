@@ -1,3 +1,11 @@
-{{outlet}}
+{{ui-page-property "Team" property="title"}}
+{{partial "partials/org-nav"}}
+<div class="row">
+  <div class="col-md-6">
+    {{organization/org-users users=model.users}}
+  </div>
+  <div class="col-md-6">
+    {{organization/org-invites invites=model.invites org=model.organization}}
+  </div>
+</div>
 
-Team

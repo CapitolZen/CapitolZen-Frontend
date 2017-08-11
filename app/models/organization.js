@@ -14,5 +14,6 @@ export default DS.Model.extend({
   billing_city: DS.attr("string"),
   billing_state: DS.attr("string"),
   billing_zip_code: DS.attr("string"),
-  planType: DS.attr("string")
+  planType: DS.attr("string"),
+  logo: DS.attr("string")
 });

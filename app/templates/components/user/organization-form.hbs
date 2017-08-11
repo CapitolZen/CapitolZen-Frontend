@@ -1,79 +1,61 @@
-{{#if isEditing}}
-
-  {{#ui/ui-card}}
-    {{#block-slot "title"}}Edit{{/block-slot}}
-    {{#block-slot "content"}}
-      {{#bs-form formLayout=formLayout model=changeset onSubmit=(action "updateOrganization") as |form|}}
+{{#ui/ui-card}}
+  {{#block-slot "title"}}Edit Organization Details{{/block-slot}}
+  {{#block-slot "content"}}
+    {{#bs-form formLayout=formLayout model=changeset onSubmit=(action "updateOrganization") as |form|}}
+      <fieldset>
+        <legend>Information</legend>
         {{form.element controlType="textfield" label="Organization Name" property="name" required=true}}
-        <fieldset>
-          <legend>Billing</legend>
-          {{form.element label="Billing Contact Name" controlType="text" property="billing_name"}}
-          {{form.element label="Billing Email" controlType="text" property="billing_email"}}
-          {{form.element label="Billing Phone" controlType="text" property="billing_phone"}}
-          {{#form.group}}
-            {{form.element label="Billing Address" controlType="text" property="billing_address_one"}}
-            {{form.element label="Address 2" controlType="text" property="billing_address_two"}}
-            <div class="row">
-              <div class="col-md-6">
-                {{form.element label="City" controlType="text" property="billing_city"}}
-              </div>
-              <div class="col-md-3">
-                {{form.element label="State" controlType="text" property="billing_state"}}
-              </div>
-              <div class="col-md-3">
-                {{form.element label="Zip Code" controlType="text" property="billing_zip_code"}}
-              </div>
+        <div class="row">
+          {{#if org.logo}}
+            <div class="col-3">
+              <img src="{{org.logo}}" alt="{{org.name}} Logo" class="img-thumbnail img-fluid">
             </div>
-          {{/form.group}}
-        </fieldset>
-
-        <div class="button-group">
-          {{bs-button defaultText="Submit" type="primary" buttonType="submit" }}
-          <button class="btn btn-link" {{action "toggleEditing"}}>{{fa-icon "times"}} Cancel</button>
+          {{/if}}
+          <div class="col-6">
+            <p><strong>Organization Logo</strong></p>
+            {{#if changeLogo}}
+              {{tools/upload-tool group=model accept="image/*" resultAction=(action "handleResponse") class="mb-1"}}
+            {{else}}
+              <p><strong>Logo</strong></p>
+            {{/if}}
+            {{#if org.logo}}
+              <p>
+                <button class="btn btn-secondary btn-sm" {{action "changeLogo"}}>
+                  {{if changeLogo "Cancel" "Change Logo"}}
+                </button>
+              </p>
+            {{/if}}
+          </div>
         </div>
+      </fieldset>
+      <hr>
+      <fieldset>
+        <legend>Billing</legend>
+        {{form.element label="Billing Contact Name" controlType="text" property="billing_name"}}
+        {{form.element label="Billing Email" controlType="text" property="billing_email"}}
+        {{form.element label="Billing Phone" controlType="text" property="billing_phone"}}
+        {{#form.group}}
+          {{form.element label="Billing Address" controlType="text" property="billing_address_one"}}
+          {{form.element label="Address 2" controlType="text" property="billing_address_two"}}
+          <div class="row">
+            <div class="col-md-6">
+              {{form.element label="City" controlType="text" property="billing_city"}}
+            </div>
+            <div class="col-md-3">
+              {{form.element label="State" controlType="text" property="billing_state"}}
+            </div>
+            <div class="col-md-3">
+              {{form.element label="Zip Code" controlType="text" property="billing_zip_code"}}
+            </div>
+          </div>
+        {{/form.group}}
+      </fieldset>
 
-      {{/bs-form}}
-    {{/block-slot}}
-  {{/ui/ui-card}}
+      <div class="button-group">
+        {{bs-button defaultText="Submit" type="primary" buttonType="submit" }}
+        <button class="btn btn-link" {{action "toggleEditing"}}>{{fa-icon "times"}} Cancel</button>
+      </div>
 
-
-{{else}}
-  {{#ui/ui-card}}
-    {{#block-slot "title"}}
-      {{org.name}}
-      <small class="badge">{{org.isActive}}</small>
-    {{/block-slot}}
-    {{#block-slot "content"}}
-      {{ui/simple-form-group label="Created" value=org.created}}
-
-      {{#ui/simple-form-group}}
-        {{moment-format org.created locale='es' timeZone='America/Los_Angeles'}}
-      {{/ui/simple-form-group}}
-
-      {{ui/simple-form-group label="Modified" value=org.modified}}
-
-      {{#ui/simple-form-group}}
-        {{moment-format org.modified locale='es' timeZone='America/Los_Angeles'}}
-      {{/ui/simple-form-group}}
-
-      <h5><strong>Billing Contact</strong></h5>
-      <p><strong>Name: </strong></p>
-      <blockquote class="blockquote">
-        {{org.billing_name}}<br>
-        {{org.billing_phone}}<br>
-        {{org.billing_email}}<br>
-        {{org.billing_address_one}}<br>
-        {{#if org.billing_address_two}}
-          {{org.billing_address_two}}<br>
-        {{/if}}
-        {{org.billing_city}}<br>
-        {{org.billing_state}}<br>
-        {{org.billing_zip_code}}<br>
-      </blockquote>
-    {{/block-slot}}
-    {{#block-slot "footer"}}
-      <button class="btn btn-link pull-right" {{action "toggleEditing"}}>{{fa-icon "pencil"}} Edit</button>
-    {{/block-slot}}
-  {{/ui/ui-card}}
-
-{{/if}}
+    {{/bs-form}}
+  {{/block-slot}}
+{{/ui/ui-card}}

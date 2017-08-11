@@ -1,5 +1,5 @@
 import Ember from "ember";
-const { inject: { service }, Controller } = Ember;
+const { get, inject: { service }, Controller } = Ember;
 
 export default Controller.extend({
   session: service(),
@@ -15,7 +15,7 @@ export default Controller.extend({
           this.transitionToRoute("dashboard");
         })
         .catch(() => {
-          this.get("flashMessages").danger(
+          get(this, "flashMessages").danger(
             "Your email or password was incorrect. Please try again."
           );
         });

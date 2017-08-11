@@ -1,4 +1,4 @@
-import ApplicationAdapter from './application';
+import ApplicationAdapter from "./application";
 
 export default ApplicationAdapter.extend({
   urlForQueryRecord(query) {
@@ -7,6 +7,11 @@ export default ApplicationAdapter.extend({
       let id = query.orgId;
       delete query.orgId;
       return `${this._super(...arguments)}/${id}/logo_upload`;
+    }
+
+    if (query.currentOrg) {
+      delete query.currentOrg;
+      return `${this._super(...arguments)}/current`;
     }
 
     if (query.groupUpload) {

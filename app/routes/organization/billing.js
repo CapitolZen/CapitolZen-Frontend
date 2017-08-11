@@ -1,3 +1,8 @@
 import Ember from "ember";
-
-export default Ember.Route.extend({});
+const { inject: { service }, get, Route } = Ember;
+export default Route.extend({
+  currentUser: service(),
+  model() {
+    return get(this, "currentUser").loadOrganization();
+  }
+});

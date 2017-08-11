@@ -1,0 +1,22 @@
+{{#ui/ui-card}}
+  {{#block-slot "title"}}
+      {{totalActive}} Active Team Members
+  {{/block-slot}}
+  {{#block-slot "content"}}
+    <div class="list-group">
+      {{#each sortedUsers as |user|}}
+        <div class="list-group-item {{if (not user.isActive) "list-group-item-dark"}}">
+          <div class="row">
+            <div class="col-8">
+              <p>
+                <span class="lead"><strong>{{user.name}}</strong></span><br>
+                <span class="text-secondary">{{user.username}}</span><br>
+                <small><strong>Joined:</strong> {{user.dateJoined}}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/block-slot}}
+{{/ui/ui-card}}

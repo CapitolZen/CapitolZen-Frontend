@@ -1,7 +1,4 @@
 {{groups/group-header group=(hash title="Create New Group") }}
-{{partial "partials/group-nav"}}
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
-    {{groups/group-form group=model groupAction="createGroup" isEditing=true toggleEnabled=false}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+{{#link-to "groups.index" class="btn btn-primary mb-1"}}All Clients{{/link-to}}
+
+{{groups/group-form group=model groupAction="createGroup" isEditing=true toggleEnabled=false}}
