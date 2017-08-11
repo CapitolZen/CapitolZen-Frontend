@@ -1,0 +1,50 @@
+{{#ui/ui-card}}
+  {{#block-slot "title"}}
+      Invites
+  {{/block-slot}}
+  {{#block-slot "content"}}
+
+    {{#bs-button type="primary" onClick=(action (mut inviteModal) true)}}Invite Team Member{{/bs-button}}
+    <div class="list-group mt-1">
+      {{#each sortedInvites as |invite|}}
+        <div class="list-group-item">
+          <div class="row">
+            <div class="col-11">
+              <p>
+                <span class="lead"><strong>{{invite.email}}</strong></span><br>
+                <small class="text-muted">{{invite.created}}</small>
+              </p>
+            </div>
+            <div class="col-1">
+              <span class="badge badge-default">
+                {{invite.status}}
+              </span>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+
+  {{/block-slot}}
+{{/ui/ui-card}}
+
+{{#bs-modal open=inviteModal onSubmit=(action "inviteUser") onHidden=(action (mut inviteModal) false) as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Invite User
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <div class="form-group">
+      <label for="inviteEmail">Email address</label>
+      {{input type="text" value=inviteEmail class="form-control" autofocus="autofocus" aria-describedby="emailHelp" placeholder="Enter email"}}
+      <small id="emailHelp" class="form-text text-muted">This person will receive and email inviting them to join your organization.</small>
+    </div>
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close)}}Cancel{{/bs-button}}
+    {{#bs-button type="primary" onClick=(action modal.submit)}}Save{{/bs-button}}
+  {{/modal.footer}}
+
+{{/bs-modal}}

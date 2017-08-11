@@ -1,0 +1,14 @@
+{{#bs-nav type="pills" class="justify-content-center nav-fill mb-1" as |nav|}}
+  {{#nav.item}}
+    {{#nav.link-to "user"}}My Account{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "organization.index"}}Organization{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "organization.team"}}Team{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "organization.billing"}}Billing{{/nav.link-to}}
+  {{/nav.item}}
+{{/bs-nav}}
