@@ -3,5 +3,17 @@
 {{#bs-form model=this onSubmit=(action "createReport") as |form|}}
   {{form.element controlType="textfield" label="Title" property="title"}}
   {{form.element controlType="textarea" label="Comments" property="description"}}
+  {{!--{{#form.element label="Logo Choice" property="logoChoice" as |el|}}
+    <p>
+      {{#bs-button-group
+        value=el.value
+        type="radio"
+        onChange=(action (mut el.value)) as |bg|}}
+        {{#bg.button value="organization"}}Organization{{/bg.button}}
+        {{#bg.button value="group"}}Group{{/bg.button}}
+      {{/bs-button-group}}
+    </p>
+
+  {{/form.element}}--}}
   {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
 {{/bs-form}}

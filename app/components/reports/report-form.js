@@ -2,17 +2,23 @@ import Ember from "ember";
 import { task } from "ember-concurrency";
 import moment from "moment";
 
-const { inject: { service } } = Ember;
+const { get, set, inject: { service } } = Ember;
 
 export default Ember.Component.extend({
-  model: Ember.Object.create(),
   store: service(),
   currentUser: service(),
   flashMessages: service(),
   router: service("-routing"),
+  model: false,
   group: null,
   wrapperList: null,
   useAllWrappers: true,
+
+  init() {
+    this._super(...arguments);
+    let m = get(this, "model") || Ember.Object.create();
+    set(this, "model", m);
+  },
 
   getWrappers: task(function*() {
     let wrappers = yield this.get("store").query("wrapper", {
@@ -25,10 +31,11 @@ export default Ember.Component.extend({
   actions: {
     createReport(data) {
       let fields = data.getProperties("title", "description");
-      fields.group = this.get("group");
-      fields.user = this.get("currentUser.user");
-      fields.organization = this.get("currentUser.organization");
+      fields.group = get(this, "group");
+      fields.user = get(this, "currentUser.user");
+      fields.organization = get(this, "currentUser.organization");
       fields.publishDate = moment().unix();
+      fields.preferences = { logo: get(data, "logoChoice") };
       let report = this.get("store").createRecord("report", fields);
       report
         .save()

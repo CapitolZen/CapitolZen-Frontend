@@ -1,14 +1,16 @@
 import Ember from "ember";
-
+import { task } from "ember-concurrency";
 const { get, set, Component, computed, inject: { service } } = Ember;
 
 export default Component.extend({
   store: service(),
+  request: service(),
   flashMessages: service(),
   inviteModal: false,
   inviteEmail: null,
   inviteSortDesc: ["name:desc"],
   sortedInvites: computed.sort("invites", "inviteSortDesc"),
+  revokeInvite: task(function*(invite) {}),
   actions: {
     inviteUser() {
       let invite = get(this, "store").createRecord("invite", {
