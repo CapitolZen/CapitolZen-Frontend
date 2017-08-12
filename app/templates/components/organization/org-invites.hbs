@@ -13,7 +13,18 @@
               <p>
                 <span class="lead"><strong>{{invite.email}}</strong></span><br>
                 <small class="text-muted">{{invite.created}}</small><br>
-                <button class="btn-link btn-sm">Resend</button>
+                <button class="btn-link btn-sm" {{perform resendInvite invite}}>
+                  Resend
+                  {{#if resendInvite.isRunning}}
+                    {{ui/inline-loading}}
+                  {{/if}}
+                </button>
+                <button class="btn-link btn-sm" {{perform revokeInvite invite}}>
+                  Revoke
+                  {{#if revokeInvite.isRunning}}
+                    {{ui/inline-loading}}
+                  {{/if}}
+                </button>
               </p>
             </div>
             <div class="col-1">
