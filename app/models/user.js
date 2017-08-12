@@ -10,6 +10,7 @@ export default DS.Model.extend({
   organizations: DS.hasMany("organization"),
   password: DS.attr("string"),
   meta: DS.attr(),
+  isActive: DS.attr("boolean"),
   firstLogin: computed("meta", function() {
     let meta = get(this, "meta");
     return !meta["hasViewedDashboard"];

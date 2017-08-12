@@ -1,0 +1,58 @@
+<div class="app flex-row align-items-top pt-5 justify-content-center">
+  <div class="col-5 hidden-md-down">
+    <div class="card">
+      <div class="card-block">
+        <h1 class="card-title">
+          <img src="/assets/images/capitolzenwordmark_logo.svg" width="200px"/>
+          <span class="sr-only">Capitol Zen</span>
+        </h1>
+        <p class="card-text lead">
+          <strong>Zen, Adj</strong>
+        </p>
+        <p class="card-text lead">
+        <ol>
+          <li>Enlightenment by Intuition</li>
+        </ol>
+        </p>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-offset-1 col-sm-12">
+    {{#each flashMessages.queue as |flash|}}
+      {{flash-message flash=flash}}
+    {{/each}}
+    <div class="card">
+
+      {{#bs-form formLayout="vertical" model=defaultObject onSubmit=(action "acceptInvite") as |form|}}
+        <div class="card-block">
+
+          <div class="card-title">
+            <div class="header hidden-sm-up">
+              <h1 class="card-title">
+                <img src="/assets/images/capitolzenwordmark_logo.svg" width="200px"/>
+                <span class="sr-only">Capitol Zen</span>
+              </h1>
+            </div>
+            <h4>Accept Invitation to Join {{invite.organizationName}}</h4>
+          </div>
+
+          {{form.element controlType="email" label="Email" placeholder="Email" property="email" required=true disabled=true}}
+          {{form.element controlType="text" label="name" placeholder="Name" property="name" required=true}}
+          {{form.element controlType="password" label="Password" placeholder="Password" property="password"
+                         required=true
+                         helpText="Minimum 8 characters"}}
+          {{form.element controlType="password" label="Password" placeholder="Confirm" property="confirmPassword"
+                         required=true
+                         helpText="Minimum 8 characters"}}
+        </div>
+        <div class="card-footer">
+          {{bs-button defaultText="Accept and Create Account" type="primary" buttonType="submit"}}
+        </div>
+      {{/bs-form}}
+    </div>
+  </div>
+</div>
+
+
+

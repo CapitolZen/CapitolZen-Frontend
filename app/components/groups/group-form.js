@@ -1,5 +1,5 @@
 import Ember from "ember";
-const { inject: { service }, get, set, Component, computed } = Ember;
+const { inject: { service }, get, set, Component, computed, isEmpty } = Ember;
 
 export default Component.extend({
   store: service(),
@@ -12,14 +12,17 @@ export default Component.extend({
   init() {
     this.get("currentUser");
     this._super(...arguments);
+
+    set(this, "changeLogo", isEmpty(get(this, "model.logo")));
   },
   logoName: computed({
     get() {
       let url = get(this, "model.logo");
-      url = decodeURIComponent(url);
+
       if (!url || get(this, "changeLogo")) {
         return false;
       }
+      url = decodeURIComponent(url);
       let peices = url.split("/");
       return peices.pop();
     },
@@ -30,11 +33,12 @@ export default Component.extend({
     }
   }),
   actions: {
-    handleResponse({ headers: { Location } }) {
+    handleResponse({ headers: { location } }) {
+      debugger;
       let model = get(this, "model");
-      model.set("logo", Location);
+      model.set("logo", location);
       set(this, "changeLogo", false);
-      set(this, "logoName", Location);
+      set(this, "logoName", location);
     },
     changeLogo() {
       this.toggleProperty("changeLogo");

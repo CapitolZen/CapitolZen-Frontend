@@ -8,9 +8,6 @@ export default Component.extend({
   actions: {
     dismissIntro() {
       get(this, "currentUser.user").dismissWelcome();
-      console.log(
-        "Hello from the other side. I must've called a thousand times"
-      );
     }
   }
 });

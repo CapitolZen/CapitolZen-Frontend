@@ -20,8 +20,10 @@ export default Component.extend({
     let { data: { url } } = yield get(this, "request").request(
       `reports/${reportId}/url/`
     );
-    console.log(url);
-    window.location = url;
+    let link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `${get(this, "report.title")}.docx`);
+    link.click();
   }),
   click() {
     get(this, "download").perform();

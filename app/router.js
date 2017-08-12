@@ -25,9 +25,6 @@ const Router = Ember.Router.extend(IntercomRoute, {
 Router.map(function() {
   //
   // Anon Pages
-  this.route("anon.login", { path: "login" });
-  this.route("anon.register", { path: "register" });
-  this.route("anon.forgot-password", { path: "forgot-password" });
 
   this.route("app", { resetNamespace: true, path: "" }, function() {
     this.route("dashboard", { resetNamespace: true, path: "" });
@@ -103,6 +100,14 @@ Router.map(function() {
     });
   });
   this.route("freestyle");
+  this.route("error-route");
+  this.route("not-found", { path: "/*path" });
+
+  this.route("anon.claim-invite", { path: "claim/:id" });
+  this.route("anon.login", { path: "login" });
+  this.route("anon.register", { path: "register" });
+  this.route("anon.forgot-password", { path: "forgot-password" });
+  this.route("anon.reset-password", { path: "/reset/:hash" });
 });
 
 export default Router;

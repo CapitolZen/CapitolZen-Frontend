@@ -10,7 +10,6 @@ export default Service.extend({
   user: null,
   organization: null,
   intercomUserProps: ["email", "user_id", "name"],
-  intercomCompanyProps: ["company_id", "company_name"],
   email: computed("user.username", function() {
     return get(this, "user.username");
   }),
@@ -23,17 +22,8 @@ export default Service.extend({
     return get(this, "user.name");
   }),
 
-  company_name: computed("organization.name", function() {
-    return get(this, "organization.name");
-  }),
-
-  company_id: computed("organization.id", function() {
-    return get(this, "organization.id");
-  }),
-
   intercomData: computed("user", "organization", function() {
-    let user = this.getProperties(get(this, "intercomUserProps"));
-    return user;
+    return this.getProperties(get(this, "intercomUserProps"));
   }),
 
   load() {
@@ -47,6 +37,16 @@ export default Service.extend({
             get(this, "intercom").set("user", get(this, "intercomData"));
           });
         });
+    } else {
+      return RSVP.resolve();
+    }
+  },
+
+  loadOrganization() {
+    if (get(this, "session.isAuthenticated")) {
+      return get(this, "store").queryRecord("organization", {
+        currentOrg: true
+      });
     } else {
       return RSVP.resolve();
     }
