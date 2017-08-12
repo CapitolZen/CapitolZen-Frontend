@@ -1,37 +1,34 @@
 /* eslint-env node */
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
-    'ember-bootstrap': {
-      'importBootstrapCSS': false,
-      'importBootstrapTheme': false,
-      'bootstrapVersion': 4,
-      'importBootstrapFont': false
+    "ember-bootstrap": {
+      importBootstrapCSS: false,
+      importBootstrapTheme: false,
+      bootstrapVersion: 4,
+      importBootstrapFont: false
     },
     sourcemaps: {
-      enabled: EmberApp.env() !== 'production',
-      extensions: ['js']
+      enabled: EmberApp.env() !== "production",
+      extensions: ["js"]
     },
-    'ember-cli-babel': {
+    "ember-cli-babel": {
       // disable comments
       includePolyfill: true
     },
     fingerprint: {
-      enabled: (EmberApp.env() === 'production' || EmberApp.env() === 'qa')
+      enabled: EmberApp.env() === "production" || EmberApp.env() === "qa"
     },
-    'ember-font-awesome': {
+    "ember-font-awesome": {
       includeFontFiles: true
     },
-    'ember-power-select': {
-      theme: 'bootstrap'
+    "ember-power-select": {
+      theme: "bootstrap"
     },
     sassOptions: {
-      includePaths: [
-        'vendor',
-        'node_modules',
-      ]
-    },
+      includePaths: ["vendor", "node_modules/bootstrap"]
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

@@ -7,59 +7,59 @@
 //
 // VARIABLES
 // -------------------------------------------------
-@import "variables";
-@import "bootstrap/scss/variables";
+@import "app/variables";
+@import "scss/variables";
 
 //
 // BOOTSTRAP
 // -------------------------------------------------
 
 // Core variables and mixins
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/custom";
+@import "scss/mixins";
+@import "scss/custom";
 
 // Reset and dependencies
-@import "bootstrap/scss/normalize";
-@import "bootstrap/scss/print";
+@import "scss/normalize";
+@import "scss/print";
 
 // Core CSS
-@import "bootstrap/scss/reboot";
-@import "bootstrap/scss/type";
-@import "bootstrap/scss/images";
-@import "bootstrap/scss/code";
-@import "bootstrap/scss/grid";
-@import "bootstrap/scss/tables";
-@import "bootstrap/scss/forms";
-@import "bootstrap/scss/buttons";
+@import "scss/reboot";
+@import "scss/type";
+@import "scss/images";
+@import "scss/code";
+@import "scss/grid";
+@import "scss/tables";
+@import "scss/forms";
+@import "scss/buttons";
 
 // Components
-@import "bootstrap/scss/transitions";
-@import "bootstrap/scss/dropdown";
-@import "bootstrap/scss/button-group";
-@import "bootstrap/scss/input-group";
-@import "bootstrap/scss/custom-forms";
-@import "bootstrap/scss/nav";
-@import "bootstrap/scss/navbar";
-@import "bootstrap/scss/card";
-@import "bootstrap/scss/breadcrumb";
-@import "bootstrap/scss/pagination";
-@import "bootstrap/scss/badge";
-@import "bootstrap/scss/jumbotron";
-@import "bootstrap/scss/alert";
-@import "bootstrap/scss/progress";
-@import "bootstrap/scss/media";
-@import "bootstrap/scss/list-group";
-@import "bootstrap/scss/responsive-embed";
-@import "bootstrap/scss/close";
+@import "scss/transitions";
+@import "scss/dropdown";
+@import "scss/button-group";
+@import "scss/input-group";
+@import "scss/custom-forms";
+@import "scss/nav";
+@import "scss/navbar";
+@import "scss/card";
+@import "scss/breadcrumb";
+@import "scss/pagination";
+@import "scss/badge";
+@import "scss/jumbotron";
+@import "scss/alert";
+@import "scss/progress";
+@import "scss/media";
+@import "scss/list-group";
+@import "scss/responsive-embed";
+@import "scss/close";
 
 // Components w/ JavaScript
-@import "bootstrap/scss/modal";
-@import "bootstrap/scss/tooltip";
-@import "bootstrap/scss/popover";
-@import "bootstrap/scss/carousel";
+@import "scss/modal";
+@import "scss/tooltip";
+@import "scss/popover";
+@import "scss/carousel";
 
 // Utility classes
-@import "bootstrap/scss/utilities";
+@import "scss/utilities";
 
 //
 // ADDONS
@@ -68,6 +68,7 @@
 @import "ember-power-calendar";
 @import 'ember-power-select/themes/bootstrap';
 @import 'ember-power-select';
+
 
 //
 // APP COMPONENTS
