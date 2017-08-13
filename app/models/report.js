@@ -16,5 +16,6 @@ export default DS.Model.extend({
   created: DS.attr("date"),
   downloadUrl: computed(function() {
     return this.get("attachments")["output-url"].url || false;
-  })
+  }),
+  preferences: DS.attr()
 });

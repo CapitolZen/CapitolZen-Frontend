@@ -133,4 +133,10 @@ h1.page-title {
   }
 }
 
+.badge-republican {
+  @include badge-variant(#dc3545)
+}
 
+.badge-democrat {
+  @include badge-variant(#007bff)
+}

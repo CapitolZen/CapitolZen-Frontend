@@ -1,40 +1,60 @@
 {{#ui/ui-card}}
   {{#block-slot "title"}}
-    {{bill.stateId}} <small>{{bill.sponsor.fullName}} <span class="badge badge-default">{{bill.sponsor.party}}</span></small>
+    {{bill.stateId}}
+    <small>
+    {{#legislator/legislator-info legislator=bill.sponsor as |fields|}}
+      {{fields.name}}
+      {{fields.party}}
+    {{/legislator/legislator-info}}
+    </small>
   {{/block-slot}}
   {{#block-slot "content"}}
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <h5>Position</h5>
         {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
         <h5>Summary</h5>
-        {{wrappers/wrapper-summary wrapper=wrapper}}
+        {{wrappers/wrapper-summary wrapper=wrapper class="mb-2"}}
 
         <p>
           <a href="{{bill.remoteUrl}}" class="btn btn-secondary">View Source</a>
         </p>
 
-      </div>
-      <div class="col-md-3">
-        <h5>Source Documents</h5>
-        <div class="list-group">
-          {{#each bill.documents as |doc|}}
-            <div class="list-group-item">
-              {{doc.title}}
-              <a href="{{doc.url}}" target="_blank" class="btn btn-secondary btn-sm">
-                View
-              </a>
-            </div>
-          {{else}}
-            <div class="list-group-item">
-              No Public Documents Available
-            </div>
-          {{/each}}
-        </div>
+        {{bills/source-list sources=bill.sources class="mt-1"}}
+        {{bills/doc-list docs=bill.documents class="mt-1"}}
+
 
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
+        {{#if bill.votes}}
+          {{bills/vote-list votes=bill.votes}}
+        {{/if}}
+
+        {{bills/bill-history bill=bill}}
+
+
+      </div>
+      <div class="col-md-4">
         <h5>Notes</h5>
+        {{#each-in notes as |key note|}}
+          {{#if isEditing}}
+            {{tools/text-editor content=note.doc docId=key}}
+          {{else}}
+            <em><small>{{moment-format note.timestamp "MM/DD/YYYY"}} {{note.user.name}} writes:</small></em>
+            <div class="note-wrapper mb-1">
+              {{render-mobiledoc mobiledoc=note.doc}}
+            </div>
+            {{#each note.attachments as |doc|}}
+              <p>{{doc}}</p>
+            {{/each}}
+          {{/if}}
+        {{else}}
+          <p class="text-center">Add Your First Note!</p>
+        {{/each-in}}
+        <button class="btn-secondary btn" {{action "toggleAddNote"}}>Add Note</button>
+        {{#if addNote}}
+          {{tools/text-editor saveAction=(action "saveNote")}}
+        {{/if}}
       </div>
     </div>
   {{/block-slot}}

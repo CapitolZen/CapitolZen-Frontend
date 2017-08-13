@@ -5,33 +5,31 @@
      <div class="col-md-4">
        <h5>Summary</h5>
        <p>{{model.bill.title}}</p>
-       <div class="btn-group">
+       <p>
          <a href="{{model.bill.remoteUrl}}" target="_blank" class="btn btn-secondary">View Source</a>
-         {{bills/add-to-group bill=model.bill buttonType="primary"}}
-       </div>
+       </p>
 
+       {{bills/doc-list docs=model.bill.documents}}
+
+
+     </div>
+     <div class="col-md-4">
+       {{#if model.bill.votes}}
+          {{bills/vote-list votes=model.bill.votes}}
+       {{/if}}
+       {{bills/bill-history bill=model.bill}}
+     </div>
+     <div class="col-md-4">
+       <h5>Save</h5>
+       {{bills/add-to-group bill=model.bill buttonType="primary"}}
        {{#if model.wrappers}}
          <h5>Saved For</h5>
          {{#each model.wrappers as |wrapper|}}
-           <p>{{#link-to "groups.bill.detail" wrapper.group.id wrapper.id}} {{wrapper.group.title}} {{wrapper.position}} {{/link-to}}</p>
+           <p>{{#link-to "groups.bill.detail" wrapper.group.id
+                         wrapper.id}} {{wrapper.group.title}} {{wrapper.position}} {{/link-to}}</p>
          {{/each}}
        {{/if}}
 
-     </div>
-     <div class="col-md-4">
-       <h5>Documents</h5>
-       <div class="list-group">
-         {{#each model.bill.documents as |doc|}}
-
-           <div class="list-group-item justify-content-between">
-             <strong>{{doc.name}}</strong>
-             <a href="{{doc.url}}" target="_blank">View</a>
-           </div>
-         {{/each}}
-       </div>
-     </div>
-     <div class="col-md-4">
-       {{bills/bill-history bill=model.bill}}
      </div>
    </div>
   {{/block-slot}}
