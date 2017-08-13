@@ -1,7 +1,7 @@
 import Ember from "ember";
 import { v4 } from "ember-uuid";
 import moment from "moment";
-const { computed, Component, get, set, inject: { service } } = Ember;
+const { computed, Component, get, set, isEmpty, inject: { service } } = Ember;
 export default Component.extend({
   flashMessages: service(),
   store: service(),
