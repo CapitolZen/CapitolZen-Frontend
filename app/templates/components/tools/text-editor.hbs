@@ -1,0 +1,5 @@
+{{#mobiledoc-editor mobiledoc=content
+  on-change=(action "mobileDocUpdated")
+  as |editor|}}
+{{/mobiledoc-editor}}
+<button class="btn btn-primary" {{action "saveDocument"}}>Add</button>

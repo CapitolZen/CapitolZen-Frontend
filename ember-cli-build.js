@@ -28,7 +28,7 @@ module.exports = function(defaults) {
       theme: 'bootstrap'
     },
     sassOptions: {
-      includePaths: ['vendor', 'node_modules/bootstrap']
+      includePaths: ['vendor', 'node_modules/bootstrap/scss']
     }
   });
 

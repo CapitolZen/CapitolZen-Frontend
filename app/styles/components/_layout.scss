@@ -128,9 +128,15 @@ h1.page-title {
   border: 1px solid $gray-lighter;
   background-color: $gray-lightest;
   &.file-upload-valid {
-    border-color: $brand-success;
+    //border-color: $brand-success;
 
   }
 }
 
+.badge-republican {
+  @include badge-variant(#dc3545)
+}
 
+.badge-democrat {
+  @include badge-variant(#007bff)
+}
