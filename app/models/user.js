@@ -20,5 +20,6 @@ export default DS.Model.extend({
   }),
   dismissWelcome() {
     set(this, "meta.hasViewedDashboard", true);
+    this.save();
   }
 });
