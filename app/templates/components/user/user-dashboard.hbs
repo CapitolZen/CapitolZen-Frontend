@@ -1,29 +1,21 @@
-{{#if showIntro}}
-  <div class="jumbotron">
-    {{tools/close-button class="pullRight" close=(action "dismissIntro")}}
-    <h1 class="display-3">Hello!</h1>
-    <p class="lead">Welcome to Capitol Zen. Thanks for trying out our private beta.</p>
-    <hr class="my-4">
-    <p>We hope this will be a useful service for you. Get started by adding clients, searching bills, or inviting teammates.</p>
-    <p class="lead">
-      {{#link-to "groups.add" class="btn btn-primary btn-lg"}}Add A Client{{/link-to}}
-      {{#link-to "bills.search" class="btn btn-secondary btn-lg"}}Search Bills Now{{/link-to}}
-    </p>
-  </div>
-{{/if}}
-<p class="lead"><em>Welcome Back {{userName}}</em></p>
+<h3>Welcome {{userName}}!</h3>
+<p class="lead"><em>What's happening now:</em></p>
+<hr class="mb-2">
 <div class="row">
   <div class="col-md-6">
-    {{#if alerts}}
-      <h3>Alerts</h3>
-    {{else}}
-      <p class="small text-center"><em>No Alerts!</em></p>
-      <h3>Search</h3>
-      {{bills/bill-search}}
-    {{/if}}
-  </div>
-  <div class="col-md-6">
-    <h3>My Groups</h3>
+    <h4>Quick Links</h4>
+    <div class="list-group">
+      {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}Watched Bills{{/link-to}}
+      {{#link-to "bills.search" class="list-group-item list-group-item-action"}}Search Bills{{/link-to}}
+      {{#link-to "organization.team" class="list-group-item list-group-item-action"}}My Team{{/link-to}}
+    </div>
 
   </div>
+  <div class="col-md-6">
+    <h4>My Clients</h4>
+    {{#each queriedGroup as |group|}}
+      {{groups/group-preview group=group size="full"}}
+    {{/each}}
+  </div>
+
 </div>

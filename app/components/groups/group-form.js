@@ -1,5 +1,13 @@
 import Ember from "ember";
-const { inject: { service }, get, set, Component, computed, isEmpty } = Ember;
+const {
+  inject: { service },
+  get,
+  set,
+  Component,
+  computed,
+  isEmpty,
+  typeOf
+} = Ember;
 
 export default Component.extend({
   store: service(),
@@ -12,7 +20,6 @@ export default Component.extend({
   init() {
     this.get("currentUser");
     this._super(...arguments);
-
     set(this, "changeLogo", isEmpty(get(this, "model.logo")));
   },
   logoName: computed({
@@ -34,7 +41,6 @@ export default Component.extend({
   }),
   actions: {
     handleResponse({ headers: { location } }) {
-      debugger;
       let model = get(this, "model");
       model.set("logo", location);
       set(this, "changeLogo", false);
@@ -44,8 +50,19 @@ export default Component.extend({
       this.toggleProperty("changeLogo");
     },
     saveGroup(group) {
+      if (!group.get("id")) {
+        let props = group.getProperties(
+          "title",
+          "active",
+          "description",
+          "logo"
+        );
+        props.organization = get(this, "currentUser.organization");
+        group = get(this, "store").createRecord("group", props);
+      }
       group.save().then(() => {
         get(this, "flashMessages").success("Group Updated!");
+        get(this, "routing").transitionTo("groups.index");
       });
     },
     saveGroupToUser() {}
