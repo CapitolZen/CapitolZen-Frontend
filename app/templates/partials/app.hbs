@@ -15,7 +15,7 @@
       {{#dd.menu align="left" as |menu|}}
 
         {{#menu.item}}
-          {{currentUser.organization.name}} asdf
+          {{currentUser.organizations.name}} asdfasdfas
         {{/menu.item}}
 
         {{#menu.item}}
@@ -33,7 +33,7 @@
         {{#menu.item}}
           {{#menu.link-to 'organization.billing'}}Billing{{/menu.link-to}}
         {{/menu.item}}
-
+        {{menu.divider}}
         {{#menu.item}}
           <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
         {{/menu.item}}
