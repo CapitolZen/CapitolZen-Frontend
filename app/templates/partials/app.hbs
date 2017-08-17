@@ -15,11 +15,13 @@
       {{#dd.menu align="right" as |menu|}}
 
         {{#menu.item}}
-          {{#menu.link-to 'user'}}Edit{{/menu.link-to}}
+          <span class="dropdown-item-title">
+              Organization
+          </span>
         {{/menu.item}}
 
         {{#menu.item}}
-          {{#menu.link-to 'organization.index'}}Organization{{/menu.link-to}}
+          {{#menu.link-to 'organization.index'}}Edit{{/menu.link-to}}
         {{/menu.item}}
 
         {{#menu.item}}
@@ -30,6 +32,17 @@
           {{#menu.link-to 'organization.billing'}}Billing{{/menu.link-to}}
         {{/menu.item}}
 
+        {{#menu.item}}
+          <span class="dropdown-item-title">
+              My Personal Information
+          </span>
+        {{/menu.item}}
+
+        {{#menu.item}}
+          {{#menu.link-to 'user'}}Edit Profile{{/menu.link-to}}
+        {{/menu.item}}
+
+        {{menu.divider}}
         {{#menu.item}}
           <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
         {{/menu.item}}

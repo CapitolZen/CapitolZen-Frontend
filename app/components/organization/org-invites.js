@@ -1,5 +1,5 @@
-import Ember from "ember";
-import { task } from "ember-concurrency";
+import Ember from 'ember';
+import { task } from 'ember-concurrency';
 const { get, set, Component, computed, inject: { service } } = Ember;
 
 export default Component.extend({
@@ -8,50 +8,50 @@ export default Component.extend({
   flashMessages: service(),
   inviteModal: false,
   inviteEmail: null,
-  inviteSortDesc: ["name:desc"],
-  sortedInvites: computed.sort("invites", "inviteSortDesc"),
+  inviteSortDesc: ['name:desc'],
+  sortedInvites: computed.sort('invites', 'inviteSortDesc'),
   revokeInvite: task(function*(invite) {
-    let res = yield get(this, "request").post(`${invite.get("id")}/actions/`, {
+    let res = yield get(this, 'request').post(`${invite.get('id')}/actions/`, {
       data: {
-        actions: "revoke"
+        actions: 'revoke'
       }
     });
 
-    invite.set("status", "revoked");
-    get(this, "flashMessages").success(
-      `Invite to ${invite.get("email")} is revoked.`
+    invite.set('status', 'revoked');
+    get(this, 'flashMessages').success(
+      `Invite to ${invite.get('email')} is revoked.`
     );
   }),
   resendInvite: task(function*(invite) {
-    let res = yield get(this, "request").post(`${invite.get("id")}/actions/`, {
+    let res = yield get(this, 'request').post(`${invite.get('id')}/actions/`, {
       data: {
-        actions: "resend"
+        actions: 'resend'
       }
     });
 
-    get(this, "flashMessages").success("Resent Invite");
+    get(this, 'flashMessages').success('Resent Invite');
   }).drop(),
   actions: {
     inviteUser() {
-      let invite = get(this, "store").createRecord("invite", {
-        email: get(this, "inviteEmail"),
-        organization: get(this, "org")
+      let invite = get(this, 'store').createRecord('invite', {
+        email: get(this, 'inviteEmail'),
+        organization: get(this, 'org')
       });
       invite
         .save()
         .then(() => {
-          get(this, "flashMessages").success(
-            `${get(this, "inviteEmail")} invited!`
+          get(this, 'flashMessages').success(
+            `${get(this, 'inviteEmail')} invited!`
           );
         })
         .catch(() => {
-          get(this, "flashMessages").danger(
-            "An error occurred. Please try again."
+          get(this, 'flashMessages').danger(
+            'An error occurred. Please try again.'
           );
         })
         .finally(() => {
-          set(this, "inviteEmail", null);
-          set(this, "inviteModal", false);
+          set(this, 'inviteEmail', null);
+          set(this, 'inviteModal', false);
         });
     }
   }

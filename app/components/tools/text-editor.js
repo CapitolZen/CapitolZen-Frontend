@@ -1,18 +1,18 @@
-import Ember from "ember";
+import Ember from 'ember';
 const { get, set, Component } = Ember;
 export default Component.extend({
   actions: {
     mobileDocUpdated(doc) {
-      set(this, "doc", doc);
+      set(this, 'doc', doc);
     },
     saveDocument() {
-      let doc = get(this, "doc");
+      let doc = get(this, 'doc');
       let args = { doc: doc };
-      if (get(this, "docId")) {
-        args.docId = get(this, "docId");
+      if (get(this, 'docId')) {
+        args.docId = get(this, 'docId');
       }
-      set(this, "content", false);
-      get(this, "saveAction")(args);
+      set(this, 'content', false);
+      get(this, 'saveAction')(args);
     }
   }
 });

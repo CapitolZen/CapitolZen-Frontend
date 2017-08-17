@@ -56,6 +56,10 @@ module.exports = function(environment) {
       "img-src": "'self' *.gravatar.com *.wp.com data:",
       "media-src": "'self'"
     };
+
+    ENV.intercom = {
+      appId: "omszcfoy"
+    };
   }
 
   if (environment === "test") {
@@ -78,6 +82,10 @@ module.exports = function(environment) {
       appId: "2fc75c0066"
     };
 
+    ENV.intercom = {
+      appId: "lqg6n3a1"
+    };
+
     ENV.contentSecurityPolicy = {
       "script-src": "'self' 'unsafe-inline'",
       "connect-src": "'self' http://localhost:*",
@@ -88,10 +96,6 @@ module.exports = function(environment) {
       "media-src": "'self'"
     };
   }
-
-  ENV.intercom = {
-    appId: "lqg6n3a1"
-  };
 
   ENV.APP.usingCors = true;
   ENV.APP.corsWithCreds = true;

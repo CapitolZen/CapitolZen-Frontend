@@ -1,18 +1,16 @@
-{{#bs-form model=defaultObject onSubmit=(action "register") as |form|}}
+{{#bs-form model=changeset onSubmit=(action "register") as |form|}}
   <div class="card-block">
     <h4 class="card-title">Register Now</h4>
 
-    {{form.element controlType="textfield" label="Your Name" property="name" required=true}}
-    {{form.element controlType="textfield" label="Organization Name" property="organizationName" required=true}}
-    {{form.element controlType="email" label="Email" placeholder="Email" property="email" required=true}}
+    {{form.element controlType="text" label="Your Name" property="name"}}
+    {{form.element controlType="text" label="Organization Name" property="organizationName"}}
+    {{form.element controlType="email" label="Email" placeholder="Email" property="username"}}
     {{form.element controlType="password" label="Password" placeholder="Password" property="password"
-                   required=true
                    helpText="Minimum 8 characters"}}
-    {{form.element controlType="password" label="Confirm" placeholder="Confirm" property="confirmPassword" required=true}}
+    {{form.element controlType="password" label="Confirm" placeholder="Confirm" property="confirmPassword"}}
 </div>
 <div class="card-footer">
   {{bs-button defaultText="Create Account" type="primary" buttonType="submit" class="ceneter-block"}}
   {{#link-to 'anon.login' class="pull-right"}}I already have an account{{/link-to}}
-
 </div>
 {{/bs-form}}
