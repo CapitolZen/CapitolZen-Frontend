@@ -29,6 +29,13 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       includePaths: ['vendor', 'node_modules/bootstrap/scss']
+    },
+    'esw-cache-fallback': {
+      // RegExp patterns specifying which URLs to cache.
+      patterns: ['https://api.capitolzen.com/(.+)'],
+
+      // changing this version number will bust the cache
+      version: '1'
     }
   });
 

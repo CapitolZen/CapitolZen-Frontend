@@ -1,6 +1,6 @@
 import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
-    return Ember.Object.create()
+    return Ember.Object.create({ active: true });
   }
 });
