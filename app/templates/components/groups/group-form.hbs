@@ -1,3 +1,4 @@
+{{log model}}
 {{#ui/ui-card}}
   {{#if model.hasDirtyAttribtues}}
     {{#block-slot "title"}}
@@ -8,7 +9,7 @@
   {{/if}}
 
   {{#block-slot "content"}}
-    {{#bs-form formLayout=formLayout model=model onSubmit=(action "saveGroup") as |form|}}
+    {{#bs-form model=model onSubmit=(action "saveGroup") as |form|}}
       {{form.element controlType="textfield" label="Name" placeholder="Group Name" property="title" required=true}}
       {{form.element controlType="checkbox" label="Active" property="active"}}
       {{form.element controlType="textarea" label="Description" property="description"}}
