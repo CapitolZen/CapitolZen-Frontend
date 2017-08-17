@@ -1,7 +1,7 @@
 {{#ui/ui-card}}
   {{#block-slot "title"}}Edit Organization Details{{/block-slot}}
   {{#block-slot "content"}}
-    {{#bs-form formLayout=formLayout model=changeset onSubmit=(action "updateOrganization") as |form|}}
+    {{#bs-form model=changeset onSubmit=(action "updateOrganization") as |form|}}
       <fieldset>
         <legend>Information</legend>
         {{form.element controlType="textfield" label="Organization Name" property="name" required=true}}
