@@ -36,43 +36,14 @@ export default Component.extend({
       this.get('ajax')
         .post('users/register/', { data: this.get('registration') })
         .then(data => {
-          console.log(data);
+          this.get('session').authenticate('authenticator:jwt', {
+            identification: this.get('registration.username'),
+            password: this.get('registration.password')
+          });
         })
         .catch(data => {
           console.log(data);
         });
-      /*
-      let {
-        email: username,
-        password,
-        confirmPassword,
-        name,
-        organizationName
-      } = user;
-
-      if (password.length < 8 || confirmPassword !== password) {
-        get(this, "flashMessages").danger("Please supply a valid password");
-      } else {
-        let newUser = get(this, "store").createRecord("user", {
-          username: username,
-          password: password,
-          name: name
-        });
-        newUser.save().then(() => {
-          get(this, "session")
-            .authenticate("authenticator:jwt", {
-              identification: username,
-              password: password
-            })
-            .then(() => {
-              let newOrg = get(this, "store").createRecord("organization", {
-                name: organizationName
-              });
-              newOrg.save();
-            });
-        });
-      }
-      */
     }
   }
 });
