@@ -8,9 +8,10 @@
     {{/link-to}}
   </div>
   <ul class="user-menu-wrapper nav">
+    {{notification/notification-center}}
     {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
       {{#dd.toggle}}
-        <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
+        <i class="fa fa-user"></i> <span class="hidden-sm-down"></span>
       {{/dd.toggle}}
       {{#dd.menu align="right" as |menu|}}
 

@@ -30,6 +30,7 @@ Router.map(function() {
     // User Accounts
     this.route('user', { resetNamespace: true }, function() {
       this.route('edit');
+      this.route('notifications');
     });
 
     //
