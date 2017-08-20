@@ -18,7 +18,7 @@ function updatePageProperty(property, tokens) {
 
   if (property === 'title') {
     set(this, 'uiGlobal.pageTitleRaw', value);
-    set(this, 'headData.title', value);
+    set(this, 'headData.title', `${value} | Capitol Zen`);
   } else if (property === 'description') {
     set(this, 'uiGlobal.pageDescriptionRaw', value);
   }

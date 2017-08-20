@@ -3,7 +3,7 @@
 {{#bs-form model=this onSubmit=(action "createReport") as |form|}}
   {{form.element controlType="textfield" label="Title" property="title"}}
   {{form.element controlType="textarea" label="Comments" property="description"}}
-  {{!--{{#form.element label="Logo Choice" property="logoChoice" as |el|}}
+  {{#form.element label="Logo Choice" property="logoChoice" as |el|}}
     <p>
       {{#bs-button-group
         value=el.value
@@ -14,6 +14,51 @@
       {{/bs-button-group}}
     </p>
 
-  {{/form.element}}--}}
+  {{/form.element}}
+
+  <h5>Add Date Filter</h5>
+  <p>
+    {{#bs-button-group
+      value=dateOption
+      type="radio"
+      onChange=(action (mut dateOption)) as |bg|}}
+      {{#bg.button value="dynamic"}}Dynamic{{/bg.button}}
+      {{#bg.button value="static"}}Static{{/bg.button}}
+    {{/bs-button-group}}
+  </p>
+  <div class="row">
+    <div class="col-6">
+      {{#if (eq dateOption "dynamic")}}
+
+        {{#form.element label="Activity In Last" property="dynamicDateFilter" as |el|}}
+          {{#power-select
+            searchEnabled=false
+            options=dynamicDateFilterOptions
+            selected=el.value
+            onchange=(action (mut el.value))
+          as |opt|
+          }}
+            {{opt.label}}
+          {{/power-select}}
+        {{/form.element}}
+      {{else}}
+        {{#form.element label="Filter By Static Date" property="" as |el|}}
+          {{#power-calendar-range
+            center=center
+            selected=range
+            onSelect=(action (mut range) value="moment") as |calendar|}}
+            {{calendar.nav}}
+            {{calendar.days}}
+          {{/power-calendar-range}}
+        {{/form.element}}
+      {{/if}}
+    </div>
+    <div class="col-6">
+      <p>{{dateOptionHelp}}</p>
+    </div>
+  </div>
+
+
+
   {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
 {{/bs-form}}
