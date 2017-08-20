@@ -97,31 +97,3 @@
   }
 }
 
-
-.notification-center-wrapper {
-  .dropdown-menu {
-    padding:0;
-  }
-
-  .notification-center-content {
-
-  }
-  .notification-center-footer {
-    text-align: center;
-    font-size:0.9rem;
-    border-top: 1px solid $gray-light;
-    background-color: $gray-lightest;
-    padding:6px;
-  }
-  > div > a {
-    padding: 11px;
-    display: block;
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
-  }
-  a {
-
-  }
-}

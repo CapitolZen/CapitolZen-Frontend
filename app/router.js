@@ -87,7 +87,7 @@ Router.map(function() {
   });
 
   this.route('freestyle');
-  this.route('error-route');
+  // this.route('error-route');
   this.route('not-found', { path: '/*path' });
 
   //
