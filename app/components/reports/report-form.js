@@ -24,6 +24,15 @@ export default Component.extend({
     start: moment('2016-05-10'),
     end: moment('2016-05-15')
   },
+  logoChoice: computed('m.filter', {
+    get(key) {
+      return get(this, 'model').get('logoChoice');
+    },
+    set(key, value) {
+      let m = get(this, 'model');
+      return value;
+    }
+  }),
   dynamicDateFilterOptions: [
     {
       label: 'Last 7 Days',
@@ -40,6 +49,7 @@ export default Component.extend({
   ],
 
   dateOption: 'dynamic',
+  dateFilterField: 'last_action_date',
   dateOptionHelp: computed('dateOption', function() {
     let opt = get(this, 'dateOption');
     switch (opt) {
@@ -49,14 +59,17 @@ export default Component.extend({
         return 'Dynamic dates will always filter bills against this period of time.';
     }
   }),
-
   getWrappers: task(function*() {
-    let wrappers = yield this.get('store').query('wrapper', {
-      group: this.get('group')
-    });
-
-    this.set('wrapperList', wrappers);
-  }),
+    let g = this.get('group');
+    try {
+      let wrappers = yield this.get('store').query('wrapper', {
+        group: g.id
+      });
+      this.set('wrapperList', wrappers);
+    } catch (e) {
+      console.log(e);
+    }
+  }).on('init'),
 
   actions: {
     createReport(data) {

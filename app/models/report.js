@@ -23,6 +23,7 @@ export default DS.Model.extend({
       let filters = get(this, 'filter');
       filters.date_filter = value;
       set(this, 'filter', filters);
+      return value;
     },
     get() {
       return get(this, 'filter')['date_filter'];
