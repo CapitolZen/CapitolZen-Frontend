@@ -1,11 +1,6 @@
 import Ember from 'ember';
 
-const {
-  set,
-  inject: {
-    service
-  }
-} = Ember;
+const { set, inject: { service }, Helper, run } = Ember;
 
 /**
  *
@@ -13,21 +8,20 @@ const {
  * @param tokens
  */
 function updatePageProperty(property, tokens) {
-
-  let value = "";
+  let value = '';
 
   if (Array.isArray(tokens)) {
-    value = tokens.join(" ");
-  } else if (typeof tokens === "string") {
+    value = tokens.join(' ');
+  } else if (typeof tokens === 'string') {
     value = tokens;
   }
 
-  if (property === "title") {
+  if (property === 'title') {
     set(this, 'uiGlobal.pageTitleRaw', value);
-  } else if(property === "description") {
+    set(this, 'headData.title', `${value} | Capitol Zen`);
+  } else if (property === 'description') {
     set(this, 'uiGlobal.pageDescriptionRaw', value);
   }
-
 }
 
 /**
@@ -41,9 +35,9 @@ function clearPageProps() {
 /**
  *
  */
-export default Ember.Helper.extend({
+export default Helper.extend({
   uiGlobal: service('ui-global'),
-
+  headData: service(),
   compute(params, hash) {
     if (!Array.isArray(params)) {
       return null;
@@ -51,7 +45,7 @@ export default Ember.Helper.extend({
 
     const property = hash.property;
 
-    Ember.run.scheduleOnce('afterRender', this, updatePageProperty, property, params);
+    run.scheduleOnce('afterRender', this, updatePageProperty, property, params);
 
     return null;
   },
@@ -59,5 +53,4 @@ export default Ember.Helper.extend({
   destroy() {
     Ember.run.scheduleOnce('afterRender', this, clearPageProps);
   }
-
 });

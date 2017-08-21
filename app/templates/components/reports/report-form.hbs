@@ -1,19 +1,105 @@
 
 
-{{#bs-form model=this onSubmit=(action "createReport") as |form|}}
-  {{form.element controlType="textfield" label="Title" property="title"}}
-  {{form.element controlType="textarea" label="Comments" property="description"}}
-  {{!--{{#form.element label="Logo Choice" property="logoChoice" as |el|}}
-    <p>
-      {{#bs-button-group
-        value=el.value
-        type="radio"
-        onChange=(action (mut el.value)) as |bg|}}
-        {{#bg.button value="organization"}}Organization{{/bg.button}}
-        {{#bg.button value="group"}}Group{{/bg.button}}
-      {{/bs-button-group}}
-    </p>
+<div class="row">
+  <div class="col-md-8">
+    {{#bs-form model=this onSubmit=(action "createReport") as |form|}}
+      {{#ui/ui-card}}
+        {{#block-slot "title"}}
+          Edit Report
+        {{/block-slot}}
+        {{#block-slot "content"}}
+          {{form.element controlType="textfield" label="Title" property="title"}}
+          {{form.element controlType="textarea" label="Comments" property="description"}}
+          {{#form.element label="Logo Choice" property="logoChoice" as |el|}}
+            <p>
+              {{#bs-button-group
+                value=el.value
+                type="radio"
+                size="sm"
+                onChange=(action (mut el.value)) as |bg|}}
+                {{#bg.button value="organization"}}Organization{{/bg.button}}
+                {{#bg.button value="group"}}Group{{/bg.button}}
+                {{#bg.button value=false}}None{{/bg.button}}
+              {{/bs-button-group}}
+            </p>
 
-  {{/form.element}}--}}
-  {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-{{/bs-form}}
+          {{/form.element}}
+          <p>
+            <label for="allowDate">
+              {{input type="checkbox" id="allowDate" name="allowDateFilter" checked=dateFilter}}
+              Filter By Date
+            </label>
+          </p>
+
+
+          {{#if dateFilter}}
+            <div class="row">
+              <div class="col-6">
+                {{#form.element label="Filer By" property="dateFilterField" as |el|}}
+                  <p>
+                    {{#bs-button-group
+                      value=el.value
+                      type="radio"
+                      size="sm"
+                      onChange=(action (mut el.value)) as |bg|}}
+                      {{#bg.button value="last_action_date"}}Last Action Date{{/bg.button}}
+                      {{#bg.button value="introduced_date"}}Introduction Date{{/bg.button}}
+                    {{/bs-button-group}}
+                  </p>
+                {{/form.element}}
+              </div>
+              <div class="col-6">
+                {{#form.element label="Activity In Last" property="dynamicDateFilter" as |el|}}
+                  {{#power-select
+                    searchEnabled=false
+                    options=dynamicDateFilterOptions
+                    selected=el.value
+                    onchange=(action (mut el.value))
+                  as |opt|
+                  }}
+                    {{opt.label}}
+                  {{/power-select}}
+                {{/form.element}}
+              </div>
+            </div>
+          {{/if}}
+
+        {{/block-slot}}
+
+        {{#block-slot "footer"}}
+          {{bs-button defaultText="Create" type="primary" buttonType="submit"}}
+        {{/block-slot}}
+      {{/ui/ui-card}}
+
+    {{/bs-form}}
+  </div>
+  <div class="col-md-4">
+    {{#ui/ui-card}}
+      {{#block-slot "title"}}
+          Preview
+      {{/block-slot}}
+      {{#block-slot "content"}}
+        {{#if getWrappers.isRunning}}
+          {{ui/loading-animation}}
+        {{else}}
+          <div class="list-group">
+            {{#each wrapperList as |wrapper|}}
+              <div class="list-group-item justify-content-between">
+                {{wrapper.bill.stateId}}
+                {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
+              </div>
+            {{else}}
+              <div class="list-group-item">
+                <p class="text-centered">
+                  <em>This report doesn't include any bills.</em>
+                </p>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+      {{/block-slot}}
+    {{/ui/ui-card}}
+  </div>
+</div>
+
+

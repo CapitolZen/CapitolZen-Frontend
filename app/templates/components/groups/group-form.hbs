@@ -10,7 +10,7 @@
 
   {{#block-slot "content"}}
     {{#bs-form model=model onSubmit=(action "saveGroup") as |form|}}
-      {{form.element controlType="textfield" label="Name" placeholder="Group Name" property="title" required=true}}
+      {{form.element controlType="textfield" label="Name" placeholder="Client Name" property="title" required=true}}
       {{form.element controlType="checkbox" label="Active" property="active"}}
       {{form.element controlType="textarea" label="Description" property="description"}}
 
