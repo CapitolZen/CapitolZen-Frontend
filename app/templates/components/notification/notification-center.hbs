@@ -1,0 +1,15 @@
+{{#bs-dropdown as |dd|}}
+  {{#dd.toggle}}
+    <i class="fa fa-comment"></i> <span class="caret"></span>
+  {{/dd.toggle}}
+  {{#dd.menu as |ddm|}}
+    {{#ddm.item}}
+      <div class="notification-center-content">
+        CONTENT
+      </div>
+      <div class="notification-center-footer">
+        {{#link-to 'user.notifications'}}All Notifications{{/link-to}}
+      </div>
+    {{/ddm.item}}
+  {{/dd.menu}}
+{{/bs-dropdown}}

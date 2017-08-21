@@ -35,7 +35,7 @@ body > .ember-view {
 }
 
 .footer {
-  border-top:1px solid rgba(0,0,0,.3);
+  border-top:1px solid $gray-lightest;
   font-size:90%;
   margin-top:30px;
 }
@@ -46,7 +46,7 @@ body > .ember-view {
 }
 
 .ember-burger-menu > .bm-outlet > .bm-content {
-  background: #efefef;
+  background: $body-bg;
   flex: 1;
 }
 

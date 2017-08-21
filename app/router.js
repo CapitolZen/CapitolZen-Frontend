@@ -30,6 +30,7 @@ Router.map(function() {
     // User Accounts
     this.route('user', { resetNamespace: true }, function() {
       this.route('edit');
+      this.route('notifications');
     });
 
     //
@@ -86,7 +87,7 @@ Router.map(function() {
   });
 
   this.route('freestyle');
-  this.route('error-route');
+  // this.route('error-route');
   this.route('not-found', { path: '/*path' });
 
   //
