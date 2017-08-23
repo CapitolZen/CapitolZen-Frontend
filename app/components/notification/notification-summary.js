@@ -8,7 +8,6 @@ export default Component.extend({
   actualClassNames: computed('format', function() {
     let classes = 'notification-summary';
     let format = this.get('format');
-    console.log(format);
     if (format) {
       classes += ' ' + format;
     }
