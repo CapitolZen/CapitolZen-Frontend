@@ -1,0 +1,19 @@
+{{log model}}
+{{ui-page-property model.title property="title"}}
+
+<div class="row">
+  <div class="col-6">
+  {{#ui/ui-card}}
+    {{#block-slot "title"}}
+        Edit Client
+    {{/block-slot}}
+    {{#block-slot "content"}}
+      {{groups/group-form group=model}}
+    {{/block-slot}}
+  {{/ui/ui-card}}
+  </div>
+  <div class="col-6">
+    more stuff
+  </div>
+</div>
+

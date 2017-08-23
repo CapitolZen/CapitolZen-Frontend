@@ -1,14 +1,10 @@
-import Ember from "ember";
+import Ember from 'ember';
+const { Service, computed, get } = Ember;
 
-export default Ember.Service.extend({
+export default Service.extend({
   pageTitleRaw: null,
   pageDescriptionRaw: null,
 
-  pageTitle: Ember.computed("pageTitleRaw", function() {
-    return this.get("pageTitleRaw");
-  }),
-
-  pageDescription: Ember.computed("pageDescriptionRaw", function() {
-    return this.get("pageDescriptionRaw");
-  })
+  pageTitle: computed.alias('pageTitleRaw'),
+  pageDescription: computed.alias('pageDescriptionRaw')
 });

@@ -57,16 +57,18 @@ Router.map(function() {
     //
     // Groups
     this.route('groups', { resetNamespace: true, path: 'clients' }, function() {
-      this.route('detail', { path: '/:id' });
-      this.route('edit', { path: '/:id/edit' });
-      this.route('add');
-      this.route('contacts', { path: '/:id/contacts' });
-      this.route('bills', { path: '/:id/bills' });
-      this.route('bill', { path: '/:id/bill' }, function() {
-        this.route('detail', { path: '/:bill' });
+      this.route('group', { path: '/:id' }, function() {
+        this.route('edit', { path: '/edit' });
+        this.route('contacts', { path: '/contacts' });
+        this.route('bills', { path: '/bills' });
+        this.route('bill', { path: '/bill' }, function() {
+          this.route('detail', { path: '/:bill' });
+        });
+        this.route('message', { path: '/message' });
+        this.route('filters', { path: '/filters' });
       });
-      this.route('message', { path: '/:id/message' });
-      this.route('filters', { path: '/:id/filters' });
+
+      this.route('add');
     });
 
     //
