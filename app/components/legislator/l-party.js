@@ -17,7 +17,7 @@ export default Component.extend({
       case 'republican':
         badge = 'badge-republican';
         break;
-      case 'democrat':
+      case 'democratic':
         badge = 'badge-democrat';
         break;
       case 'green':
