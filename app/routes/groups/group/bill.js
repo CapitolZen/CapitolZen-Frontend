@@ -1,7 +1,8 @@
 import Ember from 'ember';
 const { Route } = Ember;
 export default Route.extend({
-  model({ report }) {
-    return this.store.findRecord('report', report);
+  breadCrumb: {
+    title: 'Bills',
+    path: 'groups.group.bills'
   }
 });

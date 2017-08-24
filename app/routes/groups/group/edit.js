@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return Ember.A();
+    return this.get('store').findRecord('group', params.id);
   }
 });
