@@ -29,7 +29,6 @@ Router.map(function() {
     //
     // User Accounts
     this.route('user', { resetNamespace: true }, function() {
-      this.route('edit');
       this.route('notifications');
     });
 
@@ -38,7 +37,6 @@ Router.map(function() {
     this.route('organization', { resetNamespace: true }, function() {
       this.route('team', { path: '/team' });
       this.route('billing', { path: '/billing' });
-      this.route('edit', { path: '/:id' });
     });
 
     //
