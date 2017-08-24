@@ -73,15 +73,12 @@ Router.map(function() {
 
     //
     // Reports
-    this.route(
-      'reports',
-      { path: '/:group/reports', resetNamespace: true },
-      function() {
-        this.route('edit', { path: '/:report/edit' });
-        this.route('add', { path: '/add' });
-        this.route('detail', { path: '/:report' });
-      }
-    );
+    this.route('reports', { resetNamespace: true }, function() {
+      this.route('add', { path: '/add' });
+      this.route('detail', { path: '/:report' });
+      this.route('edit', { path: '/:report/edit' });
+      this.route('client', { path: '/:group' });
+    });
 
     this.route('legislators', { resetNamespace: true }, function() {
       this.route('detail', { path: '/:id' });

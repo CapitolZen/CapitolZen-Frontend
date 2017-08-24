@@ -1,13 +1,13 @@
 {{#bs-nav type="pills" justified=true class="p-lg-0 mb-1 mb-lg-2 flex-nowrap d-flex" as |nav|}}
   {{#nav.item}}
-    {{#nav.link-to "groups.group.bills" group.id}}{{fa-icon "file-text"}} <span class="hidden-sm-down pl-3">View</span>{{/nav.link-to}}
+    {{#nav.link-to "groups.group.bills" group.id}}{{fa-icon "file-text"}} <span class="hidden-sm-down pl-3">Saved Bills</span>{{/nav.link-to}}
   {{/nav.item}}
   {{#nav.item}}
-    {{#nav.link-to "groups.group.edit" group.id }}{{fa-icon "fa-pencil-square-o"}} <span
+    {{#nav.link-to "groups.group" group.id }}{{fa-icon "fa-pencil-square-o"}} <span
       class="hidden-sm-down pl-3">Edit</span>{{/nav.link-to}}
   {{/nav.item}}
   {{#nav.item}}
-    {{#nav.link-to "reports" group.id}}{{fa-icon "tachometer"}} <span class="hidden-sm-down pl-3">Reports</span>{{/nav.link-to}}
+    {{#nav.link-to "reports.client" group.id}}{{fa-icon "tachometer"}} <span class="hidden-sm-down pl-3">Reports</span>{{/nav.link-to}}
   {{/nav.item}}
   {{!--{{#nav.item}}
     {{#nav.link-to "groups.filters" group.id}}{{fa-icon "filter"}} <span class="hidden-sm-down pl-3">Filters</span>{{/nav.link-to}}
@@ -15,3 +15,4 @@
 
 
 {{/bs-nav}}
+
