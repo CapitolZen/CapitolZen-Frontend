@@ -10,31 +10,39 @@
   {{/block-slot}}
   {{#block-slot "content"}}
     <div class="row">
-      <div class="col-md-4">
-        <h5>Position</h5>
-        {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
-        <h5>Summary</h5>
-        {{wrappers/wrapper-summary wrapper=wrapper class="mb-2"}}
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-12">
+            <h5>Position</h5>
+            {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
+            <h5>Summary</h5>
+            {{wrappers/wrapper-summary wrapper=wrapper class="mb-2"}}
 
-        <p>
-          <a href="{{bill.remoteUrl}}" class="btn btn-secondary">View Source</a>
-        </p>
+            <p>
+              <a href="{{bill.remoteUrl}}" class="btn btn-secondary">View Source</a>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-{{if bill.votes 6 12}}">
+            {{bills/source-list sources=bill.sources class="mt-1"}}
+            {{bills/doc-list docs=bill.documents class="mt-1"}}
+          </div>
+          {{#if bill.votes}}
+            <div class="col-md-6">
+              {{bills/vote-list votes=bill.votes}}
+            </div>
+          {{/if}}
+        </div>
 
-        {{bills/source-list sources=bill.sources class="mt-1"}}
-        {{bills/doc-list docs=bill.documents class="mt-1"}}
+        <div class="row mt-2">
+          <div class="col-12">
+            {{bills/bill-history bill=bill}}
+          </div>
+          </div>
 
-
-      </div>
-      <div class="col-md-4">
-        {{#if bill.votes}}
-          {{bills/vote-list votes=bill.votes}}
-        {{/if}}
-
-        {{bills/bill-history bill=bill}}
-
-
-      </div>
-      <div class="col-md-4">
+        </div>
+      <div class="col-md-6">
         <h5>Notes</h5>
         {{#each-in notes as |key note|}}
           {{#if isEditing}}
