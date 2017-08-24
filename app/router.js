@@ -55,29 +55,28 @@ Router.map(function() {
     //
     // Groups
     this.route('groups', { resetNamespace: true, path: 'clients' }, function() {
-      this.route('detail', { path: '/:id' });
-      this.route('edit', { path: '/:id/edit' });
-      this.route('add');
-      this.route('contacts', { path: '/:id/contacts' });
-      this.route('bills', { path: '/:id/bills' });
-      this.route('bill', { path: '/:id/bill' }, function() {
-        this.route('detail', { path: '/:bill' });
+      this.route('group', { path: '/:id' }, function() {
+        this.route('edit', { path: '/edit' });
+        this.route('contacts', { path: '/contacts' });
+        this.route('bills', { path: '/bills' });
+        this.route('bill', { path: '/bill' }, function() {
+          this.route('detail', { path: '/:bill' });
+        });
+        this.route('message', { path: '/message' });
+        this.route('filters', { path: '/filters' });
       });
-      this.route('message', { path: '/:id/message' });
-      this.route('filters', { path: '/:id/filters' });
+
+      this.route('add');
     });
 
     //
     // Reports
-    this.route(
-      'reports',
-      { path: '/:group/reports', resetNamespace: true },
-      function() {
-        this.route('edit', { path: '/:report/edit' });
-        this.route('add', { path: '/add' });
-        this.route('detail', { path: '/:report' });
-      }
-    );
+    this.route('reports', { resetNamespace: true }, function() {
+      this.route('add', { path: '/add' });
+      this.route('detail', { path: '/:report' });
+      this.route('edit', { path: '/:report/edit' });
+      this.route('client', { path: '/:group' });
+    });
 
     this.route('legislators', { resetNamespace: true }, function() {
       this.route('detail', { path: '/:id' });

@@ -61,7 +61,7 @@ export default Component.extend({
         group = get(this, 'store').createRecord('group', props);
       }
       group.save().then(() => {
-        get(this, 'flashMessages').success('Group Updated!');
+        get(this, 'flashMessages').success('Client Updated!');
         get(this, 'routing').transitionTo('groups.index');
       });
     },

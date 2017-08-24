@@ -70,7 +70,7 @@ export default Component.extend({
       });
       wrapper.save();
       get(this, 'flashMessages').success(
-        `${wrapper.get('stateId')} saved for ${group.get('title')}`
+        `${bill.get('stateId')} saved for ${group.get('title')}`
       );
     }
   }),

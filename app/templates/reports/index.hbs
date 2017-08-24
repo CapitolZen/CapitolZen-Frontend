@@ -1,24 +1,7 @@
-{{groups/group-header group=model.group}}
-{{#link-to "reports.add" class="btn btn-primary"}}{{fa-icon "circle-plus"}} Create New Report{{/link-to}}
+{{ui-page-property "All Reports" property="title"}}
+
 {{#ui/ui-card}}
-  {{#block-slot "content"}}
-    <ul class="list-group">
-      {{#each model.reports as |report|}}
-        <li class="list-group-item d-flex flex-nowrap justify-content-between">
-          {{#link-to "reports.detail" report.id}}
-            {{report.title}} <span class="badge badge-default">{{report.created}}</span>
-          {{/link-to}}
-          <div class="btn-group">
-            {{reports/report-download report=report type="primary" size="btn-sm"}}
-            {{reports/report-send report=report type="secondary" size="btn-sm"}}
-          </div>
-        </li>
-      {{else}}
-      No reports yet
-    {{/each}}
-    </ul>
+  {{#block-slot 'content'}}
+    {{reports/report-table model=model recordType="report"}}
   {{/block-slot}}
-
 {{/ui/ui-card}}
-
-{{outlet}}

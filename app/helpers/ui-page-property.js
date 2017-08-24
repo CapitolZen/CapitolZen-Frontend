@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { set, inject: { service } } = Ember;
+const { set, inject: { service }, Helper, run } = Ember;
 
 /**
  *
@@ -18,6 +18,7 @@ function updatePageProperty(property, tokens) {
 
   if (property === 'title') {
     set(this, 'uiGlobal.pageTitle', value);
+    set(this, 'headData.title', `${value} | Capitol Zen`);
   } else if (property === 'description') {
     set(this, 'uiGlobal.pageDescription', value);
   }
@@ -34,9 +35,9 @@ function clearPageProps() {
 /**
  *
  */
-export default Ember.Helper.extend({
+export default Helper.extend({
   uiGlobal: service('ui-global'),
-
+  headData: service(),
   compute(params, hash) {
     if (!Array.isArray(params)) {
       return null;
@@ -44,13 +45,7 @@ export default Ember.Helper.extend({
 
     const property = hash.property;
 
-    Ember.run.scheduleOnce(
-      'afterRender',
-      this,
-      updatePageProperty,
-      property,
-      params
-    );
+    run.scheduleOnce('afterRender', this, updatePageProperty, property, params);
 
     return null;
   },
