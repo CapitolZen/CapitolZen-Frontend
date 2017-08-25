@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { task } from 'ember-concurrency';
 import moment from 'moment';
 
-const { get, set, computed, Component, inject: { service } } = Ember;
+const { A, get, set, computed, Component, inject: { service } } = Ember;
 
 export default Component.extend({
   store: service(),
@@ -11,14 +11,28 @@ export default Component.extend({
   router: service('-routing'),
   model: false,
   group: null,
-  wrapperList: null,
+  wrapperList: [],
   useAllWrappers: true,
+  report: false,
+  selectedGroup: null,
+  excludedWrappers: [],
 
   init() {
     this._super(...arguments);
     let m = get(this, 'model') || Ember.Object.create();
     set(this, 'model', m);
+    let s = m.get('static') || false;
+    set(this, 'isStatic', s);
+    set(this, 'excludedWrappers', A());
+    set(this, 'wrapperList', A());
   },
+
+  enableGroupSearch: computed('groups', function() {
+    let length = get(this, 'groups').length;
+
+    return length >= 4;
+  }),
+
   center: moment('2016-05-17'),
   range: {
     start: moment('2016-05-10'),
@@ -30,9 +44,53 @@ export default Component.extend({
     },
     set(key, value) {
       let m = get(this, 'model');
+      set(m, 'logoChoice', value);
       return value;
     }
   }),
+
+  wrapperPreviewList: computed(
+    'wrapperList',
+    'excludedWrappers.[]',
+    'selectedGroup',
+    function() {
+      let wrappers = get(this, 'wrapperList');
+      let excluded = get(this, 'excludedWrappers');
+      wrappers.removeObjects(excluded);
+      return wrappers;
+    }
+  ),
+  getWrappers: task(function*() {
+    let g = this.get('selectedGroup');
+    try {
+      let wrappers = yield this.get('store').query('wrapper', {
+        group: g.id
+      });
+      this.set('wrapperList', wrappers);
+    } catch (e) {
+      console.log(e);
+    }
+  }).drop(),
+
+  layoutOptions: [
+    {
+      label: 'Detailed List',
+      value: 'detail_list'
+    },
+    {
+      label: 'Plain List',
+      value: 'plain_list'
+    },
+    {
+      label: 'Detailed Table',
+      value: 'detail_table'
+    },
+    {
+      label: 'Plain Table',
+      value: 'plain_table'
+    }
+  ],
+
   dynamicDateFilterOptions: [
     {
       label: 'Last 7 Days',
@@ -48,33 +106,26 @@ export default Component.extend({
     }
   ],
 
-  dateOption: 'dynamic',
-  dateFilterField: 'last_action_date',
-  dateOptionHelp: computed('dateOption', function() {
-    let opt = get(this, 'dateOption');
-    switch (opt) {
-      case 'static':
-        return 'Static dates will filter all bills against this date. When this report is created, this date will remain fixed.';
-      case 'dynamic':
-        return 'Dynamic dates will always filter bills against this period of time.';
-    }
-  }),
-  getWrappers: task(function*() {
-    let g = this.get('group');
-    try {
-      let wrappers = yield this.get('store').query('wrapper', {
-        group: g.id
-      });
-      this.set('wrapperList', wrappers);
-    } catch (e) {
-      console.log(e);
-    }
-  }).on('init'),
-
   actions: {
+    updateGroup(mut, group) {
+      set(this, 'selectedGroup', group);
+      get(this, 'getWrappers').perform();
+    },
+    setReportType(mut, value) {
+      set(this, 'isStatic', value);
+    },
+    removeWrapper(wrapper) {
+      console.log(wrapper);
+      get(this, 'excludedWrappers').pushObject(wrapper);
+    },
     createReport(data) {
-      let fields = data.getProperties('title', 'description');
-      fields.group = get(this, 'group');
+      let fields = data.getProperties(
+        'title',
+        'description',
+        'layout',
+        'static'
+      );
+      fields.group = get(this, 'selectedGroup');
       fields.user = get(this, 'currentUser.user');
       fields.organization = get(this, 'currentUser.organization');
       fields.publishDate = moment().unix();
@@ -84,7 +135,7 @@ export default Component.extend({
         .save()
         .then(() => {
           this.get('flashMessages').success('Report Created');
-          this.get('router').transitionTo('reports', this.get('group'));
+          this.get('router').transitionTo('reports');
         })
         .catch(err => {
           console.log(err);

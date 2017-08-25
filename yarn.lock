@@ -3112,6 +3112,12 @@ ember-freestyle@^0.6.1:
     es6-promise "^4.1.0"
     glob "^7.1.1"
 
+ember-full-story@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ember-full-story/-/ember-full-story-0.1.1.tgz#4e6629a8090c7575de7a29c9b17d2bbbe9e34691"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+
 ember-get-config@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.2.tgz#54d96fae87bcd75a3dd710113ed1db3afbe4fe9d"

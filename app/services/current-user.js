@@ -1,4 +1,4 @@
-import Ember from "ember";
+import Ember from 'ember';
 
 const { inject: { service }, get, set, computed, RSVP, Service } = Ember;
 
@@ -9,32 +9,38 @@ export default Service.extend({
   intercom: service(),
   user: null,
   organization: null,
-  intercomUserProps: ["email", "user_id", "name"],
-  email: computed("user.username", function() {
-    return get(this, "user.username");
+  intercomUserProps: ['email', 'user_id', 'name'],
+  email: computed('user.username', function() {
+    return get(this, 'user.username');
   }),
 
-  user_id: computed("user.id", function() {
-    return get(this, "user.id");
+  user_id: computed('user.id', function() {
+    return get(this, 'user.id');
   }),
 
-  name: computed("user.name", function() {
-    return get(this, "user.name");
+  name: computed('user.name', function() {
+    return get(this, 'user.name');
   }),
 
-  intercomData: computed("user", "organization", function() {
-    return this.getProperties(get(this, "intercomUserProps"));
+  intercomData: computed('user', 'organization', function() {
+    return this.getProperties(get(this, 'intercomUserProps'));
   }),
 
   load() {
-    if (get(this, "session.isAuthenticated")) {
-      return get(this, "store")
-        .queryRecord("user", { currentUser: true })
+    if (get(this, 'session.isAuthenticated')) {
+      return get(this, 'store')
+        .queryRecord('user', { currentUser: true })
         .then(user => {
-          get(user, "organizations").then(orgs => {
-            set(this, "user", user);
-            set(this, "organization", orgs.get("firstObject"));
-            get(this, "intercom").set("user", get(this, "intercomData"));
+          get(user, 'organizations').then(orgs => {
+            set(this, 'user', user);
+            set(this, 'organization', orgs.get('firstObject'));
+            get(this, 'intercom').set('user', get(this, 'intercomData'));
+            _opbeat('setUserContext', {
+              id: `{{${get(this, 'user_id')}}`
+            });
+            _opbeat('setExtraContext', {
+              org_id: `{{${get(this, 'organization.id')}`
+            });
           });
         });
     } else {
@@ -43,8 +49,8 @@ export default Service.extend({
   },
 
   loadOrganization() {
-    if (get(this, "session.isAuthenticated")) {
-      return get(this, "store").queryRecord("organization", {
+    if (get(this, 'session.isAuthenticated')) {
+      return get(this, 'store').queryRecord('organization', {
         currentOrg: true
       });
     } else {
