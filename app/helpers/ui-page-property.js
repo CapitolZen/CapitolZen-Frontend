@@ -17,10 +17,10 @@ function updatePageProperty(property, tokens) {
   }
 
   if (property === 'title') {
-    set(this, 'uiGlobal.pageTitleRaw', value);
+    set(this, 'uiGlobal.pageTitle', value);
     set(this, 'headData.title', `${value} | Capitol Zen`);
   } else if (property === 'description') {
-    set(this, 'uiGlobal.pageDescriptionRaw', value);
+    set(this, 'uiGlobal.pageDescription', value);
   }
 }
 
@@ -28,8 +28,8 @@ function updatePageProperty(property, tokens) {
  *
  */
 function clearPageProps() {
-  set(this, 'uiGlobal.pageDescriptionRaw', null);
-  set(this, 'uiGlobal.pageTitleRaw', null);
+  set(this, 'uiGlobal.pageDescription', null);
+  set(this, 'uiGlobal.pageTitle', null);
 }
 
 /**

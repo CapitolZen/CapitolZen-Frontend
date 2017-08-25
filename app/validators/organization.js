@@ -1,21 +1,31 @@
 import {
   validatePresence,
-  validateFormat
+  validateFormat,
+  validateNumber,
+  validateLength
 } from 'ember-changeset-validations/validators';
 
 export default {
-  name: [
-    validatePresence(true)
+  name: [validatePresence({ presence: true }), validateLength({ max: 40 })],
+  billing_name: [
+    validatePresence({ presence: true }),
+    validateLength({ max: 50 })
   ],
-  billingName: [
-    validatePresence(true)
+  billing_email: [
+    validateFormat({ type: 'email' }),
+    validateLength({ max: 60 })
   ],
-  billingEmail: validateFormat({type: 'email'}),
-  billingPhone: validateFormat({type: 'phone'}),
-  billingCity: validatePresence(true),
-  billingAddressOne: validatePresence(true),
-  billingAddressTwo: validatePresence({allowBlank: true}),
-  billingState: validatePresence(true),
-  billingZipCode: validatePresence(true),
-  planType: validatePresence({allowBlank: true})
-}
+  billing_phone: validateFormat({ type: 'phone' }),
+  billing_address_one: validatePresence({ presence: true }),
+  billing_address_two: validateFormat({ allowBlank: true }),
+  billing_zip_code: [
+    validateNumber({ integer: true }),
+    validateLength({ is: 5 })
+  ],
+  billing_state: [
+    validatePresence({ presence: true }),
+    validateLength({ min: 2, max: 14 })
+  ],
+  billing_city: validatePresence({ presence: true }),
+  features: validateLength({ allowBlank: true })
+};

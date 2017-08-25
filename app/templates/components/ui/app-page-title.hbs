@@ -1,18 +1,11 @@
 {{!--
 Global page elements wrapper.
 --}}
-<div class="page-header mb-lg-3 mb-2 mt-2">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-7">
-        <h1 class="page-title">{{uiGlobal.pageTitle}}</h1>
-        <div class="text-muted page-desc">{{uiGlobal.pageDescription}}</div>
-      </div>
-      <div class="col-md-5">
-        <div class="pull-right">
-
-        </div>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="{{size}}">
+      <h1 class="page-title">{{uiGlobal.pageTitle}}</h1>
+      <div class="text-muted page-desc">{{uiGlobal.pageDescription}}</div>
     </div>
     {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true crumbClass="breadcrumb-item"}}
   </div>

@@ -48,6 +48,8 @@ body > .ember-view {
 .ember-burger-menu > .bm-outlet > .bm-content {
   background: $body-bg;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -80,6 +82,17 @@ body > .ember-view {
 
 .card-title {
   border-bottom: 1px solid $gray-lighter;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  font-size: 90%;
+  padding: 4px;
+}
+
+.app-container {
+  flex-grow: 1;
 }
 
 //
