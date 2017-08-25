@@ -135,7 +135,7 @@ export default Component.extend({
         .save()
         .then(() => {
           this.get('flashMessages').success('Report Created');
-          this.get('router').transitionTo('reports', this.get('group'));
+          this.get('router').transitionTo('reports');
         })
         .catch(err => {
           console.log(err);

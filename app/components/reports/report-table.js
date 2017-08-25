@@ -18,11 +18,15 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Author',
-        valuePath: 'user'
+        valuePath: 'user.name'
       },
       {
         label: 'Created Date',
         valuePath: 'created'
+      },
+      {
+        label: 'Actions',
+        cellComponent: 'reports/report-table-actions'
       }
     ];
   })

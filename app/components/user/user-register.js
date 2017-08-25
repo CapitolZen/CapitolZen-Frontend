@@ -5,14 +5,14 @@ import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 import { task } from 'ember-concurrency';
 
-const { inject: { service }, Component, get, computed } = Ember;
+const { inject: { service }, Component, set, get, computed } = Ember;
 
 export default Component.extend({
   ajax: service(),
   store: service(),
   session: service(),
   flashMessages: service(),
-
+  isLoading: false,
   registration: Ember.Object.create(),
 
   init() {
@@ -29,10 +29,8 @@ export default Component.extend({
 
   actions: {
     register(changeset) {
-      console.log(changeset);
-      console.log(this.get('registration'));
+      set(this, 'isLoading', true);
       changeset.save();
-      console.log(this.get('registration'));
       this.get('ajax')
         .post('users/register/', { data: this.get('registration') })
         .then(data => {
@@ -43,6 +41,8 @@ export default Component.extend({
         })
         .catch(data => {
           console.log(data);
+          _opbeat('captureException', data);
+          set(this, 'isLoading', false);
         });
     }
   }
