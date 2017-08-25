@@ -1,11 +1,24 @@
 {{#bs-dropdown as |dd|}}
   {{#dd.toggle}}
-    <i class="fa fa-comment"></i> <span class="caret"></span>
+    <i class="fa fa-comment"></i>
+    <span class="caret"></span>
+    {{#if unReadNotifications}}
+      <span class="notification-center-count">
+        {{unReadNotifications}}
+      </span>
+    {{/if}}
   {{/dd.toggle}}
   {{#dd.menu as |ddm|}}
     {{#ddm.item}}
       <div class="notification-center-content">
-        CONTENT
+        {{#if recentUnreadNotifications }}
+          {{#each recentUnreadNotifications as |activity|}}
+            {{notification/notification-summary notification=activity format="center"}}
+          {{/each}}
+        {{else}}
+          You have no notifications =(.
+        {{/if}}
+
       </div>
       <div class="notification-center-footer">
         {{#link-to 'user.notifications'}}All Notifications{{/link-to}}

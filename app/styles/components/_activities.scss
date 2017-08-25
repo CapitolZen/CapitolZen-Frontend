@@ -4,7 +4,14 @@
   .dropdown-menu {
     padding:0;
   }
-
+  .notification-center-count {
+    position: absolute;
+    font-size: 0.4rem;
+    color: #fff;
+    background: #444143;
+    padding: 2px 5px;
+    border-radius: 50%;
+  }
   .notification-center-content {
 
   }
@@ -33,12 +40,18 @@
 .notification-list-content {
   background-color: $white;
   border:1px solid $gray-lightest;
-  .notification-summary {
-    border-bottom:1px solid $gray-lightest;
-    padding:10px;
-    &:last-child {
-      border-bottom:none;
-    }
-  }
 
+
+}
+
+.notification-summary {
+  border-bottom:1px solid $gray-lightest;
+  padding:10px;
+  &:last-child {
+    border-bottom:none;
+  }
+  &.center {
+    font-size:80%;
+    padding:0;
+  }
 }
