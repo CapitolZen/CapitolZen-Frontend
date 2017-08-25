@@ -10,6 +10,40 @@
         {{#block-slot "content"}}
           {{form.element controlType="textfield" label="Title" property="title"}}
           {{form.element controlType="textarea" label="Comments" property="description"}}
+
+          {{#form.element label="Client" property="group" as |el|}}
+            {{#power-select
+              options=groups
+              selected=selectedGroup
+              searchEnabled=enableGroupSearch
+              onchange=(action "updateGroup" (mut el.value))
+              as |group|
+            }}
+              {{group.title}}
+            {{/power-select}}
+          {{/form.element}}
+
+          {{#form.element label="Report Type" property="static" as |el|}}
+            <p>
+            {{#bs-button-group
+              value=isStatic
+              type="radio"
+              size="sm"
+              onChange=(action "setReportType" (mut el.value))
+            as |bg|}}
+              {{#bg.button value=false}}Dynamic{{/bg.button}}
+              {{#bg.button value=true}}Static{{/bg.button}}
+            {{/bs-button-group}}
+            </p>
+              <p><em>
+                {{#if isStatic}}
+                  <strong>Static</strong> reports include a fixed set of bills and will not update.
+                {{else}}
+                  <strong>Dynamic</strong> reports update as new bills meet your report criteria
+                {{/if}}
+              </em></p>
+          {{/form.element}}
+
           {{#form.element label="Logo Choice" property="logoChoice" as |el|}}
             <p>
               {{#bs-button-group
@@ -24,6 +58,19 @@
             </p>
 
           {{/form.element}}
+
+          {{#form.element label="Report Layout" property="layout" as |el|}}
+            {{#power-select
+              options=layoutOptions
+              selected=el.value
+              searchEnabled=false
+              onchange=(action (mut el.value))
+              as |layout|
+            }}
+              {{layout.label}}
+            {{/power-select}}
+          {{/form.element}}
+
           <p>
             <label for="allowDate">
               {{input type="checkbox" id="allowDate" name="allowDateFilter" checked=dateFilter}}
@@ -74,31 +121,28 @@
     {{/bs-form}}
   </div>
   <div class="col-md-4">
-    {{#ui/ui-card}}
-      {{#block-slot "title"}}
-          Preview
-      {{/block-slot}}
-      {{#block-slot "content"}}
-        {{#if getWrappers.isRunning}}
-          {{ui/loading-animation}}
-        {{else}}
-          <div class="list-group">
-            {{#each wrapperList as |wrapper|}}
-              <div class="list-group-item justify-content-between">
-                {{wrapper.bill.stateId}}
-                {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
-              </div>
-            {{else}}
-              <div class="list-group-item">
-                <p class="text-centered">
-                  <em>This report doesn't include any bills.</em>
-                </p>
-              </div>
-            {{/each}}
+    <h4>Included Bills</h4>
+    {{#if getWrappers.isRunning}}
+      {{ui/loading-animation}}
+    {{else}}
+      <div class="list-group">
+        {{#each wrapperPreviewList as |wrapper|}}
+          <div class="list-group-item justify-content-between">
+            {{wrapper.bill.stateId}}
+            {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
+            {{#if isStatic}}
+              <button class="btn btn-outline-danger btn-sm" {{action "removeWrapper" wrapper}}>{{fa-icon "times"}} Remove</button>
+            {{/if}}
           </div>
-        {{/if}}
-      {{/block-slot}}
-    {{/ui/ui-card}}
+        {{else}}
+          <div class="list-group-item">
+            <p class="text-centered">
+              <em>This report doesn't include any bills.</em>
+            </p>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
   </div>
 </div>
 
