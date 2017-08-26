@@ -84,16 +84,12 @@ export default Component.extend({
       value: 'detail_list'
     },
     {
-      label: 'Plain List',
-      value: 'plain_list'
-    },
-    {
       label: 'Detailed Table',
       value: 'detail_table'
     },
     {
       label: 'Plain Table',
-      value: 'plain_table'
+      value: 'simple_table'
     }
   ],
 
