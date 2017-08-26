@@ -1,8 +1,7 @@
-
-
+w
 <div class="row">
   <div class="col-md-8">
-    {{#bs-form model=this onSubmit=(action "createReport") as |form|}}
+    {{#bs-form model=model onSubmit=(action "createReport") as |form|}}
       {{#ui/ui-card}}
         {{#block-slot "title"}}
           Edit Report
@@ -58,7 +57,7 @@
             </p>
 
           {{/form.element}}
-
+          {{log model.layout}}
           {{#form.element label="Report Layout" property="layout" as |el|}}
             {{#power-select
               options=layoutOptions
@@ -114,7 +113,7 @@
         {{/block-slot}}
 
         {{#block-slot "footer"}}
-          {{bs-button defaultText="Create" type="primary" buttonType="submit"}}
+          {{bs-button defaultText=(if edit "Update" "Create") type="primary" buttonType="submit"}}
         {{/block-slot}}
       {{/ui/ui-card}}
 

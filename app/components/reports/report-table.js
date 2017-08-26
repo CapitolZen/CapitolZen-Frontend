@@ -14,7 +14,7 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Client',
-        valuePath: 'group.title'
+        cellComponent: 'reports/report-table-link'
       },
       {
         label: 'Author',

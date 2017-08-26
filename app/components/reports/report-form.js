@@ -10,21 +10,27 @@ export default Component.extend({
   flashMessages: service(),
   router: service('-routing'),
   model: false,
-  group: null,
   wrapperList: [],
   useAllWrappers: true,
   report: false,
   selectedGroup: null,
   excludedWrappers: [],
-
+  isStatic: computed.alias('model.isStatic'),
   init() {
     this._super(...arguments);
-    let m = get(this, 'model') || Ember.Object.create();
-    set(this, 'model', m);
-    let s = m.get('static') || false;
-    set(this, 'isStatic', s);
-    set(this, 'excludedWrappers', A());
-    set(this, 'wrapperList', A());
+
+    let m, g;
+    if (get(this, 'model')) {
+      m = get(this, 'model');
+      g = get(m, 'group');
+      set(this, 'selectedGroup', g);
+      get(this, 'getWrappers').perform();
+    } else {
+      set(this, 'model', Ember.Object.create());
+      set(this, 'isStatic', false);
+      set(this, 'excludedWrappers', A());
+      set(this, 'wrapperList', A());
+    }
   },
 
   enableGroupSearch: computed('groups', function() {
@@ -119,18 +125,19 @@ export default Component.extend({
       get(this, 'excludedWrappers').pushObject(wrapper);
     },
     createReport(data) {
-      let fields = data.getProperties(
-        'title',
-        'description',
-        'layout',
-        'static'
-      );
+      let fields = data.getProperties('title', 'description', 'static');
       fields.group = get(this, 'selectedGroup');
       fields.user = get(this, 'currentUser.user');
       fields.organization = get(this, 'currentUser.organization');
       fields.publishDate = moment().unix();
-      fields.preferences = { logo: get(data, 'logoChoice') };
+      let { label, value } = get(data, 'layout');
+      fields.preferences = {
+        logo: get(data, 'logoChoice'),
+        layout: { label, value }
+      };
       let report = this.get('store').createRecord('report', fields);
+      console.log(report);
+      debugger;
       report
         .save()
         .then(() => {
