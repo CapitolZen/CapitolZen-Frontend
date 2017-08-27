@@ -1,0 +1,26 @@
+{{#if isEditing}}
+<div class="col-4">
+  <h6>Filter Property</h6>
+  {{#power-select
+    options=opts
+    selected=selectedQuery
+    onchange=(action (mut selectedQuery))
+    as |q|
+  }}
+    {{q.label}}
+  {{/power-select}}
+</div>
+<div class="col-4">
+  <h6>Like</h6>
+  {{#power-select
+    options=operatorOptions
+    selected=selectedOperator
+    onchange=(action (mut selectedOperator))
+    as |op|
+  }}
+    {{op.label}}
+  {{/power-select}}
+</div>
+{{else}}
+
+{{/if}}

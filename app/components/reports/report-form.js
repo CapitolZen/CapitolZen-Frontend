@@ -38,12 +38,7 @@ export default Component.extend({
 
     return length >= 4;
   }),
-
-  center: moment('2016-05-17'),
-  range: {
-    start: moment('2016-05-10'),
-    end: moment('2016-05-15')
-  },
+  availableRelationships: ['bill'],
   logoChoice: computed('m.filter', {
     get(key) {
       return get(this, 'model').get('logoChoice');
@@ -93,18 +88,42 @@ export default Component.extend({
     }
   ],
 
-  dynamicDateFilterOptions: [
+  filterOptions: [
     {
-      label: 'Last 7 Days',
-      arg: 'last_d_7'
+      label: 'Bill Title',
+      qvalue: 'bill__title',
+      type: 'string'
     },
     {
-      label: 'Last Month',
-      arg: 'last_m_1'
+      label: 'Introduced Date',
+      qvalue: 'bill__introduced_date',
+      type: 'date'
     },
     {
-      label: 'Last Quarter',
-      arg: 'last_m_3'
+      label: 'Last Action Date',
+      qvalue: 'bill__last_action_date',
+      type: 'date'
+    },
+    {
+      label: 'Sponsor Name',
+      qvalue: 'bill__sponsor__full_name',
+      type: 'string'
+    },
+    {
+      label: 'Sponsor Party',
+      qvalue: 'bill__sponsor__full_name',
+      type: 'string'
+    },
+    {
+      label: 'Summary',
+      qvalue: 'summary',
+      type: 'string'
+    },
+    {
+      label: 'Position',
+      qvalue: 'position',
+      type: 'array',
+      opts: ['support', 'oppose', 'neutral']
     }
   ],
 
@@ -119,6 +138,9 @@ export default Component.extend({
     removeWrapper(wrapper) {
       console.log(wrapper);
       get(this, 'excludedWrappers').pushObject(wrapper);
+    },
+    updateFilterItem(filter) {
+      console.log(filter);
     },
     createReport(data) {
       let fields = data.getProperties('title', 'description', 'static');

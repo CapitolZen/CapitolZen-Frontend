@@ -57,7 +57,6 @@
             </p>
 
           {{/form.element}}
-          {{log model.layout}}
           {{#form.element label="Report Layout" property="layout" as |el|}}
             {{#power-select
               options=layoutOptions
@@ -70,45 +69,20 @@
             {{/power-select}}
           {{/form.element}}
 
-          <p>
-            <label for="allowDate">
-              {{input type="checkbox" id="allowDate" name="allowDateFilter" checked=dateFilter}}
-              Filter By Date
-            </label>
-          </p>
+          {{#form.element label="Filters" property="filter" as |el|}}
+            <p>
+              <strong>Add New Filter</strong><br>
+              {{tools/filter-item opts=filterOptions isEditing=true update=(action "updateFilterItem")}}
+            </p>
+            {{#each el.value as |filter|}}
+              <p>
+              {{tools/filter-item query=filter opts=filterOptions update=(action "updateFilterItem")}}
+              </p>
 
+            {{/each}}
 
-          {{#if dateFilter}}
-            <div class="row">
-              <div class="col-6">
-                {{#form.element label="Filer By" property="dateFilterField" as |el|}}
-                  <p>
-                    {{#bs-button-group
-                      value=el.value
-                      type="radio"
-                      size="sm"
-                      onChange=(action (mut el.value)) as |bg|}}
-                      {{#bg.button value="last_action_date"}}Last Action Date{{/bg.button}}
-                      {{#bg.button value="introduced_date"}}Introduction Date{{/bg.button}}
-                    {{/bs-button-group}}
-                  </p>
-                {{/form.element}}
-              </div>
-              <div class="col-6">
-                {{#form.element label="Activity In Last" property="dynamicDateFilter" as |el|}}
-                  {{#power-select
-                    searchEnabled=false
-                    options=dynamicDateFilterOptions
-                    selected=el.value
-                    onchange=(action (mut el.value))
-                  as |opt|
-                  }}
-                    {{opt.label}}
-                  {{/power-select}}
-                {{/form.element}}
-              </div>
-            </div>
-          {{/if}}
+          {{/form.element}}
+
 
         {{/block-slot}}
 

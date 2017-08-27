@@ -14,11 +14,8 @@ export default DS.Model.extend({
   lastActionDate: DS.attr('date'),
   type: DS.attr('string'),
   sources: DS.attr(),
-  cosponsors: DS.attr(),
   votes: DS.attr(),
   remoteUrl: DS.attr('string'),
   billVersions: DS.attr(),
-  introducedDate: computed('lastActionDate', function() {
-    return get(this, 'lastActionDate');
-  })
+  introducedDate: DS.attr('date')
 });
