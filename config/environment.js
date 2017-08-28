@@ -2,10 +2,10 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: "capitolzen-client",
+    modulePrefix: 'capitolzen-client',
     environment: environment,
-    rootURL: "/",
-    locationType: "auto",
+    rootURL: '/',
+    locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -24,102 +24,106 @@ module.exports = function(environment) {
   };
 
   ENV.moment = {
-    includeTimezone: "all"
+    includeTimezone: 'all'
   };
 
   ENV.metricsAdapters = [
     {
-      name: "Mixpanel",
-      environments: ["production"],
+      name: 'Mixpanel',
+      environments: ['production'],
       config: {
-        token: "697313648bce64aa237fc55a76d00567"
+        token: '697313648bce64aa237fc55a76d00567'
       }
     }
   ];
 
-  if (environment === "development") {
+  ENV['ember-full-story'] = {
+    org: '6KYSM'
+  };
+
+  if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.APP.API_HOST = "http://localhost:8000";
-    ENV.clientUrl = "http://localhost:4200";
+    ENV.APP.API_HOST = 'http://localhost:8000';
+    ENV.clientUrl = 'http://localhost:4200';
 
     ENV.contentSecurityPolicy = {
-      "script-src": "'self' 'unsafe-inline'",
-      "connect-src": "'self' http://localhost:*",
-      "default-src": "'none'",
-      "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src": "'self' fonts.gstatic.com data: ",
-      "img-src": "'self' *.gravatar.com *.wp.com data:",
-      "media-src": "'self'"
+      'script-src': "'self' 'unsafe-inline'",
+      'connect-src': "'self' http://localhost:*",
+      'default-src': "'none'",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+      'font-src': "'self' fonts.gstatic.com data: ",
+      'img-src': "'self' *.gravatar.com *.wp.com data:",
+      'media-src': "'self'"
     };
 
     ENV.intercom = {
-      appId: "omszcfoy"
+      appId: 'omszcfoy'
     };
   }
 
-  if (environment === "test") {
+  if (environment === 'test') {
     // Testem prefers this...
-    ENV.locationType = "none";
+    ENV.locationType = 'none';
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    ENV.APP.rootElement = "#ember-testing";
+    ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === "production") {
-    ENV.APP.API_HOST = "https://api.capitolzen.com";
-    ENV.clientUrl = "https://app.capitolzen.com";
+  if (environment === 'production') {
+    ENV.APP.API_HOST = 'https://api.capitolzen.com';
+    ENV.clientUrl = 'https://app.capitolzen.com';
 
     ENV.APP.opbeat = {
-      orgId: "8e3744d00abf46f2ac2770dbc03b84b3",
-      appId: "2fc75c0066"
+      orgId: '8e3744d00abf46f2ac2770dbc03b84b3',
+      appId: '2fc75c0066'
     };
 
     ENV.intercom = {
-      appId: "lqg6n3a1"
+      appId: 'lqg6n3a1'
     };
 
     ENV.contentSecurityPolicy = {
-      "script-src": "'self' 'unsafe-inline'",
-      "connect-src": "'self' http://localhost:*",
-      "default-src": "'none'",
-      "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src": "'self' fonts.gstatic.com data: ",
-      "img-src": "'self' *.gravatar.com *.wp.com data:",
-      "media-src": "'self'"
+      'script-src': "'self' 'unsafe-inline'",
+      'connect-src': "'self' http://localhost:*",
+      'default-src': "'none'",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+      'font-src': "'self' fonts.gstatic.com data: ",
+      'img-src': "'self' *.gravatar.com *.wp.com data:",
+      'media-src': "'self'"
     };
   }
 
   ENV.APP.usingCors = true;
   ENV.APP.corsWithCreds = true;
 
-  ENV["ember-simple-auth"] = {
-    store: "simple-auth-session-store:local-storage",
-    authorizer: "authorizer:application",
-    crossOriginWhiteList: ["*"],
-    authenticationRoute: "anon.login",
-    routeAfterAuthentication: "dashboard"
+  ENV['ember-simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authorizer: 'authorizer:application',
+    crossOriginWhiteList: ['*'],
+    authenticationRoute: 'anon.login',
+    routeAfterAuthentication: 'dashboard'
   };
 
-  ENV["ember-simple-auth-token"] = {
+  ENV['ember-simple-auth-token'] = {
     serverTokenEndpoint: `${ENV.APP.API_HOST}/api-token-auth/`,
-    identificationField: "username",
-    passwordField: "password",
-    tokenPropertyName: "data.token",
+    identificationField: 'username',
+    passwordField: 'password',
+    tokenPropertyName: 'data.token',
     refreshAccessTokens: true,
     serverTokenRefreshEndpoint: `${ENV.APP.API_HOST}/api-token-verify/`,
-    tokenExpireName: "exp",
+    tokenExpireName: 'exp',
     refreshLeeway: 300,
-    crossOriginWhitelist: ["*"],
+    crossOriginWhitelist: ['*'],
     headers: {
-      Accept: "*/*"
+      Accept: '*/*'
     }
   };
 

@@ -7,6 +7,7 @@ export default DS.Model.extend({
   organization: DS.belongsTo('organization'),
   group: DS.belongsTo('group'),
   wrappers: DS.hasMany('wrapper'),
+  static: DS.attr('boolean', { defaultValue: false }),
   filter: DS.attr(),
   title: DS.attr('string'),
   description: DS.attr('string'),
@@ -18,6 +19,16 @@ export default DS.Model.extend({
     return this.get('attachments')['output-url'].url || false;
   }),
   preferences: DS.attr(),
+  layout: computed('preferences.layout', {
+    get(key) {
+      return get(this, 'preferences.layout') || {};
+    },
+    set(key, value) {
+      let pref = get(this, 'preferences') || {};
+      pref.layout = value;
+      set(this, 'preferences', pref);
+    }
+  }),
   dynamicDateFilter: computed('filter', {
     set(key, value) {
       let filters = get(this, 'filter');
@@ -29,6 +40,7 @@ export default DS.Model.extend({
       return get(this, 'filter')['date_filter'];
     }
   }),
+
   updateFilter(key, value) {
     let filters = get(this, 'filter');
     filters[key] = value;
