@@ -1,0 +1,45 @@
+{{ui-page-property model.group.title property="title"}}
+
+<div class="row">
+  <div class="col-md-12">
+    {{#ui/ui-card content-modifier="no-padding"}}
+      {{#block-slot "content" }}
+        {{#bs-nav type="pills" as |nav|}}
+          {{#nav.item}}
+            {{#nav.link-to "groups.detail.bills" model.group.id}}
+              {{fa-icon "file-text"}} Saved Bills
+            {{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to "reports.client" model.group.id}}
+              {{fa-icon "tachometer"}} Reports
+            {{/nav.link-to}}
+          {{/nav.item}}
+        {{/bs-nav}}
+      {{/block-slot}}
+    {{/ui/ui-card}}
+  </div>
+</div>
+
+<div class="row justify-content-between">
+  <div class="col-md-8">
+    {{#ui/ui-card}}
+      {{#block-slot "title"}}
+        Edit Client
+      {{/block-slot}}
+      {{#block-slot "content"}}
+        {{groups/group-form model=model.group}}
+      {{/block-slot}}
+    {{/ui/ui-card}}
+  </div>
+  <div class="col-md-4">
+    {{#ui/ui-card}}
+      {{#block-slot "title"}}
+        Activity
+      {{/block-slot}}
+      {{#block-slot 'content'}}
+        {{timeline/timeline-list activities=model.activities}}
+      {{/block-slot}}
+    {{/ui/ui-card}}
+  </div>
+</div>
