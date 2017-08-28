@@ -6,14 +6,7 @@ export default DS.JSONSerializer.extend({
   },
 
   normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
-    let actual_payload = payload;
-
-    payload = [];
-
-    for (let result of actual_payload['results']) {
-      payload = payload.concat(result['activities']);
-    }
-
+    payload = payload['results'];
     return this._super(store, primaryModelClass, payload, id, requestType);
   }
 });

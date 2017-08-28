@@ -12,7 +12,7 @@ export default Component.extend({
   recentUnreadNotifications: computed(function() {
     return this.get('store').query('activity-group', {
       limit: 4,
-      feed: 'user-notifications'
+      feed: 'user:current:notification'
     });
   })
 });

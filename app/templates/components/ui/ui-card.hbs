@@ -1,13 +1,16 @@
 {{#yield-slot 'header'}}
   <h3 class="card-header">{{yield}}</h3>
 {{/yield-slot}}
+
 {{#yield-slot 'image'}}
   <img class="card-img-top" src="{{yield.url}}" alt="{{yield.alt}}">
 {{/yield-slot}}
-<div class="card-block clearfix">
+
+<div class="card-block clearfix {{content-modifier}}">
   {{#yield-slot 'title'}}
     <h4 class="card-title clearfix">{{yield}}</h4>
   {{/yield-slot}}
+
   {{#yield-slot 'content'}}
       {{yield}}
   {{/yield-slot}}
@@ -15,6 +18,7 @@
   {{!-- Default yield --}}
   {{yield}}
 </div>
+
 {{#yield-slot 'footer'}}
   <div class="card-footer text-muted clearfix">
     {{yield}}

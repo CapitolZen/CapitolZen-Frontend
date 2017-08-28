@@ -6,8 +6,8 @@ Global page elements wrapper.
     <div class="{{size}}">
       <h1 class="page-title">{{uiGlobal.pageTitle}}</h1>
       <div class="text-muted page-desc">{{uiGlobal.pageDescription}}</div>
+      {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true crumbClass="breadcrumb-item"}}
     </div>
-    {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true crumbClass="breadcrumb-item"}}
   </div>
 </div>
 
