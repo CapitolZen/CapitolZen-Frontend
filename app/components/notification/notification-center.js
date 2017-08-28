@@ -10,7 +10,7 @@ export default Component.extend({
   store: service(),
 
   recentUnreadNotifications: computed(function() {
-    return this.get('store').query('activity', {
+    return this.get('store').query('activity-group', {
       limit: 4,
       feed: 'user-notifications'
     });

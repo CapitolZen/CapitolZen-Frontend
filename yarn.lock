@@ -3003,6 +3003,17 @@ ember-crumbly@^2.0.0-alpha.1:
     ember-cli-htmlbars "^1.1.0"
     ember-getowner-polyfill "^1.1.1"
 
+ember-data-model-fragments@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/ember-data-model-fragments/-/ember-data-model-fragments-2.14.0.tgz#f31a03cdcf2449eaaaf84e0996324bf6af6c7b8e"
+  dependencies:
+    broccoli-file-creator "^1.1.1"
+    broccoli-merge-trees "^2.0.0"
+    ember-cli-babel "^6.0.0"
+    exists-sync "^0.0.4"
+    git-repo-info "^1.4.1"
+    npm-git-info "^1.0.3"
+
 ember-data@^2.14.3:
   version "2.14.10"
   resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-2.14.10.tgz#acf66ffffb062a7fc999f9d989d0e0d2e3858cd3"
@@ -6265,7 +6276,7 @@ npm-cache-filename@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/npm-cache-filename/-/npm-cache-filename-1.0.2.tgz#ded306c5b0bfc870a9e9faf823bc5f283e05ae11"
 
-npm-git-info@^1.0.0:
+npm-git-info@^1.0.0, npm-git-info@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/npm-git-info/-/npm-git-info-1.0.3.tgz#a933c42ec321e80d3646e0d6e844afe94630e1d5"
 
