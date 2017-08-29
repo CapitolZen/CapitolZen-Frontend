@@ -1,9 +1,8 @@
 {{ui-page-property "Team" property="title"}}
-{{ui-page-property model.organization.name property="description"}}
 
 <div class="row">
   <div class="col-xl-6 offset-xl-3">
-    {{organization/organization-invites organization=model.organization}}
+    {{invite/invite-create organization=model.organization invites=model.invites}}
   </div>
 </div>
 

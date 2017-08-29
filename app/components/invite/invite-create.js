@@ -51,7 +51,7 @@ export default Component.extend({
         .then(() => {
           this.get('invites').pushObject(this.get('invite')._internalModel);
           get(this, 'flashMessages').success('Invite Created');
-          this.set('newInvite', false);
+          this.set('newInvite', null);
           this.set('createInviteModalEnabled', false);
         })
         .catch(() => {});
