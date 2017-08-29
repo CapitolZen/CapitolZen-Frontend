@@ -1,12 +1,32 @@
-import Ember from "ember";
-const { RSVP, Route, get, inject: { service } } = Ember;
+import Ember from 'ember';
+
+const { Route, RSVP, inject: { service } } = Ember;
+
 export default Route.extend({
-  currentUser: service(),
-  model() {
+  currentUser: service('current-user'),
+  model(params) {
+    console.log(this.get('currentUser.organization.id'));
     return RSVP.hash({
-      organization: get(this, "currentUser").loadOrganization(),
-      users: get(this, "store").findAll("user"),
-      invites: get(this, "store").findAll("invite")
+      organization: this.get('store').findRecord(
+        'organization',
+        this.get('currentUser.organization.id')
+      ),
+      invites: this.get('store').query('invite', {
+        filter: {
+          organization: this.get('currentUser.organization.id'),
+          status: 'unclaimed'
+        }
+      }),
+      users: this.get('store').query('user', {
+        filter: {
+          organization: this.get('currentUser.organization.id')
+        }
+      })
     });
+  },
+  actions: {
+    refreshUserInvites() {
+      this.refresh();
+    }
   }
 });

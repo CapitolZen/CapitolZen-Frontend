@@ -1,0 +1,11 @@
+{{fa-icon "user"}}
+{{invite.email}}
+<div>
+  <button class="btn btn-sm btn-secondary" {{action "inviteAction" invite 'resend'}}>
+    {{fa-icon "share-square-o"}} Resend Invite Email
+  </button>
+
+  <button class="btn btn-sm btn-secondary" {{action "deleteInvite" invite}}>
+    {{fa-icon "trash"}} Delete Invite
+  </button>
+</div>

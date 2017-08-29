@@ -3,6 +3,6 @@ const { Route } = Ember;
 export default Route.extend({
   breadCrumb: {
     title: 'Bills',
-    path: 'groups.group.bills'
+    path: 'groups.detail.bills'
   }
 });
