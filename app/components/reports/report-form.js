@@ -2,7 +2,16 @@ import Ember from 'ember';
 import { task } from 'ember-concurrency';
 import moment from 'moment';
 
-const { A, get, set, computed, Component, inject: { service } } = Ember;
+const {
+  A,
+  merge,
+  get,
+  set,
+  computed,
+  Component,
+  getWithDefault,
+  inject: { service }
+} = Ember;
 
 export default Component.extend({
   store: service(),
@@ -13,12 +22,21 @@ export default Component.extend({
   wrapperList: [],
   useAllWrappers: true,
   report: false,
-  selectedGroup: null,
   excludedWrappers: [],
+  filterList: computed('model.filter', function() {
+    let filter = getWithDefault(this, 'model.filter', {});
+    let output = [];
+    let keys = Object.keys(filter);
+    keys.forEach(k => {
+      let obj = {};
+      obj[k] = filter[k];
+      output.push(obj);
+    });
+    return output;
+  }),
   isStatic: computed.alias('model.isStatic'),
   init() {
     this._super(...arguments);
-
     let m, g;
     if (get(this, 'model')) {
       m = get(this, 'model');
@@ -26,10 +44,18 @@ export default Component.extend({
       set(this, 'selectedGroup', g);
       get(this, 'getWrappers').perform();
     } else {
-      set(this, 'model', Ember.Object.create());
+      set(this, 'model', get(this, 'store').createRecord('report'));
       set(this, 'isStatic', false);
       set(this, 'excludedWrappers', A());
       set(this, 'wrapperList', A());
+    }
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    let model = get(this, 'model');
+    if (model.get('isNew')) {
+      model.deleteRecord();
     }
   },
 
@@ -39,7 +65,7 @@ export default Component.extend({
     return length >= 4;
   }),
   availableRelationships: ['bill'],
-  logoChoice: computed('m.filter', {
+  logoChoice: computed('m.preferences', {
     get(key) {
       return get(this, 'model').get('logoChoice');
     },
@@ -62,11 +88,18 @@ export default Component.extend({
     }
   ),
   getWrappers: task(function*() {
-    let g = this.get('selectedGroup');
+    let g = getWithDefault(this, 'selectedGroup', false);
+
+    if (!g) {
+      g = get(this, 'groups.firstObject');
+      set(this, 'selectedGroup', g);
+    }
+
+    let filter = getWithDefault(this, 'model.filter', {});
+    let query = { group: g.id };
+    merge(query, filter);
     try {
-      let wrappers = yield this.get('store').query('wrapper', {
-        group: g.id
-      });
+      let wrappers = yield this.get('store').query('wrapper', query);
       this.set('wrapperList', wrappers);
     } catch (e) {
       console.log(e);
@@ -111,7 +144,7 @@ export default Component.extend({
     },
     {
       label: 'Sponsor Party',
-      qvalue: 'bill__sponsor__full_name',
+      qvalue: 'bill__sponsor__party',
       type: 'string'
     },
     {
@@ -136,11 +169,13 @@ export default Component.extend({
       set(this, 'isStatic', value);
     },
     removeWrapper(wrapper) {
-      console.log(wrapper);
       get(this, 'excludedWrappers').pushObject(wrapper);
     },
-    updateFilterItem(filter) {
-      console.log(filter);
+    updateFilterItem(update) {
+      let model = get(this, 'model');
+      let [key] = Object.keys(update);
+      model.updateFilter(key, update[key]);
+      get(this, 'getWrappers').perform();
     },
     createReport(data) {
       let fields = data.getProperties('title', 'description', 'static');
@@ -153,17 +188,22 @@ export default Component.extend({
         logo: get(data, 'logoChoice'),
         layout: { label, value }
       };
-      let report = this.get('store').createRecord('report', fields);
-      console.log(report);
-      debugger;
+      let report = get(this, 'model');
+      report.setProperties(fields);
+      let msg = 'Report updated!';
+      if (report.get('isNew')) {
+        msg = 'Report created!';
+      }
       report
         .save()
         .then(() => {
-          this.get('flashMessages').success('Report Created');
+          this.get('flashMessages').success(msg);
           this.get('router').transitionTo('reports');
+          set(this, 'isSubmitting', true);
         })
         .catch(err => {
           console.log(err);
+          set(this, 'isSubmitting', false);
         });
     },
     updatePublishDate(date) {}

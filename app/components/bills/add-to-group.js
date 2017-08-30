@@ -42,7 +42,6 @@ export default Component.extend({
           filteredList.push(g);
         }
       });
-      console.log(filteredList);
       set(this, 'groupList', filteredList);
     } else {
       set(this, 'groupList', groups);

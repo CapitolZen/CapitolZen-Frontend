@@ -1,14 +1,14 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-const { computed, get, set } = Ember;
+const { computed, get, set, getWithDefault } = Ember;
 export default DS.Model.extend({
   user: DS.belongsTo('user'),
   organization: DS.belongsTo('organization'),
   group: DS.belongsTo('group'),
   wrappers: DS.hasMany('wrapper'),
   static: DS.attr('boolean', { defaultValue: false }),
-  filter: DS.attr(),
+  filter: DS.attr('query'),
   title: DS.attr('string'),
   description: DS.attr('string'),
   attachments: DS.attr(),
@@ -21,7 +21,12 @@ export default DS.Model.extend({
   preferences: DS.attr(),
   layout: computed('preferences.layout', {
     get(key) {
-      return get(this, 'preferences.layout') || {};
+      return (
+        get(this, 'preferences.layout') || {
+          label: 'Detailed List',
+          value: 'detail_list'
+        }
+      );
     },
     set(key, value) {
       let pref = get(this, 'preferences') || {};
@@ -29,20 +34,9 @@ export default DS.Model.extend({
       set(this, 'preferences', pref);
     }
   }),
-  dynamicDateFilter: computed('filter', {
-    set(key, value) {
-      let filters = get(this, 'filter');
-      filters.date_filter = value;
-      set(this, 'filter', filters);
-      return value;
-    },
-    get() {
-      return get(this, 'filter')['date_filter'];
-    }
-  }),
 
   updateFilter(key, value) {
-    let filters = get(this, 'filter');
+    let filters = getWithDefault(this, 'filter', {});
     filters[key] = value;
     set(this, 'filter', filters);
   }

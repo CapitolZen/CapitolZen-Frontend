@@ -69,16 +69,14 @@
             {{/power-select}}
           {{/form.element}}
 
-          {{#form.element label="Filters" property="filter" as |el|}}
+          {{#form.element label="Filters" property="filter"}}
             <p>
               <strong>Add New Filter</strong><br>
-              {{tools/filter-item opts=filterOptions isEditing=true update=(action "updateFilterItem")}}
+              {{tools/filter-item opts=filterOptions isNew=true isEditing=true update=(action "updateFilterItem")}}
             </p>
-            {{#each el.value as |filter|}}
-              <p>
-              {{tools/filter-item query=filter opts=filterOptions update=(action "updateFilterItem")}}
-              </p>
-
+            <hr class="my-1">
+            {{#each filterList as |filter|}}
+              {{tools/filter-item filter=filter opts=filterOptions update=(action "updateFilterItem")}}
             {{/each}}
 
           {{/form.element}}
