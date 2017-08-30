@@ -10,24 +10,24 @@ export default Component.extend(TableCommon, {
     return [
       {
         label: 'Title',
-        valuePath: 'title',
+        valuePath: 'title'
       },
       {
         label: 'Client',
-        cellComponent: 'reports/report-table-link',
+        cellComponent: 'reports/report-table-link'
       },
       {
         label: 'Author',
-        valuePath: 'user.name',
+        valuePath: 'user.name'
       },
       {
         label: 'Created Date',
-        valuePath: 'created',
+        valuePath: 'created'
       },
       {
         label: 'Actions',
-        cellComponent: 'reports/report-table-actions',
-      },
+        cellComponent: 'reports/report-table-actions'
+      }
     ];
-  }),
+  })
 });

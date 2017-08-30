@@ -33,27 +33,27 @@ export default DS.Model.extend({
       set(pref, 'layout', value);
       set(this, 'preferences', pref);
       return obj;
-    },
+    }
   }),
 
   updateFilter(key, value) {
     let filters = getWithDefault(this, 'filter', {});
     filters[key] = value;
     set(this, 'filter', filters);
-  },
+  }
 });
 
 const layoutOptions = [
   {
     label: 'Detailed List',
-    value: 'detail_list',
+    value: 'detail_list'
   },
   {
     label: 'Detailed Table',
-    value: 'detail_table',
+    value: 'detail_table'
   },
   {
     label: 'Plain Table',
-    value: 'simple_table',
-  },
+    value: 'simple_table'
+  }
 ];

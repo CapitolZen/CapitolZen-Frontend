@@ -10,7 +10,7 @@ const {
   computed,
   Component,
   getWithDefault,
-  inject: { service },
+  inject: { service }
 } = Ember;
 
 export default Component.extend({
@@ -73,7 +73,7 @@ export default Component.extend({
       let m = get(this, 'model');
       set(m, 'logoChoice', value);
       return value;
-    },
+    }
   }),
 
   wrapperPreviewList: computed(
@@ -113,60 +113,60 @@ export default Component.extend({
     set(key, value) {
       console.log(value);
       return value;
-    },
+    }
   }),
   layoutOptions: [
     {
       label: 'Detailed List',
-      value: 'detail_list',
+      value: 'detail_list'
     },
     {
       label: 'Detailed Table',
-      value: 'detail_table',
+      value: 'detail_table'
     },
     {
       label: 'Plain Table',
-      value: 'simple_table',
-    },
+      value: 'simple_table'
+    }
   ],
 
   filterOptions: [
     {
       label: 'Bill Title',
       qvalue: 'bill__title',
-      type: 'string',
+      type: 'string'
     },
     {
       label: 'Introduced Date',
       qvalue: 'bill__introduced_date',
-      type: 'date',
+      type: 'date'
     },
     {
       label: 'Last Action Date',
       qvalue: 'bill__last_action_date',
-      type: 'date',
+      type: 'date'
     },
     {
       label: 'Sponsor Name',
       qvalue: 'bill__sponsor__full_name',
-      type: 'string',
+      type: 'string'
     },
     {
       label: 'Sponsor Party',
       qvalue: 'bill__sponsor__party',
-      type: 'string',
+      type: 'string'
     },
     {
       label: 'Summary',
       qvalue: 'summary',
-      type: 'string',
+      type: 'string'
     },
     {
       label: 'Position',
       qvalue: 'position',
       type: 'array',
-      opts: ['support', 'oppose', 'neutral'],
-    },
+      opts: ['support', 'oppose', 'neutral']
+    }
   ],
 
   actions: {
@@ -195,7 +195,7 @@ export default Component.extend({
       let { value } = get(data, 'layout');
       fields.preferences = {
         logo: get(data, 'logoChoice'),
-        layout: value,
+        layout: value
       };
       let report = get(this, 'model');
       report.setProperties(fields);
@@ -215,6 +215,6 @@ export default Component.extend({
           set(this, 'isSubmitting', false);
         });
     },
-    updatePublishDate(date) {},
-  },
+    updatePublishDate(date) {}
+  }
 });

@@ -5,7 +5,7 @@ export default Route.extend({
   model({ report }) {
     return RSVP.hash({
       report: this.store.findRecord('report', report),
-      groups: this.store.findAll('group'),
+      groups: this.store.findAll('group')
     });
-  },
+  }
 });

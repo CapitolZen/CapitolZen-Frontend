@@ -1,7 +1,7 @@
-import Ember from "ember";
+import Ember from 'ember';
 const { Component } = Ember;
 
 export default Component.extend({
-  classNames: ["card", "w100"],
+  classNames: ['card', 'w100'],
   bill: null
 });

@@ -16,11 +16,11 @@ export default Component.extend({
         data: {
           type: 'invites',
           attributes: {
-            actions: action,
-          },
-        },
+            actions: action
+          }
+        }
       };
       invite.action(payload);
-    },
-  },
+    }
+  }
 });

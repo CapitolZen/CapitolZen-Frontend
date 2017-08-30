@@ -5,5 +5,5 @@ export default Route.extend({
   currentUser: service(),
   model() {
     return this.get('currentUser').loadOrganization();
-  },
+  }
 });

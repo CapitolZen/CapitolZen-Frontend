@@ -17,6 +17,6 @@ export default Component.extend({
           get(this, 'flashMessages').danger('Report deleted forever');
           get(this, 'router').transitionTo('reports');
         });
-    },
-  },
+    }
+  }
 });

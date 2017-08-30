@@ -6,12 +6,12 @@ export default Route.extend({
   model({ group }) {
     return RSVP.hash({
       group: this.store.findRecord('group', group),
-      reports: this.store.query('report', { group: group }),
+      reports: this.store.query('report', { group: group })
     });
   },
   afterModel(model) {
     this.set('breadCrumb', {
-      title: `Reports for ${get(model, 'group').get('title')}`,
+      title: `Reports for ${get(model, 'group').get('title')}`
     });
-  },
+  }
 });

@@ -19,7 +19,7 @@ const Router = Ember.Router.extend(IntercomRoute, {
 
       Ember.get(this, 'metrics').trackPage({ page, title });
     });
-  },
+  }
 });
 
 Router.map(function() {

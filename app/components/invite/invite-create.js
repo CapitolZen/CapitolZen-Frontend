@@ -54,7 +54,7 @@ export default Component.extend({
           get(this, 'flashMessages').success('Invite Created');
         })
         .catch(() => {});
-    },
+    }
   },
 
   /**
@@ -65,8 +65,8 @@ export default Component.extend({
       organization: this.get('organization'),
       status: 'unclaimed',
       metadata: {
-        organization_role: 'Member',
-      },
+        organization_role: 'Member'
+      }
     });
     this.set('invite', invite);
     return new Changeset(
@@ -74,5 +74,5 @@ export default Component.extend({
       lookupValidator(InviteValidations),
       InviteValidations
     );
-  },
+  }
 });

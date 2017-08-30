@@ -77,7 +77,9 @@ export default Service.extend({
    */
   initSession() {
     return new Promise((resolve, reject) => {
-      this.load().then(resolve).catch(reject);
+      this.load()
+        .then(resolve)
+        .catch(reject);
     });
   },
 

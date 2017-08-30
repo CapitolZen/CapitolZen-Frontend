@@ -21,5 +21,5 @@ export default DS.Transform.extend({
 
   serialize(deserialized) {
     return JSON.stringify(deserialized);
-  },
+  }
 });

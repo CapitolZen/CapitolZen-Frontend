@@ -68,25 +68,25 @@ export default Component.extend(QBuilder, {
       if (opts) {
         return {
           el: 'select',
-          opts,
+          opts
         };
       }
 
       if (type === 'date') {
         return {
-          el: 'calendar',
+          el: 'calendar'
         };
       }
 
       if (type === 'boolean') {
         return {
           el: 'radio',
-          opts: [true, false],
+          opts: [true, false]
         };
       }
 
       return {
-        el: 'text',
+        el: 'text'
       };
     }
   }),
@@ -120,6 +120,6 @@ export default Component.extend(QBuilder, {
         set(this, 'selectedOperator', null);
         set(this, 'isEditing', true);
       }
-    },
-  },
+    }
+  }
 });

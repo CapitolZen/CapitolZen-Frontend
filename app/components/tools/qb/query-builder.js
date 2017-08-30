@@ -39,7 +39,7 @@ export default Component.extend(QBuilder, {
       let model = get(this, 'store').modelFor(m);
       let data = {
         model: m,
-        props: [],
+        props: []
       };
       model.eachAttribute((name, meta) => {
         data.props.push({ name, type: meta.type });
@@ -51,7 +51,7 @@ export default Component.extend(QBuilder, {
   properties: computed('relationshipProps', 'modelProps', function() {
     return {
       model: get(this, 'modelProps'),
-      relationship: get(this, 'relationshipProps'),
+      relationship: get(this, 'relationshipProps')
     };
   }),
   actions: {
@@ -64,6 +64,6 @@ export default Component.extend(QBuilder, {
       get(this, 'addQuery')(prop, op, value);
       let q = get(this, 'query');
       get(this, 'updateQuery')(q);
-    },
-  },
+    }
+  }
 });

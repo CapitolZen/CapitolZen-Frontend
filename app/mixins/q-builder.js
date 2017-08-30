@@ -15,7 +15,7 @@ export default Mixin.create({
     contains: 'icontains',
     starts: 'istartswith',
     ends: 'iendswith',
-    eq: '',
+    eq: ''
   },
 
   operatorLabels: {
@@ -27,7 +27,7 @@ export default Mixin.create({
     contains: 'Contains',
     starts: 'Starts with',
     ends: 'Ends with',
-    eq: 'Equals',
+    eq: 'Equals'
   },
 
   init() {
@@ -70,5 +70,5 @@ export default Mixin.create({
     let q = get(this, 'query');
     delete q[prop];
     set(this, 'query', q);
-  },
+  }
 });

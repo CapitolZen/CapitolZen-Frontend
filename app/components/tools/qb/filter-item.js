@@ -65,6 +65,6 @@ export default Component.extend(QBuilder, {
       let relationship = get(this, 'selectedRelationship');
       set(this, 'selectedRelModelProp', select);
       set(this, 'selectedFilterProp', `${relationship.model}_${select.name}`);
-    },
-  },
+    }
+  }
 });
