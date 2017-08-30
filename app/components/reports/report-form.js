@@ -105,7 +105,16 @@ export default Component.extend({
       console.log(e);
     }
   }).drop(),
-
+  selectedLayout: computed('preferences', {
+    get() {
+      let d = get(this, 'layoutOptions')[0];
+      return getWithDefault(this, 'model.layout', d);
+    },
+    set(key, value) {
+      console.log(value);
+      return value;
+    }
+  }),
   layoutOptions: [
     {
       label: 'Detailed List',
@@ -183,10 +192,10 @@ export default Component.extend({
       fields.user = get(this, 'currentUser.user');
       fields.organization = get(this, 'currentUser.organization');
       fields.publishDate = moment().unix();
-      let { label, value } = get(data, 'layout');
+      let { value } = get(data, 'layout');
       fields.preferences = {
         logo: get(data, 'logoChoice'),
-        layout: { label, value }
+        layout: value
       };
       let report = get(this, 'model');
       report.setProperties(fields);

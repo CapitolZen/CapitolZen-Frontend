@@ -20,18 +20,19 @@ export default DS.Model.extend({
   }),
   preferences: DS.attr(),
   layout: computed('preferences.layout', {
-    get(key) {
-      return (
-        get(this, 'preferences.layout') || {
-          label: 'Detailed List',
-          value: 'detail_list'
-        }
-      );
+    get() {
+      let value = getWithDefault(this, 'preferences.layout', 'detail_list');
+      let opts = layoutOptions.find(l => {
+        return l.value === value;
+      });
+      return opts;
     },
-    set(key, value) {
-      let pref = get(this, 'preferences') || {};
-      pref.layout = value;
+    set(key, obj) {
+      let { value } = obj;
+      let pref = getWithDefault(this, 'preferences', {});
+      set(pref, 'layout', value);
       set(this, 'preferences', pref);
+      return obj;
     }
   }),
 
@@ -41,3 +42,18 @@ export default DS.Model.extend({
     set(this, 'filter', filters);
   }
 });
+
+const layoutOptions = [
+  {
+    label: 'Detailed List',
+    value: 'detail_list'
+  },
+  {
+    label: 'Detailed Table',
+    value: 'detail_table'
+  },
+  {
+    label: 'Plain Table',
+    value: 'simple_table'
+  }
+];
