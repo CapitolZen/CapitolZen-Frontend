@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['invite-summary'],
   actions: {
     deleteInvite(invite) {
       invite.destroyRecord();
@@ -12,9 +13,9 @@ export default Ember.Component.extend({
           attributes: {
             actions: action,
           },
-        }
+        },
       };
       invite.action(payload);
-    }
-  }
+    },
+  },
 });
