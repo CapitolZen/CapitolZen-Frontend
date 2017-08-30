@@ -1,9 +1,9 @@
 {{#bs-nav type="pills" justified=true class="p-lg-0 mb-1 mb-lg-2 flex-nowrap d-flex" as |nav|}}
   {{#nav.item}}
-    {{#nav.link-to "groups.group.bills" group.id}}{{fa-icon "file-text"}} <span class="hidden-sm-down pl-3">Saved Bills</span>{{/nav.link-to}}
+    {{#nav.link-to "groups.detail.bills" group.id}}{{fa-icon "file-text"}} <span class="hidden-sm-down pl-3">Saved Bills</span>{{/nav.link-to}}
   {{/nav.item}}
   {{#nav.item}}
-    {{#nav.link-to "groups.group" group.id }}{{fa-icon "fa-pencil-square-o"}} <span
+    {{#nav.link-to "groups.detail.index" group.id }}{{fa-icon "fa-pencil-square-o"}} <span
       class="hidden-sm-down pl-3">Edit</span>{{/nav.link-to}}
   {{/nav.item}}
   {{#nav.item}}

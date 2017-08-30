@@ -8,6 +8,7 @@ export default Route.extend({
   model(params) {
     return this.store.findRecord('group', params.id);
   },
+
   afterModel(model) {
     this.set('breadCrumb', { title: model.get('title') });
   }

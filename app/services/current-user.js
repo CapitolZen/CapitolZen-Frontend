@@ -31,7 +31,7 @@ export default Service.extend({
       return get(this, 'store')
         .queryRecord('user', { currentUser: true })
         .then(user => {
-          get(user, 'organizations').then(orgs => {
+          return get(user, 'organizations').then(orgs => {
             set(this, 'user', user);
             set(this, 'organization', orgs.get('firstObject'));
             get(this, 'intercom').set('user', get(this, 'intercomData'));

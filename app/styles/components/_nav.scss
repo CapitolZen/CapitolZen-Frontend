@@ -97,3 +97,21 @@
   }
 }
 
+.nav.nav-tabs {
+  border-bottom:0;
+
+  .nav-item {
+    margin-right:2px;
+  }
+  .nav-link {
+    font-weight:500;
+
+  }
+  .nav-link.active {
+    background-color: white;
+    border-bottom: 0;
+    position: relative;
+    z-index: 4;
+    bottom:-1px;
+  }
+}
