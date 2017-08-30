@@ -18,7 +18,7 @@
   .notification-center-footer {
     text-align: center;
     font-size:0.9rem;
-    border-top: 1px solid $gray-light;
+    border-top: 1px solid $gray-lighter;
     background-color: $gray-lightest;
     padding:6px;
   }
@@ -52,6 +52,7 @@
   }
   &.center {
     font-size:80%;
-    padding:0;
+    padding:0 2px;
+
   }
 }

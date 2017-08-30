@@ -1,0 +1,7 @@
+.invite-summary {
+  padding:10px 0;
+  border-bottom:2px dotted $gray-lighter;
+  &:last-child {
+    border-bottom:none;
+  }
+}

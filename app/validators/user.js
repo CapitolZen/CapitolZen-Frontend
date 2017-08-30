@@ -3,11 +3,11 @@ import {
   validateFormat,
   validateLength,
   validateConfirmation
-} from "ember-changeset-validations/validators";
+} from 'ember-changeset-validations/validators';
 
 export default {
   name: [validatePresence(true)],
-  username: validateFormat({ type: "email" }),
+  username: validateFormat({ type: 'email' }),
   password: validateLength({ min: 6 }),
-  confirm: validateConfirmation({ on: "password" })
+  confirm: validateConfirmation({ on: 'password' })
 };

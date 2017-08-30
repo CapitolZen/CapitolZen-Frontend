@@ -5,7 +5,7 @@ moduleForComponent(
   'tools/qb/query-results',
   'Integration | Component | tools/qb/query results',
   {
-    integration: true
+    integration: true,
   }
 );
 
@@ -15,7 +15,12 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{tools/qb/query-results}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    ''
+  );
 
   // Template block usage:
   this.render(hbs`
@@ -24,5 +29,10 @@ test('it renders', function(assert) {
     {{/tools/qb/query-results}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'template block text'
+  );
 });

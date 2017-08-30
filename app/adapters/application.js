@@ -8,11 +8,11 @@ const { computed } = Ember;
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: '',
   authorizer: 'authorizer:application',
-  pathForType: function (type) {
+  pathForType: function(type) {
     const underscored = Ember.String.underscore(type);
     return Ember.String.pluralize(underscored);
   },
-  host: computed(function () {
+  host: computed(function() {
     return ENV.APP.API_HOST;
   }),
 
@@ -39,5 +39,5 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
       url += '/';
     }
     return url;
-  },
+  }
 });
