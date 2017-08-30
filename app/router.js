@@ -75,7 +75,7 @@ Router.map(function() {
       this.route('add', { path: '/add' });
       this.route('detail', { path: '/:report' });
       this.route('edit', { path: '/:report/edit' });
-      this.route('client', { path: '/:group' });
+      this.route('client', { path: '/client/:group' });
     });
 
     this.route('legislators', { resetNamespace: true }, function() {

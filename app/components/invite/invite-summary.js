@@ -1,14 +1,17 @@
 import Ember from 'ember';
 import layout from '../../templates/components/invite/invite-summary';
-
-export default Ember.Component.extend({
+const { Component, get, inject: { service } } = Ember;
+export default Component.extend({
   layout,
+  flashMessages: service(),
   actions: {
     deleteInvite(invite) {
-      invite.destroyRecord();
+      invite.destroyRecord().then(() => {
+        get(this, 'flashMessages').success('Invitation Revoked');
+      });
     },
     inviteAction(invite, action) {
-      invite.action(action);
+      invite.action({ action });
     }
   }
 });
