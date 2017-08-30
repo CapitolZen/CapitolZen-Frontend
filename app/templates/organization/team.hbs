@@ -1,42 +1,12 @@
 {{ui-page-property "Team" property="title"}}
 {{ui-page-property model.organization.name property="description"}}
 
+
 <div class="row">
-  <div class="col-xl-6 offset-xl-3">
-    {{organization/organization-invites organization=model.organization}}
+  <div class="col-lg-8 offset-lg-2">
+    {{organization/organization-invites organization=model.organization invites=model.invites users=model.users}}
   </div>
 </div>
 
 
-<div class="row">
-  <div class="col-xl-6 offset-xl-3">
-    {{#bs-tab as |tab|}}
-      {{#tab.pane title="Users"}}
-        {{#if model.users}}
-          {{#ui/ui-card}}
-            {{#block-slot 'content'}}
-              {{#each model.users as |user index|}}
-                  {{user/user-summary user=user}}
-              {{/each}}
-            {{/block-slot}}
-          {{/ui/ui-card}}
-        {{else}}
-          <h3 class="no-things">Organization has no users.</h3>
-        {{/if}}
-      {{/tab.pane}}
-      {{#tab.pane title="Unclaimed Invites"}}
-        {{#if model.invites}}
-          {{#ui/ui-card}}
-            {{#block-slot 'content'}}
-            {{#each model.invites as |invite index|}}
-              {{invite/invite-summary invite=invite updateInvite='updateUserInvite'}}
-            {{/each}}
-            {{/block-slot}}
-          {{/ui/ui-card}}
-        {{else}}
-          <h3 class="no-things">Organization has no unclaimed invites.</h3>
-        {{/if}}
-      {{/tab.pane}}
-    {{/bs-tab}}
-  </div>
-</div>
+

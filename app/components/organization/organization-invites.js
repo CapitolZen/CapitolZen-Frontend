@@ -9,7 +9,6 @@ const { Component, inject: { service }, get } = Ember;
 export default Component.extend({
   session: service(),
   store: service(),
-  router: service(),
   flashMessages: service(),
 
   createInviteModalEnabled: false,
@@ -48,11 +47,12 @@ export default Component.extend({
     inviteNewUsersSubmit(newInvite) {
       newInvite
         .save()
-        .then(() => {
-          this.get('invites').pushObject(this.get('invite')._internalModel);
-          get(this, 'flashMessages').success('Invite Created');
+        .then(res => {
+          debugger;
+          console.log(res);
           this.set('newInvite', false);
           this.set('createInviteModalEnabled', false);
+          get(this, 'flashMessages').success('Invite Created');
         })
         .catch(() => {});
     }
