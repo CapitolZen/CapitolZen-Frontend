@@ -24,9 +24,9 @@ export default Component.extend({
     let storeHash = {
       wrappers: get(this, 'store').query('wrapper', {
         bill__state_id: bill.get('stateId'),
-        bill__state: bill.get('state')
+        bill__state: bill.get('state'),
       }),
-      groups: get(this, 'store').findAll('group')
+      groups: get(this, 'store').findAll('group'),
     };
 
     let { wrappers, groups } = yield hash(storeHash);
@@ -42,7 +42,6 @@ export default Component.extend({
           filteredList.push(g);
         }
       });
-      console.log(filteredList);
       set(this, 'groupList', filteredList);
     } else {
       set(this, 'groupList', groups);
@@ -55,9 +54,9 @@ export default Component.extend({
       wrapper: get(this, 'store').query('wrapper', {
         bill__state_id: bill.get('stateId'),
         bill__state: bill.get('state'),
-        group: group.get('id')
+        group: group.get('id'),
       }),
-      model: get(this, 'store').findRecord('bill', get(bill, 'id'))
+      model: get(this, 'store').findRecord('bill', get(bill, 'id')),
     };
 
     let { wrapper, model } = yield hash(storeHash);
@@ -66,7 +65,7 @@ export default Component.extend({
       wrapper = this.get('store').createRecord('wrapper', {
         bill: model,
         group: group,
-        organization: get(this, 'currentUser.organization')
+        organization: get(this, 'currentUser.organization'),
       });
       wrapper.save();
       get(this, 'flashMessages').success(
@@ -77,6 +76,6 @@ export default Component.extend({
   actions: {
     toggleActive() {
       get(this, 'listGroups').perform();
-    }
-  }
+    },
+  },
 });

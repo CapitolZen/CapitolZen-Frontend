@@ -2,7 +2,16 @@ import Ember from 'ember';
 import { task } from 'ember-concurrency';
 import moment from 'moment';
 
-const { A, get, set, computed, Component, inject: { service } } = Ember;
+const {
+  A,
+  merge,
+  get,
+  set,
+  computed,
+  Component,
+  getWithDefault,
+  inject: { service },
+} = Ember;
 
 export default Component.extend({
   store: service(),
@@ -10,21 +19,44 @@ export default Component.extend({
   flashMessages: service(),
   router: service('-routing'),
   model: false,
-  group: null,
   wrapperList: [],
   useAllWrappers: true,
   report: false,
-  selectedGroup: null,
   excludedWrappers: [],
-
+  filterList: computed('model.filter', function() {
+    let filter = getWithDefault(this, 'model.filter', {});
+    let output = [];
+    let keys = Object.keys(filter);
+    keys.forEach(k => {
+      let obj = {};
+      obj[k] = filter[k];
+      output.push(obj);
+    });
+    return output;
+  }),
+  isStatic: computed.alias('model.isStatic'),
   init() {
     this._super(...arguments);
-    let m = get(this, 'model') || Ember.Object.create();
-    set(this, 'model', m);
-    let s = m.get('static') || false;
-    set(this, 'isStatic', s);
-    set(this, 'excludedWrappers', A());
-    set(this, 'wrapperList', A());
+    let m, g;
+    if (get(this, 'model')) {
+      m = get(this, 'model');
+      g = get(m, 'group');
+      set(this, 'selectedGroup', g);
+      get(this, 'getWrappers').perform();
+    } else {
+      set(this, 'model', get(this, 'store').createRecord('report'));
+      set(this, 'isStatic', false);
+      set(this, 'excludedWrappers', A());
+      set(this, 'wrapperList', A());
+    }
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    let model = get(this, 'model');
+    if (model.get('isNew')) {
+      model.deleteRecord();
+    }
   },
 
   enableGroupSearch: computed('groups', function() {
@@ -32,13 +64,8 @@ export default Component.extend({
 
     return length >= 4;
   }),
-
-  center: moment('2016-05-17'),
-  range: {
-    start: moment('2016-05-10'),
-    end: moment('2016-05-15')
-  },
-  logoChoice: computed('m.filter', {
+  availableRelationships: ['bill'],
+  logoChoice: computed('m.preferences', {
     get(key) {
       return get(this, 'model').get('logoChoice');
     },
@@ -46,7 +73,7 @@ export default Component.extend({
       let m = get(this, 'model');
       set(m, 'logoChoice', value);
       return value;
-    }
+    },
   }),
 
   wrapperPreviewList: computed(
@@ -61,49 +88,85 @@ export default Component.extend({
     }
   ),
   getWrappers: task(function*() {
-    let g = this.get('selectedGroup');
+    let g = getWithDefault(this, 'selectedGroup', false);
+
+    if (!g) {
+      g = get(this, 'groups.firstObject');
+      set(this, 'selectedGroup', g);
+    }
+
+    let filter = getWithDefault(this, 'model.filter', {});
+    let query = { group: g.id };
+    merge(query, filter);
     try {
-      let wrappers = yield this.get('store').query('wrapper', {
-        group: g.id
-      });
+      let wrappers = yield this.get('store').query('wrapper', query);
       this.set('wrapperList', wrappers);
     } catch (e) {
       console.log(e);
     }
   }).drop(),
-
+  selectedLayout: computed('preferences', {
+    get() {
+      let d = get(this, 'layoutOptions')[0];
+      return getWithDefault(this, 'model.layout', d);
+    },
+    set(key, value) {
+      console.log(value);
+      return value;
+    },
+  }),
   layoutOptions: [
     {
       label: 'Detailed List',
-      value: 'detail_list'
-    },
-    {
-      label: 'Plain List',
-      value: 'plain_list'
+      value: 'detail_list',
     },
     {
       label: 'Detailed Table',
-      value: 'detail_table'
+      value: 'detail_table',
     },
     {
       label: 'Plain Table',
-      value: 'plain_table'
-    }
+      value: 'simple_table',
+    },
   ],
 
-  dynamicDateFilterOptions: [
+  filterOptions: [
     {
-      label: 'Last 7 Days',
-      arg: 'last_d_7'
+      label: 'Bill Title',
+      qvalue: 'bill__title',
+      type: 'string',
     },
     {
-      label: 'Last Month',
-      arg: 'last_m_1'
+      label: 'Introduced Date',
+      qvalue: 'bill__introduced_date',
+      type: 'date',
     },
     {
-      label: 'Last Quarter',
-      arg: 'last_m_3'
-    }
+      label: 'Last Action Date',
+      qvalue: 'bill__last_action_date',
+      type: 'date',
+    },
+    {
+      label: 'Sponsor Name',
+      qvalue: 'bill__sponsor__full_name',
+      type: 'string',
+    },
+    {
+      label: 'Sponsor Party',
+      qvalue: 'bill__sponsor__party',
+      type: 'string',
+    },
+    {
+      label: 'Summary',
+      qvalue: 'summary',
+      type: 'string',
+    },
+    {
+      label: 'Position',
+      qvalue: 'position',
+      type: 'array',
+      opts: ['support', 'oppose', 'neutral'],
+    },
   ],
 
   actions: {
@@ -115,32 +178,43 @@ export default Component.extend({
       set(this, 'isStatic', value);
     },
     removeWrapper(wrapper) {
-      console.log(wrapper);
       get(this, 'excludedWrappers').pushObject(wrapper);
     },
+    updateFilterItem(update) {
+      let model = get(this, 'model');
+      let [key] = Object.keys(update);
+      model.updateFilter(key, update[key]);
+      get(this, 'getWrappers').perform();
+    },
     createReport(data) {
-      let fields = data.getProperties(
-        'title',
-        'description',
-        'layout',
-        'static'
-      );
+      let fields = data.getProperties('title', 'description', 'static');
       fields.group = get(this, 'selectedGroup');
       fields.user = get(this, 'currentUser.user');
       fields.organization = get(this, 'currentUser.organization');
       fields.publishDate = moment().unix();
-      fields.preferences = { logo: get(data, 'logoChoice') };
-      let report = this.get('store').createRecord('report', fields);
+      let { value } = get(data, 'layout');
+      fields.preferences = {
+        logo: get(data, 'logoChoice'),
+        layout: value,
+      };
+      let report = get(this, 'model');
+      report.setProperties(fields);
+      let msg = 'Report updated!';
+      if (report.get('isNew')) {
+        msg = 'Report created!';
+      }
       report
         .save()
         .then(() => {
-          this.get('flashMessages').success('Report Created');
+          this.get('flashMessages').success(msg);
           this.get('router').transitionTo('reports');
+          set(this, 'isSubmitting', true);
         })
         .catch(err => {
           console.log(err);
+          set(this, 'isSubmitting', false);
         });
     },
-    updatePublishDate(date) {}
-  }
+    updatePublishDate(date) {},
+  },
 });

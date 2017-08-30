@@ -9,7 +9,6 @@ const { Component, inject: { service }, get } = Ember;
 export default Component.extend({
   session: service(),
   store: service(),
-  router: service(),
   flashMessages: service(),
 
   createInviteModalEnabled: false,
@@ -50,12 +49,12 @@ export default Component.extend({
         .save()
         .then(() => {
           this.get('invites').pushObject(this.get('invite')._internalModel);
-          get(this, 'flashMessages').success('Invite Created');
           this.set('newInvite', null);
           this.set('createInviteModalEnabled', false);
+          get(this, 'flashMessages').success('Invite Created');
         })
         .catch(() => {});
-    }
+    },
   },
 
   /**
@@ -66,8 +65,8 @@ export default Component.extend({
       organization: this.get('organization'),
       status: 'unclaimed',
       metadata: {
-        organization_role: 'Member'
-      }
+        organization_role: 'Member',
+      },
     });
     this.set('invite', invite);
     return new Changeset(
@@ -75,5 +74,5 @@ export default Component.extend({
       lookupValidator(InviteValidations),
       InviteValidations
     );
-  }
+  },
 });
