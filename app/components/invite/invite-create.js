@@ -47,10 +47,9 @@ export default Component.extend({
     inviteNewUsersSubmit(newInvite) {
       newInvite
         .save()
-        .then(res => {
-          debugger;
-          console.log(res);
-          this.set('newInvite', false);
+        .then(() => {
+          this.get('invites').pushObject(this.get('invite')._internalModel);
+          this.set('newInvite', null);
           this.set('createInviteModalEnabled', false);
           get(this, 'flashMessages').success('Invite Created');
         })

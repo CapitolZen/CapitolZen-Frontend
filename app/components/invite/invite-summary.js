@@ -1,9 +1,10 @@
 import Ember from 'ember';
-import layout from '../../templates/components/invite/invite-summary';
 const { Component, get, inject: { service } } = Ember;
+
 export default Component.extend({
-  layout,
   flashMessages: service(),
+  classNames: ['invite-summary'],
+
   actions: {
     deleteInvite(invite) {
       invite.destroyRecord().then(() => {
@@ -11,7 +12,15 @@ export default Component.extend({
       });
     },
     inviteAction(invite, action) {
-      invite.action({ action });
+      let payload = {
+        data: {
+          type: 'invites',
+          attributes: {
+            actions: action
+          }
+        }
+      };
+      invite.action(payload);
     }
   }
 });

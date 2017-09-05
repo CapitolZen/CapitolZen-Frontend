@@ -1,5 +1,5 @@
-import Ember from "ember";
-import { task } from "ember-concurrency";
+import Ember from 'ember';
+import { task } from 'ember-concurrency';
 
 const { inject: { service }, Component, get } = Ember;
 
@@ -10,36 +10,36 @@ export default Component.extend({
   currentUser: service(),
   group: null,
   multiple: true,
-  name: "fileUpload",
-  accept: "*/*",
-  acl: "public-read",
+  name: 'fileUpload',
+  accept: '*/*',
+  acl: 'public-read',
   upload: task(function*(file) {
     let org =
-      get(this, "group.organization") || get(this, "currentUser.organization");
-    let group = get(this, "group") || false;
+      get(this, 'group.organization') || get(this, 'currentUser.organization');
+    let group = get(this, 'group') || false;
     let uploadParams = {
       group: group,
-      name: get(file, "name"),
+      name: get(file, 'name'),
       organization: org,
-      acl: get(this, "acl")
+      acl: get(this, 'acl')
     };
 
     let { data: { params: { url, fields } } } = yield get(
       this,
-      "fetch"
+      'fetch'
     ).getAssetUploadUrl(uploadParams);
-    fields["acl"] = get(this, "acl");
-    fields["success_action_status"] = "201";
+    fields['acl'] = get(this, 'acl');
+    fields['success_action_status'] = '201';
     let response = yield file.upload({
       url: url,
       contentType: false,
       data: fields
     });
-    get(this, "resultAction")(response);
+    get(this, 'resultAction')(response);
   }).enqueue(),
   actions: {
     fileUpload(file) {
-      get(this, "upload").perform(file);
+      get(this, 'upload').perform(file);
     }
   }
 });
