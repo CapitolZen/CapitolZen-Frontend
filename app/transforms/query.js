@@ -1,7 +1,5 @@
+import { typeOf } from '@ember/utils';
 import DS from 'ember-data';
-import Ember from 'ember';
-
-const { typeOf } = Ember;
 
 export default DS.Transform.extend({
   deserialize(serialized) {

@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import EmberObject, { computed, get, set } from '@ember/object';
 
 import UserRegistration from '../../validators/userRegistration';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 import { task } from 'ember-concurrency';
-
-const { inject: { service }, Component, set, get, computed } = Ember;
 
 export default Component.extend({
   ajax: service(),
@@ -13,7 +13,7 @@ export default Component.extend({
   session: service(),
   flashMessages: service(),
   isLoading: false,
-  registration: Ember.Object.create(),
+  registration: EmberObject.create(),
 
   init() {
     this._super(...arguments);

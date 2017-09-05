@@ -1,15 +1,8 @@
-import Ember from 'ember';
-
-const {
-  Service,
-  inject: { service },
-  isEmpty,
-  RSVP,
-  get,
-  set,
-  computed,
-  assert
-} = Ember;
+import Service, { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
+import RSVP, { resolve } from 'rsvp';
+import { computed, set, get } from '@ember/object';
+import { assert } from '@ember/debug';
 
 export default Service.extend({
   session: service(),
@@ -67,7 +60,7 @@ export default Service.extend({
           get(this, 'intercom').set('user', intercomData);
         });
     } else {
-      return Ember.RSVP.resolve();
+      return resolve();
     }
   },
 

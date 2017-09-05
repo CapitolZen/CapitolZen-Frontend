@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { computed, set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 import QBuilder from '../../../mixins/q-builder';
-const { A, get, set, Component, computed, inject: { service } } = Ember;
 export default Component.extend(QBuilder, {
   store: service(),
   // Noop to get overridden

@@ -1,7 +1,7 @@
-import Ember from 'ember';
-
-const { inject: { service }, computed } = Ember;
-export default Ember.Component.extend({
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+export default Component.extend({
   session: service(),
   currentUser: service(),
   isAuthenticated: computed('session.isAuthenticated', function() {

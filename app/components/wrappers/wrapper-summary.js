@@ -1,5 +1,5 @@
-import Ember from 'ember';
-const { Component, computed, get, set } = Ember;
+import Component from '@ember/component';
+import { set, get, computed } from '@ember/object';
 export default Component.extend({
   isEditing: false,
   displaySummary: computed('summary', function() {

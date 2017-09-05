@@ -1,7 +1,5 @@
+import { set, get, computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
-
-const { computed, get, set } = Ember;
 export default DS.Model.extend({
   bill: DS.belongsTo('bill'),
   group: DS.belongsTo('group'),

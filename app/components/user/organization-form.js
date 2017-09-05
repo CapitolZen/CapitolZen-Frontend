@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { computed, set, get } from '@ember/object';
+import Component from '@ember/component';
+import { isEmpty } from '@ember/utils';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
 import OrganizationValidations from '../../validators/organization';
-
-const { inject: { service }, get, set, computed, Component, isEmpty } = Ember;
 
 export default Component.extend({
   flashMessages: service(),

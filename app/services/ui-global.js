@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Service from '@ember/service';
 
-export default Ember.Service.extend({
+export default Service.extend({
   _pageTitleValue: null,
   _pageDescriptionValue: null,
   _wrapperSize: 'full',
 
-  wrapperSize: Ember.computed('_wrapperSize', {
+  wrapperSize: computed('_wrapperSize', {
     get(key) {
       let sizemap = {
         full: 'col-md-12',
@@ -20,7 +21,7 @@ export default Ember.Service.extend({
     }
   }),
 
-  pageTitle: Ember.computed('_pageTitleValue', {
+  pageTitle: computed('_pageTitleValue', {
     get(key) {
       return this.get('_pageTitleValue');
     },
@@ -30,7 +31,7 @@ export default Ember.Service.extend({
     }
   }),
 
-  pageDescription: Ember.computed('_pageDescriptionValue', {
+  pageDescription: computed('_pageDescriptionValue', {
     get(key) {
       return this.get('_pageDescriptionValue');
     },

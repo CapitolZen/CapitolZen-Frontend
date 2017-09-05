@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 import moment from 'moment';
 
-const { Component, computed, get } = Ember;
 export default Component.extend({
   sortedHistory: computed.sort('bill.history', function(a, b) {
     if (get(a, 'date') === get(b, 'date')) {

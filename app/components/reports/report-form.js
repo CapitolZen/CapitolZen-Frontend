@@ -1,17 +1,10 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { merge } from '@ember/polyfills';
+import Component from '@ember/component';
+import { getWithDefault, computed, set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import moment from 'moment';
-
-const {
-  A,
-  merge,
-  get,
-  set,
-  computed,
-  Component,
-  getWithDefault,
-  inject: { service }
-} = Ember;
 
 export default Component.extend({
   store: service(),

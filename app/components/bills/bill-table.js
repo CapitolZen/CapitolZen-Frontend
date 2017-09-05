@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import TableCommon from '../../mixins/table-common';
 
-const { computed } = Ember;
-export default Ember.Component.extend(TableCommon, {
+export default Component.extend(TableCommon, {
   model: 'bills',
   tableHeight: '100vh',
   pager: true,

@@ -1,6 +1,7 @@
-import Ember from 'ember';
-
-const { set, inject: { service }, Helper, run } = Ember;
+import { set } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Helper from '@ember/component/helper';
+import { run, scheduleOnce } from '@ember/runloop';
 
 /**
  *
@@ -51,6 +52,6 @@ export default Helper.extend({
   },
 
   destroy() {
-    Ember.run.scheduleOnce('afterRender', this, clearPageProps);
+    scheduleOnce('afterRender', this, clearPageProps);
   }
 });

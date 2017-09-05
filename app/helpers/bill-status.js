@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 const StatusMap = {
   'referral-committee': 'In Committee',
@@ -15,4 +15,4 @@ export function billStatus(params /*, hash*/) {
   return StatusMap[params[0]];
 }
 
-export default Ember.Helper.helper(billStatus);
+export default helper(billStatus);

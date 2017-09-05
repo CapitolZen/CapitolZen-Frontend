@@ -1,6 +1,6 @@
-import Ember from 'ember';
-const { computed } = Ember;
-export default Ember.Component.extend({
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+export default Component.extend({
   badgeClass: computed(function() {
     let warningArray = ['reported', 'reading-1', 'reading-2', 'reading-3'];
 

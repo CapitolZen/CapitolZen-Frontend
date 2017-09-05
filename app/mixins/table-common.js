@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { merge } from '@ember/polyfills';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
+import { computed } from '@ember/object';
 import Table from 'ember-light-table';
 import { task } from 'ember-concurrency';
 
-const { merge, inject: { service }, isEmpty, computed } = Ember;
-
-export default Ember.Mixin.create({
+export default Mixin.create({
   store: service(),
   page: 0,
   page_size: 50,
