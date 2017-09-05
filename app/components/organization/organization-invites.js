@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { next } from '@ember/runloop';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 
 import InviteValidations from '../../validators/invite';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
-
-const { Component, inject: { service }, get } = Ember;
 
 export default Component.extend({
   session: service(),
@@ -25,7 +26,7 @@ export default Component.extend({
     refreshUserInvites() {
       const self = this;
       this.set('newInvite', false);
-      Ember.run.next(function() {
+      next(function() {
         self.set('newInvite', true);
       });
       this.sendAction('refreshUserInvites');

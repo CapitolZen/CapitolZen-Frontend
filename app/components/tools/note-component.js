@@ -1,5 +1,5 @@
-import Ember from 'ember';
-const { Component, set, get } = Ember;
+import Component from '@ember/component';
+import { get, set } from '@ember/object';
 export default Component.extend({
   isEditing: false,
   doubleClick() {

@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { getWithDefault, computed, set, get } from '@ember/object';
 import QBuilder from '../../mixins/q-builder';
 import moment from 'moment';
-
-const { get, set, computed, Component, getWithDefault } = Ember;
 
 export default Component.extend(QBuilder, {
   classNames: ['row', 'mt-2'],

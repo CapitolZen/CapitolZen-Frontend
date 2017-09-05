@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-const { Route, inject: { service } } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
   currentUser: service('current-user'),
   model(params) {
     return this.get('store').query('activity-group', {

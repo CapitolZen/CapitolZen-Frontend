@@ -1,10 +1,10 @@
-import Ember from "ember";
-const { Component, get } = Ember;
+import Component from '@ember/component';
+import { get } from '@ember/object';
 export default Component.extend({
-  tagName: "button",
-  classNames: ["close"],
-  "aria-label": "close",
+  tagName: 'button',
+  classNames: ['close'],
+  'aria-label': 'close',
   click() {
-    get(this, "close")();
+    get(this, 'close')();
   }
 });

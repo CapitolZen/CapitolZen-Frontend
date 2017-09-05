@@ -1,6 +1,7 @@
-import Ember from 'ember';
-export default Ember.Route.extend({
+import EmberObject from '@ember/object';
+import Route from '@ember/routing/route';
+export default Route.extend({
   model() {
-    return Ember.Object.create({ active: true });
+    return EmberObject.create({ active: true });
   }
 });

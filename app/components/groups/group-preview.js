@@ -1,5 +1,5 @@
-import Ember from 'ember';
-const { computed, Component, get } = Ember;
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 export default Component.extend({
   classNames: ['my-1'],
   classNameBindings: ['sizeClass'],

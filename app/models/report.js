@@ -1,7 +1,5 @@
+import { getWithDefault, set, get, computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
-
-const { computed, get, set, getWithDefault } = Ember;
 export default DS.Model.extend({
   user: DS.belongsTo('user'),
   organization: DS.belongsTo('organization'),

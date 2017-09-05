@@ -1,5 +1,5 @@
-import Ember from 'ember';
-const { computed, observer, Component, get, set } = Ember;
+import Component from '@ember/component';
+import { set, get, observer, computed } from '@ember/object';
 export default Component.extend({
   tagName: 'span',
   classNames: ['badge'],

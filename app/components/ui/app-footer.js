@@ -1,6 +1,6 @@
-import Ember from "ember";
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  tagName: "footer",
-  classNames: ["container-fluid"]
+export default Component.extend({
+  tagName: 'footer',
+  classNames: ['container-fluid']
 });

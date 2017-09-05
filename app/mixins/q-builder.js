@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { assert, get, set, Mixin } = Ember;
+import { assert } from '@ember/debug';
+import { set, get } from '@ember/object';
+import Mixin from '@ember/object/mixin';
 
 export default Mixin.create({
   query: null,

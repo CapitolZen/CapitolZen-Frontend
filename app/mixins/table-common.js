@@ -1,17 +1,19 @@
-import Ember from "ember";
-import Table from "ember-light-table";
-import { task } from "ember-concurrency";
+import Mixin from '@ember/object/mixin';
+import { merge } from '@ember/polyfills';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
+import { computed } from '@ember/object';
+import Table from 'ember-light-table';
+import { task } from 'ember-concurrency';
 
-const { merge, inject: { service }, isEmpty, computed } = Ember;
-
-export default Ember.Mixin.create({
+export default Mixin.create({
   store: service(),
   page: 0,
   page_size: 50,
-  sort: "name",
+  sort: 'name',
   recordType: null,
   recordQuery: {},
-  isLoading: computed.oneWay("fetchRecords.isRunning"),
+  isLoading: computed.oneWay('fetchRecords.isRunning'),
   canLoadMore: true,
   enableSync: true,
   model: null,
@@ -25,32 +27,32 @@ export default Ember.Mixin.create({
   init() {
     this._super(...arguments);
 
-    let table = new Table(this.get("columns"), this.get("model"), {
-      enableSync: this.get("enableSync")
+    let table = new Table(this.get('columns'), this.get('model'), {
+      enableSync: this.get('enableSync')
     });
     let sortColumn = table
-      .get("allColumns")
-      .findBy("valuePath", this.get("sort"));
+      .get('allColumns')
+      .findBy('valuePath', this.get('sort'));
 
     // Setup initial sort column
     if (sortColumn) {
-      sortColumn.set("sorted", true);
+      sortColumn.set('sorted', true);
     }
 
-    this.set("table", table);
+    this.set('table', table);
   },
 
   /**
    *
    */
   fetchRecords: task(function*() {
-    let query = this.getProperties(["page", "page_size", "sort"]);
+    let query = this.getProperties(['page', 'page_size', 'sort']);
 
-    query = merge(this.get("recordQuery"), query);
-    let records = yield this.get("store").query(this.get("recordType"), query);
-    this.get("model").pushObjects(records.toArray());
-    this.set("meta", records.get("meta"));
-    this.set("canLoadMore", !isEmpty(records.get("meta").next));
+    query = merge(this.get('recordQuery'), query);
+    let records = yield this.get('store').query(this.get('recordType'), query);
+    this.get('model').pushObjects(records.toArray());
+    this.set('meta', records.get('meta'));
+    this.set('canLoadMore', !isEmpty(records.get('meta').next));
   }).restartable(),
 
   /**
@@ -61,7 +63,7 @@ export default Ember.Mixin.create({
       canLoadMore: true,
       page: 0
     });
-    this.get("model").clear();
+    this.get('model').clear();
   },
 
   /**
@@ -69,32 +71,32 @@ export default Ember.Mixin.create({
    */
   actions: {
     onScrolledToBottom() {
-      if (this.get("canLoadMore")) {
-        this.incrementProperty("page");
-        this.get("fetchRecords").perform();
+      if (this.get('canLoadMore')) {
+        this.incrementProperty('page');
+        this.get('fetchRecords').perform();
       }
     },
 
     onColumnClick(column) {
       if (column.sorted) {
         this.set(
-          "sort",
-          (column.ascending ? "" : "-") + column.get("valuePath")
+          'sort',
+          (column.ascending ? '' : '-') + column.get('valuePath')
         );
         this.resetTable();
       }
     },
     setPage(page) {
-      let totalPages = this.get("meta.pagination.pages");
-      let currPage = this.get("page");
+      let totalPages = this.get('meta.pagination.pages');
+      let currPage = this.get('page');
 
       if (page < 1 || page > totalPages || page === currPage) {
         return;
       }
 
-      this.set("page", page);
-      this.get("model").clear();
-      this.get("fetchRecords").perform();
+      this.set('page', page);
+      this.get('model').clear();
+      this.get('fetchRecords').perform();
     }
   }
 });

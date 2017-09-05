@@ -1,5 +1,5 @@
-import Ember from "ember";
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  classNames: ["row"]
+export default Component.extend({
+  classNames: ['row']
 });

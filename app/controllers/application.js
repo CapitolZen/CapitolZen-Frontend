@@ -1,15 +1,16 @@
-import Ember from "ember";
-import ENV from "capitolzen-client/config/environment";
-const { Controller, computed, inject: { service }, get } = Ember;
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { get, computed } from '@ember/object';
+import ENV from 'capitolzen-client/config/environment';
 
 export default Controller.extend({
   session: service(),
   isProduction: computed(function() {
-    return ENV.environment === "production";
+    return ENV.environment === 'production';
   }),
   actions: {
     invalidateSession() {
-      get(this, "session").invalidate();
+      get(this, 'session').invalidate();
     }
   }
 });

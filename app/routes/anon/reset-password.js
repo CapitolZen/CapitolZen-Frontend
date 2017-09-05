@@ -1,5 +1,6 @@
-import Ember from "ember";
-const { inject: { service }, get, Route } = Ember;
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
+import Route from '@ember/routing/route';
 
 export default Route.extend({
   model({ hash }) {
@@ -7,6 +8,6 @@ export default Route.extend({
   },
   setupController(controller, model) {
     this._super(...arguments);
-    controller.set("token", model);
+    controller.set('token', model);
   }
 });

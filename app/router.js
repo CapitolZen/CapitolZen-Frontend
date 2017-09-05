@@ -1,11 +1,14 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { scheduleOnce } from '@ember/runloop';
+import { inject as service } from '@ember/service';
+import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 import IntercomRoute from 'ember-intercom-io/mixins/intercom-route';
 
-const Router = Ember.Router.extend(IntercomRoute, {
+const Router = EmberRouter.extend(IntercomRoute, {
   location: config.locationType,
   rootURL: config.rootURL,
-  metrics: Ember.inject.service(),
+  metrics: service(),
 
   didTransition() {
     this._super(...arguments);
@@ -13,11 +16,11 @@ const Router = Ember.Router.extend(IntercomRoute, {
   },
 
   _trackPage() {
-    Ember.run.scheduleOnce('afterRender', this, () => {
+    scheduleOnce('afterRender', this, () => {
       const page = this.get('url');
       const title = this.getWithDefault('currentRouteName', 'unknown');
 
-      Ember.get(this, 'metrics').trackPage({ page, title });
+      get(this, 'metrics').trackPage({ page, title });
     });
   }
 });

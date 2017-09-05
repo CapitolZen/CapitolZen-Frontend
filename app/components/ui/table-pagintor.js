@@ -1,19 +1,18 @@
-import Ember from "ember";
-
-const { computed } = Ember;
-export default Ember.Component.extend({
-  tagName: "ul",
-  classNames: ["pagination", "justify-content-center"],
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+export default Component.extend({
+  tagName: 'ul',
+  classNames: ['pagination', 'justify-content-center'],
   maxPagerCount: 10,
   meta: null,
   page: null,
-  currentPageRange: computed("meta.pagination.pages", "page", function() {
-    let totalPages = this.get("meta.pagination.pages");
-    let currentPage = this.get("page");
-    let maxDisplay = this.get("maxPagerCount");
+  currentPageRange: computed('meta.pagination.pages', 'page', function() {
+    let totalPages = this.get('meta.pagination.pages');
+    let currentPage = this.get('page');
+    let maxDisplay = this.get('maxPagerCount');
     let half = Math.round(maxDisplay / 2);
 
-    if (this.get("meta.pagination.count") < this.get("pageSize")) {
+    if (this.get('meta.pagination.count') < this.get('pageSize')) {
       return [false, false];
     }
 
@@ -28,15 +27,15 @@ export default Ember.Component.extend({
     }
     return [min, max];
   }),
-  currentPageMax: computed("currentPageRange", function() {
-    return this.get("currentPageRange")[1];
+  currentPageMax: computed('currentPageRange', function() {
+    return this.get('currentPageRange')[1];
   }),
-  currentPageMin: computed("currentPageRange", "page", function() {
-    return this.get("currentPageRange")[0];
+  currentPageMin: computed('currentPageRange', 'page', function() {
+    return this.get('currentPageRange')[0];
   }),
   actions: {
     privateSetPage(page) {
-      this.get("pageAction")(page);
+      this.get('pageAction')(page);
     }
   }
 });

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { computed, set, get } from '@ember/object';
+import Component from '@ember/component';
 import QBuilder from '../../../mixins/q-builder';
 
-const { get, set, computed, Component } = Ember;
 export default Component.extend(QBuilder, {
   isEditing: true,
   isRelationship: false,
