@@ -1,5 +1,6 @@
-import Ember from 'ember';
-const { A, Route, RSVP } = Ember;
+import { A } from '@ember/array';
+import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
 export default Route.extend({
   model() {
     let { id } = this.paramsFor('groups.detail');

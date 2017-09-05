@@ -1,6 +1,5 @@
-import Ember from 'ember';
+import { set, get, computed } from '@ember/object';
 import DS from 'ember-data';
-const { computed, get, set } = Ember;
 
 export default DS.Model.extend({
   created: DS.attr('date'),

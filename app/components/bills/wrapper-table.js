@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 import TableCommon from '../../mixins/table-common';
-
-const { computed, Component, get } = Ember;
 
 export default Component.extend(TableCommon, {
   model: 'wrappers',

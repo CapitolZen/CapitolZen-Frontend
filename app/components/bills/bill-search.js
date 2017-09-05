@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { set, get, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 
-const { inject: { service }, Component, computed, get, set } = Ember;
 export default Component.extend({
   billSearch: service(),
   results: computed.alias('billSearch.results'),

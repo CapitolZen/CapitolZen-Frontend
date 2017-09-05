@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { get, set, Component, inject: { service } } = Ember;
+import EmberObject, { set, get } from '@ember/object';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   flashMessages: service(),
@@ -10,7 +10,7 @@ export default Component.extend({
   defaultObject: null,
   init() {
     this._super(...arguments);
-    let obj = Ember.Object.create({ email: get(this, 'invite.email') });
+    let obj = EmberObject.create({ email: get(this, 'invite.email') });
     set(this, 'defaultObject', obj);
   },
   actions: {

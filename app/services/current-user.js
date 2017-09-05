@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { inject: { service }, get, set, computed, RSVP, Service } = Ember;
+import { computed, set, get } from '@ember/object';
+import RSVP from 'rsvp';
+import Service, { inject as service } from '@ember/service';
 
 export default Service.extend({
   ajax: service(),

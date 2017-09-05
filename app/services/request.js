@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import AjaxService from 'ember-ajax/services/ajax';
 import ENV from 'capitolzen-client/config/environment';
 
-const { inject: { service }, computed } = Ember;
 const { APP: { API_HOST } } = ENV;
 
 export default AjaxService.extend({

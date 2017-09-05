@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
 import UserValidations from '../../validators/user';
 
-const { inject: { service }, get } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   flashMessages: service(),
   init() {
     this._super(...arguments);

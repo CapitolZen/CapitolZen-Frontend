@@ -1,5 +1,5 @@
-import Ember from 'ember';
-const { Mixin, get, set } = Ember;
+import Mixin from '@ember/object/mixin';
+import { set, get } from '@ember/object';
 export default Mixin.create({
   metaGet(prop) {
     return get(this, 'meta')[prop];

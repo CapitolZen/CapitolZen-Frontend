@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import ENV from 'capitolzen-client/config/environment';
 
-const { get, Controller, inject: { service } } = Ember;
 const { APP: { API_HOST } } = ENV;
 
 export default Controller.extend({

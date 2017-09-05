@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import TableCommon from '../../mixins/table-common';
 
-const { computed, Component } = Ember;
 export default Component.extend(TableCommon, {
   model: 'report',
   tableHeight: '100vh',

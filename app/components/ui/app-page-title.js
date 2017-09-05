@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Component, computed, inject: { service } } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   uiGlobal: service('ui-global'),

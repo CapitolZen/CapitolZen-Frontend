@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
-
-const { Component, computed, get } = Ember;
 
 export default Component.extend({
   totalActive: computed('users', function() {

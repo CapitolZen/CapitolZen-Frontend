@@ -1,5 +1,6 @@
-import Ember from 'ember';
-const { Component, computed, get, set, inject: { service } } = Ember;
+import Component from '@ember/component';
+import { set, get, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 export default Component.extend({
   flashMessages: service(),
   isEditing: false,

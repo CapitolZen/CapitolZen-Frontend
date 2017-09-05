@@ -1,7 +1,6 @@
-import Ember from 'ember';
-
-const { computed } = Ember;
-export default Ember.Component.extend({
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+export default Component.extend({
   tagName: 'ul',
   classNames: ['pagination', 'justify-content-center'],
   maxPagerCount: 10,

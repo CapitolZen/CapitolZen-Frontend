@@ -1,13 +1,7 @@
-import Ember from 'ember';
-const {
-  inject: { service },
-  get,
-  set,
-  Component,
-  computed,
-  isEmpty,
-  typeOf
-} = Ember;
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { computed, set, get } from '@ember/object';
+import { typeOf, isEmpty } from '@ember/utils';
 
 export default Component.extend({
   store: service(),

@@ -1,15 +1,15 @@
+import { underscore } from '@ember/string';
+import { computed } from '@ember/object';
 import Ember from 'ember';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import DS from 'ember-data';
 import ENV from '../config/environment';
 
-const { computed } = Ember;
-
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: '',
   authorizer: 'authorizer:application',
   pathForType: function(type) {
-    const underscored = Ember.String.underscore(type);
+    const underscored = underscore(type);
     return Ember.String.pluralize(underscored);
   },
   host: computed(function() {

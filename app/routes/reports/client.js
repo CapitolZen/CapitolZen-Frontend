@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Route, RSVP, get } = Ember;
+import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
+import { get } from '@ember/object';
 export default Route.extend({
   breadCrumb: {},
   model({ group }) {
