@@ -13,6 +13,9 @@ export default Component.extend({
       }
       set(this, 'content', false);
       get(this, 'saveAction')(args);
+    },
+    cancelDocument() {
+      get(this, 'cancelAction')();
     }
   }
 });

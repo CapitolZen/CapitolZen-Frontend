@@ -13,7 +13,7 @@ export default Component.extend({
     toggleAddNote() {
       this.toggleProperty('addNote');
     },
-    saveNote({ doc, docId = false }) {
+    saveNote({ doc, docId }) {
       if (!docId) {
         docId = v4();
       }
@@ -21,7 +21,7 @@ export default Component.extend({
       let wrapper = get(this, 'wrapper');
       let notes = wrapper.get('notes');
       let user = get(this, 'currentUser.user');
-      let time = moment().format('X');
+      let time = moment();
 
       notes[docId] = { doc: doc, user: user, timestamp: time, public: false };
       wrapper.set('notes', notes);
