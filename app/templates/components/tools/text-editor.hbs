@@ -1,5 +1,21 @@
-{{#mobiledoc-editor mobiledoc=content
-  on-change=(action "mobileDocUpdated")
-  as |editor|}}
-{{/mobiledoc-editor}}
-<button class="btn btn-primary" {{action "saveDocument"}}>Add</button>
+<div class="row">
+  <div class="col-12">
+    <h6>{{if isNew "Add" "Edit"}}</h6>
+    {{#mobiledoc-editor mobiledoc=content
+                        on-change=(action "mobileDocUpdated")
+                        class="note-editor"
+    as |editor|}}
+    {{/mobiledoc-editor}}
+  </div>
+
+</div>
+<div class="row clearfix my-1">
+  <div class="col-6 push-6">
+    <div class="btn-group btn-group-sm pull-right">
+      <button class="btn btn-primary" {{action "saveDocument"}}>Add</button>
+      <button class="btn btn-secondary" {{action "cancelDocument"}}>Cancel</button>
+    </div>
+  </div>
+
+</div>
+

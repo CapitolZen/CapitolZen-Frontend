@@ -45,23 +45,15 @@
       <div class="col-md-6">
         <h5>Notes</h5>
         {{#each-in notes as |key note|}}
-          {{#if isEditing}}
-            {{tools/text-editor content=note.doc docId=key}}
-          {{else}}
-            <em><small>{{moment-format note.timestamp "MM/DD/YYYY"}} {{note.user.name}} writes:</small></em>
-            <div class="note-wrapper mb-1">
-              {{render-mobiledoc mobiledoc=note.doc}}
-            </div>
-            {{#each note.attachments as |doc|}}
-              <p>{{doc}}</p>
-            {{/each}}
-          {{/if}}
+          {{tools/note-component note=note key=key save=(action "saveNote")}}
         {{else}}
           <p class="text-center">Add Your First Note!</p>
         {{/each-in}}
-        <button class="btn-secondary btn" {{action "toggleAddNote"}}>Add Note</button>
+
         {{#if addNote}}
-          {{tools/text-editor saveAction=(action "saveNote")}}
+          {{tools/text-editor isNew=true saveAction=(action "saveNote") cancelAction=(action "toggleAddNote")}}
+        {{else}}
+          <button class="btn-secondary btn" {{action "toggleAddNote"}}>Add Note</button>
         {{/if}}
       </div>
     </div>

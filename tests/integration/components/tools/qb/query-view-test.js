@@ -5,7 +5,7 @@ moduleForComponent(
   'tools/qb/query-view',
   'Integration | Component | tools/qb/query view',
   {
-    integration: true,
+    integration: true
   }
 );
 

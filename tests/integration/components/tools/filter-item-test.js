@@ -5,7 +5,7 @@ moduleForComponent(
   'tools/filter-item',
   'Integration | Component | tools/filter item',
   {
-    integration: true,
+    integration: true
   }
 );
 

@@ -1,4 +1,4 @@
-{{#bs-button onClick=(action "openInviteModal") type="success" class="mb-2"}}{{fa-icon "users"}} Invite user{{/bs-button}}
+{{#bs-button onClick=(action "openInviteModal") type="primary" class="mb-2"}}{{fa-icon "users"}} Invite user{{/bs-button}}
 
 
 {{#bs-tab as |tab|}}
@@ -52,7 +52,7 @@
 
   {{#modal.footer as |footer|}}
     {{#bs-button onClick=(action modal.close) type="secondary"}}Cancel{{/bs-button}}
-    {{#bs-button onClick=(action modal.submit) type="success"}}Invite User{{/bs-button}}
+    {{#bs-button onClick=(action modal.submit) type="primary"}}Invite User{{/bs-button}}
   {{/modal.footer}}
 
 {{/bs-modal}}

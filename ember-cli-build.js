@@ -10,8 +10,7 @@ module.exports = function(defaults) {
       importBootstrapFont: false
     },
     sourcemaps: {
-      enabled: EmberApp.env() !== 'production',
-      extensions: ['js']
+      enabled: true
     },
 
     'ember-cli-babel': {

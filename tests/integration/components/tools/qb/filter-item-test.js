@@ -5,7 +5,7 @@ moduleForComponent(
   'tools/qb/filter-item',
   'Integration | Component | tools/qb/filter item',
   {
-    integration: true,
+    integration: true
   }
 );
 

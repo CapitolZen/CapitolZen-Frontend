@@ -1,6 +1,6 @@
 <h5>History</h5>
 <div class="list-group">
-  {{#each bill.history as |history|}}
+  {{#each sortedHistory as |history|}}
     <div class="list-group-item">
       <span>{{history.action}}</span> <br>
       <small class="text-secondary">{{history.date}}</small>

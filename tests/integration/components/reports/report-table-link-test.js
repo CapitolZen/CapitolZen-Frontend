@@ -5,7 +5,7 @@ moduleForComponent(
   'reports/report-table-link',
   'Integration | Component | reports/report table link',
   {
-    integration: true,
+    integration: true
   }
 );
 

@@ -5,7 +5,7 @@ moduleForComponent(
   'tools/qb/query-results',
   'Integration | Component | tools/qb/query results',
   {
-    integration: true,
+    integration: true
   }
 );
 
