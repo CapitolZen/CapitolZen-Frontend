@@ -39,5 +39,9 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
       url += '/';
     }
     return url;
+  },
+  urlForQueryRecord(query) {
+    console.log(query);
+    return this._super(...arguments);
   }
 });
