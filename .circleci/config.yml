@@ -18,16 +18,9 @@ jobs:
                 name: Install node global dependencies
                 command: |
                   sudo npm install -g yarn \
-                    bower \
-                    whitesource \
-                    ws-bower \
+
                     ember-cli \
                     phantomjs-prebuilt
-            - run:
-                name: Install Code Climate Test Reporter
-                command: |
-                  curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-                  sudo chmod +x ./cc-test-reporter
             ##
             # NPM
             ##
