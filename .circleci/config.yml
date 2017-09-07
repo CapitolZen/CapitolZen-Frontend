@@ -19,8 +19,6 @@ jobs:
                 command: |
                   sudo npm install -g yarn \
                     bower \
-                    whitesource \
-                    ws-bower \
                     ember-cli
             ##
             # NPM
