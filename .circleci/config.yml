@@ -5,9 +5,6 @@ jobs:
         working_directory: ~/app
         docker:
             - image: circleci/node:7-browsers
-              environment:
-                  CHROME_BIN: "/usr/bin/google-chrome"
-                  CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
         steps:
 
             ##
