@@ -40,8 +40,7 @@ jobs:
             ##
             - run:
                 name: Run Ember Tests
-                command: |
-                echo "does this work?"
+                command: echo "does this work?"
                 # CHROME_BIN=/usr/bin/google-chrome ember test
             ##
             # DEPLOYMENT
