@@ -31,6 +31,7 @@
     "ember-debug": "^0.9.7-1",
     "latest": "^0.2.0"
   },
+
   "devDependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "broccoli-asset-rev": "^2.6.0",
