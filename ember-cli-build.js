@@ -9,7 +9,6 @@ module.exports = function(defaults) {
       bootstrapVersion: 4,
       importBootstrapFont: false
     },
-    /*
     sourcemaps: {
       enabled: true
     },
@@ -20,7 +19,6 @@ module.exports = function(defaults) {
     fingerprint: {
       enabled: EmberApp.env() === 'production' || EmberApp.env() === 'qa'
     },
-    */
     'ember-font-awesome': {
       includeFontFiles: true
     },

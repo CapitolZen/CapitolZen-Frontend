@@ -38,7 +38,7 @@ jobs:
             - run:
                 name: Run Ember Tests
                 command: |
-                  ember build
+                  CHROME_BIN=/usr/bin/google-chrome ember test
 
             ##
             # DEPLOYMENT
