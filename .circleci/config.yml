@@ -5,6 +5,8 @@ jobs:
         working_directory: ~/app
         docker:
             - image: circleci/node:7-browsers
+            environment:
+                CHROME_BIN: "/usr/bin/google-chrome"
         steps:
 
             ##
@@ -12,10 +14,14 @@ jobs:
             ##
             - checkout
             - run:
+                name: Install Chrome
+                command: |
+                  sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                  sudo dpkg -i google-chrome*.deb
+
+            - run:
                 name: Install node global dependencies
                 command: |
-                  which chrome
-                  which Chrome
                   sudo npm install -g yarn \
                     ember-cli
             ##
