@@ -4,36 +4,31 @@ jobs:
     build:
         working_directory: ~/app
         docker:
-            - image: circleci/node:7-browsers
+            - image: circleci/node:8-browsers
               environment:
-                  CHROME_BIN: "/usr/bin/google-chrome"
-                  CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
+                CHROME_BIN: "/usr/bin/google-chrome"
         steps:
 
             ##
             # SETUP
             ##
             - checkout
+
             - run:
                 name: Install node global dependencies
                 command: |
                   sudo npm install -g yarn \
-
-                    ember-cli \
-                    phantomjs-prebuilt
+                    ember-cli
             ##
             # NPM
             ##
             - restore_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
+                key: dependency-cache-{{ checksum "yarn.lock" }}
             - run:
                 name: Install npm dependencies
                 command: yarn install
-            - run:
-                name: Rebuild node-sass bindings
-                command: npm rebuild node-sass
             - save_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
+                key: dependency-cache-{{ checksum "yarn.lock" }}
                 paths:
                     - ./node_modules
 
@@ -43,7 +38,7 @@ jobs:
             - run:
                 name: Run Ember Tests
                 command: |
-                  ember test
+                  CHROME_BIN=/usr/bin/google-chrome ember test
             ##
             # DEPLOYMENT
             ##
