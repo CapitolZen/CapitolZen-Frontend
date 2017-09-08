@@ -40,8 +40,8 @@ jobs:
             ##
             - run:
                 name: Run Ember Tests
-                command: echo "ember 2.15 fail"
-                # CHROME_BIN=/usr/bin/google-chrome ember test
+                command: |
+                CHROME_BIN=/usr/bin/google-chrome ember test
             ##
             # DEPLOYMENT
             ##
