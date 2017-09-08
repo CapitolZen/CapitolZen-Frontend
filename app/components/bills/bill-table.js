@@ -6,6 +6,7 @@ export default Component.extend(TableCommon, {
   model: 'bills',
   tableHeight: '100vh',
   pager: true,
+  sort: 'state_id',
   columns: computed(function() {
     return [
       {
@@ -16,20 +17,20 @@ export default Component.extend(TableCommon, {
       {
         label: 'Sponsor',
         valuePath: 'sponsor.fullName',
-        sortable: true,
-        breakpoints: ['desktop']
+        sortable: false,
+        breakpoints: ['mobile', 'tablet', 'desktop']
       },
       {
-        label: 'Committee',
-        valuePath: 'currentCommittee',
-        sortable: true,
+        label: 'Party',
+        valuePath: 'sponsor.party',
+        sortable: false,
         breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Last Action',
         valuePath: 'lastActionDate',
         cellComponent: 'bills/bill-table-date',
-        sortable: true,
+        sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
       // {
@@ -45,5 +46,10 @@ export default Component.extend(TableCommon, {
         sortable: false
       }
     ];
-  })
+  }),
+  actions: {
+    filter() {
+      this.resetTable();
+    }
+  }
 });
