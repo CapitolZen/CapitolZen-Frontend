@@ -54,7 +54,7 @@ export default Component.extend({
         props.organization = get(this, 'currentUser.organization');
         group = get(this, 'store').createRecord('group', props);
       }
-      group.save().then(() => {
+      return group.save().then(() => {
         get(this, 'flashMessages').success('Client Updated!');
         get(this, 'routing').transitionTo('groups.index');
       });

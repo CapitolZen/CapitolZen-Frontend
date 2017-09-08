@@ -1,36 +1,5 @@
 {{#bs-button onClick=(action "openInviteModal") type="primary" class="mb-2"}}{{fa-icon "users"}} Invite user{{/bs-button}}
 
-
-{{#bs-tab as |tab|}}
-  {{#tab.pane title="Users"}}
-    {{#if users}}
-      {{#ui/ui-card}}
-        {{#block-slot 'content'}}
-          {{#each users as |user index|}}
-            {{user/user-summary user=user}}
-          {{else}}
-            <h3 class="no-things">Organization has no users.</h3>
-          {{/each}}
-        {{/block-slot}}
-      {{/ui/ui-card}}
-    {{/if}}
-  {{/tab.pane}}
-  {{#tab.pane title="Unclaimed Invites"}}
-    {{#if invites}}
-      {{#ui/ui-card}}
-        {{#block-slot 'content'}}
-          {{#each invites as |invite index|}}
-            {{invite/invite-summary invite=invite updateInvite='updateUserInvite'}}
-          {{else}}
-            <h3 class="no-things">Organization has no unclaimed invites.</h3>
-          {{/each}}
-        {{/block-slot}}
-      {{/ui/ui-card}}
-    {{/if}}
-  {{/tab.pane}}
-{{/bs-tab}}
-
-
 {{#bs-modal open=createInviteModalEnabled
             onSubmit=(action "inviteNewUsersSubmit")
             onHidden=(action "closeInviteModal") as |modal|}}
