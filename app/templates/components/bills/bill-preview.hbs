@@ -4,12 +4,12 @@
       <span class="badge badge-default">{{bill.sponsor.party}}</span></small></h4>
     <h6 class="card-subtitle"></h6>
   </div>
-  <div class="bill-detail-body row">
-    <div class="details col-8">
+  <div class="bill-detail-body row flex-md-column justify-content-lg-between flex-lg-row">
+    <div class="details col-lg-8">
       <p class="card-text">{{bill.title}}</p>
     </div>
-    <div class="col-4">
-      <div class="btn-group pull-right">
+    <div class="col-lg-4">
+      <div class="btn-group float-lg-right">
         {{#link-to "bills.detail" bill.id class="btn btn-secondary btn-block"}}View{{/link-to}}
         {{bills/add-to-group bill=bill buttonType="primary"}}
       </div>

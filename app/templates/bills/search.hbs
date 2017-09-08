@@ -1,3 +1,10 @@
 {{ui-page-property "Search Bills" property="title"}}
 
-{{bills/bill-search}}
+{{#bills/bill-search as |s|}}
+  {{s.input}}
+  {{#if s.searching}}
+    {{ui/loading-animation}}
+  {{else}}
+    {{s.resultList class="mt-3"}}
+  {{/if}}
+{{/bills/bill-search}}

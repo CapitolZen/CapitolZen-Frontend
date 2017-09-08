@@ -1,0 +1,8 @@
+<form {{action "search" on="submit"}}>
+  <div class="input-group">
+    {{input class="form-control" placeholder="Search for..." value=currentQuery}}
+    <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" {{action "search"}}>Search</button>
+      </span>
+  </div>
+</form>
