@@ -4,7 +4,7 @@ jobs:
     build:
         working_directory: ~/app
         docker:
-            - image: circleci/node:8-browsers
+            - image: mwisner/circleci-ember:latest
               environment:
                 CHROME_BIN: "/usr/bin/google-chrome"
         steps:
