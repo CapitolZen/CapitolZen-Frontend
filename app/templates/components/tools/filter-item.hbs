@@ -22,7 +22,7 @@
   {{/power-select}}
 </div>
 
-<div class="col-4">
+<div class="col-3">
   <h6>Value</h6>
   {{#if (eq valueSelectorComponent.el "calendar")}}
     {{#power-calendar
@@ -67,14 +67,15 @@
   {{/if}}
 
 </div>
-<div class="col-1">
+<div class="col-3">
   <h6>Action</h6>
   {{#if isNew}}
     <button class="btn-primary btn btn-sm" {{action "addFilter"}}>Add</button>
   {{else}}
-    <div class="btn-group btn-group-sm btn-group-vertical">
-      <button class="btn btn-primary btn-sm" {{action "updateFilter"}}>Update</button>
-      <button class="btn-secondary btn btn-sm" {{action (mut isEditing) false}}>Cancel</button>
+    <div class="btn-group btn-group-sm">
+      {{#bs-button type="secondary" size="sm" onClick=(action (mut isEditing) false)}}Cancel{{/bs-button}}
+      {{#bs-button type="primary" size="sm" onClick=(action "updateFilter")}}Update{{/bs-button}}
+      {{#bs-button type="danger" size="sm" onClick=(action "deleteFilter")}}Delete{{/bs-button}}
     </div>
   {{/if}}
 
@@ -95,6 +96,6 @@
   </div>
   <div class="col-1">
     <h6>Action</h6>
-    <button class="btn-secondary btn btn-sm" {{action (mut isEditing) true}}>Edit</button>
+      {{#bs-button type="secondary" size="sm" onClick=(action (mut isEditing) true)}}Edit{{/bs-button}}
   </div>
 {{/if}}

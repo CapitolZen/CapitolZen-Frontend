@@ -119,6 +119,14 @@ export default Component.extend(QBuilder, {
         set(this, 'selectedOperator', null);
         set(this, 'isEditing', true);
       }
+    },
+    updateFilter() {
+      get(this, 'update')(get(this, 'generatedQuery'));
+      set(this, 'isEditing', false);
+    },
+    deleteFilter() {
+      get(this, 'delete')(get(this, 'generatedQuery'));
+      set(this, 'isEditing', false);
     }
   }
 });

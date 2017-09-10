@@ -23,9 +23,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^6.8.0",
-    "ember-cli-htmlbars": "^2.0.2",
-    "ember-debug": "^0.9.7-1",
-    "latest": "^0.2.0"
+    "ember-cli-htmlbars": "^2.0.1"
   },
   "devDependencies": {
     "bootstrap": "4.0.0-alpha.6",
@@ -73,7 +71,6 @@
     "ember-intercom-io": "donaldwasserman/ember-intercom-io#stable",
     "ember-light-table": "^1.8.6",
     "ember-load-initializers": "^1.0.0",
-    "ember-math-helpers": "^2.1.0",
     "ember-metrics": "^0.12.0",
     "ember-mobiledoc-dom-renderer": "^0.5.11",
     "ember-mobiledoc-editor": "^0.5.11",
@@ -84,11 +81,10 @@
     "ember-power-select-blockless": "cibernox/ember-power-select-blockless#master",
     "ember-resolver": "^4.0.0",
     "ember-responsive": "^2.0.4",
-    "ember-route-action-helper": "^2.0.3",
     "ember-router-service": "^1.0.2",
     "ember-simple-auth": "^1.3.0",
     "ember-simple-auth-token": "^2.1.0",
-    "ember-source": "~2.14.0",
+    "ember-source": "2.14.1",
     "ember-truth-helpers": "^1.3.0",
     "ember-uuid": "^1.0.0",
     "eslint-config-prettier": "^2.3.0",
