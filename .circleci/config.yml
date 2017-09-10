@@ -38,7 +38,7 @@ jobs:
             - run:
                 name: Run Ember Tests
                 command: |
-                  ember test
+                  JOBS=1 ember test
 
             ##
             # DEPLOYMENT
