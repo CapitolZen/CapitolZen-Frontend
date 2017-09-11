@@ -16,7 +16,7 @@ export default Component.extend({
   useAllWrappers: true,
   report: false,
   excludedWrappers: [],
-  filterList: computed('model.filter.[]', function() {
+  filterList: computed('model.filter', function() {
     let filter = getWithDefault(this, 'model.filter', {});
     let output = [];
     let keys = Object.keys(filter);

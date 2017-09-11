@@ -75,7 +75,7 @@
               {{tools/filter-item opts=filterOptions isNew=true isEditing=true update=(action "updateFilterItem")}}
             </p>
             <hr class="my-1">
-          {{log filterList}}
+
             {{#each filterList as |filter|}}
               {{tools/filter-item
                 filter=filter

@@ -38,6 +38,7 @@ export default DS.Model.extend({
     let filters = getWithDefault(this, 'filter', {});
     filters[key] = value;
     set(this, 'filter', filters);
+    this.notifyPropertyChange('filter');
   },
   deleteFilter(key) {
     let filters = getWithDefault(this, 'filter', false);
@@ -45,6 +46,7 @@ export default DS.Model.extend({
       delete filters[key];
     }
     set(this, 'filter', filters);
+    this.notifyPropertyChange('filter');
   }
 });
 
