@@ -27,9 +27,6 @@ jobs:
             - run:
                 name: Install npm dependencies
                 command: yarn install
-            - run:
-                name: Rebuild libsass bindings
-                command: npm rebuild node-sass
             - save_cache:
                 key: dependency-cache-{{ checksum "yarn.lock" }}
                 paths:
@@ -40,7 +37,9 @@ jobs:
             ##
             - run:
                 name: Run Ember Tests
-                command: echo "skipping tests for now"
+                command: |
+                  JOBS=1 ember test
+
             ##
             # DEPLOYMENT
             ##

@@ -12,7 +12,6 @@ module.exports = function(defaults) {
     sourcemaps: {
       enabled: true
     },
-
     'ember-cli-babel': {
       // disable comments
       includePolyfill: true
