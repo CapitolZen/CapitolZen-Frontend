@@ -10,7 +10,7 @@ export default Controller.extend({
       let data = user.getProperties('identification', 'password'),
         authenticator = 'authenticator:jwt';
 
-      this.get('session')
+      return this.get('session')
         .authenticate(authenticator, data)
         .then(() => {
           this.transitionToRoute('dashboard');

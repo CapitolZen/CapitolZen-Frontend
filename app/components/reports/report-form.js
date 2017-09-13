@@ -130,16 +130,6 @@ export default Component.extend({
       type: 'string'
     },
     {
-      label: 'Introduced Date',
-      qvalue: 'bill__introduced_date',
-      type: 'date'
-    },
-    {
-      label: 'Last Action Date',
-      qvalue: 'bill__last_action_date',
-      type: 'date'
-    },
-    {
       label: 'Sponsor Name',
       qvalue: 'bill__sponsor__full_name',
       type: 'string'
@@ -177,6 +167,13 @@ export default Component.extend({
       let model = get(this, 'model');
       let [key] = Object.keys(update);
       model.updateFilter(key, update[key]);
+      get(this, 'getWrappers').perform();
+    },
+    deleteFilterItem(obj) {
+      console.log('sup');
+      let [key] = Object.keys(obj);
+      let model = get(this, 'model');
+      model.deleteFilter(key);
       get(this, 'getWrappers').perform();
     },
     createReport(data) {

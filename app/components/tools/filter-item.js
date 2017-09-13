@@ -1,11 +1,12 @@
 import Component from '@ember/component';
 import { getWithDefault, computed, set, get } from '@ember/object';
-import QBuilder from '../../mixins/q-builder';
+import { inject as service } from '@ember/service';
 import moment from 'moment';
 
-export default Component.extend(QBuilder, {
+export default Component.extend({
   classNames: ['row', 'mt-2'],
   today: moment(),
+  queryBuilder: service(),
   init() {
     this._super(...arguments);
     let q = getWithDefault(this, 'filter', false);
@@ -32,29 +33,9 @@ export default Component.extend(QBuilder, {
   },
   operatorOptions: computed('selectedQuery', function() {
     if (get(this, 'selectedQuery')) {
-      let { type } = get(this, 'selectedQuery'),
-        operators = get(this, 'operators'),
-        labels = get(this, 'operatorLabels');
+      let { type } = get(this, 'selectedQuery');
 
-      let allowed = [];
-      switch (type) {
-        case 'string':
-          allowed = ['exact', 'contains', 'starts', 'ends'];
-          break;
-        case 'boolean':
-          allowed = ['eq'];
-          break;
-        case 'date':
-        case 'number':
-          allowed = ['eq', 'gt', 'gte', 'lt', 'lte'];
-          break;
-      }
-      let output = [];
-      allowed.forEach(a => {
-        output.push({ label: labels[a], value: operators[a] });
-      });
-
-      return output;
+      return get(this, 'queryBuilder').getOperatorOptions(type);
     }
     return [];
   }),
@@ -63,30 +44,7 @@ export default Component.extend(QBuilder, {
   valueSelectorComponent: computed('selectedQuery', function() {
     if (get(this, 'selectedQuery')) {
       let { type, opts = false } = get(this, 'selectedQuery');
-
-      if (opts) {
-        return {
-          el: 'select',
-          opts
-        };
-      }
-
-      if (type === 'date') {
-        return {
-          el: 'calendar'
-        };
-      }
-
-      if (type === 'boolean') {
-        return {
-          el: 'radio',
-          opts: [true, false]
-        };
-      }
-
-      return {
-        el: 'text'
-      };
+      return get(this, 'queryBuilder').valueElementGenerator(opts, type);
     }
   }),
   generatedQuery: computed(
@@ -99,12 +57,7 @@ export default Component.extend(QBuilder, {
         op = get(this, 'selectedOperator'),
         output = {};
       if (query && val && op) {
-        let key = `${query.qvalue}__${op.value}`.underscore();
-
-        if (query.type === 'date') {
-          val = val.toISOString();
-        }
-        output[key] = val;
+        output = get(this, 'queryBuilder').generateQuery(query, op, val);
       }
       return output;
     }
@@ -119,6 +72,14 @@ export default Component.extend(QBuilder, {
         set(this, 'selectedOperator', null);
         set(this, 'isEditing', true);
       }
+    },
+    updateFilter() {
+      get(this, 'update')(get(this, 'generatedQuery'));
+      set(this, 'isEditing', false);
+    },
+    deleteFilter() {
+      get(this, 'delete')(get(this, 'generatedQuery'));
+      set(this, 'isEditing', false);
     }
   }
 });

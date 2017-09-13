@@ -1,29 +1,10 @@
-
-<div class="row">
-  <div class="col-sm-12">
-    <form {{action "search" on="submit"}}>
-    <div class="input-group">
-      {{input class="form-control" placeholder="Search for..." value=currentQuery}}
-      <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" {{action "search"}}>Search</button>
-      </span>
-    </div>
-    </form>
-  </div>
-</div>
-
-{{#if searchBills.isRunning}}
-  {{ui/loading-animation}}
-{{else}}
-  <div class="search-result-list mt-md-5">
-  {{#each results as |bill|}}
-    {{bills/bill-preview bill=bill class="mb-2"}}
-  {{else}}
-    {{#if searchTerms}}
-      <p class="text-center"><em>No results matching <code>{{searchTerms}}</code> </em></p>
-    {{else}}
-      <p class="text-center">Enter a search term to get started</p>
-    {{/if}}
-  {{/each}}
-  </div>
-{{/if}}
+{{yield (hash
+          input=(component "bills/search/search-input")
+          resultList=(component "bills/search/search-results"
+                        searching=searching
+                        searchTerms=searchTerms
+                        results=results)
+          searching=searching
+          results=results
+        )
+}}

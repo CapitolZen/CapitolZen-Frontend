@@ -1,10 +1,8 @@
-import { assert } from '@ember/debug';
-import { set, get } from '@ember/object';
-import Mixin from '@ember/object/mixin';
+import Service from '@ember/service';
+import { get } from '@ember/object';
 
-export default Mixin.create({
-  query: null,
-
+export default Service.extend({
+  // Query options
   // Query options
   operators: {
     lt: 'lt',
@@ -30,14 +28,9 @@ export default Mixin.create({
     eq: 'Equals'
   },
 
-  init() {
-    this._super(...arguments);
-    set(this, 'query', {});
-  },
-
   getOperatorOptions(type) {
-    let operators = get(this, 'operators'),
-      labels = get(this, 'operatorLabels');
+    let labels = get(this, 'operatorLabels'),
+      operators = get(this, 'operators');
     let allowed = [];
     switch (type) {
       case 'string':
@@ -55,20 +48,57 @@ export default Mixin.create({
     allowed.forEach(a => {
       output.push({ label: labels[a], value: operators[a] });
     });
+
     return output;
   },
 
-  addQuery(prop, op, value) {
-    let operators = get(this, 'operators');
-    assert('must provide valid operator', operators.hasOwnProperty(op));
-    let key = `${prop}__${operators[op]}`;
-    let nested = `query.${key}`;
-    set(this, nested, value);
+  /**
+   * @static
+   * @param query
+   * @param op
+   * @param val
+   * @return {{}}
+   */
+  generateQuery(query, op, val) {
+    let output = {};
+    let key = `${query.qvalue}__${op.value}`.underscore();
+
+    if (query.type === 'date') {
+      val = val.toISOString();
+    }
+    output[key] = val;
+    return output;
   },
 
-  removeQuery(prop) {
-    let q = get(this, 'query');
-    delete q[prop];
-    set(this, 'query', q);
+  /**
+   * @static
+   * @param opts
+   * @param type
+   * @return {*}
+   */
+  valueElementGenerator(opts, type) {
+    if (opts) {
+      return {
+        el: 'select',
+        opts
+      };
+    }
+
+    if (type === 'date') {
+      return {
+        el: 'calendar'
+      };
+    }
+
+    if (type === 'boolean') {
+      return {
+        el: 'radio',
+        opts: [true, false]
+      };
+    }
+
+    return {
+      el: 'text'
+    };
   }
 });

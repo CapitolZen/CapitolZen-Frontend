@@ -68,10 +68,20 @@ export default Component.extend({
         group: group,
         organization: get(this, 'currentUser.organization')
       });
-      wrapper.save();
-      get(this, 'flashMessages').success(
-        `${bill.get('stateId')} saved for ${group.get('title')}`
-      );
+      wrapper
+        .save()
+        .then(() => {
+          set(this, 'groupList', null);
+          get(this, 'flashMessages').success(
+            `${bill.get('stateId')} saved for ${group.get('title')}`
+          );
+        })
+        .catch(e => {
+          console.log(e);
+          get(this, 'flashMessages').danger(
+            'An error occurred and our team has been notified.'
+          );
+        });
     }
   }),
   actions: {

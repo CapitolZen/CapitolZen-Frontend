@@ -22,7 +22,7 @@
             {{/power-select}}
           {{/form.element}}
 
-          {{#form.element label="Report Type" property="static" as |el|}}
+          {{!--{{#form.element label="Report Type" property="static" as |el|}}
             <p>
             {{#bs-button-group
               value=isStatic
@@ -41,7 +41,7 @@
                   <strong>Dynamic</strong> reports update as new bills meet your report criteria
                 {{/if}}
               </em></p>
-          {{/form.element}}
+          {{/form.element}} --}}
 
           {{!--{{#form.element label="Logo Choice" property="logoChoice" as |el|}}
             <p>
@@ -75,8 +75,13 @@
               {{tools/filter-item opts=filterOptions isNew=true isEditing=true update=(action "updateFilterItem")}}
             </p>
             <hr class="my-1">
+
             {{#each filterList as |filter|}}
-              {{tools/filter-item filter=filter opts=filterOptions update=(action "updateFilterItem")}}
+              {{tools/filter-item
+                filter=filter
+                opts=filterOptions
+                update=(action "updateFilterItem")
+                delete=(action "deleteFilterItem")}}
             {{/each}}
 
           {{/form.element}}
