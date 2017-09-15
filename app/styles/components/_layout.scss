@@ -104,6 +104,18 @@ body > .ember-view {
   border-bottom: 1px solid $gray-lighter;
 }
 
+// Override for bootstrap 4.0 beta
+.card-body {
+  @extend .card-block;
+}
+
+.header-button-trigger {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 footer {
   width: 100%;
   text-align: center;
