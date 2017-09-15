@@ -7,7 +7,7 @@ export default Service.extend({
   _wrapperSize: 'full',
 
   wrapperSize: computed('_wrapperSize', {
-    get(key) {
+    get(key = 'full') {
       let sizemap = {
         full: 'col-md-12',
         half: 'col-md-6 offset-md-3'

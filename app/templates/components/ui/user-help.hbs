@@ -1,22 +1,25 @@
 <div class="row justify-content-between">
-  <div class="col-4">
-    <div class="card">
-      <img class="card-img-top" src="//unsplash.it/200/300?random" alt="Card image cap">
+  <div class="col-6">
+    <div class="card text-center">
+      <div class="card-header">
+        Chat Live
+      </div>
       <div class="card-body">
-        <h4 class="card-title">Get Help</h4>
-        <p class="card-text">We're here to help. </p>
+        <p class="card-text">Send us a message and we'll get back with you asap.</p>
         {{#bs-button type="primary" onClick=(action "triggerChat")}}Chat Now{{/bs-button}}
       </div>
     </div>
   </div>
-  <div class="col-4">
-    <div class="card">
-      <img class="card-img-top" src="//unsplash.it/200/300?random" alt="Card image cap">
+  <div class="col-6">
+    <div class="card text-center">
+      <div class="card-header">
+        Report Problem
+      </div>
       <div class="card-body">
-        <h4 class="card-title">Get Help</h4>
-        <p class="card-text">We're here to help. </p>
+        <p class="card-text">Report a problem and we'll fix it right away!</p>
         {{#bs-button onClick=(action "triggerFeedback")}}Give Feedback{{/bs-button}}
       </div>
     </div>
   </div>
 </div>
+
