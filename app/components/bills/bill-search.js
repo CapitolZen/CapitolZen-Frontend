@@ -6,6 +6,7 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   billSearch: service(),
+  router: service(),
   results: alias('billSearch.results'),
   currentQuery: alias('billSearch.query'),
   searchTerms: alias('billSearch.queries'),

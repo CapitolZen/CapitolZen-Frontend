@@ -25,19 +25,39 @@ body > .ember-view {
   color: #fff;
 }
 
+.is-open > .bm-outlet {
+  z-index: 100;
+}
 
-//
-// Light table styling
-//////////////////////////////////////////
+.nav-header {
+  transition: 0.15s ease-in-out;
+  height: 60px;
+}
+
+.top-nav-position {
+  top: 60px;
+}
+
+.search-navbar {
+  z-index: 99;
+}
+
+.dynamic-nav-menu {
+  a {
+    color: white;
+    font-weight: bolder;
+  }
+}
+
 .header > h1 {
   text-align: center;
-  margin-bottom:30px;
+  margin-bottom: 30px;
 }
 
 .footer {
-  border-top:1px solid $gray-lightest;
-  font-size:90%;
-  margin-top:30px;
+  border-top: 1px solid $gray-lightest;
+  font-size: 90%;
+  margin-top: 30px;
 }
 .bm-outlet {
   flex: 1;
@@ -54,13 +74,13 @@ body > .ember-view {
 
 .header {
   background: #fff;
-  padding:6px;
+  padding: 6px;
   text-align: center;
   position: relative;
 }
 
 .hamburger-wrapper {
-  float:left;
+  float: left;
   padding: 0px 8px;
   position: relative;
   z-index: 2;
@@ -93,6 +113,14 @@ footer {
 
 .app-container {
   flex-grow: 1;
+  @include media-breakpoint-up(md) {
+    margin-top: 3rem;
+    padding: 2rem 6rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 1rem 10rem;
+  }
 }
 
 //
@@ -118,11 +146,9 @@ h1.page-title {
 // Responsive
 //////////////////////////////////////////
 @include media-breakpoint-up(xs) {
-
 }
 
 @include media-breakpoint-up(sm) {
-
 }
 
 @include media-breakpoint-up(md) {
@@ -142,14 +168,13 @@ h1.page-title {
   background-color: $gray-lightest;
   &.file-upload-valid {
     //border-color: $brand-success;
-
   }
 }
 
 .badge-republican {
-  @include badge-variant(#dc3545)
+  @include badge-variant(#dc3545);
 }
 
 .badge-democrat {
-  @include badge-variant(#007bff)
+  @include badge-variant(#007bff);
 }

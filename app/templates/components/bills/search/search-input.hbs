@@ -2,7 +2,7 @@
   <div class="input-group">
     {{input class="form-control" placeholder="Search for..." value=currentQuery}}
     <span class="input-group-btn">
-        <button class="btn btn-primary" type="button" {{action "search"}}>Search</button>
+        <button class="btn btn-{{buttonType}}" type="button" {{action "search"}}>Search</button>
       </span>
   </div>
 </form>
