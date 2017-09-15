@@ -1,0 +1,29 @@
+{{#bs-nav type="pills" stacked=true as |nav|}}
+  {{#nav.item}}
+    <span class="font-weight-bold lead">
+      Organization
+    </span>
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "organization.index" invokeAction=(action "triggerLink")}}Edit{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "organization.team" invokeAction=(action "triggerLink")}}Team{{/nav.link-to}}
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "organization.billing" invokeAction=(action "triggerLink")}}
+      Billing
+    {{/nav.link-to}}
+  {{/nav.item}}
+
+  {{#nav.item}}
+    <span class="font-weight-bold lead">
+              My Personal Information
+          </span>
+  {{/nav.item}}
+  {{#nav.item}}
+    {{#nav.link-to "user" invokeAction=(action "triggerLink")}}
+      Edit Profile
+    {{/nav.link-to}}
+  {{/nav.item}}
+{{/bs-nav}}

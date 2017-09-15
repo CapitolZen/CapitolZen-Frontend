@@ -1,0 +1,61 @@
+  {{#if topNavPosition}}
+    <div class="row justify-content-center">
+      <div class="col-6">
+        {{#bills/bill-search as |s|}}
+          <div class="row justify-content-between">
+            <div class="col-10">
+              {{s.input transition=true buttonType="outline-secondary"}}
+            </div>
+            <div class="col-2">
+              {{#if s.searching}}
+                {{ui/inline-loading}}
+              {{/if}}
+            </div>
+          </div>
+        {{/bills/bill-search}}
+      </div>
+    </div>
+  {{else}}
+    <div class="row justify-content-between">
+      <div class="col-6">
+        {{#bills/bill-search class="row" as |s|}}
+          <div class="col-10">
+            {{s.input transition=true buttonType="outline-secondary"}}
+          </div>
+          <div class="col-2">
+            {{#if s.searching}}
+              {{ui/inline-loading}}
+            {{/if}}
+          </div>
+        {{/bills/bill-search}}
+      </div>
+      <div class="col-6">
+        {{#bs-nav type="pills" class="dynamic-nav-menu justify-content-end" as |nav|}}
+          {{#nav.item}}
+            {{#nav.link-to "groups"}}
+              {{fa-icon "id-card"}}<span class="hidden-md-down"> Clients</span>
+            {{/nav.link-to}}
+          {{/nav.item}}
+
+          {{#nav.item}}
+            {{#nav.link-to "bills.saved"}}
+              {{fa-icon "folder-open"}}<span class="hidden-md-down"> Saved Bills</span>
+            {{/nav.link-to}}
+          {{/nav.item}}
+
+          {{#nav.item}}
+            {{#nav.link-to "bills"}}
+              {{fa-icon "file-text"}} <span class="hidden-md-down"> All Bills</span>
+            {{/nav.link-to}}
+          {{/nav.item}}
+
+          {{#nav.item}}
+            {{#nav.link-to "reports"}}
+              {{fa-icon "map"}} <span class="hidden-md-down"> Reports</span>
+            {{/nav.link-to}}
+          {{/nav.item}}
+        {{/bs-nav}}
+      </div>
+    </div>
+  {{/if}}
+
