@@ -10,6 +10,7 @@ export default Component.extend({
   store: service(),
   currentUser: service(),
   flashMessages: service(),
+  request: service(),
   router: service('-routing'),
   model: false,
   wrapperList: [],
@@ -76,7 +77,6 @@ export default Component.extend({
     function() {
       let wrappers = get(this, 'wrapperList');
       let excluded = get(this, 'excludedWrappers');
-      wrappers.removeObjects(excluded);
       return wrappers;
     }
   ),
@@ -89,15 +89,30 @@ export default Component.extend({
     }
 
     let filter = getWithDefault(this, 'model.filter', {});
-    let query = { group: g.id };
-    merge(query, filter);
     try {
-      let wrappers = yield this.get('store').query('wrapper', query);
-      this.set('wrapperList', wrappers);
+      let { data } = yield get(
+        this,
+        'request'
+      ).post('/wrappers/filter_wrappers/', {
+        data: {
+          filters: filter,
+          group: get(this, 'selectedGroup.id')
+        }
+      });
+
+      let store = get(this, 'store');
+      let records = A();
+      data.forEach(wrapper => {
+        store.push(store.normalize('wrapper', wrapper));
+        let peek = store.peekRecord('wrapper', wrapper.id);
+        records.addObject(peek);
+      });
+
+      set(this, 'wrapperList', records);
     } catch (e) {
       console.log(e);
     }
-  }).drop(),
+  }),
   selectedLayout: computed('preferences', {
     get() {
       let d = get(this, 'layoutOptions')[0];
@@ -131,7 +146,7 @@ export default Component.extend({
     },
     {
       label: 'Sponsor Name',
-      qvalue: 'bill__sponsor__full_name',
+      qvalue: 'bill__sponsor__last_name',
       type: 'string'
     },
     {

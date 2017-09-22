@@ -4,9 +4,13 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
   session: service('session'),
   currentUser: service('current-user'),
+  menuState: false,
   actions: {
     invalidateSession() {
       this.get('session').invalidate();
+    },
+    toggleMenuState() {
+      this.toggleProperty('menuState');
     }
   }
 });
