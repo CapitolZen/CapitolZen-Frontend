@@ -102,7 +102,7 @@
       {{ui/loading-animation}}
     {{else}}
       <div class="list-group">
-        {{#each wrapperPreviewList as |wrapper|}}
+        {{#each wrapperList as |wrapper|}}
           <div class="list-group-item justify-content-between">
             {{wrapper.bill.stateId}}
             {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
