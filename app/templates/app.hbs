@@ -1,80 +1,9 @@
-<div id="main-header" class="header nav-header fixed-top clearfix">
-  <div class="hamburger-wrapper">
-    <a class="hamburger" {{action "toggleMenuState"}}><i aria-hidden="true" class="fa fa-bars"></i></a>
-  </div>
-  <div class="brand">
-    {{#link-to "dashboard"}}
-      <img src="/assets/images/capitolzenwordmark_logo.svg" width="175px"/>
-    {{/link-to}}
-  </div>
-  <ul class="user-menu-wrapper nav">
-    {{!--{{notification/notification-center}} --}}
 
-    {{#bs-button onClick=(action (mut helpModal) true) class="btn-link header-button-trigger"}}
-      {{fa-icon "life-ring"}} <span class="hidden-md-down pl-1"> Help</span>
-    {{/bs-button}}
-
-    {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
-      {{#dd.toggle}}
-        {{fa-icon "cogs"}} <span class="hidden-md-down pl-1"> Settings</span>
-      {{/dd.toggle}}
-      {{#dd.menu align="right" as |menu|}}
-
-        {{#menu.item}}
-          <span class="dropdown-item-title">
-              Organization
-          </span>
-        {{/menu.item}}
-
-        {{#menu.item}}
-          {{#menu.link-to 'organization.index'}}Edit{{/menu.link-to}}
-        {{/menu.item}}
-
-        {{#menu.item}}
-          {{#menu.link-to 'organization.team'}}Team{{/menu.link-to}}
-        {{/menu.item}}
-
-        {{#menu.item}}
-          {{#menu.link-to 'organization.billing'}}Billing{{/menu.link-to}}
-        {{/menu.item}}
-
-        {{#menu.item}}
-          <span class="dropdown-item-title">
-              My Personal Information
-          </span>
-        {{/menu.item}}
-
-        {{#menu.item}}
-          {{#menu.link-to 'user'}}Edit Profile{{/menu.link-to}}
-        {{/menu.item}}
-
-        {{menu.divider}}
-        {{#menu.item}}
-          <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
-        {{/menu.item}}
-
-      {{/dd.menu}}
-    {{/bs-dropdown}}
+{{ui/static-nav toggler=(action "toggleMenuState") menuState=menuState}}
+{{ui/dynamic-nav toggler=(action "toggleMenuState") menuState=menuState}}
 
 
-    {{#bs-modal open=helpModal size="lg" onHidden=(action (mut helpModal) false) as |modal|}}
-      {{#modal.header}}
-        <h4 class="modal-title text-center">
-          Get Help
-        </h4>
-      {{/modal.header}}
-      {{#modal.body}}
-        {{ui/user-help dismiss=(action (mut helpModal) false)}}
-      {{/modal.body}}
-    {{/bs-modal}}
-  </ul>
-</div>
-
-
-{{!--{{ui/dynamic-nav toggleBurder=(action "toggleMenuState")}}--}}
-
-
-{{#burger-menu animation="push" open=menuState as |burger|}}
+{{#burger-menu animation="push" open=menuState locked=locked as |burger|}}
   {{#burger.menu itemTagName="li" as |menu|}}
     <a class="close" {{action burger.state.actions.close}}><i aria-hidden="true" class="fa fa-close"></i></a>
 

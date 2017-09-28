@@ -34,12 +34,23 @@ body > .ember-view {
   height: 60px;
 }
 
+.ember-burger-menu.is-open {
+  position: absolute;
+  top: 0;
+}
 .top-nav-position {
   top: 60px;
+  @include media-breakpoint-down(md) {
+    top: -60px;
+  }
 }
 
 .search-navbar {
-  z-index: 99;
+  z-index: 100;
+}
+
+#settings-menu-open {
+  z-index: 102;
 }
 
 .dynamic-nav-menu {

@@ -10,8 +10,14 @@ export default Component.extend(RespondsToScroll, {
   windoc: service(),
   tagName: 'nav',
   attributeBindings: ['style'],
-  classNames: ['navbar', 'bg-primary', 'nav-header', 'search-navbar'],
-  classNameBindings: ['position', 'topNavPosition'],
+  classNames: [
+    'navbar',
+    'bg-primary',
+    'nav-header',
+    'search-navbar',
+    'fixed-top'
+  ],
+  classNameBindings: ['topNavPosition'],
   cacheTop: 0,
   scrollTop: 0,
   top: alias('windoc.scrollTop'),
@@ -21,7 +27,7 @@ export default Component.extend(RespondsToScroll, {
       function() {
         set(this, 'cacheTop', get(this, 'top'));
       },
-      100
+      50
     );
   },
   position: computed('media.isMobile', function() {
@@ -32,10 +38,11 @@ export default Component.extend(RespondsToScroll, {
     }
   }),
   topNavPosition: computed('top', function() {
-    if (get(this, 'media.isMobile')) {
-      return false;
-    }
-
     return get(this, 'top') <= 15;
-  })
+  }),
+  actions: {
+    toggleMenuState() {
+      get(this, 'toggler')();
+    }
+  }
 });
