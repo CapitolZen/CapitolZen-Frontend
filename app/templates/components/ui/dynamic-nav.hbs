@@ -1,12 +1,10 @@
   {{#if topNavPosition}}
     <div class="row justify-content-center">
-      <div class="col-6">
+      <div class="col-md-6">
         {{#bills/bill-search as |s|}}
           <div class="row justify-content-between">
-            <div class="col-10">
+            <div class="col-12">
               {{s.input transition=true buttonType="outline-secondary"}}
-            </div>
-            <div class="col-2">
               {{#if s.searching}}
                 {{ui/inline-loading}}
               {{/if}}
@@ -17,7 +15,12 @@
     </div>
   {{else}}
     <div class="row justify-content-between">
-      <div class="col-6">
+      <div class="col-1">
+        <div class="hamburger-wrapper">
+          <a class="hamburger text-white" {{action "toggleMenuState"}}><i aria-hidden="true" class="fa fa-bars"></i></a>
+        </div>
+      </div>
+      <div class="col-5 hidden-md-down">
         {{#bills/bill-search class="row" as |s|}}
           <div class="col-10">
             {{s.input transition=true buttonType="outline-secondary"}}
@@ -43,7 +46,7 @@
             {{/nav.link-to}}
           {{/nav.item}}
 
-          {{#nav.item}}
+          {{#nav.item class="hidden-md-down"}}
             {{#nav.link-to "bills"}}
               {{fa-icon "file-text"}} <span class="hidden-md-down"> All Bills</span>
             {{/nav.link-to}}
