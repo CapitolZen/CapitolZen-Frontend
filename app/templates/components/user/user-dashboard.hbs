@@ -1,21 +1,24 @@
 <h3>Welcome {{userName}}!</h3>
-<p class="lead"><em>What's happening now:</em></p>
-<hr class="mb-2">
+
 <div class="row">
-  <div class="col-md-6">
-    <h4>Quick Links</h4>
+  <div class="col-md-8">
+    <p class="lead"><em>Latest Bills</em></p>
+    {{#each recentBills as |bill|}}
+      {{bills/bill-preview bill=bill class="mb-2"}}
+    {{/each}}
+  </div>
+  <div class="col-md-4">
     <div class="list-group">
       {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}Watched Bills{{/link-to}}
       {{#link-to "bills.search" class="list-group-item list-group-item-action"}}Search Bills{{/link-to}}
       {{#link-to "organization.team" class="list-group-item list-group-item-action"}}My Team{{/link-to}}
     </div>
-
-  </div>
-  <div class="col-md-6">
+    <hr class="my-2">
     <h4>My Clients</h4>
-    {{#each queriedGroup as |group|}}
-      {{groups/group-preview group=group size="full"}}
-    {{/each}}
+    <div class="list-group">
+      {{#each queriedGroup as |group|}}
+        {{#link-to "groups.detail" group.id class="list-group-item list-group-item-action"}}{{group.title}}{{/link-to}}
+      {{/each}}
+    </div>
   </div>
-
 </div>

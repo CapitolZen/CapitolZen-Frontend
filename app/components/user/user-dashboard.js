@@ -23,8 +23,7 @@ export default Component.extend({
   }).on('init'),
   fetchBills: task(function*() {
     let bills = yield get(this, 'store').query('bill', {
-      limit: '10',
-      ordering: 'last_action_date'
+      introduced_in: 7
     });
     set(this, 'recentBills', bills);
   }).on('init'),
