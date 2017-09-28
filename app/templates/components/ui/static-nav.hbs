@@ -19,7 +19,7 @@
   {{#bs-button onClick=(action (mut menuModal) true) class="btn-link header-button-trigger"}}
     {{fa-icon "cogs"}} <span class="hidden-md-down pl-1"> Settings</span>
   {{/bs-button}}
-  
+
   {{#bs-modal open=helpModal size="lg" onHidden=(action (mut helpModal) false) as |modal|}}
     {{#modal.header}}
       <h4 class="modal-title text-center">
