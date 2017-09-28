@@ -204,3 +204,8 @@ h1.page-title {
 .badge-democrat {
   @include badge-variant(#007bff);
 }
+
+#us_report_button {
+  right: unset;
+  left: 30px;
+}
