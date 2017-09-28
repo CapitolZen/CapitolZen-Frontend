@@ -22,67 +22,33 @@ export default Component.extend({
   listGroups: task(function*() {
     let bill = get(this, 'bill');
 
-    let storeHash = {
-      wrappers: get(this, 'store').query('wrapper', {
-        bill__state_id: bill.get('stateId'),
-        bill__state: bill.get('state')
-      }),
-      groups: get(this, 'store').findAll('group')
-    };
-
-    let { wrappers, groups } = yield hash(storeHash);
-
-    let wrapperGroupIds = wrappers.map(w => {
-      return get(w, 'group.id');
+    let groups = yield get(this, 'store').query('group', {
+      without_bill: bill.get('id')
     });
 
-    if (wrapperGroupIds.length && groups.length) {
-      let filteredList = [];
-      groups.forEach(g => {
-        if (wrapperGroupIds.indexOf(g.get('id')) < 0) {
-          filteredList.push(g);
-        }
-      });
-      set(this, 'groupList', filteredList);
-    } else {
-      set(this, 'groupList', groups);
-    }
+    set(this, 'groupList', groups);
   }),
   addBillToGroup: task(function*(group) {
-    let bill = get(this, 'bill');
-
-    let storeHash = {
-      wrapper: get(this, 'store').query('wrapper', {
-        bill__state_id: bill.get('stateId'),
-        bill__state: bill.get('state'),
-        group: group.get('id')
-      }),
-      model: get(this, 'store').findRecord('bill', get(bill, 'id'))
-    };
-
-    let { wrapper, model } = yield hash(storeHash);
-
-    if (!wrapper.get('length')) {
-      wrapper = this.get('store').createRecord('wrapper', {
-        bill: model,
-        group: group,
-        organization: get(this, 'currentUser.organization')
+    let bill = get(this, 'bill.content');
+    let wrapper = this.get('store').createRecord('wrapper', {
+      bill: bill,
+      group: group,
+      organization: get(this, 'currentUser.organization')
+    });
+    wrapper
+      .save()
+      .then(() => {
+        set(this, 'groupList', null);
+        get(this, 'flashMessages').success(
+          `${bill.get('stateId')} saved for ${group.get('title')}`
+        );
+      })
+      .catch(e => {
+        console.log(e);
+        get(this, 'flashMessages').danger(
+          'An error occurred and our team has been notified.'
+        );
       });
-      wrapper
-        .save()
-        .then(() => {
-          set(this, 'groupList', null);
-          get(this, 'flashMessages').success(
-            `${bill.get('stateId')} saved for ${group.get('title')}`
-          );
-        })
-        .catch(e => {
-          console.log(e);
-          get(this, 'flashMessages').danger(
-            'An error occurred and our team has been notified.'
-          );
-        });
-    }
   }),
   actions: {
     toggleActive() {

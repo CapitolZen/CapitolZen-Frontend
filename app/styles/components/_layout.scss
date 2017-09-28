@@ -37,6 +37,9 @@ body > .ember-view {
 .ember-burger-menu.is-open {
   position: absolute;
   top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 .top-nav-position {
   top: 60px;
