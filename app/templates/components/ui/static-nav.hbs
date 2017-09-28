@@ -16,49 +16,32 @@
     {{fa-icon "question-circle"}} <span class="hidden-md-down pl-1"> Help</span>
   {{/bs-button}}
 
+  {{#bs-button onClick=(action (mut menuModal) true) class="btn-link header-button-trigger"}}
+    {{fa-icon "cogs"}} <span class="hidden-md-down pl-1"> Settings</span>
+  {{/bs-button}}
+  
+  {{#bs-modal open=helpModal size="lg" onHidden=(action (mut helpModal) false) as |modal|}}
+    {{#modal.header}}
+      <h4 class="modal-title text-center">
+        Get Help
+      </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      {{ui/user-help dismiss=(action (mut helpModal) false)}}
+    {{/modal.body}}
+  {{/bs-modal}}
 
-  {{#bs-dropdown tagName="li" class="nav-item" as |dd|}}
-    {{#dd.toggle}}
-      {{fa-icon "cogs"}} <span class="hidden-md-down pl-1"> Settings</span>
-    {{/dd.toggle}}
-    {{#dd.menu id="settings-menu-open" align="right" as |menu|}}
+  {{#bs-modal open=menuModal size="lg" onHidden=(action (mut menuModal) false) as |modal|}}
+    {{#modal.header}}
+      <h4 class="modal-title text-center">
+        Settings Menu
+      </h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      {{ui/nav-list dismiss=(action (mut menuModal) false)}}
+    {{/modal.body}}
 
-      {{#menu.item}}
-        <span class="dropdown-item-title">
-              Organization
-          </span>
-      {{/menu.item}}
-
-      {{#menu.item}}
-        {{#menu.link-to 'organization.index'}}Edit{{/menu.link-to}}
-      {{/menu.item}}
-
-      {{#menu.item}}
-        {{#menu.link-to 'organization.team'}}Team{{/menu.link-to}}
-      {{/menu.item}}
-
-      {{#menu.item}}
-        {{#menu.link-to 'organization.billing'}}Billing{{/menu.link-to}}
-      {{/menu.item}}
-
-      {{#menu.item}}
-        <span class="dropdown-item-title">
-              My Personal Information
-          </span>
-      {{/menu.item}}
-
-      {{#menu.item}}
-        {{#menu.link-to 'user'}}Edit Profile{{/menu.link-to}}
-      {{/menu.item}}
-
-      {{menu.divider}}
-      {{#menu.item}}
-        <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
-      {{/menu.item}}
-
-    {{/dd.menu}}
-  {{/bs-dropdown}}
-
+  {{/bs-modal}}
 
   {{#bs-modal open=helpModal size="lg" onHidden=(action (mut helpModal) false) as |modal|}}
     {{#modal.header}}
