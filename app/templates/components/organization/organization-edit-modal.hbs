@@ -1,0 +1,23 @@
+{{#bs-modal class="organization-modal modal-center" open=open size="lg" onHidden=onHidden as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title text-center">
+      Organization
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{#bs-tab as |tab|}}
+      {{#tab.pane title="General"}}
+        {{organization/organization-edit organization=organization}}
+      {{/tab.pane}}
+      {{#tab.pane title="Team"}}
+        <p>...</p>
+      {{/tab.pane}}
+      {{#tab.pane title="Billing"}}
+        <p>...</p>
+      {{/tab.pane}}
+      {{#tab.pane title="Plan"}}
+        <p>...</p>
+      {{/tab.pane}}
+    {{/bs-tab}}
+  {{/modal.body}}
+{{/bs-modal}}

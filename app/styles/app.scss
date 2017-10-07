@@ -1,4 +1,3 @@
-
 //
 // FONTS
 // -------------------------------------------------
@@ -7,29 +6,28 @@
 //
 // VARIABLES
 // -------------------------------------------------
-@import "app/variables";
-@import "bootstrap";
-
+@import 'app/variables';
+@import 'bootstrap';
 
 //
 // ADDONS
 //--------------------------------------------------
 @import 'ember-burger-menu';
 @import 'ember-power-select/themes/bootstrap';
-@import "ember-basic-dropdown";
+@import 'ember-basic-dropdown';
 @import 'ember-power-select';
-@import "ember-power-calendar";
+@import 'ember-power-calendar';
 //
 // APP COMPONENTS
 // -------------------------------------------------
-@import "components/utils";
-@import "components/card";
-@import "components/layout";
-@import "components/nav";
-@import "components/tables";
-@import "components/animations";
-@import "components/activities";
-@import "components/text-editor";
+@import 'components/utils';
+@import 'components/card';
+@import 'components/layout';
+@import 'components/nav';
+@import 'components/tables';
+@import 'components/animations';
+@import 'components/activities';
+@import 'components/text-editor';
+@import 'components/form';
 
-@import "app/stuff";
-
+@import 'app/stuff';

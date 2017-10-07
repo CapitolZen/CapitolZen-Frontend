@@ -1,7 +1,29 @@
 .invite-summary {
-  padding:10px 0;
-  border-bottom:2px dotted $gray-lighter;
+  padding: 10px 0;
+  border-bottom: 2px dotted $gray-lighter;
   &:last-child {
-    border-bottom:none;
+    border-bottom: none;
+  }
+}
+.help-modal {
+  .card {
+    margin: 0;
+  }
+}
+
+.account-modal {
+  .modal-content {
+    width: 600px;
+  }
+}
+
+.organization-modal {
+  .nav-tabs {
+  }
+  .modal-body {
+    padding: 15px 0 0 0;
+  }
+  .modal-content {
+    width: 800px;
   }
 }

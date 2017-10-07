@@ -1,7 +1,7 @@
 <div class="hamburger-wrapper">
   <a class="hamburger" {{action "toggleMenuState" on="click"}}><i aria-hidden="true" class="fa fa-bars"></i></a>
 </div>
-<div class="brand pt-1">
+<div class="brand">
   {{#link-to "dashboard"}}
     <img src="/assets/images/capitolzenwordmark_logo.svg" class="hidden-md-down" width="175px"/>
     <h4 class="hidden-md-up">Capitol Zen</h4>
@@ -9,48 +9,51 @@
 
 
 </div>
-<ul class="user-menu-wrapper nav">
-  {{!--{{notification/notification-center}} --}}
 
-  {{#bs-button onClick=(action (mut helpModal) true) class="btn-link header-button-trigger"}}
-    {{fa-icon "question-circle"}} <span class="hidden-md-down pl-1"> Help</span>
-  {{/bs-button}}
+{{#bs-nav class="user-menu-wrapper" type="" as |nav|}}
+  {{#nav.item}}
+    <a href="#" {{action (action (mut helpModal) true) on="click"}}>
+      {{fa-icon "question-circle"}} <span class="hidden-md-down"> Help</span>
+    </a>
+  {{/nav.item}}
+  {{#nav.dropdown tagName="li" class="nav-item" as |dd|}}
+    {{#dd.toggle}}
+      <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
+    {{/dd.toggle}}
+    {{#dd.menu align="right" as |menu|}}
+      {{#menu.item}}
+        <span class="dropdown-item-title">
+              Organization
+          </span>
+      {{/menu.item}}
+      {{#menu.item}}
+        <a href="#" class="dropdown-item" {{action (action (mut organizationModal) true) on="click"}}>
+          Edit
+        </a>
+      {{/menu.item}}
+      {{#menu.item}}
+        <span class="dropdown-item-title">
+              My Personal Information
+          </span>
+      {{/menu.item}}
+      {{#menu.item}}
+        <a href="#" class="dropdown-item" {{action (action (mut accountModal) true) on="click"}}>
+          My Profile
+        </a>
+      {{/menu.item}}
+      {{menu.divider}}
+      {{#menu.item}}
+        <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
+      {{/menu.item}}
+    {{/dd.menu}}
+  {{/nav.dropdown}}
 
-  {{#bs-button onClick=(action (mut menuModal) true) class="btn-link header-button-trigger"}}
-    {{fa-icon "cogs"}} <span class="hidden-md-down pl-1"> Settings</span>
-  {{/bs-button}}
+{{/bs-nav}}
 
-  {{#bs-modal open=helpModal size="lg" onHidden=(action (mut helpModal) false) as |modal|}}
-    {{#modal.header}}
-      <h4 class="modal-title text-center">
-        Get Help
-      </h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      {{ui/user-help dismiss=(action (mut helpModal) false)}}
-    {{/modal.body}}
-  {{/bs-modal}}
+{{!--
+  Modals
+--}}
+{{global/help-modal open=helpModal onHidden=(action (mut helpModal) false)}}
+{{user/user-edit-modal user=currentUser.user open=accountModal onHidden=(action (mut accountModal) false)}}
+{{organization/organization-edit-modal organization=currentUser.organization open=organizationModal onHidden=(action (mut organizationModal) false)}}
 
-  {{#bs-modal open=menuModal size="lg" onHidden=(action (mut menuModal) false) as |modal|}}
-    {{#modal.header}}
-      <h4 class="modal-title text-center">
-        Settings Menu
-      </h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      {{ui/nav-list dismiss=(action (mut menuModal) false)}}
-    {{/modal.body}}
-
-  {{/bs-modal}}
-
-  {{#bs-modal open=helpModal size="lg" onHidden=(action (mut helpModal) false) as |modal|}}
-    {{#modal.header}}
-      <h4 class="modal-title text-center">
-        Get Help
-      </h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      {{ui/user-help dismiss=(action (mut helpModal) false)}}
-    {{/modal.body}}
-  {{/bs-modal}}
-</ul>

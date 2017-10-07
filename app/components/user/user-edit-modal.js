@@ -6,6 +6,7 @@ import lookupValidator from 'ember-changeset-validations';
 import UserValidations from '../../validators/user';
 
 export default Component.extend({
+  tagName: '',
   flashMessages: service(),
   init() {
     this._super(...arguments);

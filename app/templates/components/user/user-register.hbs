@@ -14,8 +14,8 @@
       {{form.element controlType="password" label="Confirm" placeholder="Confirm" property="confirmPassword"}}
     </div>
     <div class="card-footer">
-      {{bs-button defaultText="Create Account" type="primary" buttonType="submit" class="ceneter-block"}}
-      {{#link-to 'anon.login' class="pull-right"}}I already have an account{{/link-to}}
+      {{bs-button textState=buttonState disabled=formSubmitButtonDisabled defaultText="Create Account" type="primary" buttonType="submit"}}
+      {{#link-to 'anon.login' class="btn btn-secondary pull-right"}}I already have an account{{/link-to}}
     </div>
   {{/bs-form}}
 {{/if}}

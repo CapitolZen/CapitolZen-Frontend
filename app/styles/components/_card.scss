@@ -1,8 +1,20 @@
 .card {
   margin-bottom: 1rem;
+  box-shadow: 0px 0px 4px 0 #c4c4c4;
 }
 
 .tab-pane {
   > .card {
+  }
+}
+
+.card-footer.card-footer-action {
+  padding: 0;
+  .btn {
+    display: block;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 0;
   }
 }
