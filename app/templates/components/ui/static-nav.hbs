@@ -27,9 +27,13 @@
           </span>
       {{/menu.item}}
       {{#menu.item}}
-        <a href="#" class="dropdown-item" {{action (action (mut organizationModal) true) on="click"}}>
-          Edit
-        </a>
+        {{#nav.link-to "organization.index"}}Edit{{/nav.link-to}}
+      {{/menu.item}}
+      {{#menu.item}}
+        {{#nav.link-to "organization.team"}}Team{{/nav.link-to}}
+      {{/menu.item}}
+      {{#menu.item}}
+        {{#nav.link-to "organization.billing"}}Billing{{/nav.link-to}}
       {{/menu.item}}
       {{#menu.item}}
         <span class="dropdown-item-title">
@@ -55,5 +59,6 @@
 --}}
 {{global/help-modal open=helpModal onHidden=(action (mut helpModal) false)}}
 {{user/user-edit-modal user=currentUser.user open=accountModal onHidden=(action (mut accountModal) false)}}
-{{organization/organization-edit-modal organization=currentUser.organization open=organizationModal onHidden=(action (mut organizationModal) false)}}
+{{organization/organization-edit-modal organization=currentUser.organization open=organizationModal
+                                       onHidden=(action (mut organizationModal) false)}}
 
