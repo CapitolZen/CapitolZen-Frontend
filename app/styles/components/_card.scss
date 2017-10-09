@@ -1,6 +1,11 @@
 .card {
   margin-bottom: 1rem;
   box-shadow: 0px 0px 4px 0 #c4c4c4;
+  .card-title > a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .tab-pane {

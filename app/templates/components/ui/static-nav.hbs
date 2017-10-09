@@ -6,8 +6,6 @@
     <img src="/assets/images/capitolzenwordmark_logo.svg" class="hidden-md-down" width="175px"/>
     <h4 class="hidden-md-up">Capitol Zen</h4>
   {{/link-to}}
-
-
 </div>
 
 {{#bs-nav class="user-menu-wrapper" type="" as |nav|}}
@@ -41,9 +39,7 @@
           </span>
       {{/menu.item}}
       {{#menu.item}}
-        <a href="#" class="dropdown-item" {{action (action (mut accountModal) true) on="click"}}>
-          My Profile
-        </a>
+        {{#nav.link-to "user.edit"}}My Profile{{/nav.link-to}}
       {{/menu.item}}
       {{menu.divider}}
       {{#menu.item}}

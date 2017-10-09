@@ -5,7 +5,6 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
   currentUser: service('current-user'),
   model(params) {
-    console.log(this.get('currentUser.organization.id'));
     return RSVP.hash({
       organization: this.get('store').findRecord(
         'organization',
