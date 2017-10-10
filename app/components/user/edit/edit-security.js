@@ -12,9 +12,9 @@ export default Component.extend(SingleFormState, {
   init() {
     this._super(...arguments);
     let model = {
-      currentPassword: '',
+      current_password: '',
       password: '',
-      confirmPassword: ''
+      confirm_password: ''
     };
 
     this.set('model', model);
@@ -45,7 +45,6 @@ export default Component.extend(SingleFormState, {
           get(this, 'flashMessages').success('Password Updated');
         })
         .catch(data => {
-          console.log(data);
           this.handleServerFormErrors(data);
           this.setFormState('default');
         });

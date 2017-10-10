@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import EmberObject, { computed, get, set } from '@ember/object';
 import SingleFormState from '../../mixins/single-form-state';
-import UserRegistration from '../../validators/userRegistration';
+import UserRegistration from '../../validators/user-registration';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 
