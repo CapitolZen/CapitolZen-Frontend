@@ -37,18 +37,4 @@ jobs:
             ### JOBS=1 ember test
             - run:
                 name: Run Ember Tests
-                command: echo "skipping tests"
-
-            ##
-            # DEPLOYMENT
-            ##
-            - run: bash .circleci/setup-heroku.sh
-            - add_ssh_keys:
-                fingerprints:
-                  - "SHA256:BggD8RSk738Q0ebf0O/wE/Hv9NktSXewS4pWlq0LuiY mwisner@Matts-MacBook-Pro-2.local"
-            - run:
-                name: Deploy Production (If master)
-                command: |
-                  if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                    git push heroku master
-                  fi
+                command: JOBS=1 ember test
