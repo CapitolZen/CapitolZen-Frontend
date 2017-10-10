@@ -48,10 +48,6 @@ body > .ember-view {
   }
 }
 
-.search-navbar {
-  z-index: 100;
-}
-
 #settings-menu-open {
   z-index: 102;
 }
@@ -61,17 +57,6 @@ body > .ember-view {
     color: white;
     font-weight: bolder;
   }
-}
-
-.header > h1 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.footer {
-  border-top: 1px solid $gray-lightest;
-  font-size: 90%;
-  margin-top: 30px;
 }
 .bm-outlet {
   flex: 1;
@@ -86,28 +71,38 @@ body > .ember-view {
   flex-direction: column;
 }
 
+//
+// Header
+//////////////////////////////////////////
+.hamburger-wrapper {
+  z-index: 2;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .header {
   background: #fff;
-  padding: 6px;
-  text-align: center;
+  padding: 0;
+  display: flex;
   position: relative;
-}
-
-.hamburger-wrapper {
-  float: left;
-  padding: 0px 8px;
-  position: relative;
-  z-index: 2;
-}
-
-.brand {
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  top: 0;
-  padding: 4px;
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .brand {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .group-header {
@@ -118,16 +113,20 @@ body > .ember-view {
   border-bottom: 1px solid $gray-lighter;
 }
 
-// Override for bootstrap 4.0 beta
-.card-body {
-  @extend .card-block;
-}
-
 .header-button-trigger {
   cursor: pointer;
   &:hover {
     text-decoration: none;
   }
+}
+
+//
+// Footer
+//////////////////////////////////////////
+.footer {
+  border-top: 1px solid $gray-lightest;
+  font-size: 90%;
+  margin-top: 30px;
 }
 
 footer {
@@ -150,7 +149,49 @@ footer {
 }
 
 //
-// Light table styling?
+// Search Navbar
+//////////////////////////////////////////
+.search-navbar {
+  z-index: 100;
+  padding: 0;
+  flex-direction: row;
+  .hamburger-wrapper {
+    color: #fff;
+    z-index: 102;
+  }
+  .bill-search-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    > div {
+      width: 480px;
+    }
+    input {
+      border: 1px solid $gray-lighter;
+    }
+    button {
+      border: 1px solid $gray-lighter;
+      color: $gray-dark;
+      background: $gray-lightest;
+    }
+  }
+  .dynamic-nav-menu {
+    z-index: 102;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+}
+
+//
+// Light table styling
 //////////////////////////////////////////
 .lt-head-wrap {
   padding-bottom: 0.5rem;
@@ -164,10 +205,6 @@ footer {
   border-top: $border-default;
 }
 
-// Page Title
-h1.page-title {
-  font-weight: 300;
-}
 //
 // Responsive
 //////////////////////////////////////////
@@ -189,6 +226,9 @@ h1.page-title {
   }
 }
 
+//
+// Misc Fixes
+//////////////////////////////////////////
 .file-upload-container {
   border: 1px solid $gray-lighter;
   background-color: $gray-lightest;
@@ -208,4 +248,12 @@ h1.page-title {
 #us_report_button {
   right: unset;
   left: 30px;
+}
+
+.card-body {
+  @extend .card-block;
+}
+
+h1.page-title {
+  font-weight: 300;
 }

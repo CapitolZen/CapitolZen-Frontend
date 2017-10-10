@@ -1,0 +1,60 @@
+<div class="hamburger-wrapper">
+  <a class="hamburger" {{action "toggleMenuState" on="click"}}><i aria-hidden="true" class="fa fa-bars"></i></a>
+</div>
+<div class="brand">
+  {{#link-to "dashboard"}}
+    <img src="/assets/images/capitolzenwordmark_logo.svg" class="hidden-md-down" width="175px"/>
+    <h4 class="hidden-md-up">Capitol Zen</h4>
+  {{/link-to}}
+</div>
+
+{{#bs-nav class="user-menu-wrapper" type="" as |nav|}}
+  {{#nav.item}}
+    <a href="#" {{action (action (mut helpModal) true) on="click"}}>
+      {{fa-icon "question-circle"}} <span class="hidden-md-down"> Help</span>
+    </a>
+  {{/nav.item}}
+  {{#nav.dropdown tagName="li" class="nav-item" as |dd|}}
+    {{#dd.toggle}}
+      <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
+    {{/dd.toggle}}
+    {{#dd.menu align="right" as |menu|}}
+      {{#menu.item}}
+        <span class="dropdown-item-title">
+              Organization
+          </span>
+      {{/menu.item}}
+      {{#menu.item}}
+        {{#nav.link-to "organization.index"}}Edit{{/nav.link-to}}
+      {{/menu.item}}
+      {{#menu.item}}
+        {{#nav.link-to "organization.team"}}Team{{/nav.link-to}}
+      {{/menu.item}}
+      {{#menu.item}}
+        {{#nav.link-to "organization.billing"}}Billing{{/nav.link-to}}
+      {{/menu.item}}
+      {{#menu.item}}
+        <span class="dropdown-item-title">
+              My Personal Information
+          </span>
+      {{/menu.item}}
+      {{#menu.item}}
+        {{#nav.link-to "user.edit"}}My Profile{{/nav.link-to}}
+      {{/menu.item}}
+      {{menu.divider}}
+      {{#menu.item}}
+        <a href="#" class="dropdown-item" {{action "invalidateSession"}}>Logout</a>
+      {{/menu.item}}
+    {{/dd.menu}}
+  {{/nav.dropdown}}
+
+{{/bs-nav}}
+
+{{!--
+  Modals
+--}}
+{{global/help-modal open=helpModal onHidden=(action (mut helpModal) false)}}
+{{user/user-edit-modal user=currentUser.user open=accountModal onHidden=(action (mut accountModal) false)}}
+{{organization/organization-edit-modal organization=currentUser.organization open=organizationModal
+                                       onHidden=(action (mut organizationModal) false)}}
+

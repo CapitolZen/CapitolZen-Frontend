@@ -3,11 +3,11 @@ import { get } from '@ember/object';
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  model({ hash }) {
-    return { hash: hash };
+  model(params) {
+    this.set('token', params.token);
   },
   setupController(controller, model) {
     this._super(...arguments);
-    controller.set('token', model);
+    controller.set('token', this.get('token'));
   }
 });

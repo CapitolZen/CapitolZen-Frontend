@@ -1,16 +1,13 @@
-
-{{ui/static-nav toggler=(action "toggleMenuState") menuState=menuState}}
-{{ui/dynamic-nav toggler=(action "toggleMenuState") menuState=menuState}}
+{{global/static-nav toggler=(action "toggleMenuState") menuState=menuState}}
+{{global/dynamic-nav toggler=(action "toggleMenuState") menuState=menuState}}
 
 
 {{#burger-menu animation="push" open=menuState locked=locked as |burger|}}
   {{#burger.menu itemTagName="li" as |menu|}}
     <a class="close" {{action burger.state.actions.close}}><i aria-hidden="true" class="fa fa-close"></i></a>
-
     <h2>
       Menu
     </h2>
-
     <ul>
 
       {{#menu.item dismissOnClick=true}}
@@ -47,7 +44,7 @@
 
 
     <div class="app-container">
-      {{ui/app-page-title}}
+      {{global/app-page-title}}
       <div class="content-container container-fluid">
         {{#each flashMessages.queue as |flash|}}
           {{flash-message flash=flash}}
@@ -56,7 +53,7 @@
       </div>
     </div>
 
-    {{ui/app-footer}}
+    {{global/app-footer}}
 
   {{/burger.outlet}}
 {{/burger-menu}}

@@ -1,17 +1,17 @@
 import { set, get, computed } from '@ember/object';
 import DS from 'ember-data';
+import { memberAction } from 'ember-api-actions';
 
 export default DS.Model.extend({
   created: DS.attr('date'),
   modified: DS.attr('date'),
   metadata: DS.attr(),
-
   username: DS.attr('string'),
   dateJoined: DS.attr('date'),
   name: DS.attr('string'),
   organizations: DS.hasMany('organization'),
-
   isActive: DS.attr('boolean'),
+
   firstLogin: computed('metadata', function() {
     let meta = get(this, 'metadata');
     return !meta['hasViewedDashboard'];
@@ -24,5 +24,9 @@ export default DS.Model.extend({
   dismissWelcome() {
     set(this, 'meta.hasViewedDashboard', true);
     this.save();
-  }
+  },
+
+  //
+  // Actions
+  change_password: memberAction({ path: 'change_password/', type: 'POST' })
 });

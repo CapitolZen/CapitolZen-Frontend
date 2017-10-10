@@ -6,6 +6,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   session: service('session'),
   currentUser: service('current-user'),
   beforeModel() {
+    this._super(...arguments);
     return this.get('currentUser').load();
   }
 });

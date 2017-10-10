@@ -3,9 +3,11 @@ import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
-import UserValidations from '../../validators/user';
+import UserValidations from '../../../validators/user';
+import SingleFormState from '../../../mixins/single-form-state';
 
-export default Component.extend({
+export default Component.extend(SingleFormState, {
+  tagName: '',
   flashMessages: service(),
   init() {
     this._super(...arguments);
@@ -17,19 +19,18 @@ export default Component.extend({
   },
   actions: {
     submit(changeset) {
-      changeset.execute();
+      if (!changeset.get('isDirty')) {
+        return false;
+      }
+      this.setFormState('pending');
       changeset
         .save()
         .then(() => {
           get(this, 'flashMessages').success('Account Updated');
         })
         .catch(() => {
-          get(this, 'flashMessages').success(
-            'Error Updating Account, Someone is on the case!'
-          );
-          get(this, 'organization.errors').forEach(({ attribute, message }) => {
-            changeset.pushErrors(attribute, message);
-          });
+          this.handleServerFormErrors(data);
+          this.setFormState('default');
         });
     }
   }

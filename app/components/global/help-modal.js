@@ -3,6 +3,7 @@ import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  tagName: '',
   intercom: service(),
   actions: {
     triggerChat() {

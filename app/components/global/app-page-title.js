@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   uiGlobal: service('ui-global'),
-  classNames: ['page-header', 'mb-lg-3', 'mb-2', 'mt-2'],
+  classNames: ['page-header', 'mb-lg-3', 'mb-2', 'mt-5'],
   size: computed('uiGlobal.wrapperSize', function() {
     return this.get('uiGlobal.wrapperSize');
   })
