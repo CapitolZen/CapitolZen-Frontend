@@ -35,10 +35,12 @@ export default Mixin.create({
    * Can't figure out how to put them next to the actual fields.
    */
   handleServerFormErrors(data) {
-    data = data['payload'];
+    if ('payload' in data) {
+      data = data['payload'];
+    }
+
     if ('errors' in data) {
       data['errors'].forEach(item => {
-        console.log(item['detail']);
         this.get('flashMessages').danger(item['detail']);
       });
     }
