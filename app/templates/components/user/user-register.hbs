@@ -5,7 +5,6 @@
   {{#bs-form model=changeset onSubmit=(action "register") as |form|}}
     <div class="card-block">
       <h4 class="card-title">Register Now</h4>
-
       {{form.element controlType="text" label="Your Name" property="name"}}
       {{form.element controlType="text" label="Organization Name" property="organization_name"}}
       {{form.element controlType="email" label="Email" placeholder="Email" property="username"}}

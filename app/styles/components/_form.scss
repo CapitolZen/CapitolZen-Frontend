@@ -4,3 +4,26 @@ form .form-text {
 .form-control-feedback {
   font-size: 0.8rem;
 }
+
+.avatar-edit-wrapper {
+  .avatar-upload-container {
+    background: $gray-lightest;
+    border: 1px solid $gray-light;
+    width: 140px;
+    height: 140px;
+  }
+  .avatar-original-preview {
+    max-width: 140px;
+    height: auto;
+  }
+  .cropper-wrapper {
+    max-width: 640px;
+    max-height: 640px;
+  }
+  .image-cropper {
+    img {
+      max-width: 640px;
+      max-height: 640px;
+    }
+  }
+}
