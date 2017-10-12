@@ -1,0 +1,59 @@
+{{!--
+here we either show the original file or an uploader.
+--}}
+{{#if (eq state 'default')}}
+  <img class="avatar-original-preview" src="{{value_file_url}}" />
+  {{#bs-button type="primary" icon="fa fa-download" onClick=(action "replaceExisting")}}
+    Replace
+  {{/bs-button}}
+
+{{else if (eq state 'upload')}}
+  {{#file-dropzone name=uploaderName as |dropzone queue|}}
+    {{#if queue.files.length}}
+      Uploading {{queue.files.length}} files. ({{queue.progress}}%)
+      {{#bs-progress as |p|}}
+        {{p.bar value=queue.progress striped=striped animate=animate}}
+      {{/bs-progress}}
+    {{/if}}
+    <div class="avatar-upload-container px-1 py-2 text-center {{if dropzone.active "file-upload-valid"}}">
+      {{#if dropzone.active}}
+        {{#if dropzone.valid}}
+          <p class="text-center text-success">Drop to upload</p>
+        {{else}}
+          <p class="text-center text-danger">Invalid</p>
+        {{/if}}
+      {{else}}
+        {{#if dropzone.supported}}
+          {{dragAndDropMessage}}
+        {{/if}}
+      {{/if}}
+
+      {{#file-upload
+        name=uploaderName
+        multiple=false
+        accept=accept
+        onfileadd=(action "fileUpload")
+      }} <a id="upload-image" class="text-primary">Click to upload</a>
+
+      {{/file-upload}}
+
+    </div>
+
+  {{/file-dropzone}}
+{{else if (eq state 'crop')}}
+  {{#bs-button type="primary" icon="fa fa-download" onClick=(action "doneCropping")}}
+    Done
+  {{/bs-button}}
+  <div class="cropper-wrapper">
+    {{#image-cropper
+      source=original_file_url
+      options=(hash
+        aspectRatio=1
+        viewMode=3
+        autoCrop=true
+        scalable=false
+        zoomable=false
+      ) as |cropper|}}
+    {{/image-cropper}}
+  </div>
+{{/if}}
