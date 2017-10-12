@@ -10,13 +10,7 @@ here we either show the original file or an uploader.
 
 {{else if (eq state 'upload')}}
   {{#file-dropzone name=uploaderName as |dropzone queue|}}
-    {{#if queue.files.length}}
-      Uploading {{queue.files.length}} files. ({{queue.progress}}%)
-      {{#bs-progress as |p|}}
-        {{p.bar value=queue.progress striped=striped animate=animate}}
-      {{/bs-progress}}
-    {{/if}}
-    <div class="avatar-upload-container px-1 py-2 text-center {{if dropzone.active "file-upload-valid"}}">
+    <div class="avatar-upload-containe {{if dropzone.active "file-upload-valid"}}">
       {{#if dropzone.active}}
         {{#if dropzone.valid}}
           <p class="text-center text-success">Drop to upload</p>
@@ -34,33 +28,44 @@ here we either show the original file or an uploader.
         multiple=false
         accept=accept
         onfileadd=(action "fileUpload")
-      }} <a id="upload-image" class="text-primary">Click to upload</a>
-
+      }}
+      <a class="avatar-upload-selector">
+        {{fa-icon 'upload'}}
+      </a>
       {{/file-upload}}
 
     </div>
 
   {{/file-dropzone}}
 {{else if (eq state 'crop')}}
-  {{#bs-button type="primary" icon="fa fa-download" onClick=(action "doneCropping")}}
-    Done
-  {{/bs-button}}
-  <div class="cropper-wrapper">
-    {{#image-cropper
-      source=original_file_url
-      options=(hash
-        aspectRatio=1
-        viewMode=1
-        autoCrop=true
-        scalable=false
-        zoomable=false
-        movable=false
-        rotatable=false
-        minCropBoxWidth='240'
-        minCropBoxheight='240'
-      ) as |cropper|}}
-    {{/image-cropper}}
-  </div>
+  {{#bs-modal open=cropModalOpen renderInPlace=true
+              onHide=(action "cancelCropping")
+              onSubmit=(action "doneCropping") as |modal|}}
+    {{#modal.body}}
+      <div class="cropper-wrapper">
+        {{#image-cropper
+          source=original_file_url
+          options=(hash
+            aspectRatio=1
+            viewMode=1
+            autoCrop=true
+            scalable=false
+            zoomable=false
+            movable=false
+            rotatable=false
+            minCropBoxWidth='240'
+            minCropBoxheight='240'
+          ) as |cropper|}}
+        {{/image-cropper}}
+      </div>
+    {{/modal.body}}
+
+    {{#modal.footer as |footer|}}
+      {{#bs-button onClick=(action modal.close) type="secondary"}}Cancel{{/bs-button}}
+      {{#bs-button onClick=(action modal.submit) type="primary"}}Done{{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+
 {{else if (eq state 'loading')}}
   <div class="loading-wrapper">
     <i class="fa fa-spinner fa-spin fa-3x"></i>

@@ -1,6 +1,6 @@
 import { next } from '@ember/runloop';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
+import { get, computed } from '@ember/object';
 
 import Control from 'ember-bootstrap/components/bs-form/element/control';
 
@@ -16,7 +16,8 @@ export default Control.extend({
   accept: 'image/*',
 
   /**
-   *
+   * Set the initial state of the form depending on if there is a current
+   * value or not.
    */
   init() {
     this._super(...arguments);
@@ -29,6 +30,7 @@ export default Control.extend({
       this.set('state', 'upload');
     }
   },
+
   /**
    * There are basically a handful states to get through actually having the correct image.
    *
@@ -38,6 +40,15 @@ export default Control.extend({
    * loading: a loading icon
    */
   state: 'default',
+
+  cropModalOpen: computed('state', function() {
+    if (this.get('state') === 'crop') {
+      return true;
+    } else {
+      return false;
+    }
+  }),
+
   /**
    * Task to upload files
    *
@@ -87,8 +98,15 @@ export default Control.extend({
       this.set('state', 'loading');
       get(this, 'upload').perform(file, 'original');
     },
+    cancelCropping() {
+      if (this.get('value')) {
+        this.set('value_file_url', this.get('value'));
+        this.set('state', 'default');
+      } else {
+        this.set('state', 'upload');
+      }
+    },
     doneCropping(data) {
-      this.set('state', 'loading');
       let selector = '.cropper-wrapper  > .image-cropper > img';
       let container = this.$(selector).get(0);
       let cropper = container.cropper;
