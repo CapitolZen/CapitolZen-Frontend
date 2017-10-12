@@ -35,6 +35,7 @@ export default Control.extend({
    * default: A avatar already exists and is shown to the user with an option to replace
    * upload: Show the uploader because we either don't have any avatar or we want to replace the existing one.
    * crop: we're cropping after an upload.
+   * loading: a loading icon
    */
   state: 'default',
   /**
@@ -83,14 +84,14 @@ export default Control.extend({
 
   actions: {
     fileUpload(file) {
+      this.set('state', 'loading');
       get(this, 'upload').perform(file, 'original');
     },
     doneCropping(data) {
+      this.set('state', 'loading');
       let selector = '.cropper-wrapper  > .image-cropper > img';
       let container = this.$(selector).get(0);
       let cropper = container.cropper;
-      console.log(cropper);
-
       cropper.getCroppedCanvas();
       cropper.getCroppedCanvas({
         width: 240,
@@ -101,8 +102,6 @@ export default Control.extend({
       });
       cropper.getCroppedCanvas().toBlob(
         blob => {
-          console.log('FUCK?');
-          console.log(blob);
           let canvasFile = File.fromBlob(blob, 'blob');
           get(this, 'upload').perform(canvasFile, 'value');
         },

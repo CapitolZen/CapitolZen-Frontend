@@ -1,6 +1,7 @@
 {{!--
 here we either show the original file or an uploader.
 --}}
+
 {{#if (eq state 'default')}}
   <img class="avatar-original-preview" src="{{value_file_url}}" />
   {{#bs-button type="primary" icon="fa fa-download" onClick=(action "replaceExisting")}}
@@ -59,5 +60,9 @@ here we either show the original file or an uploader.
         minCropBoxheight='240'
       ) as |cropper|}}
     {{/image-cropper}}
+  </div>
+{{else if (eq state 'loading')}}
+  <div class="loading-wrapper">
+    <i class="fa fa-spinner fa-spin fa-3x"></i>
   </div>
 {{/if}}
