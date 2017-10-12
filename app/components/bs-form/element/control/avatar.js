@@ -22,8 +22,8 @@ export default Control.extend({
     this._super(...arguments);
 
     // Determine initial state
-    console.log();
     if (this.get('value')) {
+      this.set('value_file_url', this.get('value'));
       this.set('state', 'default');
     } else {
       this.set('state', 'upload');
@@ -93,12 +93,8 @@ export default Control.extend({
 
       cropper.getCroppedCanvas();
       cropper.getCroppedCanvas({
-        width: 160,
-        height: 90,
-        minWidth: 256,
-        minHeight: 256,
-        maxWidth: 4096,
-        maxHeight: 4096,
+        width: 240,
+        height: 240,
         fillColor: '#fff',
         imageSmoothingEnabled: false,
         imageSmoothingQuality: 'high'

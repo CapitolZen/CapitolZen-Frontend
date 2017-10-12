@@ -49,10 +49,14 @@ here we either show the original file or an uploader.
       source=original_file_url
       options=(hash
         aspectRatio=1
-        viewMode=3
+        viewMode=1
         autoCrop=true
         scalable=false
         zoomable=false
+        movable=false
+        rotatable=false
+        minCropBoxWidth='240'
+        minCropBoxheight='240'
       ) as |cropper|}}
     {{/image-cropper}}
   </div>
