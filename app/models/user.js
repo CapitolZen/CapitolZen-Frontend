@@ -9,6 +9,7 @@ export default DS.Model.extend({
   username: DS.attr('string'),
   dateJoined: DS.attr('date'),
   name: DS.attr('string'),
+  avatar: DS.attr('string'),
   organizations: DS.hasMany('organization'),
   isActive: DS.attr('boolean'),
 
