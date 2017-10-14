@@ -1,18 +1,16 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import EmberObject, { computed, get, set } from '@ember/object';
-
-import UserRegistration from '../../validators/userRegistration';
+import SingleFormState from '../../mixins/single-form-state';
+import UserRegistration from '../../validators/user-registration';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
-import { task } from 'ember-concurrency';
 
-export default Component.extend({
+export default Component.extend(SingleFormState, {
   ajax: service(),
   store: service(),
   session: service(),
   flashMessages: service(),
-  isLoading: false,
   registration: EmberObject.create(),
 
   init() {
@@ -24,12 +22,10 @@ export default Component.extend({
       UserRegistration
     );
   },
-
   UserRegistration,
-
   actions: {
     register(changeset) {
-      set(this, 'isLoading', true);
+      this.setFormState('pending');
       changeset.save();
       this.get('ajax')
         .post('users/register/', { data: this.get('registration') })
@@ -40,9 +36,9 @@ export default Component.extend({
           });
         })
         .catch(data => {
-          console.log(data);
+          this.handleServerFormErrors(data);
+          this.setFormState('default');
           _opbeat('captureException', data);
-          set(this, 'isLoading', false);
         });
     }
   }

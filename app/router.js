@@ -32,6 +32,7 @@ Router.map(function() {
     //
     // User Accounts
     this.route('user', { resetNamespace: true }, function() {
+      this.route('edit');
       this.route('notifications');
     });
 
@@ -96,7 +97,7 @@ Router.map(function() {
   this.route('anon.login', { path: 'login' });
   this.route('anon.register', { path: 'register' });
   this.route('anon.forgot-password', { path: 'forgot-password' });
-  this.route('anon.reset-password', { path: '/reset/:hash' });
+  this.route('anon.reset-password', { path: '/reset/:token' });
 });
 
 export default Router;

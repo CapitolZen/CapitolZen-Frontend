@@ -9,5 +9,17 @@ export default AjaxService.extend({
 
   host: computed(function() {
     return ENV.APP.API_HOST;
+  }),
+
+  headers: computed('session.data.authenticated.idToken', {
+    get() {
+      let headers = {};
+      this.get(
+        'session'
+      ).authorize('authorizer:application', (headerName, headerValue) => {
+        headers[headerName] = headerValue;
+      });
+      return headers;
+    }
   })
 });

@@ -5,6 +5,7 @@ import { alias } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  classNames: ['bill-search-wrapper'],
   billSearch: service(),
   router: service(),
   results: alias('billSearch.results'),

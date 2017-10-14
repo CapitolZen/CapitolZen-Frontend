@@ -1,50 +1,61 @@
 import { get } from '@ember/object';
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import ENV from 'capitolzen-client/config/environment';
 
-const { APP: { API_HOST } } = ENV;
+import lookupValidator from 'ember-changeset-validations';
+import Changeset from 'ember-changeset';
 
-export default Controller.extend({
+import userResetPassword from '../../validators/user-reset-password';
+import SingleFormState from '../../mixins/single-form-state';
+
+export default Controller.extend(SingleFormState, {
   ajax: service(),
   flashMessages: service(),
   session: service(),
+  init() {
+    this._super(...arguments);
+    this.model = {
+      password: '',
+      confirmPassword: ''
+    };
+    this.changeset = new Changeset(
+      this.get('model'),
+      lookupValidator(userResetPassword),
+      userResetPassword
+    );
+  },
+  userResetPassword,
   actions: {
-    resetPassword({ password, confirm }) {
-      let { hash } = get(this, 'token');
-      if (password.length < 8 || password !== confirm) {
-        get(this, 'flashMessages').danger(
-          'Please make sure your password matches'
-        );
-      } else {
-        get(this, 'ajax')
-          .post(`${API_HOST}/password`, {
-            data: {
-              hash,
-              password
-            },
-            contentType: 'application/json'
-          })
-          .then(res => {
-            console.log(res.data.email);
-            let authenticator = 'authenticator:jwt';
-            let creds = {
-              identification: res.data.email,
-              password: password
-            };
-
-            get(this, 'session')
-              .authenticate(authenticator, creds)
-              .then(() => {
-                this.transitionToRoute('dashboard');
-              });
-          })
-          .catch(() => {
-            get(this, 'flashMessages').danger(
-              'An error occured Please try again.'
-            );
-          });
+    resetPassword(changeset) {
+      let token = get(this, 'token');
+      if (!changeset.get('isDirty')) {
+        return false;
       }
+      this.setFormState('pending');
+      changeset.execute();
+      this.set('model.token', token);
+      let payload = this.get('model');
+
+      this.get('ajax')
+        .post('users/reset_password/', { data: payload })
+        .then(data => {
+          console.log(data);
+          let authenticator = 'authenticator:jwt';
+          let creds = {
+            identification: data.data.email,
+            password: this.get('model.password')
+          };
+
+          get(this, 'session')
+            .authenticate(authenticator, creds)
+            .then(() => {
+              this.transitionToRoute('dashboard');
+            });
+        })
+        .catch(data => {
+          this.handleServerFormErrors(data);
+          this.setFormState('default');
+        });
     }
   }
 });

@@ -2,12 +2,12 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { set, get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-
+import SingleFormState from '../../mixins/single-form-state';
 import OrganizationValidations from '../../validators/organization';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 
-export default Component.extend({
+export default Component.extend(SingleFormState, {
   session: service(),
   store: service(),
   currentUser: service(),
@@ -22,7 +22,6 @@ export default Component.extend({
     );
   },
   OrganizationValidations,
-
   changeLogo: false,
   logoName: computed({
     get() {
@@ -43,18 +42,19 @@ export default Component.extend({
 
   actions: {
     submit: function(changeset) {
-      changeset.execute();
-      changeset
+      if (!changeset.get('isDirty')) {
+        return false;
+      }
+      this.setFormState('pending');
+      return changeset
         .save()
         .then(() => {
           get(this, 'flashMessages').success('Organization Updated');
         })
-        .catch(() => {
-          get(this, 'flashMessages').success('Error Updated Organization');
+        .catch(data => {
+          this.handleServerFormErrors(data);
+          this.setFormState('default');
         });
-    },
-    toggleEditing() {
-      this.toggleProperty('isEditing');
     },
     handleResponse({ headers: { location } }) {
       let org = get(this, 'organization');

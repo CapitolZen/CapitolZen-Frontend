@@ -2,10 +2,25 @@
   align-items: center !important;
 }
 
+.row-flex {
+  > div {
+    display: flex;
+    > div {
+      flex: 1;
+    }
+  }
+}
+
 .flex-row {
   flex-direction: row !important;
 }
 
 .no-padding {
-  padding:0;
+  padding: 0;
+}
+
+.modal-center.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }

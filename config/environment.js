@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'capitolzen-client',
     environment: environment,
     rootURL: '/',
@@ -21,6 +21,10 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     }
+  };
+
+  ENV.flashMessageDefaults = {
+    preventDuplicates: true
   };
 
   ENV.moment = {

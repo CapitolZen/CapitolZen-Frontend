@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { memberAction, collectionAction } from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 export default DS.Model.extend({
   created: DS.attr('date'),
@@ -11,7 +11,7 @@ export default DS.Model.extend({
   status: DS.attr('string', { default: 'unclaimed' }),
 
   //
-  // Non-CRUD things
+  // Actions
   claim: memberAction({ path: 'claim/', type: 'POST' }),
   action: memberAction({ path: 'actions/', type: 'POST' })
 });
