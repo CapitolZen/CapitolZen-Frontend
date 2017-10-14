@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
@@ -8,8 +9,8 @@ export default Component.extend({
   flashMessages: service(),
   store: service(),
   currentUser: service(),
-  bill: computed.alias('wrapper.bill'),
-  notes: computed.alias('wrapper.notes'),
+  bill: alias('wrapper.bill'),
+  notes: alias('wrapper.notes'),
   addNote: false,
   actions: {
     toggleAddNote() {

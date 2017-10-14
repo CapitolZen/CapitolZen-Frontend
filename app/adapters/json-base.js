@@ -1,6 +1,6 @@
 import { underscore } from '@ember/string';
 import { computed } from '@ember/object';
-import Ember from 'ember';
+import { pluralize } from 'ember-inflector';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import DS from 'ember-data';
 import ENV from '../config/environment';
@@ -10,7 +10,7 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
   authorizer: 'authorizer:application',
   pathForType: function(type) {
     const underscored = underscore(type);
-    return Ember.String.pluralize(underscored);
+    return pluralize(underscored);
   },
   host: computed(function() {
     return ENV.APP.API_HOST;

@@ -1,3 +1,4 @@
+import { oneWay } from '@ember/object/computed';
 import Mixin from '@ember/object/mixin';
 import { merge } from '@ember/polyfills';
 import { inject as service } from '@ember/service';
@@ -14,7 +15,7 @@ export default Mixin.create({
   sort: 'name',
   recordType: null,
   recordQuery: {},
-  isLoading: computed.oneWay('fetchRecords.isRunning'),
+  isLoading: oneWay('fetchRecords.isRunning'),
   canLoadMore: true,
   enableSync: true,
   model: null,
