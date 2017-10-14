@@ -34,6 +34,7 @@
     "broccoli-asset-rev": "^2.6.0",
     "ember-ajax": "^3.0.0",
     "ember-api-actions": "^0.1.7",
+    "ember=baremetrics-calendar": "donaldwasserman/ember-baremetrics-calendar#master",
     "ember-basic-dropdown": "^0.33.5",
     "ember-block-slots": "^1.1.10",
     "ember-bootstrap": "^1.0.0-alpha.12",
