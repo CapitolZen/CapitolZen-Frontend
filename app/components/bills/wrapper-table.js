@@ -1,66 +1,52 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import TableCommon from '../../mixins/table-common';
+import { task } from 'ember-concurrency';
 
 export default Component.extend(TableCommon, {
-  model: 'wrappers',
-  recordType: 'wrapper',
+  model: 'bills',
+  recordType: 'bill',
   tableHeight: '100vh',
-  pager: false,
+  recordQuery: { listSaved: true },
+  pager: true,
   columns: computed(function() {
-    let cols = [
+    return [
       {
         label: 'State ID',
-        valuePath: 'bill.stateId',
-        sortable: true
-      },
-      {
-        label: 'Position',
-        cellComponent: 'wrappers/wrapper-table-position',
+        valuePath: 'stateId',
         sortable: true
       },
       {
         label: 'Sponsor',
-        valuePath: 'bill.sponsor.fullName',
-        sortable: true,
-        breakpoints: ['desktop']
+        valuePath: 'sponsor.fullName',
+        sortable: false,
+        breakpoints: ['mobile', 'tablet', 'desktop']
       },
       {
-        label: 'Committee',
-        valuePath: 'bill.currentCommittee',
-        sortable: true,
+        label: 'Party',
+        valuePath: 'sponsor.party',
+        sortable: false,
         breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Last Action',
-        valuePath: 'bill.lastActionDate',
+        valuePath: 'lastActionDate',
         cellComponent: 'bills/bill-table-date',
-        sortable: true,
-        breakpoints: ['tablet', 'desktop']
+        sortable: false,
+        breakpoints: ['mobile', 'tablet', 'desktop']
       },
+      // {
+      //   label: "Status",
+      //   valuePath: "status",
+      //   cellComponent: "bills/bill-table-status",
+      //   sortable: true,
+      //   breakpoints: ["mobile", "tablet", "desktop"]
+      // },
       {
-        label: 'Status',
-        valuePath: 'bill.status',
-        cellComponent: 'bills/bill-table-status',
-        sortable: true,
-        breakpoints: ['tablet', 'desktop']
-      },
-      {
-        label: 'More',
-        cellComponent: 'wrappers/wrapper-table-actions',
+        label: 'Actions',
+        cellComponent: 'bills/bill-table-actions',
         sortable: false
       }
     ];
-
-    if (get(this, 'displayGroups')) {
-      let group = {
-        label: 'Client',
-        valuePath: 'wrapper.group.title',
-        sortable: true
-      };
-      cols.splice(2, 0, group);
-    }
-
-    return cols;
   })
 });
