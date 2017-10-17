@@ -5,7 +5,7 @@ export default Route.extend({
   model(params) {
     return hash({
       bill: this.store.findRecord('bill', params.id),
-      wrappers: this.store.query('wrapper', { bill__id: params.id })
+      wrappers: this.store.query('wrapper', { bill_id: params.id })
     });
   }
 });

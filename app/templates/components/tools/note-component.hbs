@@ -1,15 +1,27 @@
 {{#if isEditing}}
   {{tools/text-editor content=note.doc docId=key saveAction=(action "saveNote") cancelAction=(action "toggleAddNote")}}
 {{else}}
-  <em>
-    <small>{{moment-format note.timestamp "MM/DD/YYYY"}} {{note.user.name}} writes:</small>
-  </em>
+  <div class="note-header clearfix">
+    {{#if canEditNote}}
+      <button class="pull-right note-edit-button btn btn-link btn-sm" {{action "editNote"}}>
+        {{fa-icon "pencil"}} Edit
+      </button>
+    {{/if}}
+    <em>
+      <small>{{moment-format note.timestamp "MM/DD/YYYY"}} {{note.user.name}} writes:</small>
+    </em>
+  </div>
+
+
+  <hr class="my-1">
   <div class="note-wrapper mb-1">
     {{#if note.doc}}
       {{render-mobiledoc mobiledoc=note.doc}}
     {{else}}
       <em>No text for this note.</em>
     {{/if}}
+
+
   </div>
   {{#each note.attachments as |doc|}}
     <p>{{doc}}</p>

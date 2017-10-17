@@ -1,4 +1,22 @@
 .note-editor {
-  background: $cz-white;
+  border: 1px solid $cz-grey;
+  border-radius: $border-radius;
+  background: $cz-grey-lt;
+}
+
+.note-editor .toolbar {
+  @include box-shadow;
+}
+
+.note-editor .mobiledoc-editor__editor-wrapper {
   padding: 0.25rem 1rem;
+  background-color: white;
+}
+
+.note-component .note-edit-button {
+  visibility: hidden;
+}
+
+.note-component:hover .note-edit-button {
+  visibility: visible;
 }

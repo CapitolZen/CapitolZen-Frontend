@@ -5,15 +5,32 @@
                         on-change=(action "mobileDocUpdated")
                         class="note-editor"
     as |editor|}}
+      <div class="toolbar">
+        {{#mobiledoc-markup-button editor=editor for="strong" class="btn-link"}}
+          {{fa-icon "bold"}}
+        {{/mobiledoc-markup-button}}
+        {{#mobiledoc-markup-button editor=editor for="em" class="btn-link"}}
+          {{fa-icon "italic"}}
+        {{/mobiledoc-markup-button}}
+        {{#mobiledoc-section-button editor=editor for="ul" class="btn-link"}}
+          {{fa-icon "list"}}
+        {{/mobiledoc-section-button}}
+        {{#mobiledoc-section-button editor=editor for="ol" class="btn-link"}}
+          {{fa-icon "list-ol"}}
+        {{/mobiledoc-section-button}}
+      </div>
     {{/mobiledoc-editor}}
   </div>
 
 </div>
 <div class="row clearfix my-1">
-  <div class="col-6 push-6">
-    <div class="btn-group btn-group-sm pull-right">
-      <button class="btn btn-primary" {{action "saveDocument"}}>Add</button>
-      <button class="btn btn-secondary" {{action "cancelDocument"}}>Cancel</button>
+  <div class="col-12">
+    <div class="btn-group btn-group-sm">
+      <button class="btn btn-primary" {{action "saveDocument"}}>{{if isNew "Add" "Save"}}</button>
+      <button class="btn btn-secondary" {{action "cancelDocument"}}>{{if isNew "Discard" "Cancel"}}</button>
+      {{#unless isNew}}
+        <button class="btn btn-warning" {{action "deleteDocument"}}>Delete</button>
+      {{/unless}}
     </div>
   </div>
 

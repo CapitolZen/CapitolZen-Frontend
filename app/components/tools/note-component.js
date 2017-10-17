@@ -1,10 +1,17 @@
 import Component from '@ember/component';
-import { get, set } from '@ember/object';
+import { get, set, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+
 export default Component.extend({
+  currentUser: service(),
   isEditing: false,
-  doubleClick() {
-    set(this, 'isEditing', true);
-  },
+  classNames: ['note-component'],
+  classNameBindings: ['isEditing:note-editing'],
+  canEditNote: computed('note', function() {
+    let user_id = get(this, 'currentUser.user_id'),
+      note = get(this, 'note');
+    return note.userid === user_id;
+  }),
   actions: {
     saveNote(data) {
       set(this, 'isEditing', false);
@@ -12,6 +19,9 @@ export default Component.extend({
     },
     toggleAddNote() {
       this.toggleProperty('isEditing');
+    },
+    editNote() {
+      set(this, 'isEditing', true);
     }
   }
 });

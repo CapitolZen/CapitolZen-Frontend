@@ -24,9 +24,10 @@ export default Component.extend({
       let wrapper = get(this, 'wrapper');
       let notes = wrapper.get('notes');
       let user = get(this, 'currentUser.user');
-      let time = moment();
+      let userid = get(this, 'currentUser.user_id');
+      let timestamp = moment();
 
-      notes[docId] = { doc: doc, user: user, timestamp: time, public: false };
+      notes[docId] = { doc, userid, user, timestamp, public: false };
       wrapper.set('notes', notes);
       wrapper.save().then(() => {
         get(this, 'flashMessages').success('Note Saved!');
