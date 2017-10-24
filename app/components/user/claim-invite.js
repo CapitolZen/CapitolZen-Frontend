@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   flashMessages: service(),
-  request: service(),
+  ajax: service(),
   store: service(),
   session: service(),
   defaultObject: null,
@@ -15,41 +15,30 @@ export default Component.extend({
   },
   actions: {
     acceptInvite(user) {
-      let { email, password, confirmPassword, name } = user;
+      let { email, password, name } = user;
+      let inviteId = get(this, 'invite.id');
 
-      if (password.length < 8 || confirmPassword !== password) {
-        get(this, 'flashMessages').danger('Please supply a valid password');
-      } else {
-        let newUser = get(this, 'store').createRecord('user', {
-          username: email,
-          password: password,
-          name: name
-        });
-
-        newUser
-          .save()
-          .then(() => {
-            return get(this, 'session').authenticate('authenticator:jwt', {
-              identification: email,
-              password: password
-            });
-          })
-          .then(() => {
-            return get(this, 'request').post(
-              `invites/${get(this, 'invite.id')}/claim/`
-            );
-          })
-          .then(() => {
-            get(this, 'flashMessages').success(
-              `Welcome to ${get(this, 'invite.organizationName')}!`
-            );
-          })
-          .catch(() => {
-            get(this, 'flashMessages').danger(
-              'Please contact your organization owner, something went wrong.'
-            );
+      get(this, 'ajax')
+        .post(`invites/${inviteId}/claim/`, {
+          data: {
+            password,
+            name
+          }
+        })
+        .then(() => {
+          return get(this, 'session').authenticate('authenticator:jwt', {
+            identification: email,
+            password: password
           });
-      }
+        })
+        .then(() => {
+          get(this, 'flashMessages').success(`Welcome to Capitol Zen!`);
+        })
+        .catch(() => {
+          get(this, 'flashMessages').danger(
+            'Please contact your organization owner, something went wrong.'
+          );
+        });
     }
   }
 });

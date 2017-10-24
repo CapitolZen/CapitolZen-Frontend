@@ -13,9 +13,12 @@
         {{#if model.users}}
           {{#ui/ui-card}}
             {{#block-slot 'content'}}
-              {{#each model.users as |user index|}}
+              {{log model.users}}
+              <div class="list-group">
+                {{#each model.users as |user|}}
                   {{user/user-summary user=user}}
-              {{/each}}
+                {{/each}}
+              </div>
             {{/block-slot}}
           {{/ui/ui-card}}
         {{else}}
