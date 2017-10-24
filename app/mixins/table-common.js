@@ -51,12 +51,6 @@ export default Mixin.create({
     let query = this.getProperties(['page', 'page_size', 'sort']);
 
     query = merge(this.get('recordQuery'), query);
-    let keys = Object.keys(query);
-    keys.forEach(k => {
-      if (typeOf(query[k]) === 'string') {
-        query[k] = query[k].underscore();
-      }
-    });
     let records = yield this.get('store').query(this.get('recordType'), query);
     this.get('model').pushObjects(records.toArray());
     this.set('meta', records.get('meta'));

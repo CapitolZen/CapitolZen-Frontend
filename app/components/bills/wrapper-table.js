@@ -4,27 +4,26 @@ import TableCommon from '../../mixins/table-common';
 import { task } from 'ember-concurrency';
 
 export default Component.extend(TableCommon, {
-  model: 'bills',
-  recordType: 'bill',
+  model: 'wrapper',
+  recordType: 'wrapper',
   tableHeight: '100vh',
-  recordQuery: { listSaved: true },
   pager: true,
   columns: computed(function() {
     return [
       {
         label: 'State ID',
-        valuePath: 'stateId',
+        valuePath: 'bill.stateId',
         sortable: true
       },
       {
         label: 'Sponsor',
-        valuePath: 'sponsor.fullName',
+        valuePath: 'bill.sponsor.fullName',
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
       {
         label: 'Party',
-        valuePath: 'sponsor.party',
+        valuePath: 'bill.sponsor.party',
         sortable: false,
         breakpoints: ['tablet', 'desktop']
       },
@@ -44,7 +43,7 @@ export default Component.extend(TableCommon, {
       // },
       {
         label: 'Actions',
-        cellComponent: 'bills/bill-table-actions',
+        cellComponent: 'wrappers/wrapper-table-actions',
         sortable: false
       }
     ];
