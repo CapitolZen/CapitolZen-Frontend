@@ -4,3 +4,37 @@ form .form-text {
 .form-control-feedback {
   font-size: 0.8rem;
 }
+
+.avatar-edit-wrapper {
+  .modal-dialog {
+    margin-top: 140px;
+  }
+  .avatar-upload-selector {
+    background: $gray-lightest;
+    border: 1px dashed $gray-lighter;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    i {
+      flex: 1;
+      font-size: 3rem;
+      color: $gray-lighter;
+    }
+  }
+  .avatar-original-preview {
+    max-width: 140px;
+    height: auto;
+  }
+  .cropper-wrapper {
+    max-width: 640px;
+  }
+  .image-cropper {
+    max-width: 100%;
+    max-height: 640px;
+    img {
+      max-width: 100%;
+    }
+  }
+}
