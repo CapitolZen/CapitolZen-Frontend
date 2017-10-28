@@ -1,0 +1,31 @@
+{{#bs-button onClick=(action "openInviteModal") type="success"}}
+  {{fa-icon "users"}} Invite user
+{{/bs-button}}
+
+{{#bs-modal open=modalOpen onSubmit=(action "submit")
+            onHidden=(action "closeInviteModal") as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">{{fa-icon "users"}} Invite New User</h4>
+  {{/modal.header}}
+
+  {{#modal.body}}
+
+    {{#each errors as |error|}}
+      {{error}}
+    {{/each}}
+
+    {{#bs-form onSubmit=(action "submit") model=changeset as |form|}}
+      {{form.element controlType="text" label="Name" placeholder="Bob Smith" property="meta_data.name"}}
+      {{form.element controlType="email" label="Email" placeholder="bob.smith@company.com" property="email"}}
+      {{#form.element controlType="power-select" label="Role" property="meta_data.organization_role" options=organizationRoles as |el|}}
+        {{el.control searchEnabled=false renderInPlace=true}}
+      {{/form.element}}
+    {{/bs-form}}
+  {{/modal.body}}
+
+  {{#modal.footer as |footer|}}
+    {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
+    {{#bs-button onClick=(action modal.submit) type="success"}}Invite User{{/bs-button}}
+  {{/modal.footer}}
+
+{{/bs-modal}}
