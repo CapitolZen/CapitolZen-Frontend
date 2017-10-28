@@ -1,3 +1,4 @@
+import { oneWay } from '@ember/object/computed';
 import Mixin from '@ember/object/mixin';
 import { merge } from '@ember/polyfills';
 import { inject as service } from '@ember/service';
@@ -14,7 +15,7 @@ export default Mixin.create({
   sort: 'name',
   recordType: null,
   recordQuery: {},
-  isLoading: computed.oneWay('fetchRecords.isRunning'),
+  isLoading: oneWay('fetchRecords.isRunning'),
   canLoadMore: true,
   enableSync: true,
   model: null,
@@ -50,12 +51,6 @@ export default Mixin.create({
     let query = this.getProperties(['page', 'page_size', 'sort']);
 
     query = merge(this.get('recordQuery'), query);
-    let keys = Object.keys(query);
-    keys.forEach(k => {
-      if (typeOf(query[k]) === 'string') {
-        query[k] = query[k].underscore();
-      }
-    });
     let records = yield this.get('store').query(this.get('recordType'), query);
     this.get('model').pushObjects(records.toArray());
     this.set('meta', records.get('meta'));

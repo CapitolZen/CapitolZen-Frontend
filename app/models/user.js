@@ -12,6 +12,8 @@ export default DS.Model.extend({
   avatar: DS.attr('string'),
   organizations: DS.hasMany('organization'),
   isActive: DS.attr('boolean'),
+  isStaff: DS.attr('boolean'),
+  password: DS.attr('string'),
 
   firstLogin: computed('metadata', function() {
     let meta = get(this, 'metadata');
@@ -20,6 +22,14 @@ export default DS.Model.extend({
 
   savedGroups: computed('meta', function() {
     return get(this, 'meta.savedGroups');
+  }),
+
+  title: computed('username', 'name', function() {
+    if (get(this, 'name')) {
+      return get(this, 'name');
+    } else {
+      return get(this, 'username');
+    }
   }),
 
   dismissWelcome() {

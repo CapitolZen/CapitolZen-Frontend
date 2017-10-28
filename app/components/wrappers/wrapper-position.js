@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -7,7 +8,7 @@ export default Component.extend({
   canEdit: false,
   showDetails: true,
   positions: ['support', 'oppose', 'neutral'],
-  position: computed.alias('wrapper.position'),
+  position: alias('wrapper.position'),
   positionIcons: {
     support: 'thumbs-up',
     oppose: 'thumbs-down',

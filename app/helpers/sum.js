@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function sum(params /*, hash*/) {
   return params.reduce((a, b) => {
@@ -6,4 +6,4 @@ export function sum(params /*, hash*/) {
   });
 }
 
-export default Ember.Helper.helper(sum);
+export default helper(sum);

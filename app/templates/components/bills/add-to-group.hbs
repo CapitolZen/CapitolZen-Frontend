@@ -11,7 +11,7 @@
   {{#dd.menu align=menuAlign as |menu|}}
     {{#each groupList as |group|}}
       {{#menu.item class="dropdown-item" tagName="li"}}
-        <span {{action (perform addBillToGroup group)}}>{{fa-icon "plus"}} {{group.title}}</span>
+        <button class="btn btn-link" {{action (perform addBillToGroup group)}}>{{fa-icon "plus"}} {{group.title}}</button>
       {{/menu.item}}
     {{else}}
       {{#if listGroups.isRunning}}

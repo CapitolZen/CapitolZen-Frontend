@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function length(params /*, hash*/) {
   return params.length;
 }
 
-export default Ember.Helper.helper(length);
+export default helper(length);

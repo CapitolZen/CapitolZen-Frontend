@@ -29,7 +29,7 @@ export default Component.extend({
     set(this, 'groupList', groups);
   }),
   addBillToGroup: task(function*(group) {
-    let bill = get(this, 'bill.content');
+    let bill = get(this, 'bill');
     let wrapper = this.get('store').createRecord('wrapper', {
       bill: bill,
       group: group,

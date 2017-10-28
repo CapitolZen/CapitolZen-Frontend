@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { merge } from '@ember/polyfills';
 import Component from '@ember/component';
@@ -28,7 +29,7 @@ export default Component.extend({
     });
     return output;
   }),
-  isStatic: computed.alias('model.isStatic'),
+  isStatic: alias('model.isStatic'),
   init() {
     this._super(...arguments);
     let m, g;

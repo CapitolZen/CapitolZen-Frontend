@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { getWithDefault, computed, set, get } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -39,8 +40,8 @@ export default Component.extend({
     }
     return [];
   }),
-  selectedOperatorLabel: computed.alias('selectedOperator.label'),
-  selectedQueryLabel: computed.alias('selectedQuery.label'),
+  selectedOperatorLabel: alias('selectedOperator.label'),
+  selectedQueryLabel: alias('selectedQuery.label'),
   valueSelectorComponent: computed('selectedQuery', function() {
     if (get(this, 'selectedQuery')) {
       let { type, opts = false } = get(this, 'selectedQuery');

@@ -1,3 +1,4 @@
+import { sort } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -10,7 +11,7 @@ export default Component.extend({
   inviteModal: false,
   inviteEmail: null,
   inviteSortDesc: ['name:desc'],
-  sortedInvites: computed.sort('invites', 'inviteSortDesc'),
+  sortedInvites: sort('invites', 'inviteSortDesc'),
   revokeInvite: task(function*(invite) {
     let res = yield get(this, 'request').post(`${invite.get('id')}/actions/`, {
       data: {

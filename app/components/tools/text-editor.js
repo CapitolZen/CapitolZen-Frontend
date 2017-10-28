@@ -16,6 +16,10 @@ export default Component.extend({
     },
     cancelDocument() {
       get(this, 'cancelAction')();
+    },
+    deleteDocument() {
+      set(this, 'content', false);
+      get(this, 'deleteAction')(args);
     }
   }
 });

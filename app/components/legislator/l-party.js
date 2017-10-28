@@ -1,10 +1,11 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { set, get, observer, computed } from '@ember/object';
 export default Component.extend({
   tagName: 'span',
   classNames: ['badge'],
   classNameBindings: ['badgeModifier'],
-  party: computed.alias('legislator.party'),
+  party: alias('legislator.party'),
   badgeModifier: 'badge-default',
   badgeModifierObserver: observer('legislator.party', function() {
     let party = get(this, 'party');

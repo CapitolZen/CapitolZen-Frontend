@@ -1,31 +1,60 @@
-{{#light-table table responsive=true height=tableHeight as |t|}}
+{{#ui/ui-card}}
+  {{#block-slot "content"}}
+    {{#bs-form formLayout="inline" model=dynamicQuery onSubmit=(action "filter") as |form|}}
+      {{form.element label="Sponsor" controlType="text" property="sponsor_name"}}
+      {{form.element label="Title" controlType="text" property="title__contains"}}
+      {{#form.element property="active_in" as |el|}}
+        {{#power-select
+          options=dateFilterOptions
+          selected=dateFilterType
+          searchEnabled=false
+          onchange=(action (mut dateFilterType))
+          as |option|}}
+          {{option}}
+        {{/power-select}}
+        {{baremetrics-calendar
+          startDate=dateFilters.startDate
+          endDate=dateFilters.endDate
+          presets=presets
+          onchange=(action "updateDateFilter")}}
+      {{/form.element}}
+      {{bs-button defaultText="Filter" pendingText="Saving..." type="primary" buttonType="submit"}}
+    {{/bs-form}}
+  {{/block-slot}}
+{{/ui/ui-card}}
 
-  {{t.head
-    onColumnClick=(action 'onColumnClick')
-    iconAscending='fa fa-sort-asc'
-    iconDescending='fa fa-sort-desc'
-    fixed=true
-  }}
+{{#ui/ui-card}}
+  {{#block-slot "content"}}
+    {{#light-table table responsive=true height=tableHeight as |t|}}
 
-  {{#t.body
-    onScrolledToBottom=(action 'onScrolledToBottom')
-  as |body|
-  }}
-    {{#if isLoading}}
-      {{#body.loader}}
-        {{ui/loading-animation}}
-      {{/body.loader}}
-    {{/if}}
-  {{/t.body}}
+      {{t.head
+        onColumnClick=(action 'onColumnClick')
+        iconAscending='fa fa-sort-asc'
+        iconDescending='fa fa-sort-desc'
+        fixed=true
+      }}
 
-  {{#if meta}}
-    {{#t.foot fixed=true as |columns|}}
-      <tr>
-        <td class="align-center" colspan={{columns.length}}>
-            {{ui/table-pagintor page=page pageSize=page_size meta=meta pageAction=(action 'setPage')}}
-        </td>
-      </tr>
-    {{/t.foot}}
-  {{/if}}
+      {{#t.body
+        onScrolledToBottom=(action 'onScrolledToBottom')
+      as |body|
+      }}
+        {{#if isLoading}}
+          {{#body.loader}}
+            {{ui/loading-animation}}
+          {{/body.loader}}
+        {{/if}}
+      {{/t.body}}
 
-{{/light-table}}
+      {{#if meta}}
+        {{#t.foot fixed=true as |columns|}}
+          <tr>
+            <td class="align-center" colspan={{columns.length}}>
+              {{ui/table-pagintor page=page pageSize=page_size meta=meta pageAction=(action 'setPage')}}
+            </td>
+          </tr>
+        {{/t.foot}}
+      {{/if}}
+
+    {{/light-table}}
+  {{/block-slot}}
+{{/ui/ui-card}}

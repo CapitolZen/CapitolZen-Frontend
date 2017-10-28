@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
@@ -6,9 +7,9 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   currentUser: service(),
   store: service(),
-  userName: computed.alias('currentUser.user.name'),
-  orgName: computed.alias('currentUser.organization.name'),
-  userSavedGroups: computed.alias('currentUser.user.savedGroups'),
+  userName: alias('currentUser.user.name'),
+  orgName: alias('currentUser.organization.name'),
+  userSavedGroups: alias('currentUser.user.savedGroups'),
   queriedGroup: [],
   groupList: computed(function() {
     if (isEmpty(get(this, 'userSavedGroups'))) {

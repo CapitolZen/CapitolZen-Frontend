@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
@@ -8,8 +9,8 @@ export default Component.extend({
   flashMessages: service(),
   store: service(),
   currentUser: service(),
-  bill: computed.alias('wrapper.bill'),
-  notes: computed.alias('wrapper.notes'),
+  bill: alias('wrapper.bill'),
+  notes: alias('wrapper.notes'),
   addNote: false,
   actions: {
     toggleAddNote() {
@@ -23,9 +24,10 @@ export default Component.extend({
       let wrapper = get(this, 'wrapper');
       let notes = wrapper.get('notes');
       let user = get(this, 'currentUser.user');
-      let time = moment();
+      let userid = get(this, 'currentUser.user_id');
+      let timestamp = moment();
 
-      notes[docId] = { doc: doc, user: user, timestamp: time, public: false };
+      notes[docId] = { doc, userid, user, timestamp, public: false };
       wrapper.set('notes', notes);
       wrapper.save().then(() => {
         get(this, 'flashMessages').success('Note Saved!');
