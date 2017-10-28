@@ -1,5 +1,8 @@
 {{ui-page-property "All Reports" property="title"}}
-{{#link-to "reports.add" class="btn btn-primary mb-1"}}Create Report{{/link-to}}
+
+{{#global/page-title-actions}}
+  {{#link-to "reports.add" class="btn btn-primary"}}{{fa-icon "bath"}} Create Report{{/link-to}}
+{{/global/page-title-actions}}
 
 {{#ui/ui-card}}
   {{#block-slot 'content'}}

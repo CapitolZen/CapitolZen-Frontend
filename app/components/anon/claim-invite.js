@@ -2,7 +2,10 @@ import EmberObject, { set, get } from '@ember/object';
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
+import FormComponent from 'ui/components/form/base-model-form';
+import { task } from 'ember-concurrency';
+
+export default FormComponent.extend({
   flashMessages: service(),
   ajax: service(),
   store: service(),

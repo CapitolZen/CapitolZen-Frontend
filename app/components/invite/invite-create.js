@@ -7,7 +7,6 @@ import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 
 import FormComponent from 'ui/components/form/base-model-form';
-import UserValidations from '../../validators/user';
 
 export default FormComponent.extend({
   session: service(),

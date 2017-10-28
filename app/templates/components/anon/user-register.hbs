@@ -2,7 +2,7 @@
   <p class="text-center">Welcome! We're setting up your account.</p>
   {{ui/loading-animation}}
 {{else}}
-  {{#bs-form model=changeset onSubmit=(action "register") as |form|}}
+  {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
     <div class="card-block">
       <h4 class="card-title">Register Now</h4>
       {{form.element controlType="text" label="Your Name" property="name"}}
