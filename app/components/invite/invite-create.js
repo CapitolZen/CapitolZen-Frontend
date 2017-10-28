@@ -1,5 +1,4 @@
 import { next } from '@ember/runloop';
-import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 
@@ -7,20 +6,57 @@ import InviteValidations from '../../validators/invite';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 
-export default Component.extend({
+import FormComponent from 'ui/components/form/base-model-form';
+import UserValidations from '../../validators/user';
+
+export default FormComponent.extend({
   session: service(),
   store: service(),
   flashMessages: service(),
 
-  createInviteModalEnabled: false,
+  modalOpen: false,
   newInvite: null,
   organizationRoles: ['Member', 'Admin'],
-  InviteValidations,
 
-  init() {
-    this._super(...arguments);
-    this.set('newInvite', this._singleInviteFactory());
+  /**
+   * Model setup
+   */
+  initModel() {
+    let model = this.get('store').createRecord('invite', {
+      organization: this.get('organization'),
+      status: 'unclaimed',
+      metadata: {
+        organization_role: 'Member'
+      }
+    });
+
+    this.set('model', model);
+
+    let changeset = new Changeset(
+      model,
+      lookupValidator(InviteValidations),
+      InviteValidations
+    );
+
+    this.set('changeset', changeset);
   },
+
+  /**
+   * Success
+   */
+  onSubmitSuccess() {
+    this.get('invites').pushObject(this.get('model')._internalModel);
+    get(this, 'flashMessages').success('Invite Created');
+    this.set('modalOpen', false);
+
+    // Will probably invite a bunch of users, so we reset the data.
+    this.initModel();
+  },
+
+  /**
+   * Failure
+   */
+  onServerError() {},
 
   actions: {
     refreshUserInvites() {
@@ -33,47 +69,11 @@ export default Component.extend({
     },
 
     openInviteModal() {
-      const self = this;
-      if (!this.get('newInvite')) {
-        this.set('newInvite', this._singleInviteFactory());
-      }
-      this.set('createInviteModalEnabled', true);
+      this.set('modalOpen', true);
     },
 
     closeInviteModal() {
-      this.set('newInvite', null);
-      this.set('createInviteModalEnabled', false);
-    },
-
-    inviteNewUsersSubmit(newInvite) {
-      newInvite
-        .save()
-        .then(() => {
-          this.get('invites').pushObject(this.get('invite')._internalModel);
-          this.set('newInvite', null);
-          this.set('createInviteModalEnabled', false);
-          get(this, 'flashMessages').success('Invite Created');
-        })
-        .catch(() => {});
+      this.set('modalOpen', false);
     }
-  },
-
-  /**
-   * @private
-   */
-  _singleInviteFactory() {
-    let invite = this.get('store').createRecord('invite', {
-      organization: this.get('organization'),
-      status: 'unclaimed',
-      metadata: {
-        organization_role: 'Member'
-      }
-    });
-    this.set('invite', invite);
-    return new Changeset(
-      invite,
-      lookupValidator(InviteValidations),
-      InviteValidations
-    );
   }
 });
