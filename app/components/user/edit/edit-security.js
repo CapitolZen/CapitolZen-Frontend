@@ -1,16 +1,19 @@
-import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
 import ChangePassword from '../../../validators/user-change-password';
-import SingleFormState from '../../../mixins/single-form-state';
+import FormComponent from 'ui/components/form/base-model-form';
+import { task } from 'ember-concurrency';
 
-export default Component.extend(SingleFormState, {
+export default FormComponent.extend({
   tagName: '',
   flashMessages: service(),
-  init() {
-    this._super(...arguments);
+
+  /**
+   * Model setup
+   */
+  initModel() {
     let model = {
       current_password: '',
       password: '',
@@ -18,36 +21,50 @@ export default Component.extend(SingleFormState, {
     };
 
     this.set('model', model);
-    this.changeset = new Changeset(
+
+    let changeset = new Changeset(
       model,
       lookupValidator(ChangePassword),
       ChangePassword
     );
+
+    this.set('changeset', changeset);
   },
-  actions: {
-    submit(changeset) {
-      if (!changeset.get('isDirty')) {
-        return false;
+
+  /**
+   * Success
+   */
+  onSubmitSuccess() {
+    get(this, 'flashMessages').success('Password Updated');
+  },
+
+  /**
+   * Failure
+   */
+  onServerError() {},
+
+  /**
+   * Replace the submit handler since we're not just running changeset.save
+   */
+  submit: task(function*(changeset) {
+    changeset.execute();
+
+    let payload = {
+      data: {
+        type: 'users',
+        attributes: this.get('model')
       }
-      this.setFormState('pending');
-      changeset.execute();
+    };
 
-      let payload = {
-        data: {
-          type: 'users',
-          attributes: this.get('model')
-        }
-      };
-
-      this.get('user')
-        .change_password(payload)
-        .then(() => {
-          get(this, 'flashMessages').success('Password Updated');
-        })
-        .catch(data => {
-          this.handleServerFormErrors(data);
-          this.setFormState('default');
-        });
-    }
-  }
+    yield this.get('user')
+      .change_password(payload)
+      .then(data => {
+        this.onSubmitSuccess(data);
+      })
+      .catch(data => {
+        this.handleServerFormErrors(data);
+        this.setFormState('default');
+        this.onServerError(data);
+      });
+  }).drop()
 });

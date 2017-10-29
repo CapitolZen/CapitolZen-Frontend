@@ -1,0 +1,57 @@
+{{#nav.dropdown tagName="li" as |dd|}}
+  {{#dd.toggle}}
+    <img src="{{currentUser.organization.avatar}}" class="img-avatar">
+    {{fa-icon "chevron-down"}}
+  {{/dd.toggle}}
+  {{#dd.menu align="right" as |menu|}}
+
+  {{!-- Manage current org --}}
+    {{#menu.item tagName="li" class="dropdown-item title"}}
+      {{currentUser.organization.name}}
+    {{/menu.item}}
+
+    {{#menu.item tagName="li" class="dropdown-item"}}
+      {{#nav.link-to "organizations.edit"}}
+        Edit
+      {{/nav.link-to}}
+    {{/menu.item}}
+
+    {{#menu.item tagName="li" class="dropdown-item"}}
+      {{#nav.link-to "organizations.users"}}
+        Team
+      {{/nav.link-to}}
+    {{/menu.item}}
+
+    {{#menu.item tagName="li" class="dropdown-item"}}
+      {{#nav.link-to "organizations.api"}}
+        API
+      {{/nav.link-to}}
+    {{/menu.item}}
+
+    {{!-- Switch orgs --}}
+    {{#if canSwitch }}
+      {{#menu.item tagName="li" class="dropdown-item title"}}
+        Switch
+      {{/menu.item}}
+      {{#each switchOrganizationList as |organization|}}
+        {{#menu.item tagName="li" class="dropdown-item"}}
+          <a href="#" class="nav-link" {{action "switchOrganization" organization}} preventDefault=false>
+            {{organization.name}}
+          </a>
+        {{/menu.item}}
+      {{/each}}
+    {{/if}}
+
+    {{!-- Make New --}}
+    {{#if canCreate }}
+      {{#menu.item tagName="li" class="dropdown-item hr"}}
+        <hr>
+      {{/menu.item}}
+      {{#menu.item tagName="li" class="dropdown-item"}}
+        {{#nav.link-to "organizations.create"}}
+          Create New
+        {{/nav.link-to}}
+      {{/menu.item}}
+    {{/if}}
+  {{/dd.menu}}
+{{/nav.dropdown}}

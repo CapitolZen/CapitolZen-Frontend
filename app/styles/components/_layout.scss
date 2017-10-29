@@ -103,6 +103,14 @@ body > .ember-view {
     right: 0;
     bottom: 0;
   }
+
+  .user-avatar {
+    display: inline-block;
+    img {
+      max-width: 26px;
+      border-radius: 16px;
+    }
+  }
 }
 
 .group-header {
@@ -117,6 +125,47 @@ body > .ember-view {
   cursor: pointer;
   &:hover {
     text-decoration: none;
+  }
+}
+
+//
+// Page header
+//////////////////////////////////////////
+.page-header {
+  background: #fff;
+  border-top: 1px solid $gray-lighter;
+  box-shadow: 0px 0px 4px 0 #c4c4c4;
+
+  @include media-breakpoint-up(md) {
+    padding: 2rem 6rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 1rem 10rem;
+  }
+
+  .page-title {
+    font-weight: 300;
+    margin: 0;
+    @include media-breakpoint-down(md) {
+      font-size: 2rem;
+    }
+  }
+
+  .page-header-actions {
+    text-align: right;
+    @include media-breakpoint-down(md) {
+      text-align: left;
+    }
+  }
+  .breadcrumb {
+    background: transparent;
+    border-top: 1px solid $gray-lighter;
+    padding: 0;
+    margin: 0;
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
   }
 }
 
@@ -139,7 +188,6 @@ footer {
 .app-container {
   flex-grow: 1;
   @include media-breakpoint-up(md) {
-    margin-top: 3rem;
     padding: 2rem 6rem;
   }
 
@@ -203,49 +251,4 @@ footer {
   padding-top: 0.5rem;
   margin-top: 0.5rem;
   border-top: $border-default;
-}
-
-//
-// Responsive
-//////////////////////////////////////////
-@include media-breakpoint-up(xs) {
-}
-
-@include media-breakpoint-up(sm) {
-}
-
-@include media-breakpoint-up(md) {
-  .app-container {
-    padding: 2rem 6rem;
-  }
-}
-
-@include media-breakpoint-up(lg) {
-  .app-container {
-    padding: 1rem 10rem;
-  }
-}
-
-//
-// Misc Fixes
-//////////////////////////////////////////
-.file-upload-container {
-  border: 1px solid $gray-lighter;
-  background-color: $gray-lightest;
-  &.file-upload-valid {
-    //border-color: $brand-success;
-  }
-}
-
-.badge-republican {
-  @include badge-variant(#dc3545);
-}
-
-.badge-democrat {
-  @include badge-variant(#007bff);
-}
-
-#us_report_button {
-  right: unset;
-  left: 30px;
 }

@@ -1,3 +1,26 @@
-{{user.title}}
+{{user/user-avatar user=user}}
+<div class="user-info">
+  <h6>{{user.title}}</h6>
+  <p>
+    {{user.username}} - {{user.organization_role}} - {{#if user.isActive}}Active{{else}}Disabled{{/if}}
+  </p>
+</div>
 
-{{bs-button onClick=(action "resetPassword") defaultText="Reset Password" pendingText="Sending password reset..."}}
+{{#if userCanEdit }}
+  <div class="user-actions">
+    {{#if (eq user.organization_role "Admin")}}
+      <a href="" {{action "switchRole" user "Member"}}>Make Member</a>
+    {{else if (eq user.organization_role "Member")}}
+      <a href="" {{action "switchRole" user "Admin"}}>Make Admin</a>
+    {{/if}}
+
+    -
+
+    {{#if user.isActive}}
+      <a href="" {{action "switchAccountStatus" user false}}>Disable Account</a>
+    {{else}}
+      <a href="" {{action "switchAccountStatus" user true}}>Enable Account</a>
+    {{/if}}
+
+  </div>
+{{/if}}

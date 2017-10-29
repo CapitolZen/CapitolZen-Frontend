@@ -1,0 +1,28 @@
+{
+  "name": "common",
+  "keywords": [
+    "ember-addon"
+  ],
+  "dependencies": {
+    "ember-cli-htmlbars": "*",
+    "ember-cli-babel": "*",
+    "ember-font-awesome": "*"
+  },
+  "devDependencies": {
+    "ember-bootstrap": "*",
+    "ember-block-slots": "*",
+    "ember-light-table": "*",
+    "ember-bootstrap-changeset-validations": "*",
+    "ember-changeset": "*",
+    "ember-changeset-validations": "*",
+    "ember-cli-flash": "*",
+    "ember-power-select": "*",
+    "ember-bootstrap-power-select": "*",
+    "ember-power-select-blockless": "*"
+  },
+  "ember-addon": {
+    "paths": [
+      "../ui"
+    ]
+  }
+}

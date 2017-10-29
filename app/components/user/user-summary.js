@@ -1,16 +1,58 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
+import { get, computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 
 export default Component.extend({
   ajax: service(),
-  classNames: ['list-group-item', 'd-flex', 'justify-content-between'],
+  currentUser: service('current-user'),
+  classNames: [
+    'user-summary',
+    'list-group-item',
+    'd-flex',
+    'justify-content-between'
+  ],
+
+  userCanEdit: computed('user', 'currentUser.user', function() {
+    if (this.get('currentUser.user.id') === this.get('user.id')) {
+      return false;
+    }
+
+    if (this.get('currentUser.user.organization_role') === 'Member') {
+      return false;
+    }
+
+    return true;
+  }),
+
   actions: {
-    resetPassword() {
-      let email = get(this, 'user.username');
-      return get(this, 'ajax').post('users/reset_password_request/', {
-        data: { email }
+    switchRole(user, role) {
+      let payload = {
+        data: {
+          type: 'users',
+          attributes: {
+            role: role
+          }
+        }
+      };
+
+      user.change_organization_role(payload).then(() => {
+        user.reload();
+      });
+    },
+
+    switchAccountStatus(user, status) {
+      let payload = {
+        data: {
+          type: 'users',
+          attributes: {
+            status: status
+          }
+        }
+      };
+
+      user.change_status(payload).then(() => {
+        user.reload();
       });
     }
   }

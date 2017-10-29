@@ -23,24 +23,6 @@
 
 <div class="row justify-content-between">
   <div class="col-12">
-    {{#ui/ui-card}}
-      {{#block-slot "title"}}
-        Edit Client
-      {{/block-slot}}
-      {{#block-slot "content"}}
-        {{groups/group-form model=model.group}}
-      {{/block-slot}}
-    {{/ui/ui-card}}
+    {{groups/group-form group=model.group}}
   </div>
-  {{!--
-  <div class="col-md-4">
-    {{#ui/ui-card}}
-      {{#block-slot "title"}}
-        Activity
-      {{/block-slot}}
-      {{#block-slot 'content'}}
-        {{timeline/timeline-list activities=model.activities}}
-      {{/block-slot}}
-    {{/ui/ui-card}}
-  </div> --}}
 </div>

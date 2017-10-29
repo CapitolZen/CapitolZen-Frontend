@@ -1,0 +1,16 @@
+{
+  "name": "ui",
+  "keywords": [
+    "ember-addon"
+  ],
+  "dependencies": {
+    "ember-cli-htmlbars": "*",
+    "ember-cli-babel": "*",
+    "ember-font-awesome": "*"
+
+  },
+  "devDependencies": {
+    "ember-block-slots": "*",
+    "ember-light-table": "*"
+  }
+}

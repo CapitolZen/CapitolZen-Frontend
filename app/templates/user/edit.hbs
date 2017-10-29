@@ -1,9 +1,13 @@
 {{ui-page-property "My Account" property="title"}}
-{{#bs-tab as |tab|}}
-  {{#tab.pane title="Profile"}}
-    {{user/edit/edit-profile user=model}}
-  {{/tab.pane}}
-  {{#tab.pane title="Security"}}
-    {{user/edit/edit-security user=model}}
-  {{/tab.pane}}
-{{/bs-tab}}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    {{#bs-tab as |tab|}}
+      {{#tab.pane title="Profile"}}
+        {{user/edit/edit-profile user=model}}
+      {{/tab.pane}}
+      {{#tab.pane title="Security"}}
+        {{user/edit/edit-security user=model}}
+      {{/tab.pane}}
+    {{/bs-tab}}
+  </div>
+</div>
