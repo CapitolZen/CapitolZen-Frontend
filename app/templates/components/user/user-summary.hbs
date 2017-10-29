@@ -7,22 +7,20 @@
 </div>
 
 {{#if userCanEdit }}
+  <div class="user-actions">
+    {{#if (eq user.organization_role "Admin")}}
+      <a href="" {{action "switchRole" user "Member"}}>Make Member</a>
+    {{else if (eq user.organization_role "Member")}}
+      <a href="" {{action "switchRole" user "Admin"}}>Make Admin</a>
+    {{/if}}
 
+    -
 
-<div class="user-actions">
-  {{#if (eq user.organization_role "Admin")}}
-    <a href="" {{action "switchRole" user "Member"}}>Make Member</a>
-  {{else if (eq user.organization_role "Member")}}
-    <a href="" {{action "switchRole" user "Admin"}}>Make Admin</a>
-  {{/if}}
+    {{#if user.isActive}}
+      <a href="" {{action "switchAccountStatus" user false}}>Disable Account</a>
+    {{else}}
+      <a href="" {{action "switchAccountStatus" user true}}>Enable Account</a>
+    {{/if}}
 
-  -
-
-  {{#if user.isActive}}
-    <a href="" {{action "switchAccountStatus" user false}}>Disable Account</a>
-  {{else}}
-    <a href="" {{action "switchAccountStatus" user true}}>Enable Account</a>
-  {{/if}}
-
-</div>
+  </div>
 {{/if}}
