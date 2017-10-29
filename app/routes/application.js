@@ -1,51 +1,51 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-import RSVP from 'rsvp';
+import { computed, set, get } from '@ember/object';
 
 export default Route.extend(ApplicationRouteMixin, {
+  session: service('session'),
   currentUser: service(),
   flashMessages: service(),
 
   /**
    *
    */
-  beforeModel() {
-    return RSVP.all([
-      this._loadCurrentUser().catch(() => {
-        this.get('session').invalidate();
-        this.get('flashMessages').danger(
-          'An error occurred loading your account.'
-        );
-        this.transitionTo('login');
-      })
-    ]);
-  },
+  routeAfterAuthentication: computed(function() {
+    if (this.get('currentUser.organizations.length')) {
+      return 'dashboard';
+    }
+  }),
 
   /**
    *
    */
-  sessionAuthenticated() {
-    this._super(...arguments);
-    this._loadCurrentUser().catch(() => {
-      this.get('session').invalidate();
-      this.get('flashMessages').danger(
-        'An error occurred loading your account.'
-      );
-      this.transitionTo('login');
-    });
+  beforeModel() {
+    return this.get('currentUser')
+      .initApp()
+      .then(data => {
+        if (data === 'invalidate' && this.get('session.isAuthenticated')) {
+          this.get('session').invalidate();
+          this.transitionTo('anon.login');
+        }
+      });
   },
 
   /**
-   * @private
+   * After the user has been authenticated
    */
-  _loadCurrentUser() {
-    return this.get('currentUser').load();
+  sessionAuthenticated() {
+    this.get('currentUser')
+      .sessionAuthenticated()
+      .then(() => {
+        if (this.get('currentUser.user')) {
+          this.transitionTo(this.get('routeAfterAuthentication'));
+        }
+      });
   },
 
   actions: {
     /**
-     *
      * @param error
      * @param transition
      */

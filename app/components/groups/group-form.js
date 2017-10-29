@@ -1,64 +1,53 @@
 import { inject as service } from '@ember/service';
-import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { typeOf, isEmpty } from '@ember/utils';
+import lookupValidator from 'ember-changeset-validations';
+import Changeset from 'ember-changeset';
+import FormComponent from 'ui/components/form/base-model-form';
+import ClientValidations from '../../validators/client';
 
-export default Component.extend({
+export default FormComponent.extend({
   store: service(),
   currentUser: service(),
   flashMessages: service(),
-  routing: service('-routing'),
+  router: service('router'),
   isEditing: false,
   toggleEnabled: true,
-  changeLogo: false,
-  init() {
-    this.get('currentUser');
-    this._super(...arguments);
-    set(this, 'changeLogo', isEmpty(get(this, 'model.logo')));
-  },
-  logoName: computed({
-    get() {
-      let url = get(this, 'model.logo');
 
-      if (!url || get(this, 'changeLogo')) {
-        return false;
-      }
-      url = decodeURIComponent(url);
-      let peices = url.split('/');
-      return peices.pop();
-    },
-    set(key, val) {
-      let url = decodeURIComponent(val);
-      let pieces = url.split('/');
-      return pieces.pop();
+  /*
+   * Model setup
+   */
+  initModel() {
+    if (this.get('group')) {
+      this.set('model', this.get('group'));
+    } else {
+      this.set(
+        'model',
+        this.get('store').createRecord('group', { active: true })
+      );
     }
-  }),
+
+    let changeset = new Changeset(
+      this.get('model'),
+      lookupValidator(ClientValidations),
+      ClientValidations
+    );
+    this.set('changeset', changeset);
+  },
+
+  /**
+   * Success
+   */
+  onSubmitSuccess() {
+    get(this, 'flashMessages').success('Client Saved');
+  },
+
+  /**
+   * Failure
+   */
+  onServerError() {},
+
   actions: {
-    handleResponse({ headers: { location } }) {
-      let model = get(this, 'model');
-      model.set('logo', location);
-      set(this, 'changeLogo', false);
-      set(this, 'logoName', location);
-    },
-    changeLogo() {
-      this.toggleProperty('changeLogo');
-    },
-    saveGroup(group) {
-      if (!group.get('id')) {
-        let props = group.getProperties(
-          'title',
-          'active',
-          'description',
-          'logo'
-        );
-        props.organization = get(this, 'currentUser.organization');
-        group = get(this, 'store').createRecord('group', props);
-      }
-      return group.save().then(() => {
-        get(this, 'flashMessages').success('Client Updated!');
-        get(this, 'routing').transitionTo('groups.index');
-      });
-    },
     saveGroupToUser() {}
   }
 });

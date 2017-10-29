@@ -1,13 +1,12 @@
 import { inject as service } from '@ember/service';
 import { set, get, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import SingleFormState from '../../mixins/single-form-state';
 import OrganizationValidations from '../../validators/organization';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 import FormComponent from 'ui/components/form/base-model-form';
 
-export default FormComponent.extend(SingleFormState, {
+export default FormComponent.extend({
   session: service(),
   store: service(),
   currentUser: service(),

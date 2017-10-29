@@ -1,6 +1,9 @@
 {{ui-page-property "Clients" property="title"}}
 
-{{#link-to "groups.add" class="btn btn-primary"}}Add Client{{/link-to}}
+{{#global/page-title-actions}}
+  {{#link-to "groups.add" class="btn btn-primary"}}{{fa-icon "coffee"}} Add Client{{/link-to}}
+{{/global/page-title-actions}}
+
 <div class="row mt-1">
   {{#each model as |group|}}
     {{groups/group-preview group=group}}

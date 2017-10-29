@@ -29,9 +29,7 @@ export default FormComponent.extend({
   /**
    * Success
    */
-  onSubmitSuccess() {
-    this.transitionToRoute('dashboard');
-  },
+  onSubmitSuccess() {},
 
   /**
    * Failure
@@ -45,12 +43,9 @@ export default FormComponent.extend({
     changeset.execute();
     const authenticator = 'authenticator:jwt';
     let model = this.get('model');
-
+    console.log('=(e');
     yield this.get('session')
       .authenticate(authenticator, model)
-      .then(data => {
-        this.onSubmitSuccess(data);
-      })
       .catch(data => {
         this.handleServerFormErrors(data);
         this.setFormState('default');

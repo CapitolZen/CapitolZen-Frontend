@@ -1,6 +1,8 @@
 {{ui-page-property "Create New Client" property="title"}}
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
-    {{groups/group-form model=model groupAction="createGroup" isEditing=true toggleEnabled=false}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+
+    {{groups/group-form groupAction="createGroup" isEditing=true toggleEnabled=false}}
+
+  </div>
+</div>

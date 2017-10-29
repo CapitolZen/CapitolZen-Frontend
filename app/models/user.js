@@ -39,5 +39,6 @@ export default DS.Model.extend({
 
   //
   // Actions
-  change_password: memberAction({ path: 'change_password/', type: 'POST' })
+  change_password: memberAction({ path: 'change_password/', type: 'POST' }),
+  login: memberAction({ path: 'login/', type: 'POST' })
 });
