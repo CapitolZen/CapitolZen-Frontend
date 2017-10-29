@@ -4,6 +4,6 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   currentUser: service(),
   model() {
-    return get(this, 'currentUser').loadOrganization();
+    return this.get('currentUser.organization');
   }
 });

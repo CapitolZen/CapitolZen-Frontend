@@ -16,7 +16,7 @@
   {{/nav.item}}
   {{#nav.dropdown tagName="li" class="nav-item" as |dd|}}
     {{#dd.toggle}}
-      <i class="fa fa-user"></i> <span class="hidden-sm-down">My Account</span>
+      {{user/user-avatar user=currentUser.user}} <span class="hidden-sm-down">{{currentUser.user.name}}</span>
     {{/dd.toggle}}
     {{#dd.menu align="right" as |menu|}}
       {{#menu.item}}
@@ -54,7 +54,3 @@
   Modals
 --}}
 {{global/help-modal open=helpModal onHidden=(action (mut helpModal) false)}}
-{{user/user-edit-modal user=currentUser.user open=accountModal onHidden=(action (mut accountModal) false)}}
-{{organization/organization-edit-modal organization=currentUser.organization open=organizationModal
-                                       onHidden=(action (mut organizationModal) false)}}
-

@@ -1,4 +1,6 @@
-{{#bs-button onClick=(action "openInviteModal") type="primary" class="mb-2"}}{{fa-icon "users"}} Invite user{{/bs-button}}
+{{#bs-button onClick=(action "openInviteModal") type="primary" class="mb-2"}}
+  {{fa-icon "plus"}} Invite user
+{{/bs-button}}
 
 {{#bs-modal open=modalOpen
             onSubmit=(action "submit")
