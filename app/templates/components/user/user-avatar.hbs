@@ -1,5 +1,8 @@
 {{#if user.avatar}}
   <img src="{{user.avatar}}" alt="">
 {{else}}
-  {{fa-icon 'user'}}
+  <div class="default-avatar">
+    {{fa-icon 'user'}}
+  </div>
+
 {{/if}}

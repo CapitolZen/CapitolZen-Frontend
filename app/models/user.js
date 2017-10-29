@@ -12,8 +12,11 @@ export default DS.Model.extend({
   avatar: DS.attr('string'),
   organizations: DS.hasMany('organization'),
   isActive: DS.attr('boolean'),
-  isStaff: DS.attr('boolean'),
-  password: DS.attr('string'),
+
+  //
+  // Relationship to current organization
+  // Owner || Admin || Member
+  organization_role: DS.attr('string'),
 
   firstLogin: computed('metadata', function() {
     let meta = get(this, 'metadata');
@@ -40,5 +43,10 @@ export default DS.Model.extend({
   //
   // Actions
   change_password: memberAction({ path: 'change_password/', type: 'POST' }),
-  login: memberAction({ path: 'login/', type: 'POST' })
+  login: memberAction({ path: 'login/', type: 'POST' }),
+  change_status: memberAction({ path: 'change_status/', type: 'POST' }),
+  change_organization_role: memberAction({
+    path: 'change_organization_role/',
+    type: 'POST'
+  })
 });
