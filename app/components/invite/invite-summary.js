@@ -4,8 +4,12 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   flashMessages: service(),
-  classNames: ['invite-summary'],
-
+  classNames: [
+    'invite-summary',
+    'list-group-item',
+    'd-flex',
+    'justify-content-between'
+  ],
   actions: {
     deleteInvite(invite) {
       invite.destroyRecord().then(() => {

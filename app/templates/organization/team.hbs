@@ -27,9 +27,11 @@
         {{#ui/ui-card}}
           {{#block-slot 'content'}}
             {{#if model.invites}}
-              {{#each model.invites as |invite index|}}
-                {{invite/invite-summary invite=invite updateInvite='updateUserInvite'}}
-              {{/each}}
+              <div class="list-group">
+                {{#each model.invites as |invite index|}}
+                  {{invite/invite-summary invite=invite updateInvite='updateUserInvite'}}
+                {{/each}}
+              </div>
             {{else}}
               <p class="no-things">Organization has no unclaimed invites.</p>
             {{/if}}

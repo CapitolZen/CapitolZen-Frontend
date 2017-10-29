@@ -1,18 +1,13 @@
-<div class="justify-content-between d-flex">
-  <div>
-    {{fa-icon "user"}}
-    {{invite.email}}
-  </div>
-
-  <div>
-    <button class="btn btn-sm btn-secondary" {{action "inviteAction" invite 'resend'}}>
-      {{fa-icon "share-square-o"}} Resend Invite Email
-    </button>
-
-    <button class="btn btn-sm btn-danger" {{action "deleteInvite" invite}}>
-      {{fa-icon "trash"}} Delete Invite
-    </button>
-  </div>
+{{user/user-avatar user=invite.user}}
+<div class="user-info">
+  <h6>{{invite.email}}</h6>
+  <p>
+    {{invite.status}}
+  </p>
 </div>
-<hr class="mb=1">
 
+<div class="user-actions">
+  <a href=""  {{action "inviteAction" invite 'resend'}}>Resend Invite Email</a>
+  -
+  <a href="" {{action "deleteInvite" invite}}>Delete Invite</a>
+</div>
