@@ -1,3 +1,27 @@
+//
+// Misc Fixes
+//////////////////////////////////////////
+.file-upload-container {
+  border: 1px solid $gray-lighter;
+  background-color: $gray-lightest;
+  &.file-upload-valid {
+    //border-color: $brand-success;
+  }
+}
+
+.badge-republican {
+  @include badge-variant(#dc3545);
+}
+
+.badge-democrat {
+  @include badge-variant(#007bff);
+}
+
+#us_report_button {
+  right: unset;
+  left: 30px;
+}
+
 .invite-summary {
   padding: 10px 0;
   border-bottom: 2px dotted $gray-lighter;
@@ -8,6 +32,10 @@
 .help-modal {
   .card {
     margin: 0;
+  }
+
+  .card-body {
+    padding: 1rem;
   }
 }
 
@@ -30,4 +58,25 @@
 
 .btn {
   cursor: pointer;
+}
+
+.modal.fade {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+.bill-search-page {
+  padding-top: 2rem;
+  form {
+    padding: 2rem;
+    box-shadow: 0px 0px 4px 0 #c4c4c4;
+    background: #fff;
+    border: 1px solid $gray-lightest;
+  }
+  input {
+    font-size: 2rem;
+  }
 }

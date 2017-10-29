@@ -1,7 +1,7 @@
-import EmberObject from '@ember/object';
 import Route from '@ember/routing/route';
+
 export default Route.extend({
-  model() {
-    return EmberObject.create({ active: true });
+  model(params) {
+    return this.store.createRecord('group', { active: true });
   }
 });

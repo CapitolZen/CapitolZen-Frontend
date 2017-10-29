@@ -5,7 +5,7 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   attachments: DS.attr(),
   organization: DS.belongsTo('organization'),
-  logo: DS.attr('string'),
+  avatar: DS.attr('string'),
   created: DS.attr('date'),
   modified: DS.attr('date'),
   starred: DS.attr('boolean'),

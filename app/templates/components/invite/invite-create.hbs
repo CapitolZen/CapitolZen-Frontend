@@ -1,18 +1,20 @@
-{{#bs-button onClick=(action "openInviteModal") type="primary" class="mb-2"}}{{fa-icon "users"}} Invite user{{/bs-button}}
+{{#bs-button onClick=(action "openInviteModal") type="primary" class="mb-2"}}
+  {{fa-icon "plus"}} Invite user
+{{/bs-button}}
 
-{{#bs-modal open=createInviteModalEnabled
-            onSubmit=(action "inviteNewUsersSubmit")
+{{#bs-modal open=modalOpen
+            onSubmit=(action "submit")
             onHidden=(action "closeInviteModal") as |modal|}}
   {{#modal.header}}
     <h4 class="modal-title">{{fa-icon "users"}} Invite New User</h4>
   {{/modal.header}}
 
   {{#modal.body}}
-    {{#bs-form onSubmit=(action "inviteNewUsersSubmit") model=newInvite as |form|}}
+    {{#bs-form onSubmit=(action "submit") model=changeset as |form|}}
       {{form.element controlType="text" label="Name" placeholder="Their Name" property="metadata.name"}}
 
       {{#form.element controlType="power-select" label="Role" property="metadata.organization_role"  options=organizationRoles as |el|}}
-        {{el.control searchEnabled=false}}
+        {{el.control searchEnabled=false renderInPlace=true}}
       {{/form.element}}
 
       {{form.element controlType="email" label="Email" placeholder="email@yourcompany.com" property="email"}}

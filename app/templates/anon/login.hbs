@@ -3,27 +3,14 @@
     <div class="col-md-6 offset-md-3">
       <div class="anon-header">
         <h1 class="d-flex">
-          <img  class="img-fluid w-50" src="/assets/images/capitolzenwordmark_logo.svg" alt="Capitol Zen">
+          <img class="img-fluid w-50" src="/assets/images/capitolzenwordmark_logo.svg" alt="Capitol Zen">
           <span class="sr-only">Capitol Zen</span>
         </h1>
       </div>
       {{#each flashMessages.queue as |flash|}}
         {{flash-message flash=flash}}
       {{/each}}
-      <div class="card">
-        {{#bs-form model=changeset onSubmit=(action "login") as |form|}}
-          <div class="card-block">
-            <h4 class="card-title">Welcome Back</h4>
-            {{form.element controlType="email" label="Email" placeholder="Email" property="identification"}}
-            {{form.element controlType="password" label="Password" placeholder="Password" property="password"}}
-            {{#link-to 'anon.forgot-password' class=""}}Need Help?{{/link-to}}
-          </div>
-          <div class="card-footer">
-            {{bs-button textState=buttonState disabled=formSubmitButtonDisabled defaultText="Login" type="primary" icon="fa fa-sign-in" pendingText="Login" buttonType="submit"}}
-            {{#link-to 'anon.register' class="pull-right btn btn-secondary"}}Create New Account{{/link-to}}
-          </div>
-        {{/bs-form}}
-      </div>
+      {{anon/user-login}}
     </div>
   </div>
 </div>
