@@ -1,6 +1,2 @@
 {{ui-page-property "Saved Bills" property="title"}}
-{{#ui/ui-card}}
-  {{#block-slot 'content'}}
-    {{bills/wrapper-table model=model displayGroup=true}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+{{wrappers/all-wrappers-table model=model}}

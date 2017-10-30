@@ -33,10 +33,22 @@
       border-bottom: 1px solid $cz-navy;
       &:hover {
         background-color: transparent !important;
-
       }
     }
+  }
+}
 
+//
+// Bill table filters
+//////////////////////////////////////////
 
+.bill-table-date-filter {
+  min-width: 4rem;
+}
+
+.power-select-group-wrapper {
+  .ember-power-select-trigger {
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
   }
 }

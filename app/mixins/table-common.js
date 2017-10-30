@@ -4,7 +4,7 @@ import { merge } from '@ember/polyfills';
 import { inject as service } from '@ember/service';
 import { underscore } from '@ember/string';
 import { isEmpty, typeOf } from '@ember/utils';
-import { computed } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import Table from 'ember-light-table';
 import { task } from 'ember-concurrency';
 
@@ -50,11 +50,14 @@ export default Mixin.create({
   fetchRecords: task(function*() {
     let query = this.getProperties(['page', 'page_size', 'sort']);
 
-    query = merge(this.get('recordQuery'), query);
-    let records = yield this.get('store').query(this.get('recordType'), query);
-    this.get('model').pushObjects(records.toArray());
-    this.set('meta', records.get('meta'));
-    this.set('canLoadMore', !isEmpty(records.get('meta').next));
+    query = merge(get(this, 'recordQuery'), query);
+    let records = yield get(this, 'store').query(
+      get(this, 'recordType'),
+      query
+    );
+    get(this, 'model').pushObjects(records.toArray());
+    set(this, 'meta', records.get('meta'));
+    set(this, 'canLoadMore', !isEmpty(records.get('meta').next));
   }).restartable(),
 
   /**

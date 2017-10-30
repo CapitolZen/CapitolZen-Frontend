@@ -34,13 +34,7 @@ export default Component.extend(TableCommon, {
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
-      // {
-      //   label: "Status",
-      //   valuePath: "status",
-      //   cellComponent: "bills/bill-table-status",
-      //   sortable: true,
-      //   breakpoints: ["mobile", "tablet", "desktop"]
-      // },
+
       {
         label: 'Actions',
         cellComponent: 'wrappers/wrapper-table-actions',
