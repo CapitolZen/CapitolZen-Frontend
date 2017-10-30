@@ -20,7 +20,7 @@ module.exports = function(defaults) {
       enabled: EmberApp.env() === 'production' || EmberApp.env() === 'qa'
     },
     'ember-font-awesome': {
-      includeFontFiles: true
+      removeUnusedIcons: false
     },
     'ember-power-select': {
       theme: 'bootstrap'
