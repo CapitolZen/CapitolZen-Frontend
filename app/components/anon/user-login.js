@@ -43,7 +43,6 @@ export default FormComponent.extend({
     changeset.execute();
     const authenticator = 'authenticator:jwt';
     let model = this.get('model');
-    console.log('=(e');
     yield this.get('session')
       .authenticate(authenticator, model)
       .catch(data => {

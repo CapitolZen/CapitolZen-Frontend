@@ -1,1 +1,53 @@
-{{yield}}
+{{#ui/ui-card}}
+  {{#block-slot "content"}}
+    {{#bs-form formLayout="inline" model=recordQuery onSubmit=(action "filter") as |form|}}
+      {{form.element label="Sponsor" controlType="text" property="sponsor_name" class="pr-2"}}
+      {{form.element label="Client" controlType="text" property="group__title" class="pr-2"}}
+      {{#form.element property="active_in" as |el|}}
+        {{#power-select
+          options=dateFilterOptions
+          selected=dateFilterType
+          searchEnabled=false
+          class="pr-2 bill-table-date-filter"
+          onchange=(action (mut dateFilterType))
+        as |option|}}
+          <span class="text-capitalize">{{option}}</span> Date Range
+        {{/power-select}}
+        {{baremetrics-calendar
+          startDate=dateFilters.startDate
+          endDate=dateFilters.endDate
+          latestDate=latestDate
+          presets=presets
+          class="px-2"
+          onchange=(action "updateDateFilter")}}
+      {{/form.element}}
+      {{bs-button defaultText="Filter" pendingText="Saving..." type="primary" buttonType="submit"}}
+    {{/bs-form}}
+  {{/block-slot}}
+{{/ui/ui-card}}
+
+{{#ui/ui-card}}
+  {{#block-slot "content"}}
+    {{#light-table table responsive=true height=tableHeight as |t|}}
+
+      {{t.head
+        onColumnClick=(action 'onColumnClick')
+        iconAscending='fa fa-sort-asc'
+        iconDescending='fa fa-sort-desc'
+        fixed=true
+      }}
+
+      {{#t.body
+        onScrolledToBottom=(action 'onScrolledToBottom')
+      as |body|
+      }}
+        {{#if isLoading}}
+          {{#body.loader}}
+            {{ui/loading-animation}}
+          {{/body.loader}}
+        {{/if}}
+      {{/t.body}}
+
+    {{/light-table}}
+  {{/block-slot}}
+{{/ui/ui-card}}

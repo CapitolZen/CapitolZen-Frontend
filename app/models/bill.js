@@ -16,5 +16,6 @@ export default DS.Model.extend({
   votes: DS.attr(),
   remoteUrl: DS.attr('string'),
   billVersions: DS.attr(),
-  introducedDate: DS.attr('date')
+  introducedDate: DS.attr('date'),
+  wrappers: DS.hasMany('wrappers')
 });
