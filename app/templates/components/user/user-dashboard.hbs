@@ -1,4 +1,3 @@
-<h3>Welcome {{userName}}!</h3>
 
 <div class="row">
   <div class="col-md-8">
@@ -8,16 +7,25 @@
     {{/each}}
   </div>
   <div class="col-md-4">
+    <h4>Quick Links</h4>
     <div class="list-group">
-      {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}Watched Bills{{/link-to}}
-      {{#link-to "bills.search" class="list-group-item list-group-item-action"}}Search Bills{{/link-to}}
-      {{#link-to "organization.team" class="list-group-item list-group-item-action"}}My Team{{/link-to}}
+      {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}{{fa-icon "file-text" class="mr-2"}}Watched Bills{{/link-to}}
+      {{#link-to "reports.index" class="list-group-item list-group-item-action"}}{{fa-icon "map" class="mr-2"}}Reports{{/link-to}}
+      {{#link-to "bills.search" class="list-group-item list-group-item-action"}}{{fa-icon "search" class="mr-2"}}Search Bills{{/link-to}}
+      {{#link-to "organization.team" class="list-group-item list-group-item-action"}}{{fa-icon "users" class="mr-2"}}My Team{{/link-to}}
     </div>
     <hr class="my-2">
     <h4>My Clients</h4>
     <div class="list-group">
       {{#each queriedGroup as |group|}}
-        {{#link-to "groups.detail" group.id class="list-group-item list-group-item-action"}}{{group.title}}{{/link-to}}
+        <div class="list-group-item dflex justify-content-between">
+          {{#link-to "groups.detail" group.id}}{{group.title}}{{/link-to}}
+          <div class="btn-group btn-group-sm">
+            {{#link-to "groups.detail.bills" group.id class="btn btn-secondary"}}{{fa-icon "file-text"}}{{/link-to}}
+            {{#link-to "groups.detail.index" group.id class="btn btn-secondary"}}{{fa-icon "pencil-square-o"}}{{/link-to}}
+            {{#link-to "reports.client" group.id class="btn btn-secondary"}}{{fa-icon "map"}}{{/link-to}}
+          </div>
+        </div>
       {{/each}}
     </div>
   </div>

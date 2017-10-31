@@ -19,7 +19,7 @@ export default Component.extend({
     }
   }),
   fetchGroups: task(function*() {
-    let groups = yield get(this, 'store').findAll('group');
+    let groups = yield get(this, 'store').query('group', { active: true });
     set(this, 'queriedGroup', groups);
   }).on('init'),
   fetchBills: task(function*() {
