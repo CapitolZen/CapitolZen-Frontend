@@ -3,6 +3,7 @@ import { A } from '@ember/array';
 import { merge } from '@ember/polyfills';
 import Component from '@ember/component';
 import { getWithDefault, computed, set, get } from '@ember/object';
+import { notEmpty } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import moment from 'moment';
@@ -30,13 +31,15 @@ export default Component.extend({
     return output;
   }),
   isStatic: alias('model.isStatic'),
+  hasGroup: notEmpty('selectedGroup'),
+
   init() {
     this._super(...arguments);
-    let m, g;
+    let model, group;
     if (get(this, 'model')) {
-      m = get(this, 'model');
-      g = get(m, 'group');
-      set(this, 'selectedGroup', g);
+      model = get(this, 'model');
+      group = get(model, 'group');
+      set(this, 'selectedGroup', group);
       get(this, 'getWrappers').perform();
     } else {
       set(this, 'model', get(this, 'store').createRecord('report'));
@@ -81,6 +84,7 @@ export default Component.extend({
       return wrappers;
     }
   ),
+
   getWrappers: task(function*() {
     let g = getWithDefault(this, 'selectedGroup', false);
 
@@ -114,6 +118,7 @@ export default Component.extend({
       console.log(e);
     }
   }),
+
   selectedLayout: computed('preferences', {
     get() {
       let d = get(this, 'layoutOptions')[0];
@@ -139,35 +144,6 @@ export default Component.extend({
     }
   ],
 
-  filterOptions: [
-    {
-      label: 'Bill Title',
-      qvalue: 'bill__title',
-      type: 'string'
-    },
-    {
-      label: 'Sponsor Name',
-      qvalue: 'bill__sponsor__last_name',
-      type: 'string'
-    },
-    {
-      label: 'Sponsor Party',
-      qvalue: 'bill__sponsor__party',
-      type: 'string'
-    },
-    {
-      label: 'Summary',
-      qvalue: 'summary',
-      type: 'string'
-    },
-    {
-      label: 'Position',
-      qvalue: 'position',
-      type: 'array',
-      opts: ['support', 'oppose', 'neutral']
-    }
-  ],
-
   actions: {
     updateGroup(mut, group) {
       set(this, 'selectedGroup', group);
@@ -183,6 +159,7 @@ export default Component.extend({
       let model = get(this, 'model');
       let [key] = Object.keys(update);
       model.updateFilter(key, update[key]);
+      set(this, 'addFilterItem', false);
       get(this, 'getWrappers').perform();
     },
     deleteFilterItem(obj) {

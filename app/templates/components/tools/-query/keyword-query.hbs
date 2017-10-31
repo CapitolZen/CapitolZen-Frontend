@@ -1,0 +1,18 @@
+{{#unless isEditing}}
+  Search for <pre>{{keyword}}</pre>
+{{else}}
+  {{#bs-form model=value onSubmit=(action "save") as |form|}}
+    {{#form.element
+      controlType="text"
+      label="Keyword Search"
+      placeholder="Search..."
+      property="title__icontains"
+      required=true
+      as |el|}}
+      {{el.control class="input-lg"}}
+    {{/form.element}}
+    {{#bs-button buttonType="submit"}}
+      {{fa-icon "plus"}} Add
+    {{/bs-button}}
+  {{/bs-form}}
+{{/unless}}

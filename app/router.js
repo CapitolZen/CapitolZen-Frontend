@@ -60,7 +60,6 @@ Router.map(function() {
     // Groups
     this.route('groups', { resetNamespace: true, path: 'clients' }, function() {
       this.route('detail', { path: '/:id' }, function() {
-        this.route('edit', { path: '/edit' });
         this.route('contacts', { path: '/contacts' });
         this.route('bills', { path: '/bills' });
         this.route('bill', { path: '/bill' }, function() {

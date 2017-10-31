@@ -1,86 +1,62 @@
-import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { getWithDefault, computed, set, get } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
+import { A } from '@ember/array';
 import moment from 'moment';
 
 export default Component.extend({
   classNames: ['row', 'mt-2'],
   today: moment(),
-  queryBuilder: service(),
+  isEditing: false,
   init() {
     this._super(...arguments);
-    let q = getWithDefault(this, 'filter', false);
-    if (q) {
-      let [key] = Object.keys(q);
-      let parts = key.split('__');
-      let op = parts.pop();
-      key = parts.join('__');
-      get(this, 'opts').forEach(o => {
-        if (o.qvalue === key) {
-          set(this, 'selectedQuery', o);
-        }
+    let value = getWithDefault(this, 'value', false);
+    if (value) {
+      let [key] = Object.keys(value);
+      let types = A(get(this, 'filterTypes'));
+      let type = types.find(item => {
+        return key.endsWith(item.keyend);
       });
-
-      get(this, 'operatorOptions').forEach(e => {
-        if (e.value === op) {
-          set(this, 'selectedOperator', e);
-        }
-      });
-
-      let [value] = Object.values(q);
-      set(this, 'selectedValue', value);
+      set(this, 'queryType', type);
     }
   },
-  operatorOptions: computed('selectedQuery', function() {
-    if (get(this, 'selectedQuery')) {
-      let { type } = get(this, 'selectedQuery');
-
-      return get(this, 'queryBuilder').getOperatorOptions(type);
+  filterTypes: [
+    {
+      label: 'Sponsor Party',
+      component: 'tools/-query/sponsor-party',
+      keyend: 'party'
+    },
+    {
+      label: 'Date Range - Dynamic',
+      component: 'tools/-query/dynamic-date-range',
+      keyend: 'te'
+    },
+    {
+      label: 'Date Range - Static',
+      component: 'tools/-query/static-date-range',
+      keyend: '__range'
+    },
+    {
+      label: 'Keyword',
+      component: 'tools/-query/keyword-query',
+      keyend: '_title__icontains'
+    },
+    {
+      label: 'Client Position',
+      component: 'tools/-query/client-position',
+      keyend: 'position'
     }
-    return [];
-  }),
-  selectedOperatorLabel: alias('selectedOperator.label'),
-  selectedQueryLabel: alias('selectedQuery.label'),
-  valueSelectorComponent: computed('selectedQuery', function() {
-    if (get(this, 'selectedQuery')) {
-      let { type, opts = false } = get(this, 'selectedQuery');
-      return get(this, 'queryBuilder').valueElementGenerator(opts, type);
-    }
-  }),
-  generatedQuery: computed(
-    'selectedQuery',
-    'selectedValue',
-    'selectedOperator',
-    function() {
-      let query = get(this, 'selectedQuery'),
-        val = get(this, 'selectedValue'),
-        op = get(this, 'selectedOperator'),
-        output = {};
-      if (query && val && op) {
-        output = get(this, 'queryBuilder').generateQuery(query, op, val);
-      }
-      return output;
-    }
-  ),
+  ],
+  queryType: null,
+  selectedComponent: alias('queryType.component'),
   actions: {
-    addFilter() {
+    updateValue(value) {
       set(this, 'isEditing', false);
-      get(this, 'update')(get(this, 'generatedQuery'));
-      if (get(this, 'isNew')) {
-        set(this, 'selectedQuery', null);
-        set(this, 'selectedValue', null);
-        set(this, 'selectedOperator', null);
-        set(this, 'isEditing', true);
-      }
+      set(this, 'isNew', true);
+      get(this, 'update')(value);
     },
-    updateFilter() {
-      get(this, 'update')(get(this, 'generatedQuery'));
-      set(this, 'isEditing', false);
-    },
-    deleteFilter() {
-      get(this, 'delete')(get(this, 'generatedQuery'));
-      set(this, 'isEditing', false);
+    deleteValue(value) {
+      get(this, 'delete')(value);
     }
   }
 });
