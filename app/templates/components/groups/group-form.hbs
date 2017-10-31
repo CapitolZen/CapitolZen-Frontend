@@ -5,14 +5,6 @@
       {{form.element controlType="checkbox" label="Active" property="active"}}
       {{form.element controlType="textarea" label="Description" property="description"}}
       {{form.element label="Logo" controlType="avatar" property="avatar"}}
-
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" value={{groupSavedToUser}} onclick={{action
-            "saveGroupToUser"}}>
-          Save group to favorites
-        </label>
-      </div>
     {{/block-slot}}
     {{#block-slot 'footer'}}
       {{bs-button defaultText="Save" type="primary" pendingText="Saving..." buttonType="submit"}}
