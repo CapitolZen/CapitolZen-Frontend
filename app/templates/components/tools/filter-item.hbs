@@ -1,101 +1,23 @@
 {{#if isEditing}}
-<div class="col-3">
-  <h6>Filter Property</h6>
-  {{#power-select
-    options=opts
-    selected=selectedQuery
-    onchange=(action (mut selectedQuery))
-    as |q|
-  }}
-    {{q.label}}
-  {{/power-select}}
-</div>
-<div class="col-3">
-  <h6>Filter Type</h6>
-  {{#power-select
-    options=operatorOptions
-    selected=selectedOperator
-    onchange=(action (mut selectedOperator))
-    as |op|
-  }}
-    {{op.label}}
-  {{/power-select}}
-</div>
-
-<div class="col-3">
-  <h6>Value</h6>
-  {{#if (eq valueSelectorComponent.el "calendar")}}
-    {{#power-calendar
-      center=today
-      selected=selectedValue
-      onSelect=(action (mut selectedValue) value="moment")
-      onCenterChange=(action (mut month) value="moment")
-      as |calendar|
-    }}
-      <nav class="ember-power-calendar-nav">
-        <button type="button" class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter -12
-                                                                                        'month'}}>«
-        </button>
-        <button type="button" class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter -1
-                                                                                        'month'}}>‹
-        </button>
-        <div class="ember-power-calendar-nav-title">
-          {{moment-format calendar.center 'MMMM YYYY'}}
-        </div>
-        <button class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter 1 'month'}}>›
-        </button>
-        <button class="ember-power-calendar-nav-control" onclick={{action calendar.actions.moveCenter 12 'month'}}>»
-        </button>
-      </nav>
-      {{calendar.days}}
-    {{/power-calendar}}
-
-  {{/if}}
-
-  {{#if (eq valueSelectorComponent.el "boolean")}}
-    {{#bs-button-group
-      value=selectedValue
-      type="radio"
-      onChange=(action (mut selectedValue)) as |bg|}}
-      {{#bg.button value=true}}True{{/bg.button}}
-      {{#bg.button value=false}}False{{/bg.button}}
-    {{/bs-button-group}}
-  {{/if}}
-
-  {{#if (or (eq valueSelectorComponent.el "text") (eq valueSelectorComponent.el "number"))}}
-    {{input class="form-control" value=selectedValue}}
-  {{/if}}
-
-</div>
-<div class="col-3">
-  <h6>Action</h6>
-  {{#if isNew}}
-    <button class="btn-primary btn btn-sm" {{action "addFilter"}}>Add</button>
-  {{else}}
-    <div class="btn-group btn-group-sm">
-      {{#bs-button type="secondary" size="sm" onClick=(action (mut isEditing) false)}}Cancel{{/bs-button}}
-      {{#bs-button type="primary" size="sm" onClick=(action "updateFilter")}}Update{{/bs-button}}
-      {{#bs-button type="danger" size="sm" onClick=(action "deleteFilter")}}Delete{{/bs-button}}
-    </div>
-  {{/if}}
-
-</div>
-
-{{else}}
-  <div class="col-3">
-    <h6>Filter Property</h6>
-    {{selectedQueryLabel}}
+  <div class="col-12">
+    {{#power-select
+      options=filterTypes
+      selected=queryType
+      searchEnabled=false
+      onchange=(action (mut queryType))
+    as |query|}}
+      {{query.label}}
+    {{/power-select}}
   </div>
-  <div class="col-3">
-    <h6>Filter Type</h6>
-    {{selectedOperatorLabel}}
-  </div>
-  <div class="col-4">
-    <h6>Value</h6>
-    {{selectedValue}}
-  </div>
-  <div class="col-1">
-    <h6>Action</h6>
-      {{#bs-button type="secondary" size="sm" onClick=(action (mut isEditing) true)}}Edit{{/bs-button}}
-  </div>
+
 {{/if}}
+
+<div class="col-12 mt-2">
+  {{#unless isEditing}}
+    <button type="button" class="close" aria-label="Close" {{action "deleteValue"}}>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  {{/unless}}
+
+  {{component selectedComponent value=value isEditing=isEditing update=(action "updateValue")}}
+</div>

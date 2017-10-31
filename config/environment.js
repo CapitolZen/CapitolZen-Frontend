@@ -22,7 +22,7 @@ module.exports = function(environment) {
       // when it is created
     },
     moment: {
-      outputFormat: 'MMMM Do YYYY, h:mm:ss A',
+      outputFormat: 'MMMM Do YYYY',
       allowEmpty: true
     }
   };
