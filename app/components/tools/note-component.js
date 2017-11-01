@@ -22,6 +22,10 @@ export default Component.extend({
     },
     editNote() {
       set(this, 'isEditing', true);
+    },
+    deleteNote(data) {
+      set(this, 'isEditing', false);
+      get(this, 'delete')(data);
     }
   }
 });

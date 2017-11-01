@@ -14,14 +14,16 @@
         <h5>Notes</h5>
         <div class="note-list-wrapper">
           {{#each-in notes as |key note|}}
-            {{tools/note-component note=note key=key save=(action "saveNote")}}
+            {{tools/note-component note=note key=key save=(action "saveNote") delete=(action "deleteNote")}}
           {{else}}
             <p class="text-center">Add Your First Note!</p>
           {{/each-in}}
         </div>
-        <div class="note-add-wrapper">
-          {{tools/text-editor isNew=true saveAction=(action "saveNote") cancelAction=(action "toggleAddNote")}}
-        </div>
+        {{#unless isEditingNote}}
+          <div class="note-add-wrapper">
+            {{tools/text-editor isNew=true saveAction=(action "saveNote") cancelAction=(action "toggleAddNote")}}
+          </div>
+        {{/unless}}
       </div>
 
       <div class="col-md-6">
