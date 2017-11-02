@@ -7,7 +7,7 @@ export default DS.Model.extend({
   stateId: DS.attr('string'),
   history: DS.attr(),
   documents: DS.attr(),
-  status: DS.attr('string'),
+  remoteStatus: DS.attr('string'),
   chamber: DS.attr('string'),
   actionDates: DS.attr(),
   lastActionDate: DS.attr('date'),
