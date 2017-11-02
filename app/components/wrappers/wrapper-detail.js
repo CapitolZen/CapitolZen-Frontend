@@ -27,11 +27,19 @@ export default Component.extend({
       let userid = get(this, 'currentUser.user_id');
       let timestamp = moment();
 
-      notes[docId] = { doc, userid, user, timestamp, public: false };
+      notes[docId] = { doc, userid, user, timestamp, id: docId, public: false };
       wrapper.set('notes', notes);
       wrapper.save().then(() => {
         get(this, 'flashMessages').success('Note Saved!');
-        set(this, 'addNote', false);
+      });
+    },
+    deleteNote({ docId }) {
+      let wrapper = get(this, 'wrapper');
+      let notes = wrapper.get('notes');
+      delete notes[docId];
+      wrapper.set('notes', notes);
+      wrapper.save().then(() => {
+        get(this, 'flashMessages').success('Note Saved!');
       });
     }
   }

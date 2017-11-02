@@ -14,8 +14,15 @@
     {{#if isLoading}}
       {{#body.loader}}
         {{ui/loading-animation}}
-      {{/body.loader}}
+      {{/body.loader}}a
     {{/if}}
+
+    {{#if (and (not isLoading) table.isEmpty)}}
+      {{#body.no-data}}
+        <p class="text-center">No saved bills match your filters.</p>
+      {{/body.no-data}}
+    {{/if}}
+
   {{/t.body}}
 
   {{#if meta}}

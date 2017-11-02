@@ -6,7 +6,7 @@
     onchange=(action (mut position))
     as |pos|
   }}
-    {{pos}}
+    <span class="text-capitalize">{{pos}}</span>
   {{/power-select}}
 
   <div class="form-group">
@@ -19,7 +19,9 @@
 {{else}}
   <span class="badge badge-{{positionModifier}}">{{fa-icon positionIcon}} {{position}}</span>
   {{#if canEdit}}
-    {{fa-icon "pencil" click=(action "toggleEditing")}}
+    <button class="btn btn-link btn-sm" {{action "toggleEditing"}}>
+      {{fa-icon "pencil"}}
+    </button>
   {{/if}}
   {{#if showDetails}}
     <p>{{wrapper.positionDetail}}</p>

@@ -1,5 +1,5 @@
 {{#if isEditing}}
-  {{tools/text-editor content=note.doc docId=key saveAction=(action "saveNote") cancelAction=(action "toggleAddNote")}}
+  {{tools/text-editor content=note.doc docId=key saveAction=(action "saveNote") deleteAction=(action "deleteNote") cancelAction=(action "toggleAddNote")}}
 {{else}}
   <div class="note-header clearfix">
     {{#if canEditNote}}

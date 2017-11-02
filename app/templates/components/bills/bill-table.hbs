@@ -40,6 +40,7 @@
       }}
 
       {{#t.body
+        class="sup sup sup"
         onScrolledToBottom=(action 'onScrolledToBottom')
       as |body|
       }}
@@ -47,6 +48,12 @@
           {{#body.loader}}
             {{ui/loading-animation}}
           {{/body.loader}}
+        {{/if}}
+
+        {{#if (and (not isLoading) table.isEmpty)}}
+          {{#body.no-data}}
+            <p class="text-center">No bills match your query.</p>
+          {{/body.no-data}}
         {{/if}}
       {{/t.body}}
 

@@ -4,12 +4,18 @@
     <p class="lead"><em>Latest Bills</em></p>
     {{#each recentBills as |bill|}}
       {{bills/bill-preview bill=bill class="mb-2"}}
+    {{else}}
+      <div class="text-center">
+        <p>No newly introduced bills available in the last 7 days.</p>
+        <p>{{#link-to "bills.index"}}View all bills here.{{/link-to}}</p>
+      </div>
+
     {{/each}}
   </div>
   <div class="col-md-4">
     <h4>Quick Links</h4>
     <div class="list-group">
-      {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}{{fa-icon "file-text" class="mr-2"}}Watched Bills{{/link-to}}
+      {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}{{fa-icon "file-text" class="mr-2"}}Saved Bills{{/link-to}}
       {{#link-to "reports.index" class="list-group-item list-group-item-action"}}{{fa-icon "map" class="mr-2"}}Reports{{/link-to}}
       {{#link-to "bills.search" class="list-group-item list-group-item-action"}}{{fa-icon "search" class="mr-2"}}Search Bills{{/link-to}}
       {{#link-to "organization.team" class="list-group-item list-group-item-action"}}{{fa-icon "users" class="mr-2"}}My Team{{/link-to}}

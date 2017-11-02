@@ -7,7 +7,7 @@ export default DS.Model.extend({
   stateId: DS.attr('string'),
   history: DS.attr(),
   documents: DS.attr(),
-  status: DS.attr('string'),
+  remoteStatus: DS.attr('string'),
   chamber: DS.attr('string'),
   actionDates: DS.attr(),
   lastActionDate: DS.attr('date'),
@@ -17,5 +17,6 @@ export default DS.Model.extend({
   remoteUrl: DS.attr('string'),
   billVersions: DS.attr(),
   introducedDate: DS.attr('date'),
-  wrappers: DS.hasMany('wrappers')
+  wrappers: DS.hasMany('wrappers'),
+  computedStatus: computed('history', function() {})
 });

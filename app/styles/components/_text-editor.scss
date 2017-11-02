@@ -4,8 +4,7 @@
 }
 
 .note-editor {
-  border: 1px solid $cz-grey;
-  border-radius: $border-radius;
+  border: 1px solid $cz-grey-lt;
   background: $cz-grey-lt;
 }
 
@@ -13,9 +12,29 @@
   @include box-shadow;
 }
 
+.note-component {
+  @extend .bg-faded;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1.25rem;
+  border-radius: $border-radius;
+  &.note-editing {
+    background: transparent;
+  }
+}
+
 .note-editor .mobiledoc-editor__editor-wrapper {
+  @extend .bg-faded;
   padding: 0.25rem 1rem;
-  background-color: white;
+}
+
+.note-editor .toolbar {
+  background: white;
+  border-top: 2px solid $cz-grey-lt;
+  border-bottom: 1px solid $cz-grey-lt;
+}
+
+.note-add-wrapper {
+  box-shadow: 0 0 4px 0 #c4c4c4;
 }
 
 .note-component .note-edit-button {
