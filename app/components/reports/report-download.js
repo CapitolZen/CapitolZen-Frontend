@@ -24,7 +24,6 @@ export default Component.extend({
     );
     let link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `${get(this, 'report.title')}.docx`);
     link.click();
   }),
   click() {

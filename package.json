@@ -88,6 +88,7 @@
     "ember-mobiledoc-editor": "^0.5.11",
     "ember-moment": "^7.3.0",
     "ember-page-title": "^3.1.6",
+    "ember-parachute": "^0.3.5",
     "ember-power-calendar": "^0.5.0",
     "ember-power-select": "1.9.6",
     "ember-power-select-blockless": "0.3.1",
