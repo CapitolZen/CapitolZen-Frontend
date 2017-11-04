@@ -18,11 +18,14 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Author',
-        valuePath: 'user.name'
+        valuePath: 'user.name',
+        breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Created Date',
-        valuePath: 'created'
+        valuePath: 'created',
+        cellComponent: 'tools/tables/date-cell',
+        breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Actions',

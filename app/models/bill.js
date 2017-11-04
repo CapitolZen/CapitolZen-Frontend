@@ -10,13 +10,13 @@ export default DS.Model.extend({
   remoteStatus: DS.attr('string'),
   chamber: DS.attr('string'),
   actionDates: DS.attr(),
-  lastActionDate: DS.attr('date'),
+  lastActionDate: DS.attr('string'),
   type: DS.attr('string'),
   sources: DS.attr(),
   votes: DS.attr(),
   remoteUrl: DS.attr('string'),
   billVersions: DS.attr(),
-  introducedDate: DS.attr('date'),
+  introducedDate: DS.attr('string'),
   wrappers: DS.hasMany('wrappers'),
-  computedStatus: computed('history', function() {})
+  computedStatus: computed('remoteStatus', function() {})
 });
