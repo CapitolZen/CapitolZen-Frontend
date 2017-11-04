@@ -28,7 +28,7 @@ export default Component.extend(TableCommon, DateFilter, {
       {
         label: 'Last Action',
         valuePath: 'bill.lastActionDate',
-        cellComponent: 'bills/bill-table-date',
+        cellComponent: 'bills/bill-table-status',
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
