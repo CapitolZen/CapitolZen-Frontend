@@ -30,7 +30,7 @@ export default Component.extend(TableCommon, {
       {
         label: 'Last Action',
         valuePath: 'lastActionDate',
-        cellComponent: 'bills/bill-table-date',
+        cellComponent: 'bills/bill-table-status',
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
