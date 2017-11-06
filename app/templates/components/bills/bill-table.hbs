@@ -1,8 +1,7 @@
 {{#ui/ui-card}}
   {{#block-slot "content"}}
     {{#bs-form formLayout="inline" model=recordQuery onSubmit=(action "filter") as |form|}}
-      {{form.element label="Sponsor" controlType="text" property="sponsor_name" class="pr-2"}}
-      {{form.element label="Title" controlType="text" property="title__contains" class="pr-2"}}
+      {{form.element placeholder="Search" controlType="text" property="search" class="pr-2"}}
       {{#form.element property="active_in" as |el|}}
         <div class="power-select-group-wrapper">
           {{#power-select
@@ -40,7 +39,6 @@
       }}
 
       {{#t.body
-        class="sup sup sup"
         onScrolledToBottom=(action 'onScrolledToBottom')
       as |body|
       }}

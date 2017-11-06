@@ -1,8 +1,7 @@
 {{#ui/ui-card}}
   {{#block-slot "content"}}
     {{#bs-form formLayout="inline" model=recordQuery onSubmit=(action "filter") as |form|}}
-      {{form.element label="Sponsor" controlType="text" property="sponsor_name" class="pr-2"}}
-      {{form.element label="Client" controlType="text" property="group__title" class="pr-2"}}
+      {{form.element placeholder="Search" controlType="text" property="search" class="pr-2"}}
       {{#form.element property="active_in" as |el|}}
         {{#power-select
           options=dateFilterOptions
