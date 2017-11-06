@@ -14,7 +14,8 @@ export default Component.extend(TableCommon, DateFilter, {
       {
         label: 'State ID',
         valuePath: 'stateId',
-        sortable: true
+        sortable: true,
+        width: '100px'
       },
       {
         label: 'Sponsor',
@@ -35,16 +36,10 @@ export default Component.extend(TableCommon, DateFilter, {
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
       {
-        label: 'Introduced',
-        valuePath: 'introducedDate',
-        cellComponent: 'tools/tables/date-cell',
-        sortable: false,
-        breakpoints: ['desktop', 'tablet']
-      },
-      {
         label: 'Actions',
         cellComponent: 'bills/bill-table-actions',
-        sortable: false
+        sortable: false,
+        align: 'right'
       }
     ];
   })

@@ -4,7 +4,7 @@ import { alias } from '@ember/object/computed';
 
 export default Component.extend({
   date: alias('row.lastActionDate'),
-
+  status: alias('row.computedStatus'),
   badgeClass: computed(function() {
     let warningArray = ['reported', 'reading-1', 'reading-2', 'reading-3'];
 
