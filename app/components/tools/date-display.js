@@ -6,6 +6,7 @@ import ENV from 'capitolzen-client/config/environment';
 
 const DateDisplay = Component.extend({
   media: service(),
+  tagName: 'span',
   outputFormat: null,
   computedFormat: computed('media.isMobile', function() {
     return get(this, 'media.isMobile') ? 'MM/DD/YY' : ENV.moment.outputFormat;

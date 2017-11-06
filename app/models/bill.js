@@ -18,5 +18,7 @@ export default DS.Model.extend({
   billVersions: DS.attr(),
   introducedDate: DS.attr('string'),
   wrappers: DS.hasMany('wrappers'),
-  computedStatus: computed('remoteStatus', function() {})
+  computedStatus: computed('remoteStatus', function() {
+    return get(this, 'remoteStatus');
+  })
 });

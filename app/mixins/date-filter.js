@@ -3,8 +3,8 @@ import moment from 'moment';
 import { get, set, computed } from '@ember/object';
 
 let filters = {
-  startDate: moment().startOf('week'),
-  endDate: moment().endOf('day')
+  startDate: moment().startOf('year'),
+  endDate: moment()
 };
 
 export default Mixin.create({
