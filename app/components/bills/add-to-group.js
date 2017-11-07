@@ -1,11 +1,13 @@
 import { inject as service } from '@ember/service';
 import { set, get } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import { task, hash } from 'ember-concurrency';
 
 export default Component.extend({
   store: service(),
+  media: service(),
   currentUser: service(),
   flashMessages: service(),
   classNames: ['w-100'],
@@ -19,6 +21,7 @@ export default Component.extend({
   didInsertAttrs() {
     assert('Bill is required ', get(this, 'bill'));
   },
+  isMobile: alias('media.isMobile'),
   listGroups: task(function*() {
     let bill = get(this, 'bill');
 
@@ -38,6 +41,7 @@ export default Component.extend({
     wrapper
       .save()
       .then(() => {
+        set(this, 'openModal', false);
         set(this, 'groupList', null);
         get(this, 'flashMessages').success(
           `${bill.get('stateId')} saved for ${group.get('title')}`
@@ -53,6 +57,10 @@ export default Component.extend({
   actions: {
     toggleActive() {
       get(this, 'listGroups').perform();
+    },
+    openModal() {
+      get(this, 'listGroups').perform();
+      set(this, 'openModal', true);
     }
   }
 });
