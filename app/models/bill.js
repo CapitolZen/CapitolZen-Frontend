@@ -3,6 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   title: DS.attr('string'),
   sponsor: DS.belongsTo('legislator'),
+  cosponsors: DS.attr(),
   state: DS.attr('string'),
   stateId: DS.attr('string'),
   history: DS.attr(),
