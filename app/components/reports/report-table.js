@@ -29,7 +29,8 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Actions',
-        cellComponent: 'reports/report-table-actions'
+        cellComponent: 'reports/report-table-actions',
+        align: 'right'
       }
     ];
   })
