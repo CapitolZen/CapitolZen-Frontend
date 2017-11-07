@@ -11,6 +11,12 @@
         {{model.layout.label}}
       {{/block-slot}}
     {{/ui/ui-card}}
+    
+    {{#ui/ui-card}}
+      {{#block-slot "content"}}
+        {{reports/report-wrappers-table report=model}}
+      {{/block-slot}}
+    {{/ui/ui-card}}
   </div>
   <div class="col-md-4">
     <h4>Quick Links</h4>

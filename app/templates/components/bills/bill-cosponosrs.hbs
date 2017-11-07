@@ -1,0 +1,9 @@
+{{#if cosponsors.length}}
+  <h5>Co-Sponsors</h5>
+  <p>
+    {{#each cosponsors as |legislator index|}}
+      {{legislator.fullName}} ({{legislator.party}}){{if (lt index adjustedCount) ","}}
+    {{/each}}
+  </p>
+
+{{/if}}

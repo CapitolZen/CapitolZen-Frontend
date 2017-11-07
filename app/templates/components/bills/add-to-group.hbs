@@ -1,25 +1,34 @@
+{{#bs-button type=buttonType size=buttonSize onClick=(action "openModal")}}
+  {{#if listGroups.isRunning}}
+    {{ui/inline-loading}}
+  {{/if}}
+  {{fa-icon "bookmark-o"}}
+  {{#if displayText}}
+    {{buttonText}}
+  {{/if}}
+{{/bs-button}}
+{{#bs-modal open=openModal onHidden=(action (mut openModel) false) as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Add Bill To Client
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <div class="list-group">
+      {{#each groupList as |group|}}
+        <div class="list-group-item">
+          <button class="btn btn-link" {{action (perform addBillToGroup group)}}>{{fa-icon
+            "plus"}} {{group.title}}</button>
+        </div>
 
-{{#bs-dropdown onShow=(perform listGroups) as |dd|}}
-  {{#dd.button type=buttonType size=buttonSize}}
-    {{#if listGroups.isRunning}}
-      {{ui/inline-loading}}
-    {{/if}}
-    {{#if displayText}}
-      {{buttonText}}
-    {{/if}}
-  {{/dd.button}}
-  {{#dd.menu align=menuAlign as |menu|}}
-    {{#each groupList as |group|}}
-      {{#menu.item class="dropdown-item" tagName="li"}}
-        <button class="btn btn-link" {{action (perform addBillToGroup group)}}>{{fa-icon "plus"}} {{group.title}}</button>
-      {{/menu.item}}
-    {{else}}
-      {{#if listGroups.isRunning}}
-        {{ui/inline-loading}}
       {{else}}
-        <span class="dropdown-item"><em>Bill saved for all clients</em></span>
-      {{/if}}
-    {{/each}}
-  {{/dd.menu}}
+        {{#if listGroups.isRunning}}
+          {{ui/inline-loading}}
+        {{else}}
+          <span class="dropdown-item"><em>Bill saved for all clients</em></span>
+        {{/if}}
+      {{/each}}
+    </div>
 
-{{/bs-dropdown}}
+  {{/modal.body}}
+{{/bs-modal}}
