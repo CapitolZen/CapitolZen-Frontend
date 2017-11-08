@@ -10,7 +10,7 @@ here we either show the original file or an uploader.
 
 {{else if (eq state 'upload')}}
   {{#file-dropzone name=uploaderName as |dropzone queue|}}
-    <div class="avatar-upload-containe {{if dropzone.active "file-upload-valid"}}">
+    <div class="avatar-upload-container {{if dropzone.active "file-upload-valid"}}">
       {{#if dropzone.active}}
         {{#if dropzone.valid}}
           <p class="text-center text-success">Drop to upload</p>

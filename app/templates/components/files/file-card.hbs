@@ -1,0 +1,24 @@
+{{#if previewUrl}}
+  <img src="{{previewUrl}}" class="" alt="{{name}}">
+{{/if}}
+{{#if isEditing}}
+  <div class="card-block">
+    <h4 class="card-title">Edit</h4>
+    {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+      {{form.element controlType="text" label="Name" property="name"}}
+      {{form.element controlType="textarea" label="description" property="description"}}
+      {{bs-button defaultText="Update" type="primary" buttonType="submit"}}
+    {{/bs-form}}
+  </div>
+
+{{else}}
+  <div class="card-block">
+    <h4 class="card-title">{{name}}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">Modified: {{tools/date-display modified}}</h6>
+    <p class="card-text">{{description}}</p>
+  </div>
+  <div class="card-footer">
+    <a href="{{url}}" class="btn btn-primary text-white" target="_blank">View</a>
+    {{#bs-button type="secondary" onClick=(action "toggleEditing")}}Edit{{/bs-button}}
+  </div>
+{{/if}}

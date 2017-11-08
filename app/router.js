@@ -39,8 +39,9 @@ Router.map(function() {
     //
     // Organization Management
     this.route('organization', { resetNamespace: true }, function() {
-      this.route('team', { path: '/team' });
-      this.route('billing', { path: '/billing' });
+      this.route('team');
+      this.route('billing');
+      this.route('files');
     });
 
     //

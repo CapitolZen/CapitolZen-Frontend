@@ -58,7 +58,7 @@ export default Control.extend({
   upload: task(function*(file, file_group) {
     let type = file.get('type');
     let upload_params = yield this.get('ajax')
-      .request('/files/', { data: { type: type } })
+      .request('/file_manager/', { data: { type: type } })
       .then(response => {
         let upload_info = response.data;
         console.log(upload_info);
