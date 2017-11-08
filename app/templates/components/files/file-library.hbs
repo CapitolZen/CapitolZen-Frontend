@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6">
+    {{files/file-list select=(action "selectFile")}}
+  </div>
+  <div class="col-md-6">
+    {{#if selectedFile}}
+      {{files/file-card selectedFile}}
+    {{else}}
+      <p class="text-centered">Select File For Details</p>
+    {{/if}}
+  </div>
+</div>

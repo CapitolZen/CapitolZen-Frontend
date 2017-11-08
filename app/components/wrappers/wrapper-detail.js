@@ -1,10 +1,11 @@
 import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
-import { set, get, computed } from '@ember/object';
+import { set, get, getWithDefault, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { v4 } from 'ember-uuid';
 import moment from 'moment';
+
 export default Component.extend({
   flashMessages: service(),
   store: service(),
@@ -22,12 +23,11 @@ export default Component.extend({
       }
 
       let wrapper = get(this, 'wrapper');
-      let notes = wrapper.get('notes');
+      let notes = getWithDefault(wrapper, 'notes', []);
       let user = get(this, 'currentUser.user');
       let userid = get(this, 'currentUser.user_id');
       let timestamp = moment();
-
-      notes[docId] = { doc, userid, user, timestamp, id: docId, public: false };
+      notes.push({ doc, userid, user, timestamp, id: docId, public: false });
       wrapper.set('notes', notes);
       wrapper.save().then(() => {
         get(this, 'flashMessages').success('Note Saved!');
@@ -36,10 +36,24 @@ export default Component.extend({
     deleteNote({ docId }) {
       let wrapper = get(this, 'wrapper');
       let notes = wrapper.get('notes');
-      delete notes[docId];
+      let index = notes.findIndex(el => {
+        return el.id === docId;
+      });
+
+      notes.splice(index, 1);
       wrapper.set('notes', notes);
       wrapper.save().then(() => {
         get(this, 'flashMessages').success('Note Saved!');
+      });
+    },
+    selectFile(file) {
+      let wrapper = get(this, 'wrapper');
+      let files = getWithDefault(wrapper, 'files', []);
+      files.push(file.get('id'));
+      wrapper.set('files', files);
+      wrapper.save().then(() => {
+        set(this, 'openModal', false);
+        get(this, 'flashMessages').success('File Saved!');
       });
     }
   }

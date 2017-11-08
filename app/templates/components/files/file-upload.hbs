@@ -1,0 +1,29 @@
+{{#file-dropzone name=name as |dropzone queue|}}
+
+  {{#if queue.files.length}}
+    Uploading {{queue.files.length}} files. ({{queue.progress}}%)
+    {{#bs-progress as |p|}}
+      {{p.bar value=queue.progress striped=striped animate=animate}}
+    {{/bs-progress}}
+  {{/if}}
+  <div class="file-upload-container px-1 py-2 text-center {{if dropzone.active "file-upload-valid"}}">
+    {{#if dropzone.active}}
+      {{#if dropzone.valid}}
+        <p class="text-center text-success">Drop Here</p>
+      {{else}}
+        <p class="text-center text-danger">Invalid</p>
+      {{/if}}
+
+    {{/if}}
+
+    {{#file-upload
+      name=name
+      multiple=true
+      onfileadd=(action "fileUpload")
+    }} <a id="upload-image" class="text-primary">Drop File or Click to upload</a>
+
+    {{/file-upload}}
+
+  </div>
+
+{{/file-dropzone}}

@@ -1,0 +1,24 @@
+
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    {{#bs-tab as |tab|}}
+      {{#tab.pane title="Files"}}
+        {{#ui/ui-card}}
+          {{#block-slot "content"}}
+            {{files/file-library}}
+          {{/block-slot}}
+        {{/ui/ui-card}}
+      {{/tab.pane}}
+      {{#tab.pane title="Upload"}}
+        {{#ui/ui-card}}
+          {{#block-slot "content"}}
+            {{files/file-upload}}
+          {{/block-slot}}
+        {{/ui/ui-card}}
+      {{/tab.pane}}
+
+
+    {{/bs-tab}}
+
+  </div>
+</div>

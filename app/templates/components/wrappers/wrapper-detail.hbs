@@ -1,66 +1,126 @@
 {{#ui/ui-card}}
-  {{#block-slot "title"}}
-    {{bill.stateId}}
-    <small>
-    {{#legislator/legislator-info legislator=bill.sponsor as |fields|}}
-      {{fields.name}}
-      {{fields.party}}
-    {{/legislator/legislator-info}}
-    </small>
-  {{/block-slot}}
   {{#block-slot "content"}}
-    <div class="row">
-      <div class="col-md-6">
-        <h5>Notes</h5>
-        <div class="note-list-wrapper">
-          {{#each-in notes as |key note|}}
-            {{tools/note-component note=note key=key save=(action "saveNote") delete=(action "deleteNote")}}
-          {{else}}
-            <p class="text-center">Add Your First Note!</p>
-          {{/each-in}}
-        </div>
-        {{#unless isEditingNote}}
-          <div class="note-add-wrapper">
-            {{tools/text-editor isNew=true saveAction=(action "saveNote") cancelAction=(action "toggleAddNote")}}
-          </div>
-        {{/unless}}
+      <div class="row">
+        <h4>
+          {{bill.stateId}}
+        </h4>
+        <small>
+          {{#legislator/legislator-info legislator=bill.sponsor as |fields|}}
+            {{fields.name}}
+            {{fields.party}}
+          {{/legislator/legislator-info}}
+        </small>
       </div>
+  {{/block-slot}}
+{{/ui/ui-card}}
 
-      <div class="col-md-6">
+{{#bs-tab as |tab|}}
+  {{#tab.pane title="Comments"}}
+    {{#ui/ui-card}}
+      {{#block-slot "content"}}
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Notes</h5>
+              <div class="note-list-wrapper">
+                {{#each notes as |note|}}
+                  {{tools/note-component note=note save=(action "saveNote") delete=(action "deleteNote")}}
+                {{else}}
+                  <p class="text-center">Add Your First Note!</p>
+                {{/each}}
+              </div>
+              {{#unless isEditingNote}}
+                <div class="note-add-wrapper">
+                  {{tools/text-editor isNew=true saveAction=(action "saveNote") cancelAction=(action "toggleAddNote")}}
+                </div>
+              {{/unless}}
+            </div>
+            <div class="col-md-6">
+              <h5>Position</h5>
+              {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
+              <h5>Summary</h5>
+              {{wrappers/wrapper-summary wrapper=wrapper class="mb-2"}}
+
+            </div>
+          </div>
+      {{/block-slot}}
+    {{/ui/ui-card}}
+  {{/tab.pane}}
+  {{#tab.pane title="Bill"}}
+    {{#ui/ui-card}}
+      {{#block-slot "content"}}
         <div class="row">
-          <div class="col-12">
-            <h5>Position</h5>
-            {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
-            <h5>Summary</h5>
-            {{wrappers/wrapper-summary wrapper=wrapper class="mb-2"}}
-
+          <div class="col-md-6">
             <p>
               <a href="{{bill.remoteUrl}}" class="btn btn-secondary">View Source</a>
             </p>
-            
             {{bills/bill-cosponosrs bill}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-{{if bill.votes 6 12}}">
             {{bills/source-list sources=bill.sources class="mt-1"}}
             {{bills/doc-list docs=bill.documents class="mt-1"}}
           </div>
-          {{#if bill.votes}}
-            <div class="col-md-6">
+          <div class="col-md-6">
+            {{bills/bill-history bill=bill}}
+
+          </div>
+        </div>
+        {{#if bill.votes}}
+          <div class="row">
+            <div class="col-md-12">
               {{bills/vote-list votes=bill.votes}}
             </div>
-          {{/if}}
-        </div>
-
-        <div class="row mt-2">
-          <div class="col-12">
-            {{bills/bill-history bill=bill}}
           </div>
-          </div>
-
+        {{/if}}
+      {{/block-slot}}
+    {{/ui/ui-card}}
+  {{/tab.pane}}
+  {{#tab.pane title="Files"}}
+    {{#ui/ui-card}}
+      <div class="row">
+        <div class="col-8">
+          <h5>Files</h5>
         </div>
-    </div>
-  {{/block-slot}}
+        <div class="col-4">
+          {{#bs-button class="pull-right" type="primary" onClick=(action (mut openModal) true)}}
+            {{fa-icon "upload"}} Add File
+          {{/bs-button}}
+        </div>
+      </div>
+      <div class="row">
+        {{#each wrapper.files as |fileId|}}
+          {{wrappers/wrapper-file fileId class="col-md-3"}}
+        {{else}}
+          <div class="col-md-6 offset-3 text-center">
+            <p>No Files Added</p>
+            <p>
+              {{#bs-button class="pull-right" type="primary" onClick=(action (mut openModal) true)}}
+                {{fa-icon "upload"}} Add File
+              {{/bs-button}}
+            </p>
+          </div>
+        {{/each}}
+      </div>
 
-{{/ui/ui-card}}
+    {{/ui/ui-card}}
+  {{/tab.pane}}
+{{/bs-tab}}
+
+{{#bs-modal open=openModal onHidden=(action (mut openModal) false) size="lg" as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Select File
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{#bs-tab as |tab|}}
+      {{#tab.pane title="Library"}}
+        {{files/file-list select=(action "selectFile")}}
+      {{/tab.pane}}
+      {{#tab.pane title="Upload"}}
+        {{files/file-upload didCreateFile=(action "selectFile")}}
+      {{/tab.pane}}
+    {{/bs-tab}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close)}}Cancel{{/bs-button}}
+  {{/modal.footer}}
+
+{{/bs-modal}}
