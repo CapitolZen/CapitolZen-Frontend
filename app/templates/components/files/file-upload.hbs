@@ -9,14 +9,11 @@
   <div class="file-upload-container px-1 py-2 text-center {{if dropzone.active "file-upload-valid"}}">
     {{#if dropzone.active}}
       {{#if dropzone.valid}}
-        <p class="text-center text-success">Drop to upload</p>
+        <p class="text-center text-success">Drop Here</p>
       {{else}}
         <p class="text-center text-danger">Invalid</p>
       {{/if}}
-    {{else}}
-      {{#if dropzone.supported}}
-        Drop File Here
-      {{/if}}
+
     {{/if}}
 
     {{#file-upload

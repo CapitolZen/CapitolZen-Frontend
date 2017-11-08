@@ -2,9 +2,9 @@ import { set, get } from '@ember/object';
 import Component from '@ember/component';
 import { EKMixin, keyUp, keyDown, keyPress, getKeyCode } from 'ember-keyboard';
 import { on } from '@ember/object/evented';
-import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
+  showEditor: true,
   activateKeyboard: on('init', function() {
     set(this, 'keyboardActivated', true);
   }),
@@ -25,15 +25,21 @@ export default Component.extend(EKMixin, {
       args.docId = get(this, 'docId');
     }
     get(this, 'saveAction')(args);
+
+    if (get(this, 'isNew')) {
+      set(this, 'showEditor', false);
+      set(this, 'content', false);
+      set(this, 'doc', false);
+      set(this, 'showEditor', true);
+    }
   },
   cancel() {
     get(this, 'cancelAction')();
   },
   delete() {
-    let doc = get(this, 'doc');
-    let args = { doc: doc };
-    set(this, 'content', false);
+    let args = { docId: get(this, 'docId') };
     get(this, 'deleteAction')(args);
+    this.destroy();
   },
   actions: {
     mobileDocUpdated(doc) {
@@ -41,11 +47,6 @@ export default Component.extend(EKMixin, {
     },
     saveDocument() {
       this.save();
-      if (get(this, 'isNew')) {
-        set(this, 'content', false);
-        set(this, 'hideEditor', true);
-        set(this, 'hideEditor', false);
-      }
     },
     cancelDocument() {
       this.cancel();

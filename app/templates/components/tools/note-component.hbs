@@ -1,5 +1,5 @@
 {{#if isEditing}}
-  {{tools/text-editor content=note.doc docId=key saveAction=(action "saveNote") deleteAction=(action "deleteNote") cancelAction=(action "toggleAddNote")}}
+  {{tools/text-editor content=note.doc docId=note.id saveAction=(action "saveNote") deleteAction=(action "deleteNote") cancelAction=(action "toggleAddNote")}}
 {{else}}
   <div class="note-header clearfix">
     {{#if canEditNote}}
@@ -8,7 +8,7 @@
       </button>
     {{/if}}
     <em>
-      <small>{{moment-format note.timestamp "MM/DD/YYYY"}} {{note.user.name}} writes:</small>
+      <small>{{tools/date-display note.timestamp}} {{note.user.name}} writes:</small>
     </em>
   </div>
 
@@ -20,10 +20,5 @@
     {{else}}
       <em>No text for this note.</em>
     {{/if}}
-
-
   </div>
-  {{#each note.attachments as |doc|}}
-    <p>{{doc}}</p>
-  {{/each}}
 {{/if}}
