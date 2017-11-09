@@ -24,6 +24,13 @@
     }
     .anon-content {
       padding-bottom: 2rem;
+      label {
+        display: none;
+      }
+      .form-control {
+        padding: 0.475rem 0.85rem;
+        font-size: 1.2rem;
+      }
     }
   }
 
