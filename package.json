@@ -31,14 +31,14 @@
     "ember-font-awesome": "^4.0.0-alpha.13"
   },
   "devDependencies": {
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "4.0.0-beta.2",
     "broccoli-asset-rev": "^2.6.0",
     "ember-ajax": "^3.0.0",
     "ember-api-actions": "^0.1.7",
     "ember-baremetrics-calendar": "donaldwasserman/ember-baremetrics-calendar#master",
     "ember-basic-dropdown": "^0.33.5",
     "ember-block-slots": "^1.1.10",
-    "ember-bootstrap": "kaliber5/ember-bootstrap#db10cb427c4d4c81d633e64bfbc0b3639d9d11f2",
+    "ember-bootstrap": "1.0.0-rc.4",
     "ember-bootstrap-changeset-validations": "^1.0.0-alpha.2",
     "ember-bootstrap-power-select": "kaliber5/ember-bootstrap-power-select#master",
     "ember-burger-menu": "^3.0.0",

@@ -2,7 +2,7 @@
   <img src="{{previewUrl}}" class="" alt="{{name}}">
 {{/if}}
 {{#if isEditing}}
-  <div class="card-block">
+  <div class="card-body">
     <h4 class="card-title">Edit</h4>
     {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
       {{form.element controlType="text" label="Name" property="name"}}
@@ -12,7 +12,7 @@
   </div>
 
 {{else}}
-  <div class="card-block">
+  <div class="card-body">
     <h4 class="card-title">{{name}}</h4>
     <h6 class="card-subtitle mb-2 text-muted">Modified: {{tools/date-display modified}}</h6>
     <p class="card-text">{{description}}</p>
