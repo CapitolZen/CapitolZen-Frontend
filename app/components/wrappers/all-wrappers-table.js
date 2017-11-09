@@ -23,7 +23,7 @@ export default Component.extend(TableCommon, DateFilter, {
         label: 'Sponsor',
         valuePath: 'bill.sponsor.fullName',
         sortable: false,
-        breakpoints: ['mobile', 'tablet', 'desktop']
+        breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Last Action',
@@ -31,11 +31,6 @@ export default Component.extend(TableCommon, DateFilter, {
         cellComponent: 'bills/bill-table-status',
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
-      },
-      {
-        label: 'Client',
-        valuePath: 'group.title',
-        sortable: true
       },
       {
         label: 'Position',

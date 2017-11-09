@@ -17,7 +17,7 @@ export default Component.extend({
   positionClassMap: {
     support: 'success',
     oppose: 'danger',
-    neutral: 'default'
+    neutral: 'light'
   },
   positionModifier: computed('wrapper.position', function() {
     let position = get(this, 'wrapper.position');
