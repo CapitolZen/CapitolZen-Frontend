@@ -24,7 +24,7 @@
     <h4>My Clients</h4>
     <div class="list-group">
       {{#each queriedGroup as |group|}}
-        <div class="list-group-item dflex justify-content-between">
+        <div class="list-group-item d-flex justify-content-between">
           {{#link-to "groups.detail" group.id}}{{group.title}}{{/link-to}}
           <div class="btn-group btn-group-sm">
             {{#link-to "groups.detail.bills" group.id class="btn btn-secondary"}}{{fa-icon "file-text"}}{{/link-to}}

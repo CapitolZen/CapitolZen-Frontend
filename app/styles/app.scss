@@ -10,6 +10,11 @@
 @import 'bootstrap';
 
 //
+// MIXINS
+//--------------------------------------------------
+@import 'app/mixins';
+
+//
 // ADDONS
 //--------------------------------------------------
 @import 'ember-burger-menu';
@@ -17,6 +22,8 @@
 @import 'ember-basic-dropdown';
 @import 'ember-power-select';
 @import 'ember-power-calendar';
+@import 'ember-content-placeholders';
+
 //
 // APP COMPONENTS
 // -------------------------------------------------
@@ -30,6 +37,6 @@
 @import 'components/text-editor';
 @import 'components/form';
 
-@import 'app/stuff';
+@import 'components/stuff';
 
-@import 'ember-content-placeholders';
+@import 'app/anon';

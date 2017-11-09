@@ -12,6 +12,10 @@
   @include box-shadow;
 }
 
+.bg-faded {
+  background: transparent;
+}
+
 .note-component {
   @extend .bg-faded;
   padding: 0.5rem 0.75rem;

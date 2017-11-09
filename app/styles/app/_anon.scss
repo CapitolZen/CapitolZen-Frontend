@@ -1,0 +1,46 @@
+.anon-wrapper {
+  @include media-breakpoint-down(sm) {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.75),
+        rgba(255, 255, 255, 0.75)
+      ),
+      center url(images/bg.jpeg);
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      > div {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+    }
+    .anon-header {
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    .anon-content {
+      padding-bottom: 2rem;
+      label {
+        display: none;
+      }
+      .form-control {
+        padding: 0.475rem 0.85rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .login-help {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .login-new-account {
+    margin-top: 2rem;
+    text-align: center;
+  }
+}
