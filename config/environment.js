@@ -85,9 +85,9 @@ module.exports = function(environment) {
     ENV.APP.API_HOST = 'https://api.capitolzen.com';
     ENV.clientUrl = 'https://app.capitolzen.com';
 
-    sentry: {
-      dsn: 'https://b6cba13ee71e49a3b6ea11f208dd7760@sentry.io/211639';
-    }
+    ENV.sentry = {
+      dsn: 'https://b6cba13ee71e49a3b6ea11f208dd7760@sentry.io/211639'
+    };
 
     ENV.intercom = {
       appId: 'lqg6n3a1'
