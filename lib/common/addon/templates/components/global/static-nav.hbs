@@ -3,20 +3,19 @@
 </div>
 <div class="brand">
   {{#link-to "dashboard"}}
-    <img src="/assets/images/capitolzenwordmark_logo.svg" class="hidden-md-down" width="175px"/>
-    <h4 class="hidden-md-up">Capitol Zen</h4>
+    <img src="/assets/images/capitolzenwordmark_logo.svg" width="175px"/>
   {{/link-to}}
 </div>
 
 {{#bs-nav class="user-menu-wrapper" type="" as |nav|}}
   {{#nav.item}}
     <a href="#" {{action (action (mut helpModal) true) on="click"}}>
-      {{fa-icon "question-circle"}} <span class="hidden-md-down"> Help</span>
+      {{fa-icon "question-circle"}} <span class="d-none d-md-inline"> Help</span>
     </a>
   {{/nav.item}}
   {{#nav.dropdown tagName="li" class="nav-item" as |dd|}}
     {{#dd.toggle}}
-      {{user/user-avatar user=currentUser.user}} <span class="hidden-sm-down">{{currentUser.user.name}}</span>
+      {{user/user-avatar user=currentUser.user}} <span class="d-none d-md-inline">{{currentUser.user.name}}</span>
     {{/dd.toggle}}
     {{#dd.menu align="right" as |menu|}}
       {{#menu.item}}
