@@ -1,17 +1,16 @@
 {{#if media.isMobile}}
-
   {{#if isLoading}}
     <p class="text-center">Welcome! We're setting up your account.</p>
     {{ui/loading-animation}}
   {{else}}
     {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
         <h4 class="card-title">Register Now</h4>
-        {{form.element controlType="text" label="Your Name" property="name"}}
-        {{form.element controlType="text" label="Organization Name" property="organization_name"}}
+        {{form.element controlType="text" label="Your Name"  placeholder="Your Name" property="name"}}
+        {{form.element controlType="text" label="Organization Name" placeholder="Organization Name" property="organization_name"}}
         {{form.element controlType="email" label="Email" placeholder="Email" property="username"}}
         {{form.element controlType="password" label="Password" placeholder="Password" property="password"
                        helpText="Minimum 8 characters"}}
-        {{form.element controlType="password" label="Confirm" placeholder="Confirm" property="confirm_password"}}
+        {{form.element controlType="password" label="Confirm" placeholder="Confirm Password" property="confirm_password"}}
 
         {{bs-button block=true textState=buttonState disabled=formSubmitButtonDisabled defaultText="Create Account" type="primary"
                     buttonType="submit"}}
@@ -30,12 +29,12 @@
     {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
       <div class="card-body">
         <h4 class="card-title">Register Now</h4>
-        {{form.element controlType="text" label="Your Name" property="name"}}
-        {{form.element controlType="text" label="Organization Name" property="organization_name"}}
+        {{form.element controlType="text" label="Your Name" placeholder="Your Name" property="name"}}
+        {{form.element controlType="text" label="Organization Name" placeholder="Organization Name" property="organization_name"}}
         {{form.element controlType="email" label="Email" placeholder="Email" property="username"}}
         {{form.element controlType="password" label="Password" placeholder="Password" property="password"
                        helpText="Minimum 8 characters"}}
-        {{form.element controlType="password" label="Confirm" placeholder="Confirm" property="confirm_password"}}
+        {{form.element controlType="password" label="Confirm" placeholder="Confirm Password" property="confirm_password"}}
       </div>
       <div class="card-footer">
         {{bs-button textState=buttonState disabled=formSubmitButtonDisabled defaultText="Create Account" type="primary"
