@@ -3477,6 +3477,13 @@ ember-hammertime@^1.2.4:
     ember-cli-babel "^6.8.2"
     hammer-timejs "^1.1.0"
 
+ember-hash-helper-polyfill@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-hash-helper-polyfill/-/ember-hash-helper-polyfill-0.2.0.tgz#0913a06ad59147f345dff0edda04b112deba0f7e"
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-cli-version-checker "^1.2.0"
+
 ember-in-viewport@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ember-in-viewport/-/ember-in-viewport-2.1.1.tgz#6306c2dd62045211bd57b664bd90c453d13644c0"
@@ -3734,7 +3741,7 @@ ember-responds-to@^1.5.0:
   dependencies:
     ember-cli-babel "^6.8.1"
 
-ember-responsive@^2.0.4:
+ember-responsive@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/ember-responsive/-/ember-responsive-2.0.5.tgz#432402762269a230ca75ed9539b8413cdbbbf8af"
   dependencies:
@@ -5680,6 +5687,21 @@ lint-staged@^4.0.0:
     staged-git-files "0.0.4"
     stringify-object "^3.2.0"
 
+liquid-fire@^0.29.0:
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/liquid-fire/-/liquid-fire-0.29.0.tgz#d64d07dda3015c0f39215bf2e8c8cb4a67737a1c"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^1.0.0"
+    broccoli-stew "^1.4.2"
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-version-checker "^2.0.0"
+    ember-getowner-polyfill "^2.0.1"
+    ember-hash-helper-polyfill "^0.2.0"
+    match-media "^0.2.0"
+    velocity-animate ">= 0.11.8"
+
 listr-silent-renderer@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/listr-silent-renderer/-/listr-silent-renderer-1.1.1.tgz#924b5a3757153770bf1a8e3fbf74b8bbf3f9242e"
@@ -6256,6 +6278,10 @@ markdown-it@^8.3.0, markdown-it@^8.3.1:
     linkify-it "^2.0.0"
     mdurl "^1.0.1"
     uc.micro "^1.0.3"
+
+match-media@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/match-media/-/match-media-0.2.0.tgz#ea4e09742e7253cc7d7e1599ba627e0fa29fbc50"
 
 matcher-collection@^1.0.0:
   version "1.0.4"
@@ -8772,6 +8798,10 @@ validate-npm-package-name@^3.0.0, validate-npm-package-name@~3.0.0:
 vary@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.1.tgz#67535ebb694c1d52257457984665323f587e8d37"
+
+"velocity-animate@>= 0.11.8":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-1.5.0.tgz#fc8771d8dfe1136ff02a707e10fbb0957c4b030f"
 
 verror@1.10.0:
   version "1.10.0"

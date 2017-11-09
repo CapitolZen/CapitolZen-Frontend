@@ -5,16 +5,30 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  @include media-breakpoint-down(sm) {
+    background: #fff;
+  }
 }
 
 body > .ember-view {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-positive: 1;
   flex-grow: 1;
   -ms-flex-direction: row;
   flex-direction: column;
   overflow-x: hidden;
+}
+
+.liquid-container {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.liquid-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-loader {
@@ -69,6 +83,18 @@ body > .ember-view {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+//
+// Anon Header
+//////////////////////////////////////////
+.anon-header {
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    img {
+      width: 80% !important;
+    }
+  }
 }
 
 //

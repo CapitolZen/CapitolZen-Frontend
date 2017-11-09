@@ -6,6 +6,11 @@
       text-decoration: none;
     }
   }
+
+  @include media-breakpoint-down(sm) {
+    box-shadow: none;
+    border: 0;
+  }
 }
 .row-flex .card-body {
   flex-grow: 1;
