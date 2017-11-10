@@ -8,7 +8,7 @@ export default Component.extend({
     if (get(this, 'row.bill')) {
       set(this, 'bill', get(this, 'row.bill'));
     } else {
-      set(this, 'bill', row);
+      set(this, 'bill', get(this, 'row'));
     }
   },
   date: alias('bill.lastActionDate'),
