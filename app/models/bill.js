@@ -19,7 +19,28 @@ export default DS.Model.extend({
   billVersions: DS.attr(),
   introducedDate: DS.attr('string'),
   wrappers: DS.hasMany('wrappers'),
+  currentCommittee: DS.belongsTo('committee'),
   computedStatus: computed('remoteStatus', function() {
-    return get(this, 'remoteStatus');
+    let history = get(this, 'history');
+
+    if (!history) {
+      return false;
+    }
+    let last = history[history.length - 1];
+
+    if (
+      last.action.toLowerCase().startsWith('bill electronically reproduced')
+    ) {
+      let secondToLast = history[history.length - 2];
+      return {
+        action: secondToLast.action.toLowerCase(),
+        actor: secondToLast.actor
+      };
+    }
+
+    return {
+      action: last.action.toLowerCase(),
+      actor: last.actor
+    };
   })
 });

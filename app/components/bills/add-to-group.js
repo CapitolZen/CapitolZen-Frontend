@@ -32,9 +32,8 @@ export default Component.extend({
     set(this, 'groupList', groups);
   }),
   addBillToGroup: task(function*(group) {
-    let bill = get(this, 'bill');
     let wrapper = this.get('store').createRecord('wrapper', {
-      bill: bill,
+      bill: get(this, 'bill'),
       group: group,
       organization: get(this, 'currentUser.organization')
     });
@@ -48,7 +47,7 @@ export default Component.extend({
         );
       })
       .catch(e => {
-        console.log(e);
+        get(this, 'Raven').captureException(e);
         get(this, 'flashMessages').danger(
           'An error occurred and our team has been notified.'
         );
@@ -59,8 +58,11 @@ export default Component.extend({
       get(this, 'listGroups').perform();
     },
     openModal() {
-      get(this, 'listGroups').perform();
       set(this, 'openModal', true);
+      get(this, 'listGroups').perform();
+    },
+    closeModal() {
+      set(this, 'openModal', false);
     }
   }
 });

@@ -9,7 +9,7 @@ const DateDisplay = Component.extend({
   tagName: 'span',
   outputFormat: null,
   computedFormat: computed('media.isMobile', function() {
-    return get(this, 'media.isMobile') ? 'MM/DD/YY' : ENV.moment.outputFormat;
+    return get(this, 'media.isMobile') ? 'M/D/YY' : ENV.moment.outputFormat;
   }),
   format: computed('outputFormat', 'computedFormat', function() {
     return get(this, 'outputFormat')

@@ -1,1 +1,12 @@
-{{status}}
+<div class="d-flex flex-column justify-content-between">
+  <small>
+      {{tools/date-display date "M/D/YYYY" class="badge badge-light mr-1"}}
+      <span class="badge badge-secondary">{{chamber-name status.actor}}</span>
+  </small>
+  <span class="mt-1">
+    <span class="text-capitalize small">
+      {{status.action}}
+    </span>
+  </span>
+</div>
+

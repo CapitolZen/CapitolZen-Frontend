@@ -2,15 +2,16 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: "module"
+    sourceType: 'module'
   },
-  extends: ["prettier"],
+  extends: ['prettier'],
   env: {
     browser: true
   },
   rules: {},
   globals: {
     Promise: true,
-    document: true
+    document: true,
+    Raven: true
   }
 };
