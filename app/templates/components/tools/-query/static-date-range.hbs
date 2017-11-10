@@ -32,7 +32,7 @@
 {{else}}
   Date Range: {{moment-format dateFilters.startDate}} - {{moment-format dateFilters.endDate}}
 
-  {{#bs-button type="secondary" size="sm" onClick=(action (mut isEditing) true)}}
+  {{#bs-button type="light" size="sm" onClick=(action (mut isEditing) true)}}
     Edit
   {{/bs-button}}
 {{/if}}

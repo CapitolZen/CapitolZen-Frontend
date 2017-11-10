@@ -1,28 +1,41 @@
 {{#ui/ui-card}}
   {{#block-slot "content"}}
-    {{#bs-form formLayout="inline" model=recordQuery onSubmit=(action "filter") as |form|}}
-      {{form.element placeholder="Search" controlType="text" property="search" class="pr-2"}}
-      {{#form.element property="active_in" as |el|}}
-        <div class="power-select-group-wrapper">
-          {{#power-select
-            options=dateFilterOptions
-            selected=dateFilterType
-            searchEnabled=false
-            class="pr-2 py-1 bill-table-date-filter"
-            onchange=(action (mut dateFilterType))
-          as |option|}}
-            <span class="text-capitalize">{{option}}</span> Date Range
-          {{/power-select}}
+    {{#bs-form model=recordQuery onSubmit=(action "filter") as |form|}}
+      <div class="row">
+        <div class="col-md-3">
+          {{form.element placeholder="Search" controlType="text" property="search"}}
         </div>
-        {{baremetrics-calendar
-          startDate=dateFilters.startDate
-          endDate=dateFilters.endDate
-          latestDate=latestDate
-          presets=presets
-          class="px-2"
-          onchange=(action "updateDateFilter")}}
-      {{/form.element}}
-      {{bs-button defaultText="Filter" pendingText="Saving..." type="primary" buttonType="submit"}}
+        <div class="col-md-8">
+
+            {{#form.element property="active_in" class="mw-100 row" as |el|}}
+            <div class="col-md-4">
+              <div class="power-select-group-wrapper">
+                {{#power-select
+                  options=dateFilterOptions
+                  selected=dateFilterType
+                  searchEnabled=false
+                  class="bill-table-date-filter"
+                  onchange=(action (mut dateFilterType))
+                as |option|}}
+                  <span class="text-capitalize">{{option}}</span> Date Range
+                {{/power-select}}
+              </div>
+            </div>
+              <div class="col-md-8">
+                {{baremetrics-calendar
+                  startDate=dateFilters.startDate
+                  endDate=dateFilters.endDate
+                  latestDate=latestDate
+                  presets=presets
+                  onchange=(action "updateDateFilter")}}
+              </div>
+            {{/form.element}}
+
+        </div>
+        <div class="col-md-1">
+          {{bs-button defaultText="Filter" pendingText="Saving..." type="primary" buttonType="submit"}}
+        </div>
+      </div>
     {{/bs-form}}
   {{/block-slot}}
 {{/ui/ui-card}}

@@ -16,10 +16,14 @@
   background: transparent;
 }
 
+.note-edit-button {
+  padding-bottom: 0;
+}
+
 .note-component {
   @extend .bg-faded;
   padding: 0.5rem 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.25rem;
   border-radius: $border-radius;
   &.note-editing {
     background: transparent;
