@@ -10,7 +10,7 @@ module.exports = function(defaults) {
       importBootstrapFont: false
     },
     sourcemaps: {
-      enabled: !EmberApp.env() === 'production'
+      enabled: true
     },
     'ember-cli-babel': {
       // disable comments

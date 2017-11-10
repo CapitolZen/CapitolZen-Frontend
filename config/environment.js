@@ -27,6 +27,11 @@ module.exports = function(environment) {
     }
   };
 
+  ENV.sentry = {
+    dsn: 'https://b6cba13ee71e49a3b6ea11f208dd7760@sentry.io/211639',
+    development: environment !== 'production'
+  };
+
   ENV.flashMessageDefaults = {
     preventDuplicates: true
   };
@@ -88,22 +93,17 @@ module.exports = function(environment) {
     ENV.APP.API_HOST = 'https://api.capitolzen.com';
     ENV.clientUrl = 'https://app.capitolzen.com';
 
-    ENV.APP.opbeat = {
-      orgId: '8e3744d00abf46f2ac2770dbc03b84b3',
-      appId: '2fc75c0066'
-    };
-
     ENV.intercom = {
       appId: 'lqg6n3a1'
     };
 
     ENV.contentSecurityPolicy = {
-      'script-src': "'self' 'unsafe-inline'",
-      'connect-src': "'self' http://localhost:*",
+      'script-src': "'self' 'unsafe-inline' cdn.ravenjs.com",
+      'connect-src': "'self' http://localhost:* app.getsentry.com",
       'default-src': "'none'",
       'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
       'font-src': "'self' fonts.gstatic.com data: ",
-      'img-src': "'self' *.gravatar.com *.wp.com data:",
+      'img-src': "'self' *.gravatar.com *.wp.com data: app.getsentry.com",
       'media-src': "'self'"
     };
   }
