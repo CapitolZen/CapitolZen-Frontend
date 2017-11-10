@@ -16,7 +16,7 @@ export default Component.extend({
   buttonSize: false,
   displayText: true,
   buttonText: 'Add to Client',
-  buttonType: 'secondary',
+  buttonType: 'outline-secondary',
   menuAlign: 'right',
   didInsertAttrs() {
     assert('Bill is required ', get(this, 'bill'));
