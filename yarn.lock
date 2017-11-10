@@ -131,7 +131,7 @@
   dependencies:
     "@glimmer/util" "^0.27.0"
 
-BaremetricsCalendar@^1.0.6:
+BaremetricsCalendar@^1.0.6, BaremetricsCalendar@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/BaremetricsCalendar/-/BaremetricsCalendar-1.0.8.tgz#2b5902ce3fead294e3af6e5de0134cb043192134"
 
@@ -2477,7 +2477,7 @@ ember-baremetrics-calendar@donaldwasserman/ember-baremetrics-calendar#master:
   version "0.0.4"
   resolved "https://codeload.github.com/donaldwasserman/ember-baremetrics-calendar/tar.gz/7bd3ded9484b5b3cb339a685198f08227738f39f"
   dependencies:
-    BaremetricsCalendar "^1.0.8"
+    BaremetricsCalendar "^1.0.6"
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
     ember-cli-babel "^6.3.0"

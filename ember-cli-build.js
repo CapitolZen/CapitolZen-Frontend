@@ -25,7 +25,6 @@ module.exports = function(defaults) {
     'ember-power-select': {
       theme: 'bootstrap'
     },
-    'ember-junkdrawer': {},
     sassOptions: {
       includePaths: ['vendor', 'node_modules/bootstrap/scss']
     }
