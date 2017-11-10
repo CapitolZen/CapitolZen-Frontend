@@ -4,18 +4,20 @@
 as |editor|}}
   <div class="toolbar d-flex justify-content-between p-1">
     <div class="col-4">
-      {{#mobiledoc-markup-button editor=editor for="strong" class="btn-link"}}
-        {{fa-icon "bold"}}
-      {{/mobiledoc-markup-button}}
-      {{#mobiledoc-markup-button editor=editor for="em" class="btn-link"}}
-        {{fa-icon "italic"}}
-      {{/mobiledoc-markup-button}}
-      {{#mobiledoc-section-button editor=editor for="ul" class="btn-link"}}
-        {{fa-icon "list"}}
-      {{/mobiledoc-section-button}}
-      {{#mobiledoc-section-button editor=editor for="ol" class="btn-link"}}
-        {{fa-icon "list-ol"}}
-      {{/mobiledoc-section-button}}
+      <div class="btn-group">
+        {{#mobiledoc-markup-button editor=editor for="strong" class="btn btn-link"}}
+          {{fa-icon "bold"}}
+        {{/mobiledoc-markup-button}}
+        {{#mobiledoc-markup-button editor=editor for="em" class="btn btn-link"}}
+          {{fa-icon "italic"}}
+        {{/mobiledoc-markup-button}}
+        {{#mobiledoc-section-button editor=editor for="ul" class="btn btn-link"}}
+          {{fa-icon "list"}}
+        {{/mobiledoc-section-button}}
+        {{#mobiledoc-section-button editor=editor for="ol" class="btn btn-link"}}
+          {{fa-icon "list-ol"}}
+        {{/mobiledoc-section-button}}
+      </div>
     </div>
     <div class="col-4 pt-1">
       <div class="pull-right btn-group btn-group-sm">
