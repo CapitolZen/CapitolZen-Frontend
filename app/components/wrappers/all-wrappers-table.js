@@ -39,7 +39,8 @@ export default Component.extend(TableCommon, DateFilter, {
       {
         label: 'Actions',
         cellComponent: 'wrappers/wrapper-table-actions',
-        sortable: false
+        sortable: false,
+        align: 'right'
       }
     ];
   })

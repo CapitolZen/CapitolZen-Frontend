@@ -5,10 +5,10 @@
         <div class="col-md-3">
           {{form.element placeholder="Search" controlType="text" property="search"}}
         </div>
-        <div class="col-md-6">
-          <div class="row">
-            {{#form.element property="active_in" class="mw-100" as |el|}}
-            <div class="col-md-6">
+        <div class="col-md-8">
+
+            {{#form.element property="active_in" class="mw-100 row" as |el|}}
+            <div class="col-md-4">
               <div class="power-select-group-wrapper">
                 {{#power-select
                   options=dateFilterOptions
@@ -21,7 +21,7 @@
                 {{/power-select}}
               </div>
             </div>
-              <div class="col-md-6">
+              <div class="col-md-8">
                 {{baremetrics-calendar
                   startDate=dateFilters.startDate
                   endDate=dateFilters.endDate
@@ -30,11 +30,11 @@
                   onchange=(action "updateDateFilter")}}
               </div>
             {{/form.element}}
-          </div>
+
         </div>
-      </div>
-      <div class="col-md-3">
-        {{bs-button defaultText="Filter" pendingText="Saving..." type="primary" buttonType="submit"}}
+        <div class="col-md-1">
+          {{bs-button defaultText="Filter" pendingText="Saving..." type="primary" buttonType="submit"}}
+        </div>
       </div>
     {{/bs-form}}
   {{/block-slot}}
