@@ -29,7 +29,7 @@ module.exports = function(environment) {
 
   ENV.sentry = {
     dsn: 'https://b6cba13ee71e49a3b6ea11f208dd7760@sentry.io/211639',
-    development: environment === 'production'
+    development: environment !== 'production'
   };
 
   ENV.flashMessageDefaults = {
