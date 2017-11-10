@@ -4,7 +4,7 @@ import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
 import { get } from '@ember/object';
 import { task } from 'ember-concurrency';
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 export default FormComponent.extend({
   session: service(),

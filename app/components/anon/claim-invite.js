@@ -2,7 +2,7 @@ import EmberObject, { set, get } from '@ember/object';
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 import { task } from 'ember-concurrency';
 
 export default FormComponent.extend({
