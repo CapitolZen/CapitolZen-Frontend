@@ -1,5 +1,5 @@
 import userResetPassword from '../../validators/user-reset-password';
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import { get } from '@ember/object';

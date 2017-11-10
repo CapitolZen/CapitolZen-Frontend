@@ -3,7 +3,7 @@ import { computed, set, get } from '@ember/object';
 import { typeOf, isEmpty } from '@ember/utils';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 import ClientValidations from '../../validators/client';
 
 export default FormComponent.extend({

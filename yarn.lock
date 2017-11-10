@@ -3505,6 +3505,14 @@ ember-intercom-io@donaldwasserman/ember-intercom-io#stable:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.2"
 
+ember-junkdrawer@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.0.3.tgz#d6eb362b8aa99cf24ab1f81354027ca2a3031bcd"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-font-awesome "^4.0.0-alpha.13"
+
 ember-keyboard@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ember-keyboard/-/ember-keyboard-2.2.1.tgz#ac7bd24a6acbc9b1aa236b8a31d4509d0cbd64a3"

@@ -27,13 +27,6 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       includePaths: ['vendor', 'node_modules/bootstrap/scss']
-    },
-    'asset-cache': {
-      include: ['assets/**/*']
-    },
-    'esw-cache-fallback': {
-      patterns: ['/'],
-      version: '1' // Changing the version will bust the cache
     }
   });
 

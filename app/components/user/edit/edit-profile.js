@@ -3,7 +3,7 @@ import { get } from '@ember/object';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
 import UserValidations from '../../../validators/user';
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 export default FormComponent.extend({
   tagName: '',

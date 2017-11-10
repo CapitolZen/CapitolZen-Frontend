@@ -6,7 +6,7 @@ import InviteValidations from '../../validators/invite';
 import lookupValidator from 'ember-changeset-validations';
 import Changeset from 'ember-changeset';
 
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 export default FormComponent.extend({
   session: service(),
