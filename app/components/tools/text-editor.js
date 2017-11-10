@@ -2,6 +2,8 @@ import { set, get } from '@ember/object';
 import Component from '@ember/component';
 import { EKMixin, keyUp, keyDown, keyPress, getKeyCode } from 'ember-keyboard';
 import { on } from '@ember/object/evented';
+import { run } from '@ember/runloop';
+import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
   showEditor: true,
@@ -25,13 +27,9 @@ export default Component.extend(EKMixin, {
       args.docId = get(this, 'docId');
     }
     get(this, 'saveAction')(args);
-
-    if (get(this, 'isNew')) {
-      set(this, 'showEditor', false);
-      set(this, 'content', false);
-      set(this, 'doc', false);
-      set(this, 'showEditor', true);
-    }
+    run(() => {
+      $('.mobiledoc-editor__editor').empty();
+    });
   },
   cancel() {
     get(this, 'cancelAction')();
