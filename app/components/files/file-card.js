@@ -4,7 +4,7 @@ import { set, get } from '@ember/object';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
 import FileValidations from '../../validators/file';
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 const FileCard = FormComponent.extend({
   flashMessages: service(),

@@ -4,7 +4,7 @@ import Changeset from 'ember-changeset';
 import UserRegistration from '../../validators/user-registration';
 import lookupValidator from 'ember-changeset-validations';
 import { task } from 'ember-concurrency';
-import FormComponent from 'ui/components/form/base-model-form';
+import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 export default FormComponent.extend({
   ajax: service(),

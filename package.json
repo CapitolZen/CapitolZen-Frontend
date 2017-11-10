@@ -79,6 +79,7 @@
     "ember-gestures": "^0.4.8",
     "ember-hammertime": "^1.2.4",
     "ember-intercom-io": "donaldwasserman/ember-intercom-io#stable",
+    "ember-junkdrawer": "^0.0.7",
     "ember-keyboard": "^2.2.1",
     "ember-light-table": "^1.8.6",
     "ember-link-action": "^0.0.36",
@@ -115,8 +116,7 @@
   "private": true,
   "ember-addon": {
     "paths": [
-      "lib/common",
-      "lib/ui"
+      "lib/common"
     ]
   }
 }
