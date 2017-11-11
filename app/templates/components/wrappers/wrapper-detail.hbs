@@ -91,7 +91,7 @@
           <div class="col-md-6 offset-3 text-center">
             <p>No Files Added</p>
             <p>
-              {{#bs-button class="pull-right" type="primary" onClick=(action (mut openModal) true)}}
+              {{#bs-button type="link" onClick=(action (mut openModal) true)}}
                 {{fa-icon "upload"}} Add File
               {{/bs-button}}
             </p>
@@ -115,7 +115,9 @@
         {{files/file-list select=(action "selectFile")}}
       {{/tab.pane}}
       {{#tab.pane title="Upload"}}
-        {{files/file-upload didCreateFile=(action "selectFile")}}
+        <div class="w-100 border border-light p-2">
+          {{files/file-upload didCreateFile=(action "selectFile") class="file-upload-modal"}}
+        </div>
       {{/tab.pane}}
     {{/bs-tab}}
   {{/modal.body}}

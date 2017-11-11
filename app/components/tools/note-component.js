@@ -16,6 +16,7 @@ export default Component.extend({
     saveNote(data) {
       set(this, 'isEditing', false);
       get(this, 'save')(data);
+      set(this, 'note', {});
     },
     toggleAddNote() {
       this.toggleProperty('isEditing');

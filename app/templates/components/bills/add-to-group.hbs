@@ -7,7 +7,8 @@
     {{buttonText}}
   {{/if}}
 {{/bs-button}}
-{{#bs-modal open=openModal onHidden=(action (mut openModel) false) as |modal|}}
+{{log openModal}}
+{{#bs-modal open=openModal onHidden=(action "closeModal") as |modal|}}
   {{#modal.header}}
     <h4 class="modal-title">
       Add Bill To Client

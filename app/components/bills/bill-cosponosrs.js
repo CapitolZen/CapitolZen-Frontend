@@ -16,7 +16,7 @@ const Cosponsors = Component.extend({
   }),
   getCosponsors: task(function*() {
     let bill = yield get(this, 'bill');
-    let sponsors = bill.get('cosponsors');
+    let sponsors = get(bill, 'cosponsors');
     let promises = sponsors.map(s => {
       return get(this, 'store').findRecord('legislator', s);
     });

@@ -37,7 +37,7 @@
                 <strong>Add New Filter</strong><br>
 
                 {{#unless addFilterItem}}
-                  {{#bs-button type="secondary" onClick=(action (mut addFilterItem) true)}}
+                  {{#bs-button type="outline-secondary" onClick=(action (mut addFilterItem) true)}}
                     {{fa-icon "plus"}} Add Filter
                   {{/bs-button}}
                 {{else}}

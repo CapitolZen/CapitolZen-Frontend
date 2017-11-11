@@ -29,7 +29,7 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Last Action',
-        valuePath: 'lastActionDate',
+        valuePath: 'bill',
         cellComponent: 'bills/bill-table-status',
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']

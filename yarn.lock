@@ -3242,7 +3242,7 @@ ember-fetch@^3.3.0:
     node-fetch "^2.0.0-alpha.9"
     whatwg-fetch "^2.0.3"
 
-ember-file-upload@^2.1.1:
+ember-file-upload@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.2.0.tgz#a7513bd2a01be090bf023039e00ccec2b8e4dbe0"
   dependencies:
@@ -3475,7 +3475,7 @@ ember-mobiledoc-dom-renderer@^0.5.11:
     ember-wormhole "^0.5.1"
     mobiledoc-dom-renderer "^0.6.5"
 
-ember-mobiledoc-editor@^0.5.11:
+ember-mobiledoc-editor@^0.5.13:
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/ember-mobiledoc-editor/-/ember-mobiledoc-editor-0.5.13.tgz#95f6c10b37341a0d4b4a4272ac5ad1eb6cd54243"
   dependencies:

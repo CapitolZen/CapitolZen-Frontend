@@ -37,7 +37,7 @@
   </div>
   <div class="row">
     <div class="col-4">
-      {{#bs-button type="secondary" onClick=(action "save")}}
+      {{#bs-button type="light" onClick=(action "save")}}
         {{fa-icon "plus"}} Add
       {{/bs-button}}
     </div>
@@ -45,7 +45,7 @@
 
 {{else}}
   Filter bills with a {{dateKey}} {{operator}} than last {{valueLabel}}
-  {{#bs-button type="secondary" size="sm" onClick=(action (mut isEditing) true)}}
+  {{#bs-button type="light" size="sm" onClick=(action (mut isEditing) true)}}
     Edit
   {{/bs-button}}
 {{/if}}
