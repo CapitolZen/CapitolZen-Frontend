@@ -1,32 +1,20 @@
-import userRequestPasswordReset from '../../validators/user-request-password-reset';
 import { inject as service } from '@ember/service';
-import Changeset from 'ember-changeset';
-import lookupValidator from 'ember-changeset-validations';
 import { task } from 'ember-concurrency';
-import { get } from '@ember/object';
+import { get, computed } from '@ember/object';
 
+import userRequestPasswordReset from '../../validators/user-request-password-reset';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 export default FormComponent.extend({
   ajax: service(),
   flashMessages: service(),
 
-  /**
-   * Model setup
-   */
-  initModel() {
-    let model = {
+  validator: userRequestPasswordReset,
+  model: computed(function() {
+    return {
       email: null
     };
-    this.set('model', model);
-
-    let changeset = new Changeset(
-      this.get('model'),
-      lookupValidator(userRequestPasswordReset),
-      userRequestPasswordReset
-    );
-    this.set('changeset', changeset);
-  },
+  }),
 
   /**
    * Success
@@ -36,11 +24,6 @@ export default FormComponent.extend({
       'Password reset link sent. Please check your email inbox shortly.'
     );
   },
-
-  /**
-   * Failure
-   */
-  onServerError() {},
 
   /**
    * Replace the submit handler since we're not just running changeset.save

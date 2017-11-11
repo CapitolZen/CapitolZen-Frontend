@@ -2,7 +2,7 @@ import userLogin from '../../validators/user-login';
 import { inject as service } from '@ember/service';
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
-import { get } from '@ember/object';
+import { get, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
@@ -10,31 +10,13 @@ export default FormComponent.extend({
   session: service(),
   flashMessages: service(),
 
-  /**
-   * Model setup
-   */
-  initModel() {
-    let model = {
+  validator: userLogin,
+  model: computed(function() {
+    return {
       identification: null,
       password: null
     };
-
-    this.set('model', model);
-
-    let changeset = new Changeset(model, lookupValidator(userLogin), userLogin);
-
-    this.set('changeset', changeset);
-  },
-
-  /**
-   * Success
-   */
-  onSubmitSuccess() {},
-
-  /**
-   * Failure
-   */
-  onServerError() {},
+  }),
 
   /**
    * Replace the submit handler since we're not just running changeset.save
