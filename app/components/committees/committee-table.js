@@ -16,7 +16,7 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Name',
-        valuePath: 'computedName',
+        valuePath: 'displayName',
         sortable: true
       },
       {

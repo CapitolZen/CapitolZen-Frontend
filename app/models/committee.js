@@ -9,7 +9,7 @@ export default DS.Model.extend({
   chamber: DS.attr('string'),
   parent_id: DS.attr('string'),
   subcommittee: DS.attr('string'),
-  computedName: computed('name', 'subcommittee', function() {
+  displayName: computed('name', 'subcommittee', function() {
     let name = get(this, 'name');
     if (get(this, 'subcommittee')) {
       name += `: ${get(this, 'subcommittee')}`;

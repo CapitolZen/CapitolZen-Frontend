@@ -15,6 +15,14 @@
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
+        {{#link-to "reports"}}Reports{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "bills"}}All Bills{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
         {{#link-to "bills.search"}}Search{{/link-to}}
       {{/menu.item}}
 
@@ -23,12 +31,9 @@
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills"}}All Bills{{/link-to}}
+        {{#link-to "committees.index"}}Committees{{/link-to}}
       {{/menu.item}}
 
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "reports"}}Reports{{/link-to}}
-      {{/menu.item}}
 
     </ul>
   {{/burger.menu}}
