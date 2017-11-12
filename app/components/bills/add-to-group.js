@@ -32,8 +32,9 @@ export default Component.extend({
     set(this, 'groupList', groups);
   }),
   addBillToGroup: task(function*(group) {
+    let bill = get(this, 'bill');
     let wrapper = this.get('store').createRecord('wrapper', {
-      bill: get(this, 'bill'),
+      bill: bill,
       group: group,
       organization: get(this, 'currentUser.organization')
     });
@@ -47,7 +48,7 @@ export default Component.extend({
         );
       })
       .catch(e => {
-        get(this, 'Raven').captureException(e);
+        console.log(e);
         get(this, 'flashMessages').danger(
           'An error occurred and our team has been notified.'
         );
