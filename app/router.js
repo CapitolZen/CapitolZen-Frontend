@@ -82,6 +82,10 @@ Router.map(function() {
       this.route('client', { path: '/client/:group' });
     });
 
+    this.route('committees', { resetNamespace: true }, function() {
+      this.route('detail', { path: '/:id' });
+    });
+
     this.route('legislators', { resetNamespace: true }, function() {
       this.route('detail', { path: '/:id' });
     });
