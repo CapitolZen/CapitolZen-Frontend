@@ -1,5 +1,5 @@
 <h3>{{bill.stateId}} <small>{{bill.state}}</small></h3>
-
+{{log (get bill "sponsor")}}
 {{#legislator/legislator-info legislator=bill.sponsor as |l|}}
   <h3>{{l.name}}</h3>
   <p>{{l.party}}</p>
