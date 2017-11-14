@@ -1,11 +1,11 @@
 .anon-wrapper {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.75),
+      rgba(255, 255, 255, 0.75)
+    ),
+    no-repeat center center fixed url(images/bg.jpeg);
+  background-size: cover;
   @include media-breakpoint-down(sm) {
-    background: linear-gradient(
-        rgba(255, 255, 255, 0.75),
-        rgba(255, 255, 255, 0.75)
-      ),
-      center url(images/bg.jpeg);
-
     .container {
       display: flex;
       flex-direction: column;

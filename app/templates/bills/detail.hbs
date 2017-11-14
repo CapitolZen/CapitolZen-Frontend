@@ -1,17 +1,20 @@
 {{ui-page-property model.bill.stateId property="title"}}
 
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
-    {{#legislator/legislator-info legislator=(get model.bill "sponsor") as |l|}}
-      <div class="media">
-        <div class="media-body">
-          <h5 class="mt-0 mb-1">{{l.name}}</h5>
-          {{l.party}}
+{{#if (get model.bill "sponsor")}}
+  {{#ui/ui-card}}
+    {{#block-slot "content"}}
+      {{#legislator/legislator-info legislator=(get model.bill "sponsor") as |l|}}
+        <div class="media">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">{{l.name}}</h5>
+            {{l.party}}
+          </div>
         </div>
-      </div>
-    {{/legislator/legislator-info}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+      {{/legislator/legislator-info}}
+    {{/block-slot}}
+  {{/ui/ui-card}}
+
+{{/if}}
 
 {{#ui/ui-card}}
   {{#block-slot "content"}}

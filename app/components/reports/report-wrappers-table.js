@@ -34,8 +34,10 @@ export default Component.extend(TableCommon, {
       get(this, 'model').addObject(peek);
     });
 
-    set(this, 'meta', meta);
-    set(this, 'canLoadMore', !isEmpty(meta.next));
+    if (meta) {
+      set(this, 'meta', meta);
+      set(this, 'canLoadMore', !isEmpty(meta.next));
+    }
   }).restartable(),
   columns: computed(function() {
     return [
