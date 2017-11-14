@@ -56,6 +56,9 @@ export default Component.extend({
       get(this, 'update')(value);
     },
     deleteValue(value) {
+      if (!value) {
+        value = get(this, 'value');
+      }
       get(this, 'delete')(value);
     }
   }
