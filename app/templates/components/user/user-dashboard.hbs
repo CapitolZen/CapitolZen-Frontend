@@ -1,21 +1,7 @@
 
 <div class="row">
-  <div class="col-md-8 order-sm-2 order-md-1">
-    <p class="lead"><em>Latest Bills</em></p>
-    {{#each recentBills as |bill|}}
-      {{bills/bill-preview bill=bill class="mb-2"}}
-    {{else}}
-      {{#if fetchBills.isRunning}}
-          {{ui/loading-animation}}
-      {{else}}
-        <div class="text-center">
-          <p>No newly introduced bills available in the last 7 days.</p>
-          <p>{{#link-to "bills.index"}}View all bills here.{{/link-to}}</p>
-        </div>
-      {{/if}}
-    {{/each}}
-  </div>
-  <div class="col-md-4 order-sm-1 order-md-2">
+
+  <div class="col-md-4 order-md-2">
     <h4>Quick Links</h4>
     <div class="list-group">
       {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}{{fa-icon "file-text" class="mr-2"}}Saved Bills{{/link-to}}
@@ -37,5 +23,20 @@
         </div>
       {{/each}}
     </div>
+  </div>
+  <div class="col-md-8 order-md-1">
+    <p class="lead"><em>Latest Bills</em></p>
+    {{#each recentBills as |bill|}}
+      {{bills/bill-preview bill=bill class="mb-2"}}
+    {{else}}
+      {{#if fetchBills.isRunning}}
+        {{ui/loading-animation}}
+      {{else}}
+        <div class="text-center">
+          <p>No newly introduced bills available in the last 7 days.</p>
+          <p>{{#link-to "bills.index"}}View all bills here.{{/link-to}}</p>
+        </div>
+      {{/if}}
+    {{/each}}
   </div>
 </div>
