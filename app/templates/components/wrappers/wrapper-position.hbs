@@ -3,18 +3,12 @@
     options=positions
     selected=position
     searchEnabled=false
-    onchange=(action (mut position))
+    onchange=(action "save")
     as |pos|
   }}
     <span class="text-capitalize">{{pos}}</span>
   {{/power-select}}
 
-  <div class="form-group">
-    <label for="exampleTextarea">Position Details</label>
-    {{input value=wrapper.positionDetails class="form-control"}}
-  </div>
-
-  {{#bs-button onClick=(action "save") type="primary"}}Update{{/bs-button}}
 
 {{else}}
   <span class="badge badge-{{positionModifier}}">{{fa-icon positionIcon}} {{position}}</span>

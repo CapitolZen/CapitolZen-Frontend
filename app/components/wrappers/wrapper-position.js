@@ -33,7 +33,8 @@ export default Component.extend({
     toggleEditing() {
       this.toggleProperty('isEditing');
     },
-    save() {
+    save(position) {
+      set(this, 'wrapper.position', position);
       get(this, 'wrapper')
         .save()
         .then(() => {

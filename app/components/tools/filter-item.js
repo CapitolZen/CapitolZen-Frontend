@@ -27,6 +27,11 @@ export default Component.extend({
       keyend: 'party'
     },
     {
+      label: 'Committee',
+      component: 'tools/-query/current-committee',
+      keyend: 'committee'
+    },
+    {
       label: 'Date Range - Dynamic',
       component: 'tools/-query/dynamic-date-range',
       keyend: 'te'

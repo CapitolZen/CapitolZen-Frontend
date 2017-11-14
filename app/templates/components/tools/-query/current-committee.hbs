@@ -1,0 +1,23 @@
+{{#unless isEditing}}
+  <p><strong>Include Bills In: {{chamber-name selectedCommittee.chamber}} {{selectedCommittee.displayName}}</strong></p>
+{{else}}
+  <h6>Select Committee</h6>
+  <div class="row">
+    <div class="col-8">
+      {{#power-select
+        options=committees
+        selected=selectedCommittee
+        searchEnabled=true
+        onchange=(action (mut selectedCommittee))
+      as |cmte|
+      }}
+        {{chamber-name selectedCommittee.chamber}} {{cmte.displayName}}
+      {{/power-select}}
+    </div>
+    <div class="col-4">
+      {{#bs-button type="light" onClick=(action "save")}}
+        {{fa-icon "plus"}} Add
+      {{/bs-button}}
+    </div>
+  </div>
+{{/unless}}
