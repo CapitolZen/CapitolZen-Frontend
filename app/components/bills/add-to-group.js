@@ -5,7 +5,6 @@ import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import { task, hash } from 'ember-concurrency';
 import { A } from '@ember/array';
-import { all } from 'rsvp';
 
 export default Component.extend({
   store: service(),
@@ -36,6 +35,10 @@ export default Component.extend({
     set(this, 'groupList', groups);
   }),
   addBillToGroup: task(function*(group) {
+    if (group.get('isSelected')) {
+      return false;
+    }
+
     let bill = get(this, 'bill');
     let wrapper = this.get('store').createRecord('wrapper', {
       bill: bill,
@@ -51,9 +54,6 @@ export default Component.extend({
       })
       .catch(e => {
         console.log(e);
-        get(this, 'flashMessages').danger(
-          'An error occurred and our team has been notified.'
-        );
       });
   }),
 
