@@ -3,8 +3,6 @@ import Component from '@ember/component';
 import { set, get, getWithDefault, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { v4 } from 'ember-uuid';
-import moment from 'moment';
 
 export default Component.extend({
   flashMessages: service(),
@@ -17,21 +15,20 @@ export default Component.extend({
     toggleAddNote() {
       this.toggleProperty('addNote');
     },
-    saveNote({ doc, docId }) {
-      if (!docId) {
-        docId = v4();
+    saveNote(note) {
+      let wrapper = get(this, 'wrapper');
+      if (!note.user) {
+        note.user = get(this, 'currentUser.user');
       }
 
-      let wrapper = get(this, 'wrapper');
-      let notes = getWithDefault(wrapper, 'notes', []);
-      let user = get(this, 'currentUser.user');
-      let userid = get(this, 'currentUser.user_id');
-      let timestamp = moment();
-      notes.push({ doc, userid, user, timestamp, id: docId, public: false });
-      wrapper.set('notes', notes);
-      wrapper.save().then(() => {
-        get(this, 'flashMessages').success('Note Saved!');
-      });
+      wrapper
+        .saveNote(note)
+        .then(() => {
+          get(this, 'flashMessages').success('Note Saved!');
+        })
+        .catch(err => {
+          console.error(err);
+        });
     },
     deleteNote({ docId }) {
       let wrapper = get(this, 'wrapper');

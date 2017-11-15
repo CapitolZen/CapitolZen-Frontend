@@ -45,8 +45,9 @@ export default Component.extend({
 
     wrapper
       .save()
-      .then(() => {
+      .then(savedWrapper => {
         set(group, 'isSelected', true);
+        get(this, 'billAdded')({ group, wrapper: savedWrapper });
       })
       .catch(e => {
         console.log(e);
@@ -56,6 +57,8 @@ export default Component.extend({
       });
   }),
 
+  //Noop for passing contextual action
+  billAdded() {},
   actions: {
     toggleActive() {
       get(this, 'listGroups').perform();

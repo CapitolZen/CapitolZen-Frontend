@@ -1,0 +1,36 @@
+{{#bs-button onClick=(action (mut openModal) true) type="outline-secondary"}}
+  {{fa-icon "comments"}} Add Note to All
+{{/bs-button}}
+
+{{#bs-modal open=openModal onHidden=(action "modalClosed") size="lg" as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Add Note to All Saved Bills
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <div class="row">
+      <div class="col-12">
+        <h6>Select Groups</h6>
+        {{#power-select-multiple
+          options=wrapperList
+          selected=selectedWrappers
+          placeholder="Select some names..."
+          onchange=(action (mut selectedWrappers))
+          renderInPlace=true
+        as |wrapper|
+        }}
+          {{wrapper.group.title}}
+        {{/power-select-multiple}}
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-12">
+        <h6>Add Note</h6>
+        {{tools/text-editor isNew=true saveAction=(action "saveNote")}}
+      </div>
+    </div>
+
+  {{/modal.body}}
+
+{{/bs-modal}}
