@@ -4,6 +4,8 @@ import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import { task, hash } from 'ember-concurrency';
+import { A } from '@ember/array';
+import { all } from 'rsvp';
 
 export default Component.extend({
   store: service(),
@@ -18,7 +20,8 @@ export default Component.extend({
   buttonText: 'Add to Client',
   buttonType: 'outline-secondary',
   menuAlign: 'right',
-  didInsertAttrs() {
+
+  didRecieveAttrs() {
     assert('Bill is required ', get(this, 'bill'));
   },
   isMobile: alias('media.isMobile'),
@@ -26,7 +29,8 @@ export default Component.extend({
     let bill = get(this, 'bill');
 
     let groups = yield get(this, 'store').query('group', {
-      without_bill: bill.get('id')
+      without_bill: bill.get('id'),
+      sort: 'title'
     });
 
     set(this, 'groupList', groups);
@@ -38,14 +42,11 @@ export default Component.extend({
       group: group,
       organization: get(this, 'currentUser.organization')
     });
+
     wrapper
       .save()
       .then(() => {
-        set(this, 'openModal', false);
-        set(this, 'groupList', null);
-        get(this, 'flashMessages').success(
-          `${bill.get('stateId')} saved for ${group.get('title')}`
-        );
+        set(group, 'isSelected', true);
       })
       .catch(e => {
         console.log(e);
@@ -54,6 +55,7 @@ export default Component.extend({
         );
       });
   }),
+
   actions: {
     toggleActive() {
       get(this, 'listGroups').perform();
@@ -63,7 +65,12 @@ export default Component.extend({
       get(this, 'listGroups').perform();
     },
     closeModal() {
+      get(this, 'groupList').forEach(g => {
+        set(g, 'isSelected', null);
+      });
+      set(this, 'groupList', null);
       set(this, 'openModal', false);
+      get(this, 'flashMessages').success('Bills saved!');
     }
   }
 });
