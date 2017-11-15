@@ -1,1 +1,11 @@
-{{outlet}}
+{{ui-page-property "Add Draft Bill" property="title"}}
+
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    {{#ui/ui-card}}
+      {{#block-slot "content"}}
+          {{wrappers/wrapper-add}}
+      {{/block-slot}}
+    {{/ui/ui-card}}
+  </div>
+</div>
