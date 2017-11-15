@@ -1,0 +1,20 @@
+<h5>Save</h5>
+<div class="row">
+  <div class="col-6">
+    {{bills/add-to-group bill=bill buttonType="primary" billAdded=(action "billAdded")}}
+  </div>
+  {{#if wrapperList}}
+    <div class="col-6">
+      {{wrappers/bulk-comment wrapperList=wrapperList}}
+    </div>
+  {{/if}}
+</div>
+
+{{#if wrapperList}}
+  <h5>Saved For</h5>
+  {{#each wrapperList as |wrapper|}}
+    <p>{{#link-to "groups.detail.bill.detail" wrapper.group.id wrapper.id}}
+      {{wrapper.group.title}}
+      {{wrappers/wrapper-position wrapper=wrapper canEdit=false}} {{/link-to}}</p>
+  {{/each}}
+{{/if}}

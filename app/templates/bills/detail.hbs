@@ -1,17 +1,20 @@
 {{ui-page-property model.bill.stateId property="title"}}
 
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
-    {{#legislator/legislator-info legislator=(get model.bill "sponsor") as |l|}}
-      <div class="media">
-        <div class="media-body">
-          <h5 class="mt-0 mb-1">{{l.name}}</h5>
-          {{l.party}}
+{{#if (get model.bill "sponsor")}}
+  {{#ui/ui-card}}
+    {{#block-slot "content"}}
+      {{#legislator/legislator-info legislator=(get model.bill "sponsor") as |l|}}
+        <div class="media">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">{{l.name}}</h5>
+            {{l.party}}
+          </div>
         </div>
-      </div>
-    {{/legislator/legislator-info}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+      {{/legislator/legislator-info}}
+    {{/block-slot}}
+  {{/ui/ui-card}}
+
+{{/if}}
 
 {{#ui/ui-card}}
   {{#block-slot "content"}}
@@ -20,7 +23,7 @@
        <h5>Summary</h5>
        <p>{{model.bill.title}}</p>
        <p>
-         <a href="{{model.bill.remoteUrl}}" target="_blank" class="btn btn-secondary">View Source</a>
+         <a href="{{model.bill.remoteUrl}}" target="_blank" class="btn btn-secondary">View Bill Text</a>
        </p>
        {{bills/bill-cosponosrs model.bill}}
        {{bills/doc-list docs=model.bill.documents}}
@@ -34,16 +37,7 @@
        {{bills/bill-history bill=model.bill}}
      </div>
      <div class="col-md-4">
-       <h5>Save</h5>
-       {{bills/add-to-group bill=model.bill buttonType="primary"}}
-       {{#if model.wrappers}}
-         <h5>Saved For</h5>
-         {{#each model.wrappers as |wrapper|}}
-           <p>{{#link-to "groups.detail.bill.detail" wrapper.group.id
-                         wrapper.id}} {{wrapper.group.title}} {{wrapper.position}} {{/link-to}}</p>
-         {{/each}}
-       {{/if}}
-
+       {{wrappers/bill-wrappers bill=model.bill wrappers=model.wrappers}}
      </div>
    </div>
   {{/block-slot}}

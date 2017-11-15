@@ -27,6 +27,11 @@ export default Component.extend({
       keyend: 'party'
     },
     {
+      label: 'Committee',
+      component: 'tools/-query/current-committee',
+      keyend: 'committee'
+    },
+    {
       label: 'Date Range - Dynamic',
       component: 'tools/-query/dynamic-date-range',
       keyend: 'te'
@@ -56,6 +61,9 @@ export default Component.extend({
       get(this, 'update')(value);
     },
     deleteValue(value) {
+      if (!value) {
+        value = get(this, 'value');
+      }
       get(this, 'delete')(value);
     }
   }

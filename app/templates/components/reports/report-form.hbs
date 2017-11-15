@@ -58,7 +58,12 @@
         {{/block-slot}}
 
         {{#block-slot "footer"}}
-          {{bs-button defaultText=(if edit "Update" "Create") type="primary" buttonType="submit"}}
+          {{#bs-button disabled=isSubmittting type="primary" buttonType="submit"}}
+            {{if edit "Update" "Create"}}
+            {{#if isSubmitting}}
+              {{ui/inline-loading}}
+            {{/if}}
+          {{/bs-button}}
         {{/block-slot}}
       {{/ui/ui-card}}
 
