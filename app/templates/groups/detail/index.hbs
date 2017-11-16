@@ -1,28 +1,46 @@
 {{ui-page-property model.group.title property="title"}}
 
-<div class="row">
-  <div class="col-md-12">
-    {{#ui/ui-card content-modifier="no-padding"}}
-      {{#block-slot "content" }}
-        {{#bs-nav type="pills" as |nav|}}
-          {{#nav.item}}
-            {{#nav.link-to "groups.detail.bills" model.group.id}}
-              {{fa-icon "file-text"}} Saved Bills
-            {{/nav.link-to}}
-          {{/nav.item}}
-          {{#nav.item}}
-            {{#nav.link-to "reports.client" model.group.id}}
-              {{fa-icon "map"}} Reports
-            {{/nav.link-to}}
-          {{/nav.item}}
-        {{/bs-nav}}
+{{#bs-tab as |tab|}}
+  {{#tab.pane title="Saved Bills"}}
+    {{#ui/ui-card}}
+      {{#block-slot 'title'}}Saved Bills{{/block-slot}}
+      {{#block-slot 'content'}}
+        {{bills/wrapper-table
+          recordQuery=(hash group=model.group.id)
+          model=model.wrappers
+        }}
       {{/block-slot}}
     {{/ui/ui-card}}
-  </div>
-</div>
-
-<div class="row justify-content-between">
-  <div class="col-12">
+  {{/tab.pane}}
+  {{#tab.pane title="Reports"}}
+    {{#each model.reports as |report|}}
+      {{#ui/ui-card}}
+        {{#block-slot "content"}}
+          <div class="clearfix">
+            {{#link-to "reports.detail" report.id class="pull-left"}}
+              <h5>{{report.title}}
+                <small><span class="badge badge-default">{{moment-format report.created}}</span></small>
+              </h5>
+            {{/link-to}}
+            <div class="btn-group pull-right">
+              {{reports/report-download report=report type="primary" }}
+              {{reports/report-send report=report type="outline-secondary" }}
+            </div>
+          </div>
+        {{/block-slot}}
+      {{/ui/ui-card}}
+    {{else}}
+      {{#ui/ui-card}}
+        {{#block-slot "content"}}
+          <div class="d-flex justify-content-center">
+            {{#link-to "reports.add" class="text-centered"}}Create First Report{{/link-to}}
+          </div>
+        {{/block-slot}}
+      {{/ui/ui-card}}
+    {{/each}}
+  {{/tab.pane}}
+  {{#tab.pane title="Edit"}}
     {{groups/group-form group=model.group organization=model.organization}}
-  </div>
-</div>
+  {{/tab.pane}}
+
+{{/bs-tab}}
