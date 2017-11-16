@@ -1,5 +1,6 @@
 import { set, get, getWithDefault, computed } from '@ember/object';
 import DS from 'ember-data';
+import { alias, empty } from '@ember/object/computed';
 import { v4 } from 'ember-uuid';
 import { assert } from '@ember/debug';
 import moment from 'moment';
@@ -15,6 +16,20 @@ export default DS.Model.extend({
   starred: DS.attr('boolean', { defaultValue: false }),
   summary: DS.attr('string'),
   positionDetail: DS.attr('string'),
+  metadata: DS.attr(),
+  internalTitle: alias('metadata.internaltitle'),
+  draftSponsor: alias('metadata.draftsponsor'),
+  sponsorDisplay: computed('sponsor', function() {
+    if (get(this, 'sponsor.fullName')) {
+      return `${get(this, 'sponsor.fullName')} (${get(this, 'sponsor.party')})`;
+    } else {
+      return get(this, 'metadata.draftsponsor');
+    }
+  }),
+  party: computed('bill.sponsor.party', function() {
+    return getWithDefault(this, 'bill.sponsor.party', 'Draft');
+  }),
+  isDraft: empty('bill.id'),
   saveNote({ doc, docId, user, ispublic = false }) {
     if (!docId) {
       docId = v4();

@@ -3,6 +3,7 @@ import Component from '@ember/component';
 import { set, get, getWithDefault, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
   flashMessages: service(),
@@ -10,7 +11,14 @@ export default Component.extend({
   currentUser: service(),
   bill: alias('wrapper.bill'),
   notes: alias('wrapper.notes'),
+  isDraft: alias('wrapper.isDraft'),
   addNote: false,
+  openBillConnector: false,
+
+  searchBills: task(function*(terms) {
+    yield timeout(600);
+    return get(this, 'store').query('bill', { search: terms });
+  }),
   actions: {
     toggleAddNote() {
       this.toggleProperty('addNote');
@@ -51,6 +59,14 @@ export default Component.extend({
       wrapper.save().then(() => {
         set(this, 'openModal', false);
         get(this, 'flashMessages').success('File Saved!');
+      });
+    },
+    attachBill() {
+      let wrapper = get(this, 'wrapper'),
+        bill = get(this, 'selectedBill');
+      wrapper.set('bill', bill);
+      wrapper.save(() => {
+        get(this, 'flashMessage').success(`Draft is now ${bill.stateId}`);
       });
     }
   }
