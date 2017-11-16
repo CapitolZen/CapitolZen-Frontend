@@ -6,6 +6,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
     title: 'Clients'
   },
   model() {
-    return this.store.findAll('group', { sort: 'name' });
+    return this.store.findAll('group', { filter: { sort: 'name' } });
   }
 });

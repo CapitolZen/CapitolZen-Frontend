@@ -1,0 +1,30 @@
+{{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+  {{#ui/ui-card}}
+    {{#block-slot 'content'}}
+      {{form.element controlType="power-select"
+                     property="group"
+                     label="Client"
+                     options=groups
+                     optionLabelPath="title"
+                     searchField="title"}}
+
+      {{form.element controlType="text" property="internalTitle" label="Draft Title"}}
+      {{form.element controlType="textarea" property="summary" label="Draft Summary"}}
+      {{form.element controlType="text" property="draftSponsor" label="Draft Sponsor"}}
+      {{#form.element property="position" as |el|}}
+        {{#bs-button-group
+          value=el.value
+          type="radio"
+          onChange=(action (mut el.value)) as |bg|}}
+
+          {{#bg.button type="outline-success" value="support"}}Support{{/bg.button}}
+          {{#bg.button type="outline-secondary" value="neutral"}}Neutral{{/bg.button}}
+          {{#bg.button type="outline-danger" value="oppose"}}Oppose{{/bg.button}}
+        {{/bs-button-group}}
+      {{/form.element}}
+    {{/block-slot}}
+    {{#block-slot 'footer'}}
+      {{bs-button defaultText="Save" pendingText="Saving..." type="primary" buttonType="submit"}}
+    {{/block-slot}}
+  {{/ui/ui-card}}
+{{/bs-form}}

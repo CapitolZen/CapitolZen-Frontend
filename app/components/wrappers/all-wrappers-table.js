@@ -11,17 +11,18 @@ export default Component.extend(TableCommon, DateFilter, {
   recordType: 'wrapper',
   tableHeight: '100vh',
   page_size: 100,
-  sort: 'state_id',
+  sort: 'stateId',
   columns: computed(function() {
     return [
       {
-        label: 'State ID',
+        label: 'ID',
         valuePath: 'bill.stateId',
-        sortable: true
+        sortable: true,
+        cellComponent: 'wrappers/wrapper-table-title'
       },
       {
         label: 'Sponsor',
-        valuePath: 'bill.sponsor.fullName',
+        valuePath: 'sponsorDisplay',
         sortable: false,
         breakpoints: ['tablet', 'desktop']
       },
@@ -29,7 +30,7 @@ export default Component.extend(TableCommon, DateFilter, {
         label: 'Last Action',
         valuePath: 'bill.lastActionDate',
         cellComponent: 'bills/bill-table-status',
-        sortable: false,
+        sortable: true,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
       {

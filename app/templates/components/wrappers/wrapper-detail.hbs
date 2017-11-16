@@ -1,5 +1,6 @@
 {{#ui/ui-card}}
   {{#block-slot "content"}}
+    {{#unless isDraft}}
       <div class="row">
         <h4>
           {{bill.stateId}}
@@ -11,6 +12,12 @@
           {{/legislator/legislator-info}}
         </small>
       </div>
+
+    {{else}}
+      <h5 class="badge badge-light pull-right">Bill Draft</h5>
+      <h4>{{wrapper.internalTitle}}</h4>
+    {{/unless}}
+
   {{/block-slot}}
 {{/ui/ui-card}}
 
@@ -48,27 +55,36 @@
   {{#tab.pane title="Bill"}}
     {{#ui/ui-card}}
       {{#block-slot "content"}}
-        <div class="row">
-          <div class="col-md-6">
-            <p>
-              <a href="{{bill.remoteUrl}}" class="btn btn-secondary">View Bill Text</a>
-            </p>
-            {{bills/bill-cosponosrs bill}}
-            {{bills/source-list sources=bill.sources class="mt-1"}}
-            {{bills/doc-list docs=bill.documents class="mt-1"}}
-          </div>
-          <div class="col-md-6">
-            {{bills/bill-history bill=bill}}
-
-          </div>
-        </div>
-        {{#if bill.votes}}
+        {{#unless isDraft}}
           <div class="row">
-            <div class="col-md-12">
-              {{bills/vote-list votes=bill.votes}}
+            <div class="col-md-6">
+              <p>
+                <a href="{{bill.remoteUrl}}" class="btn btn-secondary">View Bill Text</a>
+              </p>
+              {{bills/bill-cosponosrs bill}}
+              {{bills/source-list sources=bill.sources class="mt-1"}}
+              {{bills/doc-list docs=bill.documents class="mt-1"}}
+            </div>
+            <div class="col-md-6">
+              {{bills/bill-history bill=bill}}
+
             </div>
           </div>
-        {{/if}}
+          {{#if bill.votes}}
+            <div class="row">
+              <div class="col-md-12">
+                {{bills/vote-list votes=bill.votes}}
+              </div>
+            </div>
+          {{/if}}
+        {{else}}
+          <p class="text-center">This Bill Has Draft Status.</p>
+          <p class="text-center">
+            {{#bs-button type="primary" onClick=(action (mut openBillConnector) true)}}
+              {{fa-icon "paperclip"}} Attach To Bill
+            {{/bs-button}}
+          </p>
+        {{/unless}}
       {{/block-slot}}
     {{/ui/ui-card}}
   {{/tab.pane}}
@@ -126,3 +142,28 @@
   {{/modal.footer}}
 
 {{/bs-modal}}
+
+{{#bs-modal open=openBillConnector onHidden=(action "attachBill") size="lg" as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Attach To Bill
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{#power-select
+      search=(perform searchBills)
+      selected=selectedBill
+      onchange=(action (mut selectedBill))
+      renderInPlace=true
+      as |b|
+    }}
+      {{b.stateId}}
+    {{/power-select}}
+
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button type="primary" onClick=(action modal.close)}}Attach{{/bs-button}}
+  {{/modal.footer}}
+
+{{/bs-modal}}
+
