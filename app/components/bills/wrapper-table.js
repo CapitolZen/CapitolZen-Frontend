@@ -32,6 +32,7 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Position',
+        valuePath: 'position',
         cellComponent: 'wrappers/wrapper-table-position'
       },
       {
