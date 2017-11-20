@@ -39,7 +39,9 @@ export default Component.extend(RecognizerMixin, {
         );
       });
   },
-  swipe() {},
+  swipeRight() {
+    this._dismissAction();
+  },
   actions: {
     dismiss() {
       this._dismissAction();
