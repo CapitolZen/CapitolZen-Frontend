@@ -26,10 +26,10 @@
   </div>
   <div class="col-md-8 order-md-1">
     <p class="lead"><em>Latest Bills</em></p>
-    {{#each recentBills as |bill|}}
-      {{bills/bill-preview bill=bill class="mb-2"}}
+    {{#each actionList as |action|}}
+      {{actions/action-view model=action}}
     {{else}}
-      {{#if fetchBills.isRunning}}
+      {{#if fetchActions.isRunning}}
         {{ui/loading-animation}}
       {{else}}
         <div class="text-center">
