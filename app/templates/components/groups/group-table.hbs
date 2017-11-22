@@ -1,0 +1,14 @@
+{{#table/model-table
+  columns=columns
+  page=0
+  page_size=50
+  sort="title"
+  recordType='group' as |t| }}
+
+  {{#t.filter
+    defaultRecordQuery=defaultRecordQuery
+  as |filter|}}
+    {{filter.element label="Name" controlType="text" property="title__icontains"}}
+  {{/t.filter}}
+
+{{/table/model-table}}

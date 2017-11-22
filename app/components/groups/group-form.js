@@ -11,8 +11,6 @@ export default FormComponent.extend({
   currentUser: service(),
   flashMessages: service(),
   router: service('router'),
-  isEditing: false,
-  toggleEnabled: true,
 
   /*
    * Model setup
@@ -23,11 +21,11 @@ export default FormComponent.extend({
     set(this, 'model', group);
 
     let changeset = new Changeset(
-      this.get('model'),
+      get(this, 'model'),
       lookupValidator(ClientValidations),
       ClientValidations
     );
-    this.set('changeset', changeset);
+    set(this, 'changeset', changeset);
   },
 
   /**

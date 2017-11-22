@@ -52,3 +52,15 @@
     padding-bottom: 0.15rem;
   }
 }
+
+.table-image-placeholder {
+  border-radius: 50%;
+  background-color: $gray-lightest;
+  border: 1px solid $gray-lighter;
+  padding: 2rem;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
