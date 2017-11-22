@@ -22,7 +22,11 @@ export default Component.extend({
     }
   }),
   fetchGroups: task(function*() {
-    let groups = yield get(this, 'store').query('group', { active: true });
+    let groups = yield get(this, 'store').query('group', {
+      active: true,
+      user: get(this, 'currentUser.user_id'),
+      sort: 'title'
+    });
     set(this, 'queriedGroup', groups);
   }).on('init'),
   fetchActions: task(function*() {
