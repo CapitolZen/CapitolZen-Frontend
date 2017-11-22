@@ -19,7 +19,23 @@
       {{#tab.pane title="Overview"}}
         {{#ui/ui-card}}
           {{#block-slot "content"}}
-              Stuff in here
+            <div class="media">
+              {{#if model.group.avatar}}
+                <img class="mr-3" src="{{model.group.avatar}}" alt="Generic placeholder image">
+              {{/if}}
+              <div class="media-body">
+                {{#if model.group.description}}
+                  <h5 class="mt-0">Description</h5>
+                  <p>{{model.group.description}}</p>
+                {{/if}}
+
+                {{#if model.group.userList.length}}
+                  <h5>Users</h5>
+                  {{groups/table-favorites value=model.group.userList}}
+                {{/if}}
+
+              </div>
+            </div>
           {{/block-slot}}
         {{/ui/ui-card}}
       {{/tab.pane}}
