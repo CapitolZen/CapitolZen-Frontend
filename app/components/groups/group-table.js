@@ -9,7 +9,9 @@ export default Component.extend({
         label: 'Logo',
         valuePath: 'avatar',
         cellComponent: 'groups/group-avatar',
-        sortable: false
+        sortable: false,
+        width: '100px',
+        breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Name',

@@ -9,5 +9,6 @@ export default DS.Model.extend({
   created: DS.attr('date'),
   modified: DS.attr('date'),
   starred: DS.attr('boolean'),
-  active: DS.attr('boolean')
+  active: DS.attr('boolean'),
+  userList: DS.attr({ default: [] })
 });
