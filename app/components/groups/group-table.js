@@ -19,7 +19,10 @@ export default Component.extend({
       },
       {
         label: 'Saved By',
-        cellComponent: 'groups/table-favorites'
+        cellComponent: 'groups/table-favorites',
+        valuePath: 'userList',
+        sortable: false,
+        breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Actions',
