@@ -1,5 +1,5 @@
 import Control from 'ember-bootstrap/components/bs-form/element/control';
-import { get, set, computed } from '@ember/object';
+import { get, getWithDefault, set, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
@@ -8,7 +8,9 @@ export default Control.extend({
   classNames: ['form-check'],
   isSelected: computed('value', {
     get() {
-      return !get(this, 'value').indexOf(get(this, 'currentUser.user_id'));
+      return !getWithDefault(this, 'value', []).indexOf(
+        get(this, 'currentUser.user_id')
+      );
     },
     set(key, value) {
       let userId = get(this, 'currentUser.user_id');

@@ -21,6 +21,11 @@
             {{#link-to "reports.client" group.id class="btn btn-outline-secondary"}}{{fa-icon "map"}}{{/link-to}}
           </div>
         </div>
+      {{else}}
+        {{#link-to "groups.index" class="list-group-item list-group-item-action"}}
+            No Saved Clients - View All
+        {{/link-to}}
+
       {{/each}}
     </div>
   </div>
