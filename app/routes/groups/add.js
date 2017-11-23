@@ -7,7 +7,10 @@ export default Route.extend({
   model() {
     return hash({
       organization: get(this, 'currentUser.currentOrganization'),
-      group: get(this, 'store').createRecord('group', { active: true })
+      group: get(this, 'store').createRecord('group', {
+        active: true,
+        organization: get(this, 'currentUser.currentOrganization')
+      })
     });
   }
 });
