@@ -15,7 +15,7 @@
       {{groups/group-table}}
     </div>
   {{else}}
-    {{#each model.all as |group|}}
+    {{#each model as |group|}}
       {{groups/group-preview group=model}}
     {{/each}}
   {{/if}}
