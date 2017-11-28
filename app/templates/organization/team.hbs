@@ -9,23 +9,22 @@
     {{#bs-tab as |tab|}}
       {{#tab.pane title="Users"}}
         {{#if model.users}}
-          {{#ui/ui-card}}
-            {{#block-slot 'content'}}
-              {{log model.users}}
+          {{#ui/ui-box as |b|}}
+            {{#b.body}}
               <div class="list-group">
                 {{#each model.users as |user|}}
                   {{user/user-summary user=user}}
                 {{/each}}
               </div>
-            {{/block-slot}}
-          {{/ui/ui-card}}
+            {{/b.body}}
+          {{/ui/ui-box}}
         {{else}}
           <h3 class="no-things">Organization has no users.</h3>
         {{/if}}
       {{/tab.pane}}
       {{#tab.pane title="Unclaimed Invites"}}
-        {{#ui/ui-card}}
-          {{#block-slot 'content'}}
+        {{#ui/ui-box as |b|}}
+          {{#b.body}}
             {{#if model.invites}}
               <div class="list-group">
                 {{#each model.invites as |invite index|}}
@@ -35,8 +34,8 @@
             {{else}}
               <p class="no-things">Organization has no unclaimed invites.</p>
             {{/if}}
-          {{/block-slot}}
-        {{/ui/ui-card}}
+          {{/b.body}}
+        {{/ui/ui-box}}
 
       {{/tab.pane}}
     {{/bs-tab}}

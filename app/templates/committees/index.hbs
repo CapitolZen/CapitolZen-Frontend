@@ -1,6 +1,6 @@
 {{ui-page-property "All Committees" property="title"}}
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
     {{committees/committee-table model=model}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}

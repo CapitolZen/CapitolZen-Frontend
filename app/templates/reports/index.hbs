@@ -4,8 +4,8 @@
   {{#link-to "reports.add" class="btn btn-primary"}}{{fa-icon "map"}} Create Report{{/link-to}}
 {{/global/page-title-actions}}
 
-{{#ui/ui-card}}
-  {{#block-slot 'content'}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
     {{reports/report-table model=model recordType="report"}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}

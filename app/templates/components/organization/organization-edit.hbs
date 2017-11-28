@@ -1,6 +1,6 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
-  {{#ui/ui-card}}
-    {{#block-slot 'content'}}
+  {{#ui/ui-box as |b|}}
+    {{#b.body}}
       <fieldset>
         <legend>General</legend>
         {{form.element label="Name" controlType="text" property="name"}}
@@ -28,10 +28,10 @@
         {{/form.group}}
       </fieldset>
 
-    {{/block-slot}}
-    {{#block-slot 'footer'}}
+    {{/b.body}}
+    {{#b.footer}}
       {{bs-button defaultText="Save Organization" pendingText="Saving..." type="primary" buttonType="submit"}}
-    {{/block-slot}}
-  {{/ui/ui-card}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
 {{/bs-form}}
 

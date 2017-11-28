@@ -3,8 +3,8 @@
   {{#link-to "reports.add" class="btn btn-primary mb-2"}} {{fa-icon "map"}} Create New Report{{/link-to}}
 {{/global/page-title-actions}}
 {{#each model.reports as |report|}}
-  {{#ui/ui-card}}
-    {{#block-slot "content"}}
+  {{#ui/ui-box}}
+    {{#b.body}}
         <div class="clearfix">
           {{#link-to "reports.detail" report.id class="pull-left"}}
             <h5>{{report.title}} <small><span class="badge badge-default">{{moment-format report.created}}</span></small></h5>
@@ -14,14 +14,14 @@
             {{reports/report-send report=report type="outline-secondary" }}
           </div>
         </div>
-    {{/block-slot}}
-  {{/ui/ui-card}}
+    {{/b.body}}
+  {{/ui/ui-box}}
 {{else}}
-  {{#ui/ui-card}}
-    {{#block-slot "content"}}
+  {{#ui/ui-box as |b|}}
+    {{#b.body}}
       <div class="d-flex justify-content-center">
         {{#link-to "reports.add" class="text-centered"}}Create First Report{{/link-to}}
       </div>
-    {{/block-slot}}
-  {{/ui/ui-card}}
+    {{/b.body}}
+  {{/ui/ui-box}}
 {{/each}}

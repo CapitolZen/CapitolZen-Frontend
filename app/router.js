@@ -50,25 +50,17 @@ Router.map(function() {
       this.route('saved');
       this.route('add');
       this.route('search');
-      this.route('comments', { path: '/:id/comments' });
-      this.route('notes', { path: '/:id/notes' });
-      this.route('share', { path: '/:id/share' });
-      this.route('source', { path: '/:id/source' });
     });
 
     //
     // Groups
     this.route('groups', { resetNamespace: true, path: 'clients' }, function() {
       this.route('detail', { path: '/:id' }, function() {
-        this.route('contacts', { path: '/contacts' });
         this.route('bills', { path: '/bills' });
         this.route('bill', { path: '/bill' }, function() {
           this.route('detail', { path: '/:bill' });
         });
-        this.route('message', { path: '/message' });
-        this.route('filters', { path: '/filters' });
       });
-
       this.route('add');
     });
 

@@ -1,12 +1,12 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
-  {{#ui/ui-card}}
-    {{#block-slot 'content'}}
+  {{#ui/ui-box}}
+    {{#b.body}}
       {{form.element controlType="textfield" label="Name" property="name" required=true}}
       {{form.element label="Avatar" controlType="avatar" property="avatar"}}
       {{form.element controlType="email" label="Email" placeholder="Email" property="username" required=true}}
-    {{/block-slot}}
-    {{#block-slot 'footer'}}
+    {{/b.body}}
+    {{#b.footer}}
       {{bs-button defaultText="Save Profile" pendingText="Saving..." type="primary" buttonType="submit"}}
-    {{/block-slot}}
-  {{/ui/ui-card}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
 {{/bs-form}}
