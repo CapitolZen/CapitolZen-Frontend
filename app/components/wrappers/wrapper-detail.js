@@ -3,8 +3,7 @@ import Component from '@ember/component';
 import { set, get, getWithDefault, computed } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { v4 } from 'ember-uuid';
-import moment from 'moment';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
   flashMessages: service(),
@@ -12,26 +11,32 @@ export default Component.extend({
   currentUser: service(),
   bill: alias('wrapper.bill'),
   notes: alias('wrapper.notes'),
+  isDraft: alias('wrapper.isDraft'),
   addNote: false,
+  openBillConnector: false,
+
+  searchBills: task(function*(terms) {
+    yield timeout(600);
+    return get(this, 'store').query('bill', { search: terms });
+  }),
   actions: {
     toggleAddNote() {
       this.toggleProperty('addNote');
     },
-    saveNote({ doc, docId }) {
-      if (!docId) {
-        docId = v4();
+    saveNote(note) {
+      let wrapper = get(this, 'wrapper');
+      if (!note.user) {
+        note.user = get(this, 'currentUser.user');
       }
 
-      let wrapper = get(this, 'wrapper');
-      let notes = getWithDefault(wrapper, 'notes', []);
-      let user = get(this, 'currentUser.user');
-      let userid = get(this, 'currentUser.user_id');
-      let timestamp = moment();
-      notes.push({ doc, userid, user, timestamp, id: docId, public: false });
-      wrapper.set('notes', notes);
-      wrapper.save().then(() => {
-        get(this, 'flashMessages').success('Note Saved!');
-      });
+      wrapper
+        .saveNote(note)
+        .then(() => {
+          get(this, 'flashMessages').success('Note Saved!');
+        })
+        .catch(err => {
+          console.error(err);
+        });
     },
     deleteNote({ docId }) {
       let wrapper = get(this, 'wrapper');
@@ -54,6 +59,14 @@ export default Component.extend({
       wrapper.save().then(() => {
         set(this, 'openModal', false);
         get(this, 'flashMessages').success('File Saved!');
+      });
+    },
+    attachBill() {
+      let wrapper = get(this, 'wrapper'),
+        bill = get(this, 'selectedBill');
+      wrapper.set('bill', bill);
+      wrapper.save(() => {
+        get(this, 'flashMessage').success(`Draft is now ${bill.stateId}`);
       });
     }
   }

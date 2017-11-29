@@ -4,6 +4,7 @@ import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import { task, hash } from 'ember-concurrency';
+import { A } from '@ember/array';
 
 export default Component.extend({
   store: service(),
@@ -18,7 +19,8 @@ export default Component.extend({
   buttonText: 'Add to Client',
   buttonType: 'outline-secondary',
   menuAlign: 'right',
-  didInsertAttrs() {
+
+  didRecieveAttrs() {
     assert('Bill is required ', get(this, 'bill'));
   },
   isMobile: alias('media.isMobile'),
@@ -26,33 +28,37 @@ export default Component.extend({
     let bill = get(this, 'bill');
 
     let groups = yield get(this, 'store').query('group', {
-      without_bill: bill.get('id')
+      without_bill: bill.get('id'),
+      sort: 'title'
     });
 
     set(this, 'groupList', groups);
   }),
   addBillToGroup: task(function*(group) {
+    if (group.get('isSelected')) {
+      return false;
+    }
+
+    let bill = get(this, 'bill');
     let wrapper = this.get('store').createRecord('wrapper', {
-      bill: get(this, 'bill'),
+      bill: bill,
       group: group,
       organization: get(this, 'currentUser.organization')
     });
+
     wrapper
       .save()
-      .then(() => {
-        set(this, 'openModal', false);
-        set(this, 'groupList', null);
-        get(this, 'flashMessages').success(
-          `${bill.get('stateId')} saved for ${group.get('title')}`
-        );
+      .then(savedWrapper => {
+        set(group, 'isSelected', true);
+        get(this, 'billAdded')({ group, wrapper: savedWrapper });
       })
       .catch(e => {
-        get(this, 'Raven').captureException(e);
-        get(this, 'flashMessages').danger(
-          'An error occurred and our team has been notified.'
-        );
+        console.log(e);
       });
   }),
+
+  //Noop for passing contextual action
+  billAdded() {},
   actions: {
     toggleActive() {
       get(this, 'listGroups').perform();
@@ -62,7 +68,12 @@ export default Component.extend({
       get(this, 'listGroups').perform();
     },
     closeModal() {
+      get(this, 'groupList').forEach(g => {
+        set(g, 'isSelected', null);
+      });
+      set(this, 'groupList', null);
       set(this, 'openModal', false);
+      get(this, 'flashMessages').success('Bills saved!');
     }
   }
 });

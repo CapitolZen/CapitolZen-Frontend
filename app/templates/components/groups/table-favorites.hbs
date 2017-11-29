@@ -1,0 +1,7 @@
+{{#unless getUsers.isRunning}}
+  {{#each users as |user|}}
+    <small>{{user.name}}</small>
+  {{/each}}
+{{else}}
+  {{ui/inline-loading}}
+{{/unless}}

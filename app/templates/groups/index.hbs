@@ -4,11 +4,20 @@
   {{#link-to "groups.add" class="btn btn-primary"}}
     {{fa-icon "plus"}} Add Client
   {{/link-to}}
+  {{#link-to "bills.add" class="btn btn-primary"}}
+    {{fa-icon "plus-square"}} Add Draft
+  {{/link-to}}
 {{/global/page-title-actions}}
 
-<div class="row mt-1">
-  {{#each model as |group|}}
-    {{groups/group-preview group=group}}
-  {{/each}}
+<div class="row">
+  {{#if (gt model.length 6)}}
+    <div class="col-12">
+      {{groups/group-table}}
+    </div>
+  {{else}}
+    {{#each model as |group|}}
+      {{groups/group-preview group=group}}
+    {{/each}}
+  {{/if}}
 </div>
 

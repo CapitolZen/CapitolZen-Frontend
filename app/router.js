@@ -41,7 +41,6 @@ Router.map(function() {
     this.route('organization', { resetNamespace: true }, function() {
       this.route('team');
       this.route('billing');
-      this.route('files');
     });
 
     //
@@ -82,9 +81,15 @@ Router.map(function() {
       this.route('client', { path: '/client/:group' });
     });
 
+    this.route('committees', { resetNamespace: true }, function() {
+      this.route('detail', { path: '/:id' });
+    });
+
     this.route('legislators', { resetNamespace: true }, function() {
       this.route('detail', { path: '/:id' });
     });
+
+    this.route('files', { resetNamespace: true });
   });
 
   this.route('freestyle');
@@ -98,6 +103,7 @@ Router.map(function() {
   this.route('anon.register', { path: 'register' });
   this.route('anon.forgot-password', { path: 'forgot-password' });
   this.route('anon.reset-password', { path: '/reset/:token' });
+  this.route('actions', function() {});
 });
 
 export default Router;

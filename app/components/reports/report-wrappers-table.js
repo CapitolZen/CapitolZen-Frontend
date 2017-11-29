@@ -16,15 +16,15 @@ export default Component.extend(TableCommon, {
   fetchRecords: task(function*() {
     let filter = getWithDefault(this, 'model.filter', {});
 
-    let { data, meta } = yield get(
-      this,
-      'request'
-    ).post('/wrappers/filter_wrappers/', {
-      data: {
-        filters: filter,
-        group: get(this, 'report.group.id')
+    let { data, meta } = yield get(this, 'request').post(
+      '/wrappers/filter_wrappers/',
+      {
+        data: {
+          filters: filter,
+          group: get(this, 'report.group.id')
+        }
       }
-    });
+    );
 
     let store = get(this, 'store');
 
@@ -34,10 +34,10 @@ export default Component.extend(TableCommon, {
       get(this, 'model').addObject(peek);
     });
 
-    set(this, 'wrapperList', records);
-
-    set(this, 'meta', meta);
-    set(this, 'canLoadMore', !isEmpty(meta.next));
+    if (meta) {
+      set(this, 'meta', meta);
+      set(this, 'canLoadMore', !isEmpty(meta.next));
+    }
   }).restartable(),
   columns: computed(function() {
     return [

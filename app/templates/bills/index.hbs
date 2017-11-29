@@ -1,2 +1,6 @@
 {{ui-page-property "All Bills" property="title"}}
+{{#global/page-title-actions}}
+  {{#link-to "bills.add" class="btn btn-primary"}}{{fa-icon "plus-square"}} Add Draft{{/link-to}}
+{{/global/page-title-actions}}
+
 {{bills/bill-table model=model recordType="bill"}}

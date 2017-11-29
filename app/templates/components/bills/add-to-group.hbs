@@ -11,17 +11,25 @@
 {{#bs-modal open=openModal onHidden=(action "closeModal") as |modal|}}
   {{#modal.header}}
     <h4 class="modal-title">
-      Add Bill To Client
+      Add {{bill.stateId}} To:
     </h4>
   {{/modal.header}}
   {{#modal.body}}
+
     <div class="list-group">
       {{#each groupList as |group|}}
-        <div class="list-group-item">
-          <button class="btn btn-link" {{action (perform addBillToGroup group)}}>{{fa-icon
-            "plus"}} {{group.title}}</button>
-        </div>
-
+          <button class="list-group-item list-group-item-action {{if group.isSelected "active"}}" onclick={{perform addBillToGroup group}}>
+            {{#if group.isSelected}}
+              {{fa-icon "check"}}
+            {{else}}
+              {{#if addBillToGroup.isRunning}}
+                {{ui/inline-loading}}
+              {{else}}
+                {{fa-icon "plus"}}
+              {{/if}}
+            {{/if}}
+            {{group.title}}
+          </button>
       {{else}}
         {{#if listGroups.isRunning}}
           {{ui/inline-loading}}
@@ -30,6 +38,8 @@
         {{/if}}
       {{/each}}
     </div>
-
   {{/modal.body}}
+  {{#modal.footer}}
+        {{#bs-button type="light" onClick=(action modal.close)}}Done{{/bs-button}}
+  {{/modal.footer}}
 {{/bs-modal}}

@@ -1,18 +1,7 @@
 
 <div class="row">
-  <div class="col-md-8">
-    <p class="lead"><em>Latest Bills</em></p>
-    {{#each recentBills as |bill|}}
-      {{bills/bill-preview bill=bill class="mb-2"}}
-    {{else}}
-      <div class="text-center">
-        <p>No newly introduced bills available in the last 7 days.</p>
-        <p>{{#link-to "bills.index"}}View all bills here.{{/link-to}}</p>
-      </div>
 
-    {{/each}}
-  </div>
-  <div class="col-md-4">
+  <div class="col-md-4 order-md-2">
     <h4>Quick Links</h4>
     <div class="list-group">
       {{#link-to "bills.saved" class="list-group-item list-group-item-action"}}{{fa-icon "file-text" class="mr-2"}}Saved Bills{{/link-to}}
@@ -27,12 +16,32 @@
         <div class="list-group-item d-flex justify-content-between">
           {{#link-to "groups.detail" group.id}}{{group.title}}{{/link-to}}
           <div class="btn-group btn-group-sm">
-            {{#link-to "groups.detail.bills" group.id class="btn btn-secondary"}}{{fa-icon "file-text"}}{{/link-to}}
-            {{#link-to "groups.detail.index" group.id class="btn btn-secondary"}}{{fa-icon "pencil-square-o"}}{{/link-to}}
-            {{#link-to "reports.client" group.id class="btn btn-secondary"}}{{fa-icon "map"}}{{/link-to}}
+            {{#link-to "groups.detail.bills" group.id class="btn btn-outline-secondary"}}{{fa-icon "file-text"}}{{/link-to}}
+            {{#link-to "groups.detail.index" group.id class="btn btn-outline-secondary"}}{{fa-icon "pencil-square-o"}}{{/link-to}}
+            {{#link-to "reports.client" group.id class="btn btn-outline-secondary"}}{{fa-icon "map"}}{{/link-to}}
           </div>
         </div>
+      {{else}}
+        {{#link-to "groups.index" class="list-group-item list-group-item-action"}}
+            No Saved Clients - View All
+        {{/link-to}}
+
       {{/each}}
     </div>
+  </div>
+  <div class="col-md-8 order-md-1">
+    <p class="lead"><em>Latest Bills</em></p>
+    {{#each actionList as |action|}}
+      {{actions/action-view model=action}}
+    {{else}}
+      {{#if fetchActions.isRunning}}
+        {{ui/loading-animation}}
+      {{else}}
+        <div class="text-center">
+          <p>You have no actions to take on any bills!</p>
+          <p>{{#link-to "bills.index"}}View all bills here.{{/link-to}}</p>
+        </div>
+      {{/if}}
+    {{/each}}
   </div>
 </div>

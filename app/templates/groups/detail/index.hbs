@@ -1,28 +1,48 @@
 {{ui-page-property model.group.title property="title"}}
 
 <div class="row">
-  <div class="col-md-12">
-    {{#ui/ui-card content-modifier="no-padding"}}
-      {{#block-slot "content" }}
-        {{#bs-nav type="pills" as |nav|}}
-          {{#nav.item}}
-            {{#nav.link-to "groups.detail.bills" model.group.id}}
-              {{fa-icon "file-text"}} Saved Bills
-            {{/nav.link-to}}
-          {{/nav.item}}
-          {{#nav.item}}
-            {{#nav.link-to "reports.client" model.group.id}}
-              {{fa-icon "map"}} Reports
-            {{/nav.link-to}}
-          {{/nav.item}}
-        {{/bs-nav}}
-      {{/block-slot}}
-    {{/ui/ui-card}}
+  <div class="col-md-4 order-md-2">
+    <div class="list-group">
+      {{#link-to "groups.detail.bills" model.group.id class="list-group-item list-group-item-action"}}
+        {{fa-icon "file-text" class="mr-2"}}Saved Bills
+      {{/link-to}}
+      {{#link-to "reports.client" model.group.id class="list-group-item list-group-item-action"}}
+        {{fa-icon "pencil-square-o"}} Reports
+      {{/link-to}}
+      {{#link-to "bills.add" class="list-group-item list-group-item-action"}}
+        {{fa-icon "plus-square"}} Add Draft
+      {{/link-to}}
+    </div>
   </div>
-</div>
+  <div class="col-md-8 order-md-1">
+    {{#bs-tab as |tab|}}
+      {{#tab.pane title="Overview"}}
+        {{#ui/ui-card}}
+          {{#block-slot "content"}}
+            <div class="media">
+              {{#if model.group.avatar}}
+                <img class="mr-3" src="{{model.group.avatar}}" alt="Generic placeholder image">
+              {{/if}}
+              <div class="media-body">
+                {{#if model.group.description}}
+                  <h5 class="mt-0">Description</h5>
+                  <p>{{model.group.description}}</p>
+                {{/if}}
 
-<div class="row justify-content-between">
-  <div class="col-12">
-    {{groups/group-form group=model.group organization=model.organization}}
+                {{#if model.group.userList.length}}
+                  <h5>Users</h5>
+                  {{groups/table-favorites value=model.group.userList}}
+                {{/if}}
+
+              </div>
+            </div>
+          {{/block-slot}}
+        {{/ui/ui-card}}
+      {{/tab.pane}}
+      {{#tab.pane title="Edit"}}
+        {{groups/group-form group=model.group organization=model.organization}}
+      {{/tab.pane}}
+
+    {{/bs-tab}}
   </div>
 </div>

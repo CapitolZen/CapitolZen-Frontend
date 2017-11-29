@@ -9,8 +9,6 @@ export default FormComponent.extend({
   currentUser: service(),
   flashMessages: service(),
   router: service('router'),
-  isEditing: false,
-  toggleEnabled: true,
 
   validator: ClientValidations,
   model: computed(function() {

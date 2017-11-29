@@ -95,15 +95,15 @@ export default Component.extend({
 
     let filter = getWithDefault(this, 'model.filter', {});
     try {
-      let { data } = yield get(
-        this,
-        'request'
-      ).post('/wrappers/filter_wrappers/', {
-        data: {
-          filters: filter,
-          group: get(this, 'selectedGroup.id')
+      let { data } = yield get(this, 'request').post(
+        '/wrappers/filter_wrappers/',
+        {
+          data: {
+            filters: filter,
+            group: get(this, 'selectedGroup.id')
+          }
         }
-      });
+      );
 
       let store = get(this, 'store');
       let records = A();
@@ -163,7 +163,7 @@ export default Component.extend({
       get(this, 'getWrappers').perform();
     },
     deleteFilterItem(obj) {
-      console.log('sup');
+      console.log(obj);
       let [key] = Object.keys(obj);
       let model = get(this, 'model');
       model.deleteFilter(key);

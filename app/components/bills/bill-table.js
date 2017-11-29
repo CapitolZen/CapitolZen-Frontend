@@ -5,7 +5,7 @@ import TableCommon from '../../mixins/table-common';
 import DateFilter from '../../mixins/date-filter';
 
 export default Component.extend(TableCommon, DateFilter, {
-  model: 'bills',
+  recordType: 'bill',
   tableHeight: '100vh',
   pager: true,
   sort: 'state_id',

@@ -7,38 +7,39 @@ export default Component.extend(TableCommon, {
   model: 'wrapper',
   recordType: 'wrapper',
   tableHeight: '100vh',
+  sort: 'stateId',
   pager: true,
   columns: computed(function() {
     return [
       {
-        label: 'State ID',
+        label: 'ID',
         valuePath: 'bill.stateId',
-        sortable: true
+        sortable: true,
+        cellComponent: 'wrappers/wrapper-table-title'
       },
       {
         label: 'Sponsor',
-        valuePath: 'bill.sponsor.fullName',
-        sortable: false,
-        breakpoints: ['mobile', 'tablet', 'desktop']
-      },
-      {
-        label: 'Party',
-        valuePath: 'bill.sponsor.party',
+        valuePath: 'sponsorDisplay',
         sortable: false,
         breakpoints: ['tablet', 'desktop']
       },
       {
         label: 'Last Action',
-        valuePath: 'bill',
+        valuePath: 'bill.lastActionDate',
         cellComponent: 'bills/bill-table-status',
-        sortable: false,
+        sortable: true,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
-
+      {
+        label: 'Position',
+        valuePath: 'position',
+        cellComponent: 'wrappers/wrapper-table-position'
+      },
       {
         label: 'Actions',
         cellComponent: 'wrappers/wrapper-table-actions',
-        sortable: false
+        sortable: false,
+        align: 'right'
       }
     ];
   })

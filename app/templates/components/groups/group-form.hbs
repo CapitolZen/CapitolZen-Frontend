@@ -5,9 +5,10 @@
       {{form.element controlType="checkbox" label="Active" property="active"}}
       {{form.element controlType="textarea" label="Description" property="description"}}
       {{form.element label="Logo" controlType="avatar" property="avatar"}}
+      {{form.element controlType="user-in-list" property="userList"}}
     {{/block-slot}}
     {{#block-slot 'footer'}}
-      {{bs-button defaultText="Save" type="primary" pendingText="Saving..." buttonType="submit"}}
+      {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
     {{/block-slot}}
   {{/ui/ui-card}}
 {{/bs-form}}
