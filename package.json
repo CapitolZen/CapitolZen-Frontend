@@ -78,7 +78,7 @@
     "ember-gestures": "^0.4.8",
     "ember-hammertime": "^1.2.4",
     "ember-intercom-io": "donaldwasserman/ember-intercom-io#stable",
-    "ember-junkdrawer": "^0.2.0",
+    "ember-junkdrawer": "donaldwasserman/ember-junkdrawer#feat/currentuser",
     "ember-keyboard": "^2.2.1",
     "ember-light-table": "^1.12.2",
     "ember-link-action": "^0.0.36",

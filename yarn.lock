@@ -3409,9 +3409,9 @@ ember-intercom-io@donaldwasserman/ember-intercom-io#stable:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.2"
 
-ember-junkdrawer@^0.2.0:
+ember-junkdrawer@donaldwasserman/ember-junkdrawer#feat/currentuser:
   version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.2.0.tgz#d39b6264699c7f1261e39199af2d03f7a66f72c9"
+  resolved "https://codeload.github.com/donaldwasserman/ember-junkdrawer/tar.gz/cd2fa89bc96722dcecd7dc3a62b94f92d96e4da8"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
