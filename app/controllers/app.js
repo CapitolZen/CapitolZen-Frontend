@@ -7,7 +7,6 @@ export default Controller.extend({
   locked: false,
   actions: {
     toggleMenuState() {
-      console.log('sup');
       set(this, 'menuState', true);
     }
   }

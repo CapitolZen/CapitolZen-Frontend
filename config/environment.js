@@ -134,5 +134,10 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['ember-junkdrawer'] = {
+    enableIntercom: false,
+    enableFeatures: false
+  };
+
   return ENV;
 };
