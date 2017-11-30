@@ -4,6 +4,7 @@ import { task } from 'ember-concurrency';
 
 export default Service.extend({
   store: service(),
+  ajax: service(),
   query: '',
   queries: [],
   results: false,

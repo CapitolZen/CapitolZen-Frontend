@@ -2820,7 +2820,7 @@ ember-cli-lodash-subset@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-2.0.1.tgz#20cb68a790fe0fde2488ddfd8efbb7df6fe766f2"
 
-ember-cli-moment-shim@^3.1.0, ember-cli-moment-shim@^3.3.3:
+ember-cli-moment-shim@^3.1.0, ember-cli-moment-shim@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.5.0.tgz#7ea8d42b0a04c767258287b30447681e52fba0c4"
   dependencies:
@@ -3488,6 +3488,12 @@ ember-macro-helpers@^0.17.0:
     ember-cli-test-info "^1.0.0"
     ember-weakmap "^3.0.0"
 
+ember-macro-helpers@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ember-macro-helpers/-/ember-macro-helpers-0.4.0.tgz#914670001478fcccccb84819aca7630cc44526c8"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+
 ember-macro-helpers@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/ember-macro-helpers/-/ember-macro-helpers-0.7.0.tgz#482f0116f77349d1c3db8be3f53ae38bb4f8a4dc"
@@ -3535,6 +3541,13 @@ ember-mobiledoc-editor@^0.5.13:
     ember-wormhole "^0.5.1"
     mobiledoc-dom-renderer "^0.6.5"
     mobiledoc-kit "^0.10.17"
+
+ember-moment@7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/ember-moment/-/ember-moment-7.3.0.tgz#90ea18d231d85e1b75e45f15b27d33b908aad1fd"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-macro-helpers "^0.4.0"
 
 ember-moment@^7.3.0:
   version "7.5.0"

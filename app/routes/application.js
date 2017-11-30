@@ -36,7 +36,6 @@ export default Route.extend(ApplicationRouteMixin, {
    * After the user has been authenticated
    */
   sessionAuthenticated() {
-    console.log('session authenticated');
     this.get('currentUser')
       .sessionAuthenticated()
       .then(() => {

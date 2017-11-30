@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { computed, get } from '@ember/object';
+import moment from 'moment';
 
 export default DS.Model.extend({
   chamber: DS.attr('string'),
@@ -18,7 +19,13 @@ export default DS.Model.extend({
       'committee:meeting': 'Committee - Meeting'
     };
 
-    let type = get(this, 'eventType');
-    return map[type];
+    return map[get(this, 'eventType')];
+  }),
+  startsAt: computed('time', function() {
+    return moment(get(this, 'time'));
+  }),
+  endsAt: computed('time', function() {
+    let start = get(this, 'startsAt');
+    return start.add(90, 'minutes');
   })
 });

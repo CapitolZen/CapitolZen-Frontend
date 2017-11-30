@@ -75,6 +75,7 @@ Router.map(function() {
 
     this.route('committees', { resetNamespace: true }, function() {
       this.route('detail', { path: '/:id' });
+      this.route('meetings');
     });
 
     this.route('legislators', { resetNamespace: true }, function() {
@@ -82,6 +83,7 @@ Router.map(function() {
     });
 
     this.route('files', { resetNamespace: true });
+    this.route('actions', function() {});
   });
 
   this.route('freestyle');
@@ -95,7 +97,6 @@ Router.map(function() {
   this.route('anon.register', { path: 'register' });
   this.route('anon.forgot-password', { path: 'forgot-password' });
   this.route('anon.reset-password', { path: '/reset/:token' });
-  this.route('actions', function() {});
 });
 
 export default Router;

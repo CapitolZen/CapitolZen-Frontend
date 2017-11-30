@@ -1,4 +1,6 @@
-{{#ui/ui-box}}
+
+
+{{#ui/ui-box as |b|}}
   {{#b.body}}
     {{#unless isDraft}}
       <div class="row">
@@ -23,7 +25,7 @@
 
 {{#bs-tab as |tab|}}
   {{#tab.pane title="Comments"}}
-    {{#ui/ui-box}}
+    {{#ui/ui-box as |b|}}
       {{#b.body}}
           <div class="row">
             <div class="col-md-6">
@@ -53,7 +55,7 @@
     {{/ui/ui-box}}
   {{/tab.pane}}
   {{#tab.pane title="Bill"}}
-    {{#ui/ui-box}}
+    {{#ui/ui-box as |b|}}
       {{#b.body}}
         {{#unless isDraft}}
           <div class="row">
@@ -89,31 +91,34 @@
     {{/ui/ui-box}}
   {{/tab.pane}}
   {{#tab.pane title="Files"}}
-    {{#ui/ui-box}}
-      <div class="row">
-        <div class="col-8">
-          <h5>Files</h5>
-        </div>
-        <div class="col-4">
-          {{#bs-button class="pull-right" type="primary" onClick=(action (mut openModal) true)}}
-            {{fa-icon "upload"}} Add File
-          {{/bs-button}}
-        </div>
-      </div>
-      <div class="row">
-        {{#each wrapper.files as |fileId|}}
-          {{wrappers/wrapper-file fileId class="col-md-3"}}
-        {{else}}
-          <div class="col-md-6 offset-3 text-center">
-            <p>No Files Added</p>
-            <p>
-              {{#bs-button type="link" onClick=(action (mut openModal) true)}}
-                {{fa-icon "upload"}} Add File
-              {{/bs-button}}
-            </p>
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        <div class="row">
+          <div class="col-8">
+            <h5>Files</h5>
           </div>
-        {{/each}}
-      </div>
+          <div class="col-4">
+            {{#bs-button class="pull-right" type="primary" onClick=(action (mut openModal) true)}}
+              {{fa-icon "upload"}} Add File
+            {{/bs-button}}
+          </div>
+        </div>
+        <div class="row">
+          {{#each wrapper.files as |fileId|}}
+            {{wrappers/wrapper-file fileId class="col-md-3"}}
+          {{else}}
+            <div class="col-md-6 offset-3 text-center">
+              <p>No Files Added</p>
+              <p>
+                {{#bs-button type="link" onClick=(action (mut openModal) true)}}
+                  {{fa-icon "upload"}} Add File
+                {{/bs-button}}
+              </p>
+            </div>
+          {{/each}}
+        </div>
+      {{/b.body}}
+
 
     {{/ui/ui-box}}
   {{/tab.pane}}
