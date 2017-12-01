@@ -1,5 +1,5 @@
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
     {{#bs-form model=recordQuery onSubmit=(action "filter") as |form|}}
       <div class="row">
         <div class="col-md-3">
@@ -37,12 +37,12 @@
         </div>
       </div>
     {{/bs-form}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}
 
 
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
     {{#light-table table responsive=true height=tableHeight as |t|}}
 
       {{t.head
@@ -69,5 +69,5 @@
       {{/t.body}}
 
     {{/light-table}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}

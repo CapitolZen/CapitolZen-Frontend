@@ -1,22 +1,23 @@
 <div class="row">
   <div class="col-md-8">
-    {{#ui/ui-card}}
-      {{#block-slot "title"}}
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}
         {{model.title}}
-      {{/block-slot}}
-      {{#block-slot "content"}}
+      {{/b.header}}
+      {{#b.body}}
         <h6>Description</h6>
         <p>{{model.description}}</p>
         <h6>Layout</h6>
         {{model.layout.label}}
-      {{/block-slot}}
-    {{/ui/ui-card}}
-    
-    {{#ui/ui-card}}
-      {{#block-slot "content"}}
+      {{/b.body}}
+
+    {{/ui/ui-box}}
+
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
         {{reports/report-wrappers-table report=model}}
-      {{/block-slot}}
-    {{/ui/ui-card}}
+      {{/b.body}}
+    {{/ui/ui-box}}
   </div>
   <div class="col-md-4">
     <h4>Quick Links</h4>

@@ -1,12 +1,11 @@
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
     {{#bs-form model=recordQuery onSubmit=(action "filter") as |form|}}
       <div class="row">
         <div class="col-md-3">
           {{form.element placeholder="Search" controlType="text" property="search"}}
         </div>
         <div class="col-md-8">
-
             {{#form.element property="active_in" class="mw-100 row" as |el|}}
             <div class="col-md-4">
               <div class="power-select-group-wrapper">
@@ -37,11 +36,11 @@
         </div>
       </div>
     {{/bs-form}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}
 
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
     {{#light-table table responsive=true height=tableHeight as |t|}}
 
       {{t.head
@@ -79,5 +78,5 @@
       {{/if}}
 
     {{/light-table}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}

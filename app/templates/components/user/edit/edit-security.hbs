@@ -1,12 +1,13 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
-  {{#ui/ui-card}}
-    {{#block-slot 'content'}}
+  {{#ui/ui-box as |b|}}
+    {{#b.body}}
       {{form.element controlType="password" label="Current Password" property="current_password" required=true}}
       {{form.element controlType="password" label="New Password" property="password" required=true}}
       {{form.element controlType="password" label="Confirm New Password" property="confirm_password" required=true}}
-    {{/block-slot}}
-    {{#block-slot 'footer'}}
+    {{/b.body}}
+    {{#b.footer}}
       {{bs-button defaultText="Change Password" pendingText="Saving..." type="primary" buttonType="submit"}}
-    {{/block-slot}}
-  {{/ui/ui-card}}
+    {{/b.footer}}
+
+  {{/ui/ui-box}}
 {{/bs-form}}

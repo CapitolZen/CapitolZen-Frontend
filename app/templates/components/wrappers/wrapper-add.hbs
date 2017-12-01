@@ -1,5 +1,5 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
-  {{#ui/ui-card}}
+  {{#ui/ui-box as |b|}}
     {{#block-slot 'content'}}
       {{form.element controlType="power-select"
                      property="group"
@@ -26,5 +26,5 @@
     {{#block-slot 'footer'}}
       {{bs-button defaultText="Save" pendingText="Saving..." type="primary" buttonType="submit"}}
     {{/block-slot}}
-  {{/ui/ui-card}}
+  {{/ui/ui-box}}
 {{/bs-form}}
