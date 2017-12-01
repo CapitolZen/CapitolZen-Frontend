@@ -2,8 +2,8 @@
 <div class="row">
   <div class="col-md-8">
     {{#bs-form model=model onSubmit=(action "createReport") as |form|}}
-      {{#ui/ui-card}}
-        {{#block-slot "content"}}
+      {{#ui/ui-box as |b|}}
+        {{#b.body}}
 
           {{#form.element label="Client" property="group" as |el|}}
             {{#power-select
@@ -55,17 +55,16 @@
             Select Client to continue
           {{/if}}
 
-        {{/block-slot}}
-
-        {{#block-slot "footer"}}
+        {{/b.body}}
+        {{#b.footer}}
           {{#bs-button disabled=isSubmittting type="primary" buttonType="submit"}}
             {{if edit "Update" "Create"}}
             {{#if isSubmitting}}
               {{ui/inline-loading}}
             {{/if}}
           {{/bs-button}}
-        {{/block-slot}}
-      {{/ui/ui-card}}
+        {{/b.footer}}
+      {{/ui/ui-box}}
 
     {{/bs-form}}
   </div>

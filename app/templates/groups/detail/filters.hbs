@@ -1,8 +1,8 @@
 {{ui-page-property "Edit Filters" property="title"}}
 {{groups/group-header group=model}}
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
-  {{/block-slot}}
-{{/ui/ui-card}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
+  {{/b.body}}
+{{/ui/ui-box}}
 
 {{outlet}}

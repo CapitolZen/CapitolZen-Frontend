@@ -1,9 +1,7 @@
 import Component from '@ember/component';
-import TableCommon from '../../mixins/table-common';
-import DateFilter from '../../mixins/date-filter';
+import TableCommon from '../../../mixins/table-common';
+import DateFilter from '../../../mixins/date-filter';
 import { computed, set, get } from '@ember/object';
-import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
 import { merge } from '@ember/polyfills';
 
 export default Component.extend(TableCommon, DateFilter, {
@@ -18,7 +16,7 @@ export default Component.extend(TableCommon, DateFilter, {
         label: 'ID',
         valuePath: 'bill.stateId',
         sortable: true,
-        cellComponent: 'wrappers/wrapper-table-title'
+        cellComponent: 'wrappers/-list/cell/title'
       },
       {
         label: 'Sponsor',
@@ -35,11 +33,11 @@ export default Component.extend(TableCommon, DateFilter, {
       },
       {
         label: 'Position',
-        cellComponent: 'wrappers/wrapper-table-position'
+        cellComponent: 'wrappers/-list/cell/position'
       },
       {
         label: 'Actions',
-        cellComponent: 'wrappers/wrapper-table-actions',
+        cellComponent: 'wrappers/-list/cell/actions',
         sortable: false,
         align: 'right'
       }

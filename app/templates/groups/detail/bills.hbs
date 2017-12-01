@@ -1,13 +1,15 @@
 {{ui-page-property model.group.title property="title"}}
 
-{{#ui/ui-card}}
-  {{#block-slot 'title'}}Saved Bills{{/block-slot}}
-  {{#block-slot 'content'}}
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    Saved Bills
+  {{/b.header}}
+  {{#b.body}}
     {{bills/wrapper-table
       recordQuery=(hash group=model.group.id)
       model=model.wrappers
     }}
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}
 
 {{outlet}}

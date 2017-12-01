@@ -3,22 +3,19 @@
   <div class="col-md-8 offset-md-2">
     {{#bs-tab as |tab|}}
       {{#tab.pane title="Files"}}
-        {{#ui/ui-card}}
-          {{#block-slot "content"}}
+        {{#ui/ui-box as |b|}}
+          {{#b.body}}
             {{files/file-library}}
-          {{/block-slot}}
-        {{/ui/ui-card}}
+          {{/b.body}}
+        {{/ui/ui-box}}
       {{/tab.pane}}
       {{#tab.pane title="Upload"}}
-        {{#ui/ui-card}}
-          {{#block-slot "content"}}
+        {{#ui/ui-box as |b|}}
+          {{#b.body}}
             {{files/file-upload}}
-          {{/block-slot}}
-        {{/ui/ui-card}}
+          {{/b.body}}
+        {{/ui/ui-box}}
       {{/tab.pane}}
-
-
     {{/bs-tab}}
-
   </div>
 </div>

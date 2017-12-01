@@ -1,8 +1,8 @@
 import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { readOnly } from '@ember/object/computed';
-import TableCommon from '../../mixins/table-common';
-import DateFilter from '../../mixins/date-filter';
+import TableCommon from '../../../mixins/table-common';
+import DateFilter from '../../../mixins/date-filter';
 
 export default Component.extend(TableCommon, DateFilter, {
   recordType: 'bill',
@@ -31,13 +31,13 @@ export default Component.extend(TableCommon, DateFilter, {
       },
       {
         label: 'Last Action',
-        cellComponent: 'bills/bill-table-status',
+        cellComponent: 'bills/-list/cell/status',
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
       {
         label: 'Actions',
-        cellComponent: 'bills/bill-table-actions',
+        cellComponent: 'bills/-list/cell/actions',
         sortable: false,
         align: 'right'
       }

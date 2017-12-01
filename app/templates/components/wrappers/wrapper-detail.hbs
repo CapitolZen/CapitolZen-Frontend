@@ -1,5 +1,5 @@
-{{#ui/ui-card}}
-  {{#block-slot "content"}}
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
     {{#unless isDraft}}
       <div class="row">
         <h4>
@@ -18,13 +18,13 @@
       <h4>{{wrapper.internalTitle}}</h4>
     {{/unless}}
 
-  {{/block-slot}}
-{{/ui/ui-card}}
+  {{/b.body}}
+{{/ui/ui-box}}
 
 {{#bs-tab as |tab|}}
   {{#tab.pane title="Comments"}}
-    {{#ui/ui-card}}
-      {{#block-slot "content"}}
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
           <div class="row">
             <div class="col-md-6">
               <h5>Notes</h5>
@@ -49,12 +49,12 @@
 
             </div>
           </div>
-      {{/block-slot}}
-    {{/ui/ui-card}}
+      {{/b.body}}
+    {{/ui/ui-box}}
   {{/tab.pane}}
   {{#tab.pane title="Bill"}}
-    {{#ui/ui-card}}
-      {{#block-slot "content"}}
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
         {{#unless isDraft}}
           <div class="row">
             <div class="col-md-6">
@@ -85,11 +85,11 @@
             {{/bs-button}}
           </p>
         {{/unless}}
-      {{/block-slot}}
-    {{/ui/ui-card}}
+      {{/b.body}}
+    {{/ui/ui-box}}
   {{/tab.pane}}
   {{#tab.pane title="Files"}}
-    {{#ui/ui-card}}
+    {{#ui/ui-box as |b|}}
       <div class="row">
         <div class="col-8">
           <h5>Files</h5>
@@ -115,7 +115,7 @@
         {{/each}}
       </div>
 
-    {{/ui/ui-card}}
+    {{/ui/ui-box}}
   {{/tab.pane}}
 {{/bs-tab}}
 

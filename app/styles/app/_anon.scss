@@ -1,10 +1,8 @@
 .anon-wrapper {
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.75),
-      rgba(255, 255, 255, 0.75)
-    ),
-    no-repeat center center fixed url(images/bg.jpeg);
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgb(255, 255, 255)),
+    url(images/bg.jpeg) center center no-repeat fixed;
   background-size: cover;
+
   @include media-breakpoint-down(sm) {
     .container {
       display: flex;

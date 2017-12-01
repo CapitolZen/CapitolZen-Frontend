@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import TableCommon from '../../mixins/table-common';
+import TableCommon from '../../../mixins/table-common';
 import { get, set, computed } from '@ember/object';
 
 export default Component.extend(TableCommon, {
@@ -11,7 +11,7 @@ export default Component.extend(TableCommon, {
       {
         label: 'Chamber',
         valuePath: 'chamber',
-        cellComponent: 'committees/-table/cmte-chamber',
+        cellComponent: 'committees/-list/cell/chamber',
         sortable: true
       },
       {
@@ -21,7 +21,7 @@ export default Component.extend(TableCommon, {
       },
       {
         label: 'Actions',
-        cellComponent: 'committees/-table/cmte-actions',
+        cellComponent: 'committees/-list/cell/actions',
         sortable: false,
         align: 'right'
       }
