@@ -1,6 +1,7 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
   {{#ui/ui-box as |b|}}
-    {{#block-slot 'content'}}
+    {{#b.body}}
+
       {{form.element controlType="power-select"
                      property="group"
                      label="Client"
@@ -22,9 +23,10 @@
           {{#bg.button type="outline-danger" value="oppose"}}Oppose{{/bg.button}}
         {{/bs-button-group}}
       {{/form.element}}
-    {{/block-slot}}
-    {{#block-slot 'footer'}}
+    {{/b.body}}
+    {{#b.footer}}
       {{bs-button defaultText="Save" pendingText="Saving..." type="primary" buttonType="submit"}}
-    {{/block-slot}}
+    {{/b.footer}}
+
   {{/ui/ui-box}}
 {{/bs-form}}
