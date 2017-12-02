@@ -1,6 +1,8 @@
 import CurrentUser from 'ember-junkdrawer/services/current-user';
 import { inject as service } from '@ember/service';
 import { get, set, computed } from '@ember/object';
+import { assert } from '@ember/debug';
+import { A } from '@ember/array';
 
 export default CurrentUser.extend({
   intercom: service(),
@@ -27,5 +29,21 @@ export default CurrentUser.extend({
         is_active: get(this, 'currentUser.currentOrganization.isActive')
       }
     };
-  })
+  }),
+
+  events: A([
+    'report:create',
+    'report:download',
+    'event:download',
+    'action:dismiss',
+    'action:snoozed',
+    'action:flagged'
+  ]),
+  trigger(event) {
+    assert(
+      `${event} must be part of allowed events`,
+      get(this, 'events').contains(event)
+    );
+    get(this, 'intercom.trackEvent')(event);
+  }
 });

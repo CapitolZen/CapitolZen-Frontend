@@ -30,7 +30,7 @@ export default Component.extend({
     set(this, 'queriedGroup', groups);
   }).on('init'),
   fetchActions: task(function*() {
-    let actions = yield get(this, 'store').findAll('action');
+    let actions = yield get(this, 'store').query('action', { state: 'active' });
     set(this, '_actionsRaw', actions);
   }).on('init'),
   actions: {
