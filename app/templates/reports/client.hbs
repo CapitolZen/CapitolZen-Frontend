@@ -3,7 +3,7 @@
   {{#link-to "reports.add" class="btn btn-primary mb-2"}} {{fa-icon "map"}} Create New Report{{/link-to}}
 {{/global/page-title-actions}}
 {{#each model.reports as |report|}}
-  {{#ui/ui-box as |b|}}
+  {{#ui/ui-box}}
     {{#b.body}}
         <div class="clearfix">
           {{#link-to "reports.detail" report.id class="pull-left"}}

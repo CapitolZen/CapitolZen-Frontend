@@ -6,6 +6,7 @@ import { assert } from '@ember/debug';
 import { capitalize } from '@ember/string';
 
 export default DS.Model.extend({
+  created: DS.attr('string'),
   actionObject: DS.attr(),
   user: DS.belongsTo('user'),
   title: DS.attr('string'),
@@ -22,7 +23,8 @@ export default DS.Model.extend({
       'bill:updated': 'Bill Updated',
       'organization:user-add': 'User Joined',
       'organization:user-invite': 'User Invited',
-      'organization:mention': 'Mentioned'
+      'user:mention': 'Mentioned',
+      'committee:meeting': 'Committee Meeting'
     };
     return titleMap[get(this, 'title')];
   }),

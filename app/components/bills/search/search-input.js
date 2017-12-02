@@ -14,9 +14,6 @@ export default Component.extend({
     search() {
       let term = get(this, 'currentQuery');
       get(this, 'billSearch').search(term);
-      if (get(this, 'transition')) {
-        get(this, 'router').transitionTo('bills.search');
-      }
     },
     searchFromPrevious(term) {
       set(this, 'currentQuery', term);

@@ -1,22 +1,33 @@
 <div class="card-body">
-  <button type="button" {{action "dismiss"}} class="close pull-right" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  {{close-button (action "dismiss") class="pullRight"}}
 
   <h4 class="card-title">
-    {{title}}: {{referencedModel.stateId}}
+
+
+    {{#if isBill}}
+      {{title}}: {{referencedModel.stateId}}
+    {{/if}}
+
+    {{#if isCommittee}}
+      {{#if referencedModel.committee.isPending}}
+        {{ui/inline-loading}}
+      {{else}}
+        {{title}}: <small>{{chamber-name referencedModel.chamber}} {{referencedModel.committee.content.displayName}}</small>
+      {{/if}}
+    {{/if}}
 
   </h4>
 
-
-  {{#if isBill}}
-    <div class="w-100">
-      {{#legislator/legislator-info legislator=referencedModel.sponsor class="clearfix pr-2" as |l|}}
-        <small class="pull-left pr-1">{{l.name}}</small>
-        <small>{{l.party}}</small>
-      {{/legislator/legislator-info}}
-    </div>
-    {{#unless loadReferencedModel.isRunning}}
+  {{#if loadReferencedModel.isRunning}}
+    {{ui/inline-loading}}
+  {{else}}
+    {{#if isBill}}
+      <div class="w-100">
+        {{#legislator/legislator-info legislator=referencedModel.sponsor class="clearfix pr-2" as |l|}}
+          <small class="pull-left pr-1">{{l.name}}</small>
+          <small>{{l.party}}</small>
+        {{/legislator/legislator-info}}
+      </div>
       <div class="bill-detail-body w-100 row flex-xs-column justify-content-xl-between flex-xl-row">
         <div class="details col-lg-8">
           <p class="card-text">{{referencedModel.title}}</p>
@@ -29,11 +40,21 @@
         </div>
 
       </div>
-    {{else}}
-      {{ui/inline-loading}}
-    {{/unless}}
+    {{/if}}
 
+    {{#if isCommittee}}
+      <div class="w-100">
+        <dl>
+          <dt>Time</dt>
+          <dd>{{moment-format referencedModel.startsAt "MMM D - h:mm a"}}</dd>
+          <dt>Location</dt>
+          {{referencedModel.locationText}}
+          <dt>Agenda</dt>
+          <dd>{{referencedModel.descriptionHtml}}</dd>
+        </dl>
+
+
+      </div>
+    {{/if}}
   {{/if}}
-
-
 </div>

@@ -2,9 +2,10 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import { computed, set, get } from '@ember/object';
+import ENV from 'capitolzen-client/config/environment';
 
 export default Route.extend(ApplicationRouteMixin, {
-  session: service('session'),
+  session: service(),
   currentUser: service(),
   flashMessages: service(),
 
@@ -51,10 +52,13 @@ export default Route.extend(ApplicationRouteMixin, {
      */
     error(error, transition) {
       if (error.errors) {
-        if (parseInt(error.errors[0].status) == 404) {
-          this.transitionTo('not-found');
-        } else {
-          this.transitionTo('error-route');
+        console.error(error.errors);
+        if (ENV.environment === 'production') {
+          if (parseInt(error.errors[0].status) == 404) {
+            this.transitionTo('not-found');
+          } else {
+            this.transitionTo('error-route');
+          }
         }
       }
     }
