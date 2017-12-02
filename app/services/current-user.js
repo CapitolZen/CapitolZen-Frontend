@@ -6,6 +6,7 @@ import { A } from '@ember/array';
 
 export default CurrentUser.extend({
   intercom: service(),
+  metrics: service(),
   didSetupUser() {
     this.update();
   },
@@ -14,6 +15,9 @@ export default CurrentUser.extend({
   },
   update() {
     get(this, 'intercom').set('user', get(this, 'intercomData'));
+    get(this, 'metrics').identify('mixpanel', {
+      distinctId: get(this, 'currentUser.user_id')
+    });
   },
 
   intercomData: computed(function() {
@@ -45,5 +49,6 @@ export default CurrentUser.extend({
       get(this, 'events').contains(event)
     );
     get(this, 'intercom.trackEvent')(event);
+    get(this, 'metrics').trackEvent('mixpanel', { event });
   }
 });
