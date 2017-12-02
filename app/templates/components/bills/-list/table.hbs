@@ -6,8 +6,7 @@
           {{form.element placeholder="Search" controlType="text" property="search"}}
         </div>
         <div class="col-md-8">
-
-          {{#form.element property="active_in" class="mw-100 row" as |el|}}
+            {{#form.element property="active_in" class="mw-100 row" as |el|}}
             <div class="col-md-4">
               <div class="power-select-group-wrapper">
                 {{#power-select
@@ -21,15 +20,15 @@
                 {{/power-select}}
               </div>
             </div>
-            <div class="col-md-8">
-              {{baremetrics-calendar
-                startDate=dateFilters.startDate
-                endDate=dateFilters.endDate
-                latestDate=latestDate
-                presets=presets
-                onchange=(action "updateDateFilter")}}
-            </div>
-          {{/form.element}}
+              <div class="col-md-8">
+                {{baremetrics-calendar
+                  startDate=dateFilters.startDate
+                  endDate=dateFilters.endDate
+                  latestDate=latestDate
+                  presets=presets
+                  onchange=(action "updateDateFilter")}}
+              </div>
+            {{/form.element}}
 
         </div>
         <div class="col-md-1">
@@ -40,8 +39,7 @@
   {{/b.body}}
 {{/ui/ui-box}}
 
-
-{{#ui/ui-box}}
+{{#ui/ui-box as |b|}}
   {{#b.body}}
     {{#light-table table responsive=true height=tableHeight as |t|}}
 
@@ -61,12 +59,23 @@
             {{ui/loading-animation}}
           {{/body.loader}}
         {{/if}}
+
         {{#if (and (not isLoading) table.isEmpty)}}
           {{#body.no-data}}
-            <p class="text-center">No saved bills match your filters.</p>
+            <p class="text-center">No bills match your query.</p>
           {{/body.no-data}}
         {{/if}}
       {{/t.body}}
+
+      {{#if meta}}
+        {{#t.foot fixed=true as |columns|}}
+          <tr>
+            <td class="align-center" colspan={{columns.length}}>
+              {{ui/table-pagintor page=page pageSize=page_size meta=meta pageAction=(action 'setPage')}}
+            </td>
+          </tr>
+        {{/t.foot}}
+      {{/if}}
 
     {{/light-table}}
   {{/b.body}}

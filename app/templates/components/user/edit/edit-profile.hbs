@@ -1,5 +1,5 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
-  {{#ui/ui-box}}
+  {{#ui/ui-box as |b|}}
     {{#b.body}}
       {{form.element controlType="textfield" label="Name" property="name" required=true}}
       {{form.element label="Avatar" controlType="avatar" property="avatar"}}

@@ -15,7 +15,7 @@ export default Component.extend(TableCommon, {
         label: 'ID',
         valuePath: 'bill.stateId',
         sortable: true,
-        cellComponent: 'wrappers/wrapper-table-title'
+        cellComponent: 'wrappers/-list/cell/title'
       },
       {
         label: 'Sponsor',
@@ -26,18 +26,18 @@ export default Component.extend(TableCommon, {
       {
         label: 'Last Action',
         valuePath: 'bill.lastActionDate',
-        cellComponent: 'bills/bill-table-status',
+        cellComponent: 'bills/-list/cell/status',
         sortable: true,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
       {
         label: 'Position',
         valuePath: 'position',
-        cellComponent: 'wrappers/wrapper-table-position'
+        cellComponent: 'wrappers/-list/cell/position'
       },
       {
         label: 'Actions',
-        cellComponent: 'wrappers/wrapper-table-actions',
+        cellComponent: 'wrappers/-list/cell/actions',
         sortable: false,
         align: 'right'
       }

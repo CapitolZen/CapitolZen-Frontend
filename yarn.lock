@@ -2559,13 +2559,13 @@ ember-bootstrap@1.0.0-rc.4:
     rsvp "^4.0.1"
     silent-error "^1.0.1"
 
-ember-burger-menu@donaldwasserman/ember-burger-menu#master:
-  version "3.0.0"
-  resolved "https://codeload.github.com/donaldwasserman/ember-burger-menu/tar.gz/222496ec2c251ef5f5dfd1e7036ba7fa01a66d98"
+ember-burger-menu@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ember-burger-menu/-/ember-burger-menu-3.0.1.tgz#de67d96949a2fd6867abdf0279a27b59c2ec9d34"
   dependencies:
     ember-cli-babel "^5.2.4"
     ember-cli-htmlbars "^1.1.1"
-    ember-lifeline "^1.0.4"
+    ember-lifeline "^2.0.0"
     ember-require-module "^0.1.1"
     ember-wormhole "^0.5.0"
 
@@ -3409,9 +3409,9 @@ ember-intercom-io@donaldwasserman/ember-intercom-io#stable:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.2"
 
-ember-junkdrawer@donaldwasserman/ember-junkdrawer#feat/currentuser:
-  version "0.2.0"
-  resolved "https://codeload.github.com/donaldwasserman/ember-junkdrawer/tar.gz/cd2fa89bc96722dcecd7dc3a62b94f92d96e4da8"
+ember-junkdrawer@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.2.2.tgz#7695e401b4c49c91ba7da3c7b861eb5573c369a7"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
@@ -3430,12 +3430,6 @@ ember-legacy-class-transform@^0.1.3:
     babel-plugin-ember-legacy-class-constructor "^0.1.4"
     ember-cli-babel "^6.3.0"
     ember-cli-version-checker "^2.0.0"
-
-ember-lifeline@^1.0.4:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-1.3.0.tgz#33baf11287ea425103cd6c3299b9d9d15d1e4c54"
-  dependencies:
-    ember-cli-babel "^5.1.7"
 
 ember-lifeline@^2.0.0:
   version "2.0.0"

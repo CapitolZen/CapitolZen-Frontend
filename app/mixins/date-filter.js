@@ -10,7 +10,7 @@ let filters = {
 export default Mixin.create({
   dateFilters: null,
   dateFilterType: null,
-  dateFilterOptions: ['active', 'introduced'],
+  dateFilterOptions: ['introduced', 'active'],
   latestDate: moment(),
   init() {
     this._super(...arguments);
