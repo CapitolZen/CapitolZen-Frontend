@@ -16,7 +16,7 @@ export default Component.extend(RecognizerMixin, {
   }),
 
   isBill: equal('referencedModelType', 'Bill'),
-  isCommittee: equal('referencedModelType', 'Committee'),
+  isCommittee: equal('referencedModelType', 'Event'),
   isWrapper: equal('referencedModelType', 'Wrapper'),
 
   loadReferencedModel: task(function*() {

@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import { computed, get } from '@ember/object';
 import moment from 'moment';
+import { htmlSafe } from '@ember/string';
 
 export default DS.Model.extend({
   chamber: DS.attr('string'),
@@ -27,5 +28,8 @@ export default DS.Model.extend({
   endsAt: computed('time', function() {
     let start = get(this, 'startsAt');
     return start.add(90, 'minutes');
+  }),
+  descriptionHtml: computed('description', function() {
+    return htmlSafe(get(this, 'description'));
   })
 });
