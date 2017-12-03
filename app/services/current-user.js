@@ -41,9 +41,11 @@ export default CurrentUser.extend({
     'event:download',
     'action:dismiss',
     'action:snoozed',
-    'action:flagged'
+    'action:flagged',
+    'wrapper:saved',
+    'wrapper:comment'
   ]),
-  trigger(event) {
+  event(event) {
     assert(
       `${event} must be part of allowed events`,
       get(this, 'events').contains(event)
