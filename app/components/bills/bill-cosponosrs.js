@@ -23,7 +23,7 @@ const Cosponsors = Component.extend({
 
     let legislators = yield all(promises);
     get(this, '_model').pushObjects(legislators);
-  }).on('didReceiveAttrs')
+  }).on('init')
 });
 
 Cosponsors.reopenClass({
