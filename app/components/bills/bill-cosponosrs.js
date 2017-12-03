@@ -14,6 +14,10 @@ const Cosponsors = Component.extend({
   adjustedCount: computed('cosponsors', function() {
     return get(this, 'cosponsors').length - 1;
   }),
+  init() {
+    this._super(...arguments);
+    set(this, '_model', A());
+  },
   getCosponsors: task(function*() {
     let bill = yield get(this, 'bill');
     let sponsors = get(bill, 'cosponsors');
