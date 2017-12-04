@@ -31,6 +31,9 @@ export default Component.extend({
           get(this, 'flashMessages').danger(
             'There was a problem and our team has been notified.'
           );
+        })
+        .finally(() => {
+          set(this, 'openModal', false);
         });
     },
 
