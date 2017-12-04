@@ -20,13 +20,13 @@
       {{#each groupList as |group|}}
           <button class="list-group-item list-group-item-action {{if group.isSelected "active"}}" onclick={{perform addBillToGroup group}}>
             {{#if group.isSelected}}
-              {{fa-icon "check"}}
-            {{else}}
               {{#if addBillToGroup.isRunning}}
                 {{ui/inline-loading}}
               {{else}}
-                {{fa-icon "plus"}}
+                {{fa-icon "check"}}
               {{/if}}
+            {{else}}
+              {{fa-icon "plus"}}
             {{/if}}
             {{group.title}}
           </button>

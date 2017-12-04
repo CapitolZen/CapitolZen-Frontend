@@ -39,7 +39,18 @@
   {{/b.body}}
 {{/ui/ui-box}}
 
+
 {{#ui/ui-box as |b|}}
+  {{#b.header}}
+    <div class="row justify-content-end align-items-center">
+      {{#if hasSelection}}
+        {{fa-icon "check-square-o" click=(action "deselectAll") class="pull-left"}}
+        {{bills/add-to-group fullWidth=false billList=selectedRows buttonText="Save Selected" class="mr-3"}}
+      {{else}}
+        {{fa-icon "square-o" click=(action "selectAll") class="mr-3"}}
+      {{/if}}
+    </div>
+  {{/b.header}}
   {{#b.body}}
     {{#light-table table responsive=true height=tableHeight as |t|}}
 
@@ -51,6 +62,7 @@
       }}
 
       {{#t.body
+        multiSelect=true
         onScrolledToBottom=(action 'onScrolledToBottom')
       as |body|
       }}

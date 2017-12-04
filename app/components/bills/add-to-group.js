@@ -12,7 +12,8 @@ export default Component.extend({
   media: service(),
   currentUser: service(),
   flashMessages: service(),
-  classNames: ['w-100'],
+  classNameBindings: ['fullWidth:w-100'],
+  fullWidth: true,
   groupList: null,
   bill: null,
   billList: null,
@@ -55,7 +56,7 @@ export default Component.extend({
     if (group.get('isSelected')) {
       return false;
     }
-
+    set(group, 'isSelected', true);
     let bills = get(this, '_AllBills');
     let promises = bills.map(b => {
       let wrapper = get(this, 'store').createRecord('wrapper', {
@@ -69,7 +70,6 @@ export default Component.extend({
 
     all(promises)
       .then(savedWrapper => {
-        set(group, 'isSelected', true);
         get(this, 'billAdded')({ group, wrapper: savedWrapper });
         get(this, 'currentUser').event('wrapper:saved');
       })

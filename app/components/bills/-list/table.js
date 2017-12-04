@@ -10,6 +10,9 @@ export default Component.extend(TableCommon, DateFilter, {
   pager: true,
   sort: 'state_id',
   hasSelection: notEmpty('table.selectedRows'),
+  selectedRows: computed('table.selectedRows.[]', function() {
+    return get(this, 'table.selectedRows');
+  }),
   columns: computed(function() {
     return [
       {
@@ -50,9 +53,6 @@ export default Component.extend(TableCommon, DateFilter, {
     },
     deselectAll() {
       get(this, 'table.selectedRows').setEach('selected', false);
-    },
-    addBulkToGroup() {
-      set(this, 'showModal', true);
     }
   }
 });
