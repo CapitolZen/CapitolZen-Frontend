@@ -61,14 +61,14 @@ export default Component.extend(TableCommon, {
       {
         label: 'Last Action',
         valuePath: 'lastActionDate',
-        cellComponent: 'bills/bill-table-status',
+        cellComponent: 'bills/-list/cell/status',
         sortable: false,
         breakpoints: ['mobile', 'tablet', 'desktop']
       },
 
       {
         label: 'Actions',
-        cellComponent: 'wrappers/wrapper-table-actions',
+        cellComponent: 'wrappers/-list/cell/actions',
         sortable: false
       }
     ];

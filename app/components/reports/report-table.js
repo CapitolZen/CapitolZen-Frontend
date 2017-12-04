@@ -1,11 +1,17 @@
-import { computed } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import Component from '@ember/component';
 import TableCommon from '../../mixins/table-common';
 
 export default Component.extend(TableCommon, {
-  model: 'report',
+  recordType: 'report',
   tableHeight: '100vh',
   pager: true,
+  init() {
+    this._super(...arguments);
+    if (get(this, 'group')) {
+      set(this, 'recordQuery', { group: get(this, 'group.id') });
+    }
+  },
   columns: computed(function() {
     return [
       {

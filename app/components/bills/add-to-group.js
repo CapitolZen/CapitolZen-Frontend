@@ -1,19 +1,22 @@
 import { inject as service } from '@ember/service';
-import { set, get } from '@ember/object';
+import { computed, set, get } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import { task, hash } from 'ember-concurrency';
-import { A } from '@ember/array';
+import { A, isArray } from '@ember/array';
+import { all } from 'rsvp';
 
 export default Component.extend({
   store: service(),
   media: service(),
   currentUser: service(),
   flashMessages: service(),
-  classNames: ['w-100'],
+  classNameBindings: ['fullWidth:w-100'],
+  fullWidth: true,
   groupList: null,
   bill: null,
+  billList: null,
   buttonSize: false,
   displayText: true,
   buttonText: 'Add to Client',
@@ -21,14 +24,29 @@ export default Component.extend({
   menuAlign: 'right',
 
   didRecieveAttrs() {
-    assert('Bill is required ', get(this, 'bill'));
+    assert(
+      '`bill` or `billList` is required ',
+      get(this, 'bill') || get(this, 'billList')
+    );
   },
+
+  _AllBills: computed('bill', 'billList', function() {
+    let bills = get(this, 'bill') || get(this, 'billList');
+
+    if (!isArray(bills)) {
+      bills = [bills];
+    }
+
+    return A(bills);
+  }),
   isMobile: alias('media.isMobile'),
   listGroups: task(function*() {
-    let bill = get(this, 'bill');
+    let billIds = get(this, '_AllBills').map(b => {
+      return get(b, 'id');
+    });
 
     let groups = yield get(this, 'store').query('group', {
-      without_bill: bill.get('id'),
+      without_bills: billIds.join(','),
       sort: 'title'
     });
 
@@ -38,18 +56,20 @@ export default Component.extend({
     if (group.get('isSelected')) {
       return false;
     }
+    set(group, 'isSelected', true);
+    let bills = get(this, '_AllBills');
+    let promises = bills.map(b => {
+      let wrapper = get(this, 'store').createRecord('wrapper', {
+        bill: b,
+        group: group,
+        organization: get(this, 'currentUser.organization')
+      });
 
-    let bill = get(this, 'bill');
-    let wrapper = this.get('store').createRecord('wrapper', {
-      bill: bill,
-      group: group,
-      organization: get(this, 'currentUser.organization')
+      return wrapper.save();
     });
 
-    wrapper
-      .save()
+    all(promises)
       .then(savedWrapper => {
-        set(group, 'isSelected', true);
         get(this, 'billAdded')({ group, wrapper: savedWrapper });
         get(this, 'currentUser').event('wrapper:saved');
       })

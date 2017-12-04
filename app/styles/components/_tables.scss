@@ -28,6 +28,10 @@
       }
     }
 
+    &.is-selected {
+      background-color: $selected-table-bg;
+    }
+
     &.lt-expanded-row {
       border-top: 0;
       border-bottom: 1px solid $cz-navy;
