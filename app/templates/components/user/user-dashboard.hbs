@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="col-md-8 order-md-1">
-    <h4 class="lead text-center">What's New</h4>
+    <h4 class="text-center">What's New</h4>
     {{#unless fetchActions.isRunning}}
       {{#each actionList as |action|}}
         {{actions/action-view model=action}}
@@ -46,7 +46,7 @@
           {{/b.body}}
         {{/ui/ui-box}}
       {{/each}}
-    {{else}}<h4 class="lead text-center"><em>Loading latest...</em></h4>
+    {{else}}<h4 class="text-center"><em>Loading latest...</em></h4>
       {{ui/loading-animation}}
     {{/unless}}
 
