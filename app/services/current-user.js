@@ -48,9 +48,9 @@ export default CurrentUser.extend({
   event(event) {
     assert(
       `${event} must be part of allowed events`,
-      get(this, 'events').contains(event)
+      get(this, 'events').includes(event)
     );
-    get(this, 'intercom.trackEvent')(event);
+    get(this, 'intercom').trackEvent(event);
     get(this, 'metrics').trackEvent('mixpanel', { event });
   }
 });
