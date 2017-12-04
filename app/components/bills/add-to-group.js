@@ -51,6 +51,7 @@ export default Component.extend({
       .then(savedWrapper => {
         set(group, 'isSelected', true);
         get(this, 'billAdded')({ group, wrapper: savedWrapper });
+        get(this, 'currentUser').event('wrapper:saved');
       })
       .catch(e => {
         console.log(e);

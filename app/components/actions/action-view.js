@@ -7,6 +7,7 @@ import { alias, equal } from '@ember/object/computed';
 
 export default Component.extend(RecognizerMixin, {
   store: service(),
+  currentUser: service(),
   flashMessages: service(),
   classNames: ['card', 'w100'],
   referencedModelType: alias('model.referencedModelName'),
@@ -32,6 +33,9 @@ export default Component.extend(RecognizerMixin, {
   _dismissAction() {
     get(this, 'model')
       .updateState('dismissed')
+      .then(() => {
+        get(this, 'currentUser').event('action:dismiss');
+      })
       .catch(err => {
         console.error(err);
         get(this, 'flashMessages').danger(

@@ -6,6 +6,7 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   flashMessages: service(),
+  currentUser: service(),
   request: service(),
   tagName: 'button',
   size: false,
@@ -24,6 +25,7 @@ export default Component.extend({
     );
     let link = document.createElement('a');
     link.setAttribute('href', url);
+    get(this, 'currentUser').event('report:download');
     link.click();
   }),
   click() {

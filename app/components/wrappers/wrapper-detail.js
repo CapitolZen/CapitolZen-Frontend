@@ -33,6 +33,7 @@ export default Component.extend({
         .saveNote(note)
         .then(() => {
           get(this, 'flashMessages').success('Note Saved!');
+          get(this, 'currentUser').event('wrapper:comment');
         })
         .catch(err => {
           console.error(err);
