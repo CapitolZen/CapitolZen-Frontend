@@ -26,16 +26,17 @@ export default FormComponent.extend({
   },
   setupStep: null,
   generateFakeSteps: task(function*() {
+    let timeoutFactor = 1000;
     set(this, 'setupStep', 'Creating Account');
-    yield timeout(1500);
+    yield timeout(timeoutFactor);
     set(this, 'setupStep', 'Creating Organization');
-    yield timeout(1500);
+    yield timeout(timeoutFactor);
     set(this, 'setupStep', 'Finding Committee Meetings');
-    yield timeout(1500);
+    yield timeout(timeoutFactor);
     set(this, 'setupStep', 'Gathering Bills');
-    yield timeout(1500);
+    yield timeout(timeoutFactor);
     set(this, 'setupStep', 'Loading Application');
-    yield timeout(1500);
+    yield timeout(timeoutFactor);
     set(this, 'setupStep', 'Reticulating Splines');
   }),
 
