@@ -1,7 +1,5 @@
 import { inject as service } from '@ember/service';
-import { set, get } from '@ember/object';
-import Changeset from 'ember-changeset';
-import lookupValidator from 'ember-changeset-validations';
+import { computed, set, get } from '@ember/object';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 import { task } from 'ember-concurrency';
 import WrapperValidations from '../../validators/wrapper-draft';
@@ -9,20 +7,18 @@ import WrapperValidations from '../../validators/wrapper-draft';
 export default FormComponent.extend({
   store: service(),
   currentUser: service(),
-  router: service('router'),
-  init() {
-    this._super(...arguments);
+  router: service(),
+  model: computed(function() {
     let organization = get(this, 'currentUser.currentOrganization');
-    let wrapper = get(this, 'store').createRecord('wrapper', { organization });
+    let bill = null;
+    let wrapper = get(this, 'store').createRecord('wrapper', {
+      organization,
+      bill
+    });
     wrapper.set('metadata', { internaltitle: '' });
-    set(this, 'model', wrapper);
-    let changeset = new Changeset(
-      wrapper,
-      lookupValidator(WrapperValidations),
-      WrapperValidations
-    );
-    set(this, 'changeset', changeset);
-  },
+    return wrapper;
+  }),
+  validator: WrapperValidations,
   onSubmitSuccess(data) {
     get(this, 'flashMessages').success(`New Draft Bill Saved!`);
     get(this, 'router').transitionTo(
@@ -34,5 +30,21 @@ export default FormComponent.extend({
     let groups = yield get(this, 'store').findAll('group');
     groups = groups.sortBy('title');
     set(this, 'groups', groups);
-  }).on('init')
+  }).on('init'),
+  submit: task(function*(changeset) {
+    let ex = changeset.execute();
+    console.log(ex);
+
+    debugger;
+    return yield changeset
+      .save()
+      .then(data => {
+        this.onSubmitSuccess(data);
+      })
+      .catch(data => {
+        this.handleServerFormErrors(data);
+        this.setFormState('default');
+        this.onServerError(data);
+      });
+  }).drop()
 });
