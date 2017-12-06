@@ -75,6 +75,7 @@
     "ember-file-upload": "^2.2.3",
     "ember-freestyle": "^0.6.1",
     "ember-full-story": "^0.1.1",
+    "ember-fullcalendar": "^1.8.0",
     "ember-gestures": "^0.4.8",
     "ember-hammertime": "^1.2.4",
     "ember-intercom-io": "donaldwasserman/ember-intercom-io#stable",
