@@ -30,12 +30,11 @@
     </div>
   </div>
   <div class="col-md-8 order-md-1">
-    <h4 class="text-center">What's New</h4>
     {{#unless fetchActions.isRunning}}
+    <h4 class="text-center">What's New</h4>
       {{#each actionList as |action|}}
         {{actions/action-view model=action}}
       {{else}}
-        <h4>What's New</h4>
         {{#ui/ui-box class="w-100" as |b|}}
           {{#b.header class="text-white bg-success"}}
             All Caught Up!
