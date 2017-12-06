@@ -1,0 +1,38 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    <div class="row justify-content-between">
+      <div class="col-4">
+        <div class="btn-group">
+          {{#bs-button type=prevButtonType onClick=(action "prev")}}{{fa-icon "chevron-left"}}{{/bs-button}}
+          {{#bs-button type=nextButtonType onClick=(action "next")}}{{fa-icon "chevron-right"}}{{/bs-button}}
+        </div>
+        {{bs-button type="light" onClick=(action "setAsToday") defaultText="Today"}}
+      </div>
+      <div class="col-4">
+        {{tools/date-display defaultDate}}
+
+      </div>
+      <div class="col-4">
+        {{#bs-button-group type="radio" value=viewName class="float-right" onChange=(action (mut viewName)) as |bg|}}
+          {{#bg.button type="outline-secondary" value="month"}}Month{{/bg.button}}
+          {{#bg.button type="outline-secondary" value="agendaWeek"}}Week{{/bg.button}}
+          {{#bg.button type="outline-secondary" value="agendaDay"}}Day{{/bg.button}}
+          {{#bg.button type="outline-secondary" value="listMonth"}}List{{/bg.button}}
+        {{/bs-button-group}}
+      </div>
+    </div>
+  {{/b.header}}
+  {{#b.body}}
+    {{full-calendar
+      events=internalModel
+      weekends=false
+      viewName=viewName
+      eventClick=(action 'eventClick')
+      header=false
+      businessHours=true
+      }}
+  {{/b.body}}
+{{/ui/ui-box}}
+
+
+

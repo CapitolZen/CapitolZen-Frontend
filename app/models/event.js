@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import { computed, get } from '@ember/object';
 import moment from 'moment';
 import { htmlSafe } from '@ember/string';
+import { chamberName } from '../helpers/chamber-name';
 
 export default DS.Model.extend({
   chamber: DS.attr('string'),
@@ -22,14 +23,22 @@ export default DS.Model.extend({
 
     return map[get(this, 'eventType')];
   }),
-  startsAt: computed('time', function() {
+  start: computed('time', function() {
     return moment(get(this, 'time'));
   }),
-  endsAt: computed('time', function() {
-    let start = get(this, 'startsAt');
+  end: computed('time', function() {
+    let start = get(this, 'start');
     return start.add(90, 'minutes');
   }),
   descriptionHtml: computed('description', function() {
     return htmlSafe(get(this, 'description'));
-  })
+  }),
+  title: computed('commmittee.displayName', function() {
+    return `${chamberName([
+      get(this, 'committee.chamber')
+    ])} ${get(this, 'committee.displayName')}`;
+  }),
+  loadCommittee() {
+    return get(this, 'committee');
+  }
 });
