@@ -16,6 +16,9 @@ export default DS.Model.extend({
   attachments: DS.attr(),
   created: DS.attr('string'),
   metadata: DS.attr(),
+  billList: computed('attachments', function() {
+    return get(this, 'attachments')[0].billlist;
+  }),
   name: computed('eventType', function() {
     let map = {
       'committee:meeting': 'Committee - Meeting'

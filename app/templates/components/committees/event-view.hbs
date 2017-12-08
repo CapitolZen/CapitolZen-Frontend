@@ -1,0 +1,10 @@
+{{#unless eventId}}
+  <h4 class="text-center">Error With Event</h4>
+{{else}}
+  {{#if fetchModel.isRunning}}
+    {{ui/loading-animation}}
+  {{else}}
+
+  {{/if}}
+
+{{/unless}}
