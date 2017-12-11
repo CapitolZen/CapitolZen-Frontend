@@ -9,14 +9,18 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),
-  internalModel: A(),
+  internalModel: null,
   defaultDate: moment(),
   viewName: 'agendaWeek',
   hideModal: false,
   selectedEventId: null,
   selectedEventModel: computed('selectedEventId', function() {
-    return get(this, 'store').findRecord('event', get(this, 'selectedEventId'));
+    return get(this, 'store').peekRecord('event', get(this, 'selectedEventId'));
   }),
+  init() {
+    this._super(...arguments);
+    set(this, 'internalModel', A());
+  },
   mungeModels: task(function*() {
     let eventModels = get(this, 'events');
     let promises = eventModels.map(e => {
@@ -52,7 +56,7 @@ export default Component.extend({
       set(this, 'showModal', true);
     },
     setAsToday() {
-      set(this, 'defaultDate', moment());
+      $('.full-calendar').fullCalendar('gotoDate', moment());
     },
     next() {
       $('.full-calendar').fullCalendar('next');
