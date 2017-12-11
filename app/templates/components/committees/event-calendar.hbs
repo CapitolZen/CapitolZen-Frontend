@@ -8,9 +8,8 @@
         </div>
         {{bs-button type="light" onClick=(action "setAsToday") defaultText="Today"}}
       </div>
-      <div class="col-4">
+      <div class="col-4 text-center">
         {{tools/date-display defaultDate}}
-
       </div>
       <div class="col-4">
         {{#bs-button-group type="radio" value=viewName class="float-right" onChange=(action (mut viewName)) as |bg|}}
@@ -34,5 +33,33 @@
   {{/b.body}}
 {{/ui/ui-box}}
 
+{{#if showModal}}
+  {{#bs-modal onHidden=(action "close") size="lg" as |modal|}}
+    {{#modal.header}}
+      {{#if selectedEventModel.committee.isPending}}
+        {{ui/inline-loading}}
+      {{else}}
+        {{chamber-name selectedEventModel.chamber}} {{selectedEventModel.committee.content.displayName}}
+      {{/if}}
+    {{/modal.header}}
+    {{#modal.body}}
+      <dl>
+        <dt>Time</dt>
+        <dd>{{moment-format selectedEventModel.start "MMM D - h:mm a"}}</dd>
+        <dt>Location</dt>
+        {{selectedEventModel.locationText}}
+        <dt>Agenda</dt>
+        <dd>{{selectedEventModel.descriptionHtml}}</dd>
+      </dl>
 
+    {{/modal.body}}
+    {{#modal.footer class="justify-content-between" as |footer|}}
+      {{#calendar-button selectedEventModel class="mr-2" as |b|}}
+        {{#b.ical class="btn btn-outline-primary"}}{{fa-icon "calendar-plus-o"}}{{/b.ical}}
+        {{#b.google class="btn btn-outline-info"}}{{fa-icon "google"}}{{/b.google}}
+      {{/calendar-button}}
 
+      {{#bs-button onClick=(action modal.close) type="light"}}Close{{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+{{/if}}

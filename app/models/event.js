@@ -3,6 +3,7 @@ import { computed, get } from '@ember/object';
 import moment from 'moment';
 import { htmlSafe } from '@ember/string';
 import { chamberName } from '../helpers/chamber-name';
+import { alias } from '@ember/object/computed';
 
 export default DS.Model.extend({
   chamber: DS.attr('string'),
@@ -16,6 +17,10 @@ export default DS.Model.extend({
   attachments: DS.attr(),
   created: DS.attr('string'),
   metadata: DS.attr(),
+  location: alias('locationText'),
+  billList: computed('attachments', function() {
+    return get(this, 'attachments')[0].billlist;
+  }),
   name: computed('eventType', function() {
     let map = {
       'committee:meeting': 'Committee - Meeting'

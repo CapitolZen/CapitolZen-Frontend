@@ -1,17 +1,27 @@
 import Component from '@ember/component';
-import { get, set, computed } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import { A } from '@ember/array';
 import { task } from 'ember-concurrency';
 import { all } from 'rsvp';
 import moment from 'moment';
 import $ from 'jquery';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  internalModel: A(),
+  store: service(),
+  internalModel: null,
   defaultDate: moment(),
   viewName: 'agendaWeek',
   hideModal: false,
-  fistModel: task(function*() {
+  selectedEventId: null,
+  selectedEventModel: computed('selectedEventId', function() {
+    return get(this, 'store').peekRecord('event', get(this, 'selectedEventId'));
+  }),
+  init() {
+    this._super(...arguments);
+    set(this, 'internalModel', A());
+  },
+  mungeModels: task(function*() {
     let eventModels = get(this, 'events');
     let promises = eventModels.map(e => {
       return e.loadCommittee();
@@ -25,12 +35,15 @@ export default Component.extend({
         end: get(event, 'end'),
         title: get(event, 'title'),
         id: get(event, 'id'),
-        description: get(event, 'description')
+        description: get(event, 'description'),
+        color: get(event, 'chamber') === 'upper' ? '#6610f2' : '#007bff',
+        textColor: 'white'
       };
 
       get(this, 'internalModel').pushObject(pojo);
     });
   }).on('init'),
+
   prevButtonType: computed(function() {
     return 'light';
   }),
@@ -38,15 +51,22 @@ export default Component.extend({
     return 'light';
   }),
   actions: {
-    eventClick({ id }, jsView, view) {},
+    eventClick({ id }, jsView, view) {
+      set(this, 'selectedEventId', id);
+      set(this, 'showModal', true);
+    },
     setAsToday() {
-      set(this, 'defaultDate', moment());
+      $('.full-calendar').fullCalendar('gotoDate', moment());
     },
     next() {
       $('.full-calendar').fullCalendar('next');
     },
     prev() {
       $('.full-calendar').fullCalendar('prev');
+    },
+    close() {
+      set(this, 'showModal', false);
+      set(this, 'selectedEventId', null);
     }
   }
 });

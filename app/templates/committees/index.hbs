@@ -1,4 +1,7 @@
 {{ui-page-property "All Committees" property="title"}}
+{{#global/page-title-actions}}
+  {{#link-to "committees.meetings" class="btn btn-primary"}}{{fa-icon "calendar"}} Scheduled Meetings{{/link-to}}
+{{/global/page-title-actions}}
 {{#ui/ui-box as |b|}}
   {{#b.body}}
     {{committees/-list/table model=model}}
