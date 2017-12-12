@@ -11,7 +11,7 @@ export default Component.extend({
   store: service(),
   internalModel: null,
   defaultDate: moment(),
-  viewName: 'agendaWeek',
+  viewName: 'listMonth',
   hideModal: false,
   selectedEventId: null,
   selectedEventModel: computed('selectedEventId', function() {
@@ -20,9 +20,6 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     set(this, 'internalModel', A());
-    if (get(this, 'media.isMobile')) {
-      set(this, 'viewName', 'listMonth');
-    }
   },
   mungeModels: task(function*() {
     let eventModels = get(this, 'events');

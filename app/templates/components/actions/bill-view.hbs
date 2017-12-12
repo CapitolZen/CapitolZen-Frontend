@@ -1,0 +1,27 @@
+{{#if loadReferencedModel.isRunning}}
+  {{ui/inline-loading}}
+{{else}}
+  {{#if isBill}}
+    <div class="w-100">
+      {{#legislator/legislator-info legislator=referencedModel.sponsor class="clearfix pr-2" as |l|}}
+        <small class="pull-left pr-1">{{l.name}}</small>
+        <small>{{l.party}}</small>
+      {{/legislator/legislator-info}}
+    </div>
+    <div class="bill-detail-body w-100 row flex-xs-column justify-content-xl-between flex-xl-row">
+      <div class="details col-lg-8">
+        <p class="card-text">{{referencedModel.title}}</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="btn-group float-lg-right">
+
+        </div>
+      </div>
+
+    </div>
+  {{/if}}
+{{/if}}
+
+{{#if isBill}}
+  {{title}}: {{referencedModel.stateId}}
+{{/if}}

@@ -13,10 +13,10 @@
       </div>
       <div class="col-4">
         {{#bs-button-group type="radio" value=viewName class="float-right" onChange=(action (mut viewName)) as |bg|}}
-          {{#bg.button type="outline-secondary" value="month"}}Month{{/bg.button}}
-          {{#bg.button type="outline-secondary" value="agendaWeek"}}Week{{/bg.button}}
-          {{#bg.button type="outline-secondary" value="agendaDay"}}Day{{/bg.button}}
           {{#bg.button type="outline-secondary" value="listMonth"}}List{{/bg.button}}
+          {{#bg.button type="outline-secondary" value="agendaDay"}}Day{{/bg.button}}
+          {{#bg.button type="outline-secondary" value="agendaWeek"}}Week{{/bg.button}}
+          {{#bg.button type="outline-secondary" value="month"}}Month{{/bg.button}}
         {{/bs-button-group}}
       </div>
     </div>
