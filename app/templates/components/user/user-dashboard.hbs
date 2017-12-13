@@ -33,10 +33,7 @@
     {{#unless fetchActions.isRunning}}
     <h4 class="text-center">What's New</h4>
       {{#each actionList as |action|}}
-        <div>
-
         {{actions/action-view model=action}}
-        </div>
       {{else}}
         {{#ui/ui-box class="w-100" as |b|}}
           {{#b.header class="text-white bg-success"}}
