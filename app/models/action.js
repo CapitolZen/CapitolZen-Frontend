@@ -12,7 +12,6 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   priority: DS.attr('number'),
   state: DS.attr('string'),
-  created: DS.attr('string'),
   referencedModelName: computed('actionObject', function() {
     return capitalize(singularize(get(this, 'actionObject').type));
   }),

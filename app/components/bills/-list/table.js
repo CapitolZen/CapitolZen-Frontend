@@ -11,7 +11,9 @@ export default Component.extend(TableCommon, DateFilter, {
   sort: 'state_id',
   hasSelection: notEmpty('table.selectedRows'),
   selectedRows: computed('table.selectedRows.[]', function() {
-    return get(this, 'table.selectedRows');
+    return get(this, 'table.selectedRows').map(row => {
+      return get(row, 'content');
+    });
   }),
   columns: computed(function() {
     return [

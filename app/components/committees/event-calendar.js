@@ -11,7 +11,7 @@ export default Component.extend({
   store: service(),
   internalModel: null,
   defaultDate: moment(),
-  viewName: 'agendaWeek',
+  viewName: 'listMonth',
   hideModal: false,
   selectedEventId: null,
   selectedEventModel: computed('selectedEventId', function() {

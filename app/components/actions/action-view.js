@@ -9,24 +9,29 @@ export default Component.extend(RecognizerMixin, {
   store: service(),
   currentUser: service(),
   flashMessages: service(),
-  classNames: ['card', 'w100'],
   referencedModelType: alias('model.referencedModelName'),
   referencedModelId: alias('model.modelId'),
   referencedModelLinkTo: computed('referencedModelType', function() {
     return get(this, 'referencedModelType').toLowerCase();
   }),
 
+  subComponent: computed('isBill', 'isCommittee', 'isWrapper', function() {
+    if (get(this, 'isBill')) {
+      return 'actions/bill-view';
+    }
+
+    if (get(this, 'isCommittee')) {
+      return 'actions/event-view';
+    }
+
+    if (get(this, 'isWrapper')) {
+      return 'actions/wrapper-view';
+    }
+  }),
+
   isBill: equal('referencedModelType', 'Bill'),
   isCommittee: equal('referencedModelType', 'Event'),
   isWrapper: equal('referencedModelType', 'Wrapper'),
-
-  loadReferencedModel: task(function*() {
-    let record = yield get(this, 'store').findRecord(
-      get(this, 'referencedModelType'),
-      get(this, 'referencedModelId')
-    );
-    set(this, 'referencedModel', record);
-  }).on('didReceiveAttrs'),
 
   title: alias('model.displayTitle'),
 

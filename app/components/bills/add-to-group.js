@@ -19,20 +19,24 @@ export default Component.extend({
   billList: null,
   buttonSize: false,
   displayText: true,
+  savedCount: 0,
+  savedWrappers: [],
   buttonText: 'Add to Client',
   buttonType: 'outline-secondary',
   menuAlign: 'right',
 
-  didRecieveAttrs() {
+  didReceiveAttrs() {
+    this._super(...arguments);
     assert(
       '`bill` or `billList` is required ',
       get(this, 'bill') || get(this, 'billList')
     );
+    set(this, 'savedCount', 0);
+    set(this, 'savedWrappers', []);
   },
 
   _AllBills: computed('bill', 'billList', function() {
     let bills = get(this, 'bill') || get(this, 'billList');
-
     if (!isArray(bills)) {
       bills = [bills];
     }
@@ -70,7 +74,10 @@ export default Component.extend({
 
     all(promises)
       .then(savedWrapper => {
-        get(this, 'billAdded')({ group, wrapper: savedWrapper });
+        let merged = get(this, 'savedWrappers');
+        merged = merged.concat(savedWrapper);
+        set(this, 'savedWrappers', merged);
+        this.incrementProperty('savedCount');
         get(this, 'currentUser').event('wrapper:saved');
       })
       .catch(e => {
@@ -80,6 +87,7 @@ export default Component.extend({
 
   //Noop for passing contextual action
   billAdded() {},
+
   actions: {
     toggleActive() {
       get(this, 'listGroups').perform();
@@ -94,7 +102,13 @@ export default Component.extend({
       });
       set(this, 'groupList', null);
       set(this, 'openModal', false);
-      get(this, 'flashMessages').success('Bills saved!');
+      let props = this.getProperties('savedWrappers', 'savedCount');
+      get(this, 'billAdded')(props);
+      if (get(this, 'savedCount')) {
+        get(this, 'flashMessages').success(
+          `${get(this, 'savedCount')} Bills Saved!`
+        );
+      }
     }
   }
 });
