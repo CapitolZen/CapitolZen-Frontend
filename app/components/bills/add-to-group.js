@@ -37,7 +37,6 @@ export default Component.extend({
 
   _AllBills: computed('bill', 'billList', function() {
     let bills = get(this, 'bill') || get(this, 'billList');
-
     if (!isArray(bills)) {
       bills = [bills];
     }
