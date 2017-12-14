@@ -1,15 +1,10 @@
 .card {
   margin-bottom: 1rem;
-  box-shadow: 0px 0px 4px 0 #c4c4c4;
+  box-shadow: $card-box-shadow;
   .card-title > a {
     &:hover {
       text-decoration: none;
     }
-  }
-
-  @include media-breakpoint-down(sm) {
-    box-shadow: none;
-    border: 0;
   }
 }
 .row-flex .card-body {

@@ -14,7 +14,14 @@
   {{/b.body}}
   {{#b.footer class=footerClasses}}
     {{#if referencedModel}}
-      {{bills/add-to-group bill=referencedModel buttonType="outline-primary" fullWidth=false billAdded=(action "dismiss")}}
+      {{bills/add-to-group
+        bill=referencedModel
+        buttonType="outline-primary"
+        buttonText="Save"
+        fullWidth=false
+        billAdded=(action "dismiss")
+      }}
+      {{#link-to "bills.detail" referencedModel.id class="btn btn-outline-info ml-1"}}View{{/link-to}}
     {{/if}}
     {{bs-button defaultText="Dismiss" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
   {{/b.footer}}
