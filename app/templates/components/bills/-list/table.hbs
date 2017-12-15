@@ -62,7 +62,8 @@
       }}
 
       {{#t.body
-        multiSelect=true
+        multiSelect=canMultiselect
+        canSelect=canMultiselect
         onScrolledToBottom=(action 'onScrolledToBottom')
       as |body|
       }}
