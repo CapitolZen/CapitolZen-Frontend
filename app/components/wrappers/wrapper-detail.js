@@ -33,6 +33,7 @@ export default Component.extend({
         .saveNote(note)
         .then(() => {
           get(this, 'flashMessages').success('Note Saved!');
+          get(this, 'currentUser').event('wrapper:comment');
         })
         .catch(err => {
           console.error(err);
@@ -68,6 +69,7 @@ export default Component.extend({
       wrapper.save(() => {
         get(this, 'flashMessage').success(`Draft is now ${bill.stateId}`);
       });
-    }
+    },
+    submit() {}
   }
 });

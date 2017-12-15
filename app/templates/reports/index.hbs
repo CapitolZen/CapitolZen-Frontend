@@ -5,7 +5,7 @@
 {{/global/page-title-actions}}
 
 {{#ui/ui-box as |b|}}
-  {{#block-slot 'content'}}
+  {{#b.body}}
     {{reports/report-table model=model recordType="report"}}
-  {{/block-slot}}
+  {{/b.body}}
 {{/ui/ui-box}}

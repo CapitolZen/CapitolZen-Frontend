@@ -1,3 +1,4 @@
+
 {{#ui/ui-box as |b|}}
   {{#b.body}}
     {{#unless isDraft}}
@@ -80,8 +81,11 @@
         {{else}}
           <p class="text-center">This Bill Has Draft Status.</p>
           <p class="text-center">
-            {{#bs-button type="primary" onClick=(action (mut openBillConnector) true)}}
+            {{#bs-button type="primary" onClick=(action (mut openBillConnector) true) class="mx-1"}}
               {{fa-icon "paperclip"}} Attach To Bill
+            {{/bs-button}}
+            {{#bs-button type="light" onClick=(action (mut openDraftEditor) true) class="mx-1"}}
+              {{fa-icon "pencil"}} Edit Draft
             {{/bs-button}}
           </p>
         {{/unless}}
@@ -90,30 +94,33 @@
   {{/tab.pane}}
   {{#tab.pane title="Files"}}
     {{#ui/ui-box as |b|}}
-      <div class="row">
-        <div class="col-8">
-          <h5>Files</h5>
-        </div>
-        <div class="col-4">
-          {{#bs-button class="pull-right" type="primary" onClick=(action (mut openModal) true)}}
-            {{fa-icon "upload"}} Add File
-          {{/bs-button}}
-        </div>
-      </div>
-      <div class="row">
-        {{#each wrapper.files as |fileId|}}
-          {{wrappers/wrapper-file fileId class="col-md-3"}}
-        {{else}}
-          <div class="col-md-6 offset-3 text-center">
-            <p>No Files Added</p>
-            <p>
-              {{#bs-button type="link" onClick=(action (mut openModal) true)}}
-                {{fa-icon "upload"}} Add File
-              {{/bs-button}}
-            </p>
+      {{#b.body}}
+        <div class="row">
+          <div class="col-8">
+            <h5>Files</h5>
           </div>
-        {{/each}}
-      </div>
+          <div class="col-4">
+            {{#bs-button class="pull-right" type="primary" onClick=(action (mut openModal) true)}}
+              {{fa-icon "upload"}} Add File
+            {{/bs-button}}
+          </div>
+        </div>
+        <div class="row">
+          {{#each wrapper.files as |fileId|}}
+            {{wrappers/wrapper-file fileId class="col-md-3"}}
+          {{else}}
+            <div class="col-md-6 offset-3 text-center">
+              <p>No Files Added</p>
+              <p>
+                {{#bs-button type="link" onClick=(action (mut openModal) true)}}
+                  {{fa-icon "upload"}} Add File
+                {{/bs-button}}
+              </p>
+            </div>
+          {{/each}}
+        </div>
+      {{/b.body}}s
+
 
     {{/ui/ui-box}}
   {{/tab.pane}}
@@ -167,3 +174,13 @@
 
 {{/bs-modal}}
 
+{{#bs-modal open=openDraftEditor onHidden=(action (mut openDraftEditor) false) size="lg" as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Edit Draft Details
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{wrappers/wrapper-add wrapper=wrapper submitAction=(action modal.close)}}
+  {{/modal.body}}
+{{/bs-modal}}

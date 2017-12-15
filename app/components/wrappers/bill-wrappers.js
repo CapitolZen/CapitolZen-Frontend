@@ -6,10 +6,14 @@ export default Component.extend({
   wrapperList: null,
   didReceiveAttrs() {
     this._super(...arguments);
-    set(this, 'wrapperList', getWithDefault(this, 'wrappers', A()));
+    // Note: DS recordArrays are immutable, so need to munge it a bit...
+    let list = getWithDefault(this, 'wrappers', A());
+    list = list.toArray();
+    set(this, 'wrapperList', A(list));
   },
   actions: {
     billAdded({ wrapper }) {
+      console.log(get(this, 'wrapperList'));
       get(this, 'wrapperList').pushObject(wrapper);
     }
   }

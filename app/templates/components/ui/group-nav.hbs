@@ -1,11 +1,13 @@
 {{#bs-nav type="pills" justified=true class="p-lg-0 mb-1 mb-lg-2 flex-nowrap d-flex" as |nav|}}
   {{#nav.item}}
+    {{#nav.link-to "groups.detail.index" group.id }}{{fa-icon "pencil-square-o"}} <span
+      class="d-none d-sm-block pl-3">Manage</span>{{/nav.link-to}}
+  {{/nav.item}}
+
+  {{#nav.item}}
     {{#nav.link-to "groups.detail.bills" group.id}}{{fa-icon "file-text"}} <span class="d-none d-sm-block pl-3">Saved Bills</span>{{/nav.link-to}}
   {{/nav.item}}
-  {{#nav.item}}
-    {{#nav.link-to "groups.detail.index" group.id }}{{fa-icon "pencil-square-o"}} <span
-      class="d-none d-sm-block pl-3">Edit</span>{{/nav.link-to}}
-  {{/nav.item}}
+
   {{#nav.item}}
     {{#nav.link-to "reports.client" group.id}}{{fa-icon "map"}} <span class="d-none d-sm-block pl-3">Reports</span>{{/nav.link-to}}
   {{/nav.item}}

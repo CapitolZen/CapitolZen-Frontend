@@ -60,7 +60,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.APP.API_HOST = 'http://localhost:8000';
+    ENV.APP.API_HOST = 'http://localhost:8080';
     ENV.clientUrl = 'http://localhost:4200';
 
     ENV.contentSecurityPolicy = {
@@ -132,6 +132,11 @@ module.exports = function(environment) {
     headers: {
       Accept: '*/*'
     }
+  };
+
+  ENV['ember-junkdrawer'] = {
+    enableIntercom: false,
+    enableFeatures: false
   };
 
   return ENV;

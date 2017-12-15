@@ -1,7 +1,6 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
   {{#ui/ui-box as |b|}}
     {{#b.body}}
-
       {{form.element controlType="power-select"
                      property="group"
                      label="Client"
@@ -25,8 +24,7 @@
       {{/form.element}}
     {{/b.body}}
     {{#b.footer}}
-      {{bs-button defaultText="Save" pendingText="Saving..." type="primary" buttonType="submit"}}
+      {{bs-button defaultText="Save" pendingText="Saving..." disabled=formSubmitButtonDisabled type="primary" buttonType="submit"}}
     {{/b.footer}}
-
   {{/ui/ui-box}}
 {{/bs-form}}

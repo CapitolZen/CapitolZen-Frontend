@@ -1,39 +1,6 @@
-<div class="card-body">
-  <button type="button" {{action "dismiss"}} class="close pull-right" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-
-  <h4 class="card-title">
-    {{title}}: {{referencedModel.stateId}}
-
-  </h4>
-
-
-  {{#if isBill}}
-    <div class="w-100">
-      {{#legislator/legislator-info legislator=referencedModel.sponsor class="clearfix pr-2" as |l|}}
-        <small class="pull-left pr-1">{{l.name}}</small>
-        <small>{{l.party}}</small>
-      {{/legislator/legislator-info}}
-    </div>
-    {{#unless loadReferencedModel.isRunning}}
-      <div class="bill-detail-body w-100 row flex-xs-column justify-content-xl-between flex-xl-row">
-        <div class="details col-lg-8">
-          <p class="card-text">{{referencedModel.title}}</p>
-        </div>
-        <div class="col-lg-4">
-          <div class="btn-group float-lg-right">
-            {{#link-to "bills.detail" referencedModel.id class="btn btn-secondary btn-block"}}View{{/link-to}}
-            {{bills/add-to-group bill=referencedModel buttonType="primary"}}
-          </div>
-        </div>
-
-      </div>
-    {{else}}
-      {{ui/inline-loading}}
-    {{/unless}}
-
-  {{/if}}
-
-
-</div>
+{{component subComponent
+            actionModel=model
+            referencedModelType=referencedModelType
+            referencedModelId=referencedModelId
+            dismiss=(action "dismiss")
+}}

@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
-import { readOnly } from '@ember/object/computed';
+import { notEmpty } from '@ember/object/computed';
 import TableCommon from '../../../mixins/table-common';
 import DateFilter from '../../../mixins/date-filter';
 
@@ -9,6 +9,13 @@ export default Component.extend(TableCommon, DateFilter, {
   tableHeight: '100vh',
   pager: true,
   sort: 'state_id',
+  canMultiselect: false,
+  hasSelection: notEmpty('table.selectedRows'),
+  selectedRows: computed('table.selectedRows.[]', function() {
+    return get(this, 'table.selectedRows').map(row => {
+      return get(row, 'content');
+    });
+  }),
   columns: computed(function() {
     return [
       {
@@ -42,5 +49,13 @@ export default Component.extend(TableCommon, DateFilter, {
         align: 'right'
       }
     ];
-  })
+  }),
+  actions: {
+    selectAll() {
+      get(this, 'table.rows').setEach('selected', true);
+    },
+    deselectAll() {
+      get(this, 'table.selectedRows').setEach('selected', false);
+    }
+  }
 });

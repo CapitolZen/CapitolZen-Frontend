@@ -11,11 +11,25 @@ $cz-grey-lt: #e3e1e3;
 $cz-grey: #666564;
 $cz-navy: #28385e;
 $cz-green: #009e83;
+$cz-yellow: #ffd843;
 
+$black: #000;
 $gray-lighter: $cz-grey-lt;
 $gray-lightest: $cz-white;
 $primary: $cz-green;
 $light: $cz-grey-lt;
+
+$info: $cz-navy;
+
+//
+// CUSTOM VARIABLES
+// -------------------------------------------------
+$border-default: 1px solid $gray-lighter;
+
+$selected-table-bg: rgba($cz-navy, 0.2);
+
+//
+// BS Overrides
 
 $body-bg: $cz-white;
 $link-color: $cz-navy;
@@ -25,8 +39,6 @@ $font-weight-normal: 300;
 $border-radius: 0.2rem;
 $border-radius-sm: 0.2rem;
 $border-radius-lg: 0.25rem;
+$card-box-shadow: 0 0 4px 0 #c4c4c4;
 
-//
-// CUSTOM VARIABLES
-// -------------------------------------------------
-$border-default: 1px solid $gray-lighter;
+$card-cap-bg: rgba($black, 0.025);

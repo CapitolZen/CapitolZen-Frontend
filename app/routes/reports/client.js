@@ -1,12 +1,15 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { get } from '@ember/object';
+import { A } from '@ember/array';
+
 export default Route.extend({
   breadCrumb: {},
   model({ group }) {
     return RSVP.hash({
       group: this.store.findRecord('group', group),
-      reports: this.store.query('report', { group: group })
+      reports: this.store.query('report', { group: group }),
+      model: A()
     });
   },
   afterModel(model) {
