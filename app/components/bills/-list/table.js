@@ -9,6 +9,7 @@ export default Component.extend(TableCommon, DateFilter, {
   tableHeight: '100vh',
   pager: true,
   sort: 'state_id',
+  canMultiselect: false,
   hasSelection: notEmpty('table.selectedRows'),
   selectedRows: computed('table.selectedRows.[]', function() {
     return get(this, 'table.selectedRows').map(row => {

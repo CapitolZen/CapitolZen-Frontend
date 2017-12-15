@@ -8,7 +8,12 @@ export default FormComponent.extend({
   store: service(),
   currentUser: service(),
   router: service(),
+  wrapper: false,
   model: computed(function() {
+    if (get(this, 'wrapper')) {
+      return get(this, 'wrapper');
+    }
+
     let organization = get(this, 'currentUser.currentOrganization');
     let bill = null;
     let wrapper = get(this, 'store').createRecord('wrapper', {
@@ -19,32 +24,22 @@ export default FormComponent.extend({
     return wrapper;
   }),
   validator: WrapperValidations,
+  submitAction() {},
   onSubmitSuccess(data) {
-    get(this, 'flashMessages').success(`New Draft Bill Saved!`);
-    get(this, 'router').transitionTo(
-      'groups.detail.bills',
-      get(data, 'group.id')
-    );
+    if (get(this, 'wrapper')) {
+      get(this, 'flashMessages').success(`Draft Updated!`);
+      get(this, 'submitAction')();
+    } else {
+      get(this, 'flashMessages').success(`New Draft Bill Saved!`);
+      get(this, 'router').transitionTo(
+        'groups.detail.bills',
+        get(data, 'group.id')
+      );
+    }
   },
   groupList: task(function*() {
     let groups = yield get(this, 'store').findAll('group');
     groups = groups.sortBy('title');
     set(this, 'groups', groups);
-  }).on('init'),
-  submit: task(function*(changeset) {
-    let ex = changeset.execute();
-    console.log(ex);
-
-    debugger;
-    return yield changeset
-      .save()
-      .then(data => {
-        this.onSubmitSuccess(data);
-      })
-      .catch(data => {
-        this.handleServerFormErrors(data);
-        this.setFormState('default');
-        this.onServerError(data);
-      });
-  }).drop()
+  }).on('init')
 });

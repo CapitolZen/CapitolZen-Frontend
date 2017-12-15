@@ -1,5 +1,4 @@
 
-
 {{#ui/ui-box as |b|}}
   {{#b.body}}
     {{#unless isDraft}}
@@ -82,8 +81,11 @@
         {{else}}
           <p class="text-center">This Bill Has Draft Status.</p>
           <p class="text-center">
-            {{#bs-button type="primary" onClick=(action (mut openBillConnector) true)}}
+            {{#bs-button type="primary" onClick=(action (mut openBillConnector) true) class="mx-1"}}
               {{fa-icon "paperclip"}} Attach To Bill
+            {{/bs-button}}
+            {{#bs-button type="light" onClick=(action (mut openDraftEditor) true) class="mx-1"}}
+              {{fa-icon "pencil"}} Edit Draft
             {{/bs-button}}
           </p>
         {{/unless}}
@@ -117,7 +119,7 @@
             </div>
           {{/each}}
         </div>
-      {{/b.body}}
+      {{/b.body}}s
 
 
     {{/ui/ui-box}}
@@ -172,3 +174,13 @@
 
 {{/bs-modal}}
 
+{{#bs-modal open=openDraftEditor onHidden=(action (mut openDraftEditor) false) size="lg" as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Edit Draft Details
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{wrappers/wrapper-add wrapper=wrapper submitAction=(action modal.close)}}
+  {{/modal.body}}
+{{/bs-modal}}

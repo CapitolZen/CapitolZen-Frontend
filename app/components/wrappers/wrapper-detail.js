@@ -69,6 +69,7 @@ export default Component.extend({
       wrapper.save(() => {
         get(this, 'flashMessage').success(`Draft is now ${bill.stateId}`);
       });
-    }
+    },
+    submit() {}
   }
 });
