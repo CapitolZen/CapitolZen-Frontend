@@ -15,7 +15,7 @@
   {{/nav.item}}
   {{#nav.dropdown tagName="li" class="nav-item" as |dd|}}
     {{#dd.toggle}}
-      {{user/user-avatar user=currentUser.user}} <span class="d-none d-md-inline">{{currentUser.user.name}}</span>
+      {{user/user-avatar user=currentUser.user size=26}} <span class="d-none d-md-inline">{{currentUser.user.name}}</span>
     {{/dd.toggle}}
     {{#dd.menu align="right" as |menu|}}
       {{#menu.item}}

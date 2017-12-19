@@ -9,15 +9,30 @@
   {{/link-to}}
 {{/global/page-title-actions}}
 
-<div class="row">
-  {{#if (gt model.length 6)}}
-    <div class="col-12">
-      {{groups/group-table}}
+{{groups/-list/list}}
+{{!--
+<div class="row row-flex">
+  <div class="col-md-2 client-facet-wrapper">
+    <div class="client-facet">
+      <h6>View As:</h6>
+      {{#bs-button-group value=presentation type="radio" onChange=(action (mut presentation)) as |bg|}}
+        {{#bg.button type="default" value="grid"}}{{fa-icon "th"}}{{/bg.button}}
+        {{#bg.button type="default" value="list"}}{{fa-icon "bars"}}{{/bg.button}}
+      {{/bs-button-group}}
     </div>
-  {{else}}
-    {{#each model as |group|}}
-      {{groups/group-preview group=group}}
-    {{/each}}
-  {{/if}}
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      {{#if (gt model.length 6)}}
+        <div class="col-12">
+          {{groups/group-table}}
+        </div>
+      {{else}}
+        {{#each model as |group|}}
+          {{groups/group-summary presentation=presentation group=group}}
+        {{/each}}
+      {{/if}}
+    </div>
+  </div>
 </div>
-
+--}}

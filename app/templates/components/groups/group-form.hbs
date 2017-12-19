@@ -2,10 +2,10 @@
   {{#ui/ui-box as |b|}}
     {{#b.body}}
       {{form.element controlType="textfield" label="Name" placeholder="Client Name" property="title" required=true}}
-      {{form.element controlType="checkbox" label="Active" property="active"}}
-      {{form.element controlType="textarea" label="Description" property="description"}}
-      {{form.element label="Logo" controlType="avatar" property="avatar"}}
+      {{form.element controlType="textarea"  label="Description" property="description"}}
+      {{form.element controlType="avatar"    label="Logo" property="avatar"}}
       {{form.element controlType="user-in-list" property="userList"}}
+      {{form.element controlType="x-toggle"  label="Active" property="active" options=(hash showLabels=false theme="light")}}
     {{/b.body}}
     {{#b.footer}}
       {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}

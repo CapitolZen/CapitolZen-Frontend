@@ -3,12 +3,15 @@
     margin-bottom: 0;
   }
 }
-
 form .form-text {
   font-size: 0.8rem;
 }
 .form-control-feedback {
   font-size: 0.8rem;
+}
+
+.x-toggle-component {
+  justify-content: flex-start !important;
 }
 
 .avatar-edit-wrapper {

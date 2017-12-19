@@ -77,6 +77,8 @@
 
 .invite-summary,
 .user-summary {
+  display: flex;
+  align-items: center;
   .user-info {
     flex: 1;
     padding: 0 1rem;
@@ -93,18 +95,6 @@
     img {
       max-width: 65px;
       border-radius: 40px;
-    }
-    .default-avatar {
-      width: 65px;
-      height: 65px;
-      border-radius: 40px;
-      background: $gray-lightest;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      i {
-        font-size: 2.5rem;
-      }
     }
   }
 }
