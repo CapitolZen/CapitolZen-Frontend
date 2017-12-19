@@ -34,6 +34,14 @@
                   {{groups/table-favorites value=model.group.userList}}
                 {{/if}}
 
+                {{#if model.group.assigned_to}}
+                  <h5>Assigned To</h5>
+                  <ul>
+                    {{#each model.group.assigned_to as |user|}}
+                      <li>{{user.title}}</li>
+                    {{/each}}
+                  </ul>
+                {{/if}}
               </div>
             </div>
           {{/b.body}}

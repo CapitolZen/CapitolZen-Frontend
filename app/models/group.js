@@ -10,5 +10,5 @@ export default DS.Model.extend({
   modified: DS.attr('date'),
   starred: DS.attr('boolean'),
   active: DS.attr('boolean'),
-  userList: DS.attr({ default: [] })
+  assigned_to: DS.hasMany('user')
 });

@@ -17,6 +17,10 @@ export default FormComponent.extend({
     return group;
   }),
 
+  assignedToOptions: computed(function() {
+    return this.get('store').findAll('user');
+  }),
+
   /**
    * Success
    */

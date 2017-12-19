@@ -4,7 +4,11 @@
       {{form.element controlType="textfield" label="Name" placeholder="Client Name" property="title" required=true}}
       {{form.element controlType="textarea"  label="Description" property="description"}}
       {{form.element controlType="avatar"    label="Logo" property="avatar"}}
-      {{form.element controlType="user-in-list" property="userList"}}
+      {{#form.element controlType="power-select-multiple" label="Assigned To" property="assigned_to" options=assignedToOptions as |el|}}
+        {{#el.control as |item|}}
+          {{user/user-select-label user=item}}
+        {{/el.control}}
+      {{/form.element}}
       {{form.element controlType="x-toggle"  label="Active" property="active" options=(hash showLabels=false theme="light")}}
     {{/b.body}}
     {{#b.footer}}
