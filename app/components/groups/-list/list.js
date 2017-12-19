@@ -9,8 +9,14 @@ export default Component.extend({
   filters: {
     title__icontains: '',
     active: 1,
-    assigned_to: null
+    assigned_to: null,
+    assigned_to_other: null
   },
+
+  assignedToOptions: computed(function() {
+    return this.get('store').findAll('user');
+  }),
+
   pageSize: 24,
   'timeout-ms': 0,
   _resetDataset() {
@@ -50,7 +56,11 @@ export default Component.extend({
           .get('id');
       }
 
-      console.log(this.get('filters'));
+      if (this.get('filters')['assigned_to'] === 'other') {
+        query['assigned_to'] = this.get('filters')['assigned_to_other'].get(
+          'id'
+        );
+      }
 
       return this.get('store')
         .query('group', query)

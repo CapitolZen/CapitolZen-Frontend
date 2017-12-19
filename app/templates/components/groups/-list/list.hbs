@@ -21,9 +21,17 @@
         {{#form.element label="Assigned To" property="assigned_to" useIcons=false as |el|}}
           {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
             {{#bg.button type="default" value="me"}}Me{{/bg.button}}
+            {{#bg.button type="default" value="other"}}Other{{/bg.button}}
             {{#bg.button type="default" value=null}}Any{{/bg.button}}
           {{/bs-button-group}}
         {{/form.element}}
+        {{#if (eq filters.assigned_to "other")}}
+          {{#form.element controlType="power-select" label="Other..." property="assigned_to_other" options=assignedToOptions as |el|}}
+            {{#el.control as |item|}}
+              {{user/user-select-label user=item}}
+            {{/el.control}}
+          {{/form.element}}
+        {{/if}}
         <div class="client-facet-submit">
           {{bs-button class="btn-block" defaultText="Filter" pendingText="Saving..." type="success" buttonType="submit"}}
         </div>
