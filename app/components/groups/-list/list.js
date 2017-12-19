@@ -5,9 +5,11 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   presentation: 'grid',
   store: service(),
+  currentUser: service('current-user'),
   filters: {
     title__icontains: '',
-    active: 1
+    active: 1,
+    assigned_to: null
   },
   pageSize: 24,
   'timeout-ms': 0,
@@ -40,6 +42,12 @@ export default Component.extend({
 
       if (this.get('filters')['active'] !== null) {
         query['active'] = this.get('filters')['active'];
+      }
+
+      if (this.get('filters')['assigned_to'] === 'me') {
+        query['assigned_to'] = this.get('currentUser')
+          .get('user')
+          .get('id');
       }
 
       console.log(this.get('filters'));

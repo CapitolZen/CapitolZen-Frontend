@@ -20,9 +20,18 @@
         {{#ui/ui-box as |b|}}
           {{#b.body}}
             <div class="media">
-              {{#if model.group.avatar}}
-                <img class="mr-3 w-25 img-fluid" src="{{model.group.avatar}}" alt="Generic placeholder image">
-              {{/if}}
+              {{ember-initials
+                image=model.group.avatar
+                name=model.group.title
+                defaultName="?"
+                seedText=model.group.title
+                textColor="white"
+                fontSize=45
+                fontWeight=100
+                fontFamily="Helvetica Neue Light, Arial, sans-serif"
+                size=140
+                class="mr-3 w-25 img-fluid"
+              }}
               <div class="media-body">
                 {{#if model.group.description}}
                   <h5 class="mt-0">Description</h5>

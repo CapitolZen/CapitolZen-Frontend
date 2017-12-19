@@ -18,6 +18,12 @@
             {{#bg.button type="default" value=null}}Any{{/bg.button}}
           {{/bs-button-group}}
         {{/form.element}}
+        {{#form.element label="Assigned To" property="assigned_to" useIcons=false as |el|}}
+          {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
+            {{#bg.button type="default" value="me"}}Me{{/bg.button}}
+            {{#bg.button type="default" value=null}}Any{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
         <div class="client-facet-submit">
           {{bs-button class="btn-block" defaultText="Filter" pendingText="Saving..." type="success" buttonType="submit"}}
         </div>
