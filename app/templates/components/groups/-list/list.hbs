@@ -48,6 +48,7 @@
           {{in-viewport did-enter=(action records.setReadOffset records.length)}}
           <button style="display:none; visibility:hidden"></button>
         {{else}}
+          <h3 class="no-things">No results found...</h3>
         {{/if}}
       {{/impagination-dataset}}
     </div>
