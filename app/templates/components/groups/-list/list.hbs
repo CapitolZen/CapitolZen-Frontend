@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-2 client-facet-wrapper">
+    <div class="client-facet">
+      <h6>View As:</h6>
+      {{#bs-button-group value=presentation type="radio" onChange=(action (mut presentation)) as |bg|}}
+        {{#bg.button type="default" value="grid"}}{{fa-icon "th"}}{{/bg.button}}
+        {{#bg.button type="default" value="list"}}{{fa-icon "bars"}}{{/bg.button}}
+      {{/bs-button-group}}
+    </div>
+    <div class="client-facet">
+      <h6>Filter:</h6>
+      {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
+        {{form.element label="Name" controlType="text" property="title__icontains"}}
+        {{bs-button defaultText="Filter" pendingText="Saving..." type="primary" buttonType="submit"}}
+      {{/bs-form}}
+    </div>
+
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      {{#impagination-dataset
+        fetch=(action "fetch")
+        on-observe=(action "observeDataset")
+        on-init=(action 'initializeReadOffset')
+        page-size=pageSize
+      as |records|}}
+        {{#if records}}
+          {{#each records as |record index|}}
+            {{#if record.content}}
+              {{groups/group-summary presentation=presentation group=record.content}}
+            {{/if}}
+          {{/each}}
+          {{in-viewport did-enter=(action records.setReadOffset records.length)}}
+          <button style="display:none; visibility:hidden"></button>
+        {{else}}
+        {{/if}}
+      {{/impagination-dataset}}
+    </div>
+  </div>
+</div>
