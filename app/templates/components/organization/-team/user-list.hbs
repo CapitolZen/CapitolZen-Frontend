@@ -1,0 +1,20 @@
+{{#impagination-dataset
+  fetch=(action "fetch")
+  on-observe=(action "observeDataset")
+  on-init=(action 'initializeReadOffset')
+  page-size=pageSize
+as |records|}}
+  {{#if records}}
+    <div class="list-group">
+      {{#each records as |record index|}}
+        {{#if record.content}}
+          {{user/user-summary user=record.content}}
+        {{/if}}
+      {{/each}}
+    </div>
+    {{in-viewport did-enter=(action records.setReadOffset records.length)}}
+    <button style="display:none; visibility:hidden"></button>
+  {{else}}
+    <h3 class="no-things">No results found...</h3>
+  {{/if}}
+{{/impagination-dataset}}

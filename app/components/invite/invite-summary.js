@@ -14,8 +14,10 @@ export default Component.extend({
     deleteInvite(invite) {
       invite.destroyRecord().then(() => {
         get(this, 'flashMessages').success('Invitation Revoked');
+        this.get('parentComponent')._resetDataset();
       });
     },
+
     inviteAction(invite, action) {
       let payload = {
         data: {
