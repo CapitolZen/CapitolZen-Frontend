@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-2 client-facet-wrapper">
+    <div class="client-facet">
+      <h6>View As:</h6>
+      {{#bs-button-group value=presentation type="radio" onChange=(action (mut presentation)) as |bg|}}
+        {{#bg.button type="default" value="grid"}}{{fa-icon "th"}}{{/bg.button}}
+        {{#bg.button type="default" value="list"}}{{fa-icon "bars"}}{{/bg.button}}
+      {{/bs-button-group}}
+    </div>
+    <div class="client-facet">
+      <h6>Filter:</h6>
+      {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
+        {{form.element label="Name" controlType="text" property="title__icontains"}}
+        {{#form.element label="Is Active" property="active" useIcons=false as |el|}}
+          {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
+            {{#bg.button type="default" value=1}}Active{{/bg.button}}
+            {{#bg.button type="default" value=0}}Inactive{{/bg.button}}
+            {{#bg.button type="default" value=null}}Any{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        {{#form.element label="Assigned To" property="assigned_to" useIcons=false as |el|}}
+          {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
+            {{#bg.button type="default" value="me"}}Me{{/bg.button}}
+            {{#bg.button type="default" value="other"}}Other{{/bg.button}}
+            {{#bg.button type="default" value=null}}Any{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        {{#if (eq filters.assigned_to "other")}}
+          {{#form.element controlType="power-select" label="Other..." property="assigned_to_other" options=assignedToOptions as |el|}}
+            {{#el.control as |item|}}
+              {{user/user-select-label user=item}}
+            {{/el.control}}
+          {{/form.element}}
+        {{/if}}
+        <div class="client-facet-submit">
+          {{bs-button class="btn-block" defaultText="Filter" pendingText="Saving..." type="success" buttonType="submit"}}
+        </div>
+      {{/bs-form}}
+    </div>
+
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      {{#impagination-dataset
+        fetch=(action "fetch")
+        on-observe=(action "observeDataset")
+        on-init=(action 'initializeReadOffset')
+        page-size=pageSize
+      as |records|}}
+        {{#if records}}
+          {{#each records as |record index|}}
+            {{#if record.content}}
+              {{groups/group-summary presentation=presentation group=record.content}}
+            {{/if}}
+          {{/each}}
+          {{in-viewport did-enter=(action records.setReadOffset records.length)}}
+          <button style="display:none; visibility:hidden"></button>
+        {{else}}
+          <h3 class="no-things">No results found...</h3>
+        {{/if}}
+      {{/impagination-dataset}}
+    </div>
+  </div>
+</div>

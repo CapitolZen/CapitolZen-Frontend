@@ -9,15 +9,4 @@
   {{/link-to}}
 {{/global/page-title-actions}}
 
-<div class="row">
-  {{#if (gt model.length 6)}}
-    <div class="col-12">
-      {{groups/group-table}}
-    </div>
-  {{else}}
-    {{#each model as |group|}}
-      {{groups/group-preview group=group}}
-    {{/each}}
-  {{/if}}
-</div>
-
+{{groups/-list/list}}

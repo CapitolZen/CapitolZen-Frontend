@@ -36,18 +36,23 @@ module.exports = function(environment) {
     preventDuplicates: true
   };
 
-  (ENV.junkDrawer = {
+  ENV.junkDrawer = {
     defaultPageTitle: 'Capitol Zen'
-  }),
-    (ENV.metricsAdapters = [
-      {
-        name: 'Mixpanel',
-        environments: ['production'],
-        config: {
-          token: '697313648bce64aa237fc55a76d00567'
-        }
+  };
+
+  ENV.metricsAdapters = [
+    {
+      name: 'Mixpanel',
+      environments: ['production'],
+      config: {
+        token: '697313648bce64aa237fc55a76d00567'
       }
-    ]);
+    }
+  ];
+
+  ENV['ember-toggle'] = {
+    includedThemes: ['light']
+  };
 
   ENV['ember-full-story'] = {
     org: '6KYSM'

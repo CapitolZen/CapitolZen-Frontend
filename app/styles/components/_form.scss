@@ -1,8 +1,37 @@
+.card-body > form {
+  .form-group {
+    margin-bottom: 0;
+  }
+}
 form .form-text {
   font-size: 0.8rem;
 }
 .form-control-feedback {
   font-size: 0.8rem;
+}
+
+.x-toggle-component {
+  justify-content: flex-start !important;
+}
+
+.btn-default.active {
+  background: $primary;
+  color: #fff;
+}
+
+.btn-group-justified {
+  display: flex;
+  width: 100%;
+  .btn,
+  .btn-group {
+    flex: 1;
+    .btn {
+      width: 100%;
+    }
+    .dropdown-menu {
+      left: auto;
+    }
+  }
 }
 
 .avatar-edit-wrapper {

@@ -1,8 +1,11 @@
-{{#if user.avatar}}
-  <img src="{{user.avatar}}" alt="">
-{{else}}
-  <div class="default-avatar">
-    {{fa-icon 'user'}}
-  </div>
-
-{{/if}}
+{{ember-initials
+  image=user.avatar
+  name=user.name
+  defaultName="?"
+  seedText=user.name
+  textColor="white"
+  fontSize=10
+  fontWeight=100
+  fontFamily="Helvetica Neue Light, Arial, sans-serif"
+  size=size
+}}
