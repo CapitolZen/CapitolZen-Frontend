@@ -15,8 +15,15 @@
     flex: 1;
   }
   &.group-grid {
+    .card-title {
+      text-align: center;
+      border-bottom: none;
+    }
+    .card-text {
+      text-align: center;
+    }
     .card-img-top {
-      padding: 30px;
+      padding: 30px 30px 0px 30px;
       img {
         width: 50%;
       }

@@ -5,7 +5,10 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   presentation: 'grid',
   store: service(),
-  filters: {},
+  filters: {
+    title__icontains: '',
+    active: 1
+  },
   pageSize: 24,
   'timeout-ms': 0,
   _resetDataset() {
@@ -34,6 +37,12 @@ export default Component.extend({
       if (this.get('filters')['title__icontains']) {
         query['title__icontains'] = this.get('filters')['title__icontains'];
       }
+
+      if (this.get('filters')['active'] !== null) {
+        query['active'] = this.get('filters')['active'];
+      }
+
+      console.log(this.get('filters'));
 
       return this.get('store')
         .query('group', query)

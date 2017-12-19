@@ -14,6 +14,11 @@ form .form-text {
   justify-content: flex-start !important;
 }
 
+.btn-default.active {
+  background: $primary;
+  color: #fff;
+}
+
 .avatar-edit-wrapper {
   .modal-dialog {
     margin-top: 140px;
