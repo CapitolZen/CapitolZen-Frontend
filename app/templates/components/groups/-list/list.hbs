@@ -12,13 +12,15 @@
       {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
         {{form.element label="Name" controlType="text" property="title__icontains"}}
         {{#form.element label="Is Active" property="active" useIcons=false as |el|}}
-          {{#bs-button-group value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
+          {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
             {{#bg.button type="default" value=1}}Active{{/bg.button}}
             {{#bg.button type="default" value=0}}Inactive{{/bg.button}}
             {{#bg.button type="default" value=null}}Any{{/bg.button}}
           {{/bs-button-group}}
         {{/form.element}}
-        {{bs-button defaultText="Filter" pendingText="Saving..." type="success" buttonType="submit"}}
+        <div class="client-facet-submit">
+          {{bs-button class="btn-block" defaultText="Filter" pendingText="Saving..." type="success" buttonType="submit"}}
+        </div>
       {{/bs-form}}
     </div>
 

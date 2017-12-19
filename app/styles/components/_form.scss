@@ -19,6 +19,21 @@ form .form-text {
   color: #fff;
 }
 
+.btn-group-justified {
+  display: flex;
+  width: 100%;
+  .btn,
+  .btn-group {
+    flex: 1;
+    .btn {
+      width: 100%;
+    }
+    .dropdown-menu {
+      left: auto;
+    }
+  }
+}
+
 .avatar-edit-wrapper {
   .modal-dialog {
     margin-top: 140px;
