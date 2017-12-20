@@ -1,0 +1,25 @@
+{{#global/page-title-actions}}
+  {{invite/invite-create parentComponent=this}}
+{{/global/page-title-actions}}
+
+{{#impagination-dataset
+  fetch=(action "fetch")
+  on-observe=(action "observeDataset")
+  on-init=(action 'initializeReadOffset')
+  filter=filterCallback
+  page-size=pageSize
+as |records|}}
+  {{#if records}}
+    <div class="list-group">
+      {{#each records as |record index|}}
+        {{#if record.content}}
+          {{invite/invite-summary parentComponent=this invite=record.content}}
+        {{/if}}
+      {{/each}}
+    </div>
+    {{in-viewport did-enter=(action records.setReadOffset records.length)}}
+    <button style="display:none; visibility:hidden"></button>
+  {{else}}
+    <h3 class="no-things">No results found...</h3>
+  {{/if}}
+{{/impagination-dataset}}

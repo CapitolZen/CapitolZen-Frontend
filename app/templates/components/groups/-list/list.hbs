@@ -10,7 +10,7 @@
     <div class="client-facet">
       <h6>Filter:</h6>
       {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
-        {{form.element label="Name" controlType="text" property="title__icontains"}}
+        {{form.element label="Client Name" controlType="text" property="title__icontains"}}
         {{#form.element label="Is Active" property="active" useIcons=false as |el|}}
           {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
             {{#bg.button type="default" value=1}}Active{{/bg.button}}

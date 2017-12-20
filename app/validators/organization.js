@@ -7,6 +7,7 @@ import {
 
 export default {
   name: [validatePresence({ presence: true }), validateLength({ max: 40 })],
+  /*
   billing_name: [
     validatePresence({ presence: true }),
     validateLength({ max: 50 })
@@ -27,5 +28,6 @@ export default {
     validateLength({ min: 2, max: 14 })
   ],
   billing_city: validatePresence({ presence: true }),
+  */
   features: validateLength({ allowBlank: true })
 };

@@ -1,13 +1,23 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
   {{#ui/ui-box as |b|}}
     {{#b.body}}
-
-
       <fieldset>
         <legend>General</legend>
         {{form.element label="Name" controlType="text" property="name"}}
         {{form.element label="Logo" controlType="avatar" property="avatar"}}
       </fieldset>
+      <fieldset>
+        <legend>States</legend>
+        {{#form.element property="available_states" useIcons=false as |el|}}
+          {{#bs-button-group class="state-select" value=el.value type="checkbox" onChange=(action (mut el.value)) as |bg|}}
+            {{#each states as |state| }}
+              {{#bg.button disabled=(not state.supported) type="default" value=state.iso2}}{{state.name}}{{/bg.button}}
+            {{/each}}
+
+          {{/bs-button-group}}
+        {{/form.element}}
+      </fieldset>
+      {{!--
       <fieldset>
         <legend>Billing</legend>
         {{form.element label="Billing Contact Name" controlType="text" property="billing_name"}}
@@ -28,7 +38,7 @@
             </div>
           </div>
         {{/form.group}}
-      </fieldset>
+      </fieldset>--}}
     {{/b.body}}
     {{#b.footer}}
       {{bs-button defaultText="Save Organization" pendingText="Saving..." type="primary" buttonType="submit"}}
