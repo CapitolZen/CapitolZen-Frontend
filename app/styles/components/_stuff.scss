@@ -117,7 +117,12 @@
   display: block;
   .btn {
     margin: 2px;
-    width: 16%;
     font-size: 0.85rem;
+    width: 49%;
+    padding: 0;
+    @include media-breakpoint-up(md) {
+      width: 16%;
+      padding: 0.375rem 0.75rem;
+    }
   }
 }

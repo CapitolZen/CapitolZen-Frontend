@@ -1,10 +1,7 @@
 {{ui-page-property model.group.title "Reports" property="title"}}
+
 {{#global/page-title-actions}}
   {{#link-to "reports.add" class="btn btn-primary mb-2"}} {{fa-icon "map"}} Create New Report{{/link-to}}
 {{/global/page-title-actions}}
 
-{{#ui/ui-box as |b|}}
-  {{#b.body}}
-    {{reports/report-table group=model.group model=model.model}}
-  {{/b.body}}
-{{/ui/ui-box}}
+{{reports/-list/table group=model.group}}

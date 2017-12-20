@@ -51,7 +51,8 @@ export default Component.extend({
 
     let groups = yield get(this, 'store').query('group', {
       without_bills: billIds.join(','),
-      sort: 'title'
+      sort: 'title',
+      active: true
     });
 
     set(this, 'groupList', groups);

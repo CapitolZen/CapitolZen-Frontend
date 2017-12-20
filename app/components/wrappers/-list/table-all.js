@@ -20,7 +20,7 @@ export default Component.extend(TableCommon, DateFilter, {
       },
       {
         label: 'Sponsor',
-        valuePath: 'sponsorDisplay',
+        valuePath: 'bill.sponsor.fullName',
         sortable: false,
         breakpoints: ['tablet', 'desktop']
       },

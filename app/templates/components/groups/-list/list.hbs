@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-2 client-facet-wrapper">
+  <div class="col-sm-4 col-lg-3 col-xl-2  client-facet-wrapper">
     <div class="client-facet">
       <h6>View As:</h6>
       {{#bs-button-group value=presentation type="radio" onChange=(action (mut presentation)) as |bg|}}
@@ -12,14 +12,14 @@
       {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
         {{form.element label="Client Name" controlType="text" property="title__icontains"}}
         {{#form.element label="Is Active" property="active" useIcons=false as |el|}}
-          {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
+          {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
             {{#bg.button type="default" value=1}}Active{{/bg.button}}
             {{#bg.button type="default" value=0}}Inactive{{/bg.button}}
             {{#bg.button type="default" value=null}}Any{{/bg.button}}
           {{/bs-button-group}}
         {{/form.element}}
         {{#form.element label="Assigned To" property="assigned_to" useIcons=false as |el|}}
-          {{#bs-button-group justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
+          {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
             {{#bg.button type="default" value="me"}}Me{{/bg.button}}
             {{#bg.button type="default" value="other"}}Other{{/bg.button}}
             {{#bg.button type="default" value=null}}Any{{/bg.button}}
@@ -39,7 +39,7 @@
     </div>
 
   </div>
-  <div class="col-md-10">
+  <div class="col-sm-8 col-lg-9 col-xl-10">
     <div class="row">
       {{#impagination-dataset
         fetch=(action "fetch")
