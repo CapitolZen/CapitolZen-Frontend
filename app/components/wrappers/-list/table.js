@@ -25,6 +25,12 @@ export default Component.extend({
     if (this.get('group')) {
       query['group'] = this.get('group.id');
     }
+
+    if (this.get('report')) {
+      query['report'] = this.get('report.id');
+    }
+
+    return query;
   }),
 
   tableOptions: {

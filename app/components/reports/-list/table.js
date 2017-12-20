@@ -6,6 +6,15 @@ export default Component.extend({
   dir: 'asc',
   sort: false,
 
+  defaultRecordQuery: computed(function() {
+    let query = {};
+    if (this.get('group')) {
+      query['group'] = this.get('group.id');
+    }
+
+    return query;
+  }),
+
   columns: [
     {
       label: 'Title',
