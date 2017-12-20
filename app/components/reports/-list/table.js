@@ -6,18 +6,6 @@ export default Component.extend({
   dir: 'asc',
   sort: false,
 
-  defaultRecordQuery: computed('group', function() {
-    let query = {};
-
-    if (this.get('group.id')) {
-      query['group'] = this.get('group.id');
-    }
-
-    query['include'] = 'group,user';
-
-    return query;
-  }),
-
   columns: [
     {
       label: 'Title',

@@ -1,30 +1,29 @@
 import Component from '@ember/component';
-import TableCommon from '../../../mixins/table-common';
-import { get, set, computed } from '@ember/object';
 
-export default Component.extend(TableCommon, {
+export default Component.extend({
   recordType: 'committee',
-  tableHeight: '100vh',
-  pager: true,
-  columns: computed(function() {
-    return [
-      {
-        label: 'Chamber',
-        valuePath: 'chamber',
-        cellComponent: 'committees/-list/cell/chamber',
-        sortable: true
-      },
-      {
-        label: 'Name',
-        valuePath: 'displayName',
-        sortable: true
-      },
-      {
-        label: 'Actions',
-        cellComponent: 'committees/-list/cell/actions',
-        sortable: false,
-        align: 'right'
-      }
-    ];
-  })
+  dir: 'asc',
+  sort: false,
+  tableOptions: {
+    height: '90vh'
+  },
+  columns: [
+    {
+      label: 'Chamber',
+      valuePath: 'chamber',
+      cellComponent: 'committees/-list/cell/chamber',
+      sortable: true
+    },
+    {
+      label: 'Name',
+      valuePath: 'displayName',
+      sortable: true
+    },
+    {
+      label: 'Actions',
+      cellComponent: 'committees/-list/cell/actions',
+      sortable: false,
+      align: 'right'
+    }
+  ]
 });

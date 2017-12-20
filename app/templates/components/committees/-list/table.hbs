@@ -1,31 +1,7 @@
-{{#light-table table responsive=true height=tableHeight as |t|}}
-
-  {{t.head
-    onColumnClick=(action 'onColumnClick')
-    iconAscending='fa fa-sort-asc'
-    iconDescending='fa fa-sort-desc'
-    fixed=true
-  }}
-
-  {{#t.body
-    onScrolledToBottom=(action 'onScrolledToBottom')
-  as |body|
-  }}
-    {{#if isLoading}}
-      {{#body.loader}}
-        {{ui/loading-animation}}
-      {{/body.loader}}
-    {{/if}}
-  {{/t.body}}
-
-  {{#if meta}}
-    {{#t.foot fixed=true as |columns|}}
-      <tr>
-        <td class="align-center" colspan={{columns.length}}>
-          {{ui/table-pagintor page=page pageSize=page_size meta=meta pageAction=(action 'setPage')}}
-        </td>
-      </tr>
-    {{/t.foot}}
-  {{/if}}
-
-{{/light-table}}
+{{#table/model-table
+  dir=dir
+  sort=sort
+  columns=columns
+  tableOptions=tableOptions
+  recordType=recordType as |t| }}
+{{/table/model-table}}
