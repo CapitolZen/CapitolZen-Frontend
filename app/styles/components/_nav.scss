@@ -73,10 +73,19 @@
   align-items: center;
   justify-content: center;
   > li > a {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &:hover,
     &:focus {
       text-decoration: none;
+    }
+    i {
+      font-size: 30px;
+      margin-right: 3px;
+    }
+    img {
+      margin-right: 3px;
     }
   }
   .dropdown-menu {
