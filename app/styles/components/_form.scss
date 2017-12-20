@@ -20,17 +20,13 @@
       margin-right: 10px;
     }
   }
-}
+  .ember-power-select-trigger {
+    padding: 4px 5px !important;
+  }
 
-//
-// POWER SELECT
-// -------------------------------------------------
-.ember-power-select-trigger {
-  padding: 4px 5px !important;
-}
-
-.ember-basic-dropdown-trigger {
-  width: 120px;
+  .ember-basic-dropdown-trigger {
+    width: 120px;
+  }
 }
 
 //

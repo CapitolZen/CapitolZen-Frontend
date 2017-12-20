@@ -1,15 +1,3 @@
-{{ui-page-property model.group.title property="title"}}
+{{ui-page-property model.group.title " - Saved Bills" property="title"}}
 
-{{#ui/ui-box as |b|}}
-  {{#b.header}}
-    Saved Bills
-  {{/b.header}}
-  {{#b.body}}
-    {{bills/wrapper-table
-      recordQuery=(hash group=model.group.id)
-      model=model.wrappers
-    }}
-  {{/b.body}}
-{{/ui/ui-box}}
-
-{{outlet}}
+{{wrappers/-list/table group=model.group filtering=false}}
