@@ -1,3 +1,78 @@
+//
+// TABLE FILTERS
+// -------------------------------------------------
+.card-body .form-group > label {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.table-filters {
+  display: flex;
+  label {
+    padding-right: 4px;
+  }
+  .form-group {
+    margin-right: 10px;
+  }
+  .table-filters-actions {
+    margin-left: auto;
+    .btn {
+      margin-right: 10px;
+    }
+  }
+}
+
+//
+// POWER SELECT
+// -------------------------------------------------
+.ember-power-select-trigger {
+  padding: 4px 5px !important;
+}
+
+.ember-basic-dropdown-trigger {
+  width: 120px;
+}
+
+//
+// AVATAR EDIT COMPONENT
+// -------------------------------------------------
+.avatar-edit-wrapper {
+  .modal-dialog {
+    margin-top: 140px;
+  }
+  .avatar-upload-selector {
+    background: $gray-lightest;
+    border: 1px dashed $gray-lighter;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    i {
+      flex: 1;
+      font-size: 3rem;
+      color: $gray-lighter;
+    }
+  }
+  .avatar-original-preview {
+    max-width: 140px;
+    height: auto;
+  }
+  .cropper-wrapper {
+    max-width: 640px;
+  }
+  .image-cropper {
+    max-width: 100%;
+    max-height: 640px;
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+//
+// MISC
+// -------------------------------------------------
 .card-body > form {
   .form-group {
     margin-bottom: 0;
@@ -30,40 +105,6 @@ form .form-text {
     }
     .dropdown-menu {
       left: auto;
-    }
-  }
-}
-
-.avatar-edit-wrapper {
-  .modal-dialog {
-    margin-top: 140px;
-  }
-  .avatar-upload-selector {
-    background: $gray-lightest;
-    border: 1px dashed $gray-lighter;
-    width: 140px;
-    height: 140px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    i {
-      flex: 1;
-      font-size: 3rem;
-      color: $gray-lighter;
-    }
-  }
-  .avatar-original-preview {
-    max-width: 140px;
-    height: auto;
-  }
-  .cropper-wrapper {
-    max-width: 640px;
-  }
-  .image-cropper {
-    max-width: 100%;
-    max-height: 640px;
-    img {
-      max-width: 100%;
     }
   }
 }
