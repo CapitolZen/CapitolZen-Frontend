@@ -1,0 +1,7 @@
+{{#bs-button block=block buttonType="submit" disabled=submit.isRunning type=type}}
+  {{#if (or submit.isRunning (and submit.last.isSuccessful loadingOnComplete))}}
+    {{fa-icon "spinner" spin=true}} {{#if loadingText}}{{loadingText}}{{/if}}
+  {{else}}
+    {{#if defaultIcon}}{{fa-icon defaultIcon}}{{/if}} {{#if defaultText}}{{defaultText}}{{/if}}
+  {{/if}}
+{{/bs-button}}
