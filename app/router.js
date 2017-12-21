@@ -49,7 +49,6 @@ Router.map(function() {
       this.route('detail', { path: '/:id' });
       this.route('saved');
       this.route('add');
-      this.route('search');
     });
 
     //
