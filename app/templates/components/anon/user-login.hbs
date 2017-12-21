@@ -22,8 +22,10 @@
         {{#link-to 'anon.forgot-password' class=""}}Need Help?{{/link-to}}
       </div>
       <div class="card-footer">
-        {{bs-button textState=buttonState disabled=formSubmitButtonDisabled defaultText="Login" type="primary"
-                    icon="fa fa-sign-in" pendingText="Login" buttonType="submit"}}
+        {{#bs-button buttonType="submit" disabled=formSubmitButtonDisabled type="primary"}}
+          {{fa-icon "sign-in"}} Login
+        {{/bs-button}}
+
         {{#link-to 'anon.register' class="pull-right btn btn-secondary"}}Create New Account{{/link-to}}
       </div>
     {{/bs-form}}

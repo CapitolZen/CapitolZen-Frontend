@@ -1,34 +1,42 @@
 import Component from '@ember/component';
-import { computed, set, get } from '@ember/object';
-import { notEmpty } from '@ember/object/computed';
+import moment from 'moment';
+import { computed } from '@ember/object';
 
 export default Component.extend({
-  sort: 'state_id',
-  recordType: 'bill',
-  table: null,
-  defaultRecordQuery: {
-    date_filter_type: 'active',
-    daterange: {
-      startDate: moment()
-        .startOf('day')
-        .subtract(1, 'month'),
-      endDate: moment()
-        .endOf('day')
-        .add(1, 'second') //makes the query include the current day
+  recordType: 'wrapper',
+  sort: 'stateId',
+  filtering: true,
+  group: null,
+  defaultRecordQuery: computed(function() {
+    let query = {};
+
+    if (this.get('filtering')) {
+      query['date_filter_type'] = 'active';
+      query['daterange'] = {
+        startDate: moment()
+          .startOf('day')
+          .subtract(1, 'month'),
+        endDate: moment()
+          .endOf('day')
+          .add(1, 'second') //makes the query include the current day
+      };
     }
-  },
+
+    if (this.get('group')) {
+      query['group'] = this.get('group.id');
+    }
+
+    if (this.get('report')) {
+      query['report'] = this.get('report.id');
+    }
+
+    return query;
+  }),
 
   tableOptions: {
     height: '90vh',
     canSelect: true
   },
-
-  hasSelection: notEmpty('table.selectedRows'),
-  selectedRows: computed('table.selectedRows.[]', function() {
-    return get(this, 'table.selectedRows').map(row => {
-      return get(row, 'content');
-    });
-  }),
 
   dateFilterOptions: ['introduced', 'active'],
   dateFilterPresents: [
@@ -64,45 +72,37 @@ export default Component.extend({
 
   columns: [
     {
-      label: 'State ID',
-      valuePath: 'stateId',
+      label: 'ID',
+      valuePath: 'bill.stateId',
       sortable: true,
-      width: '100px'
+      cellComponent: 'wrappers/-list/cell/title'
     },
     {
       label: 'Sponsor',
-      valuePath: 'sponsor.fullName',
-      sortable: false,
-      breakpoints: ['mobile', 'tablet', 'desktop']
-    },
-    {
-      label: 'Party',
-      valuePath: 'sponsor.party',
+      valuePath: 'bill.sponsor.fullName',
       sortable: false,
       breakpoints: ['tablet', 'desktop']
     },
     {
       label: 'Last Action',
+      valuePath: 'bill.lastActionDate',
       cellComponent: 'bills/-list/cell/status',
-      sortable: false,
+      sortable: true,
       breakpoints: ['mobile', 'tablet', 'desktop']
     },
     {
+      label: 'Position',
+      cellComponent: 'wrappers/-list/cell/position'
+    },
+    {
       label: 'Actions',
-      cellComponent: 'bills/-list/cell/actions',
+      cellComponent: 'wrappers/-list/cell/actions',
       sortable: false,
       align: 'right'
     }
   ],
 
   actions: {
-    /**
-     * Post Table Setup Hook
-     */
-    postTableSetup(table) {
-      this.set('table', table);
-    },
-
     /**
      * Alter pojo represents query filtering before sending it over.
      * @param query
@@ -123,20 +123,6 @@ export default Component.extend({
       }
 
       return query;
-    },
-
-    /**
-     * Select All Rows
-     */
-    selectAll() {
-      get(this, 'table.rows').setEach('selected', true);
-    },
-
-    /**
-     * Deselect All Rows
-     */
-    deselectAll() {
-      get(this, 'table.selectedRows').setEach('selected', false);
     }
   }
 });

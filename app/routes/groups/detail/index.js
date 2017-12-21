@@ -10,10 +10,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model(params) {
     const parent_params = this.paramsFor('groups.detail');
     return RSVP.hash({
-      group: this.get('store').findRecord('group', parent_params.id),
-      organization: get(this, 'currentUser.currentOrganization'),
-      wrappers: A(),
-      reports: this.store.query('report', { group: parent_params.id })
+      group: this.get('store').findRecord('group', parent_params.id)
     });
   }
 });

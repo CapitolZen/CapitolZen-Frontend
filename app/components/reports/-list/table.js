@@ -6,14 +6,11 @@ export default Component.extend({
   dir: 'asc',
   sort: false,
 
-  defaultRecordQuery: computed('group', function() {
+  defaultRecordQuery: computed(function() {
     let query = {};
-
-    if (this.get('group.id')) {
+    if (this.get('group')) {
       query['group'] = this.get('group.id');
     }
-
-    query['include'] = 'group,user';
 
     return query;
   }),

@@ -3758,9 +3758,9 @@ ember-invoke-action@^1.4.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-junkdrawer@0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.4.0.tgz#20e5b989e66a47e988182cffd5a4974162429370"
+ember-junkdrawer@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.5.0.tgz#d2b9e40d8cb6fa5bca69eb43dc610f3a8247e427"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"

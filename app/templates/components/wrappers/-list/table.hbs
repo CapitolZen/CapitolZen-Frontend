@@ -1,0 +1,19 @@
+{{#table/model-table
+  dir=dir
+  sort=sort
+  columns=columns
+  tableOptions=tableOptions
+  recordQuery=defaultRecordQuery
+  recordType=recordType as |t| }}
+
+  {{#if filtering}}
+    {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
+      {{filter.element label="Search" controlType="text" property="search"}}
+      {{#filter.element label="Date Range" controlType="power-select" property="date_filter_type" options=dateFilterOptions as |el|}}
+        {{el.control searchEnabled=false}}
+      {{/filter.element}}
+      {{filter.element controlType="baremetrics" options=(hash presets=dateFilterPresents) property="daterange"}}
+    {{/t.filter}}
+  {{/if}}
+
+{{/table/model-table}}

@@ -5,13 +5,13 @@ import { A } from '@ember/array';
 
 export default Route.extend({
   breadCrumb: {},
+
   model({ group }) {
     return RSVP.hash({
-      group: this.store.findRecord('group', group),
-      reports: this.store.query('report', { group: group }),
-      model: A()
+      group: this.store.findRecord('group', group)
     });
   },
+
   afterModel(model) {
     this.set('breadCrumb', {
       title: `Reports for ${get(model, 'group').get('title')}`
