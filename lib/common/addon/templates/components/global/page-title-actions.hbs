@@ -1,7 +1,9 @@
 {{#ember-wormhole to="page-header-actions"}}
   {{#if media.isMobile}}
     {{#bs-dropdown class="mobile-header-actions" as |dd|}}
-      {{#dd.button type="primary"}}{{fa-icon "caret-down"}}{{/dd.button}}
+      {{#dd.button type="primary"}}
+        {{fa-icon "plus"}}
+      {{/dd.button}}
       {{#dd.menu as |ddm|}}
         {{#ddm.item}}
           <div>
@@ -10,8 +12,6 @@
         {{/ddm.item}}
       {{/dd.menu}}
     {{/bs-dropdown}}
-
-
   {{else}}
     <div>
       {{yield}}
