@@ -1,0 +1,44 @@
+{{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+  {{#ui/ui-box as |b|}}
+    {{#b.header class="bg-danger text-white"}}
+      Danger Zone
+    {{/b.header}}
+    {{#b.body}}
+      {{#form.element property="group" label="Client" as |el|}}
+        {{#power-select options=groups searchField="title" selected=el.value onchange=(action (mut el.value)) as |group|}}
+          {{group.title}}
+        {{/power-select}}
+      {{/form.element}}
+      {{#form.element options=bills property="bill" label="Bill" as |el|}}
+        {{#power-select
+          search=(perform searchBills)
+          selected=el.value
+          onchange=(action (mut el.value))
+        as |bill|
+        }}
+          {{bill.stateId}} | {{bill.sponsor.fullName}}
+        {{/power-select}}
+      {{/form.element}}
+    {{/b.body}}
+    {{#b.footer}}
+      {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
+      {{bs-button defaultText="Delete" type="outline-danger" onClick=(action (mut openConfirmModal) true)}}
+      {{bs-button defaultText="Cancel" type="outline-secondary" onClick=(action "cancel") class="pull-right"}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
+{{/bs-form}}
+
+{{#bs-modal open=openConfirmModal onSubmit=(action "confirmDelete") onHidden=(action (mut openConfirmModal) false) as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">Confirm Modal</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>Are you absolutely sure you want to do that?</p>
+    <p>All your notes will be deleted.</p>
+  {{/modal.body}}
+  {{#modal.footer as |footer|}}
+    {{#bs-button onClick=(action modal.close) type="warning"}}Cancel{{/bs-button}}
+    {{#bs-button onClick=(action modal.submit) type="primary"}}Yes{{/bs-button}}
+  {{/modal.footer}}
+
+{{/bs-modal}}

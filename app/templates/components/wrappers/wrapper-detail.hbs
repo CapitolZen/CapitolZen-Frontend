@@ -124,6 +124,9 @@
 
     {{/ui/ui-box}}
   {{/tab.pane}}
+  {{#tab.pane title="Settings"}}
+    {{wrappers/wrapper-edit wrapper=wrapper}}
+  {{/tab.pane}}
 {{/bs-tab}}
 
 {{#bs-modal open=openModal onHidden=(action (mut openModal) false) size="lg" as |modal|}}
