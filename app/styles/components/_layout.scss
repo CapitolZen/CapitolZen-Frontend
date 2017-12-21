@@ -161,7 +161,7 @@ body > .ember-view {
   background: #fff;
   border-top: 1px solid $gray-lighter;
   box-shadow: 0px 0px 4px 0 #c4c4c4;
-
+  padding: 0.4rem 0;
   @include media-breakpoint-up(md) {
     padding: 2rem 6rem;
   }
@@ -172,21 +172,19 @@ body > .ember-view {
 
   .page-title {
     font-weight: 300;
-    border-bottom: 1px solid #212529;
     padding-right: 22px;
     display: inline-block;
     margin: 0;
     @include media-breakpoint-down(md) {
       font-size: 2rem;
     }
+
+    @include media-breakpoint-up(sm) {
+      border-bottom: 1px solid #212529;
+    }
   }
 
   .page-header-actions {
-    text-align: right;
-    @include media-breakpoint-down(md) {
-      text-align: left;
-    }
-
     a {
       margin-left: 10px;
     }
@@ -197,6 +195,26 @@ body > .ember-view {
     margin: 0;
     @include media-breakpoint-down(md) {
       display: none;
+    }
+  }
+}
+
+.mobile-header-actions {
+  .dropdown-toggle {
+    width: 45px;
+    &:after {
+      display: none;
+    }
+  }
+  .dropdown-menu {
+    min-width: 12rem;
+    padding: 0.5rem;
+    a {
+      display: block;
+      margin: 0 0 0.5rem 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }
