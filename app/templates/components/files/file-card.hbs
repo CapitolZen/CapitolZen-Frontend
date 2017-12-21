@@ -18,7 +18,7 @@
     <p class="card-text">{{description}}</p>
   </div>
   <div class="card-footer">
-    <a href="{{url}}" class="btn btn-primary text-white" target="_blank">View</a>
+    <a href="{{url}}" class="btn btn-primary text-white" target="_blank"> {{fa-icon "download"}} View</a>
     {{#bs-button type="light" onClick=(action "toggleEditing")}}Edit{{/bs-button}}
   </div>
 {{/if}}
