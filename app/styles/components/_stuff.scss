@@ -126,3 +126,10 @@
     }
   }
 }
+
+td .btn-group {
+  .btn {
+    margin-left: 6px;
+    border-radius: $btn-border-radius !important;
+  }
+}
