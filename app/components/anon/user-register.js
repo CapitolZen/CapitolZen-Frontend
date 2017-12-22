@@ -55,6 +55,7 @@ export default FormComponent.extend({
         this.handleServerFormErrors(data);
         this.setFormState('default');
         this.onServerError(data);
+        throw data;
       });
   }).drop()
 });

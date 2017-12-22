@@ -182,6 +182,8 @@ body > .ember-view {
   }
 
   .page-header-actions {
+    display: flex;
+    align-items: center;
     a {
       margin-left: 10px;
     }

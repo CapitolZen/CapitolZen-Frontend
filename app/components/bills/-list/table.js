@@ -64,7 +64,7 @@ export default Component.extend({
 
   columns: [
     {
-      label: 'State ID',
+      label: 'Bill ID',
       valuePath: 'stateId',
       sortable: true,
       width: '100px'
@@ -82,7 +82,7 @@ export default Component.extend({
       breakpoints: ['tablet', 'desktop']
     },
     {
-      label: 'Last Action',
+      label: 'Recent Activity',
       cellComponent: 'bills/-list/cell/status',
       sortable: false,
       breakpoints: ['mobile', 'tablet', 'desktop']
