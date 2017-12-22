@@ -140,8 +140,9 @@
 }
 
 td .btn-group {
+  a,
   .btn {
-    margin-left: 6px;
+    margin-left: 6px !important;
     border-radius: $btn-border-radius !important;
   }
 }

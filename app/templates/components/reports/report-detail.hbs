@@ -1,5 +1,22 @@
+{{#global/page-title-actions}}
+  {{#link-to "reports.edit" model.id class="btn btn-primary"}}
+    <span>{{fa-icon "pencil"}} Edit</span>{{/link-to}}
+  {{#reports/report-send report=model class="btn btn-primary"}}
+    <span>{{fa-icon "envelope"}} Email</span> {{/reports/report-send}}
+  {{#reports/report-download report=model class="btn btn-primary"}}
+    <span>{{fa-icon "cloud-download"}} Download</span>{{/reports/report-download}}
+  {{#bs-button
+    onClick=(action (mut modal) true)
+    class="btn btn-danger"}}
+    <span>{{fa-icon "trash"}} Delete</span>
+  {{/bs-button}}
+{{/global/page-title-actions}}
+
 <div class="row">
   <div class="col-md-8">
+    {{wrappers/-list/table filtering=false report=model}}
+  </div>
+  <div class="col-md-4">
     {{#ui/ui-box as |b|}}
       {{#b.header}}
         {{model.title}}
@@ -10,27 +27,7 @@
         <h6>Layout</h6>
         {{model.layout.label}}
       {{/b.body}}
-
     {{/ui/ui-box}}
-
-    {{wrappers/-list/table filtering=false report=model}}
-
-  </div>
-  <div class="col-md-4">
-    <h4>Quick Links</h4>
-    <div class="list-group">
-      {{#link-to "reports.edit" model.id class="list-group-item list-group-item-action"}}
-        <span>{{fa-icon "pencil"}} Edit</span>{{/link-to}}
-      {{#reports/report-send report=model class="list-group-item list-group-item-action"}}
-        <span>{{fa-icon "envelope"}} Email</span> {{/reports/report-send}}
-      {{#reports/report-download report=model class="list-group-item list-group-item-action"}}
-        <span>{{fa-icon "cloud-download"}} Download</span>{{/reports/report-download}}
-      {{#bs-button
-        onClick=(action (mut modal) true)
-        class="list-group-item list-group-item-action list-group-item-danger"}}
-        <span>{{fa-icon "trash"}} Delete</span>
-      {{/bs-button}}
-    </div>
   </div>
 </div>
 

@@ -72,10 +72,14 @@ export default Component.extend({
 
   columns: [
     {
-      label: 'ID',
+      label: 'Bill ID',
       valuePath: 'bill.stateId',
       sortable: true,
       cellComponent: 'wrappers/-list/cell/title'
+    },
+    {
+      label: 'Position',
+      cellComponent: 'wrappers/-list/cell/position'
     },
     {
       label: 'Sponsor',
@@ -84,15 +88,11 @@ export default Component.extend({
       breakpoints: ['tablet', 'desktop']
     },
     {
-      label: 'Last Action',
+      label: 'Recent Activity',
       valuePath: 'bill.lastActionDate',
       cellComponent: 'bills/-list/cell/status',
       sortable: true,
       breakpoints: ['mobile', 'tablet', 'desktop']
-    },
-    {
-      label: 'Position',
-      cellComponent: 'wrappers/-list/cell/position'
     },
     {
       label: 'Actions',
