@@ -1,20 +1,19 @@
 {{ui-page-property model.group.title property="title"}}
 
+{{#global/page-title-actions}}
+  {{#link-to "groups.detail.bills" model.group.id class="btn btn-primary"}}
+    {{fa-icon "file-text" class="mr-2"}}Saved Bills
+  {{/link-to}}
+  {{#link-to "reports.client" model.group.id class="btn btn-primary"}}
+    {{fa-icon "pencil-square-o"}} Reports
+  {{/link-to}}
+  {{#link-to "bills.add" class="btn btn-primary"}}
+    {{fa-icon "plus-square"}} Add Draft
+  {{/link-to}}
+{{/global/page-title-actions}}
+
 <div class="row">
-  <div class="col-md-4 order-md-2">
-    <div class="list-group">
-      {{#link-to "groups.detail.bills" model.group.id class="list-group-item list-group-item-action"}}
-        {{fa-icon "file-text" class="mr-2"}}Saved Bills
-      {{/link-to}}
-      {{#link-to "reports.client" model.group.id class="list-group-item list-group-item-action"}}
-        {{fa-icon "pencil-square-o"}} Reports
-      {{/link-to}}
-      {{#link-to "bills.add" class="list-group-item list-group-item-action"}}
-        {{fa-icon "plus-square"}} Add Draft
-      {{/link-to}}
-    </div>
-  </div>
-  <div class="col-md-8 order-md-1">
+  <div class="col-md-6 offset-md-3">
     {{#bs-tab as |tab|}}
       {{#tab.pane title="Overview"}}
         {{#ui/ui-box as |b|}}

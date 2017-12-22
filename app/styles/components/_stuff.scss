@@ -79,6 +79,18 @@
 .user-summary {
   display: flex;
   align-items: center;
+
+  @include media-breakpoint-down('sm') {
+    flex-direction: column;
+    text-align: center;
+    > div {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   .user-info {
     flex: 1;
     padding: 0 1rem;
@@ -131,5 +143,14 @@ td .btn-group {
   .btn {
     margin-left: 6px;
     border-radius: $btn-border-radius !important;
+  }
+}
+
+.nav-tabs {
+  @include media-breakpoint-only('xs') {
+    .nav-item {
+      flex: 1 1 auto;
+      text-align: center;
+    }
   }
 }
