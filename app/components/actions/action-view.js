@@ -9,6 +9,15 @@ export default Component.extend(RecognizerMixin, {
   store: service(),
   currentUser: service(),
   flashMessages: service(),
+
+  classNameBindings: ['actualClassNames'],
+
+  actualClassNames: computed('model', function() {
+    let classes = 'action-summary';
+    classes += ' ' + this.get('model.state');
+    return classes;
+  }),
+
   referencedModelType: alias('model.referencedModelName'),
   referencedModelId: alias('model.modelId'),
   referencedModelLinkTo: computed('referencedModelType', function() {
@@ -35,6 +44,10 @@ export default Component.extend(RecognizerMixin, {
 
   title: alias('model.displayTitle'),
 
+  /**
+   *
+   * @private
+   */
   _dismissAction() {
     get(this, 'model')
       .updateState('dismissed')
@@ -47,6 +60,11 @@ export default Component.extend(RecognizerMixin, {
           'An error occurred, and our team has been notified!'
         );
       });
+
+    this.notifyPropertyChange('model');
+    if (this.get('listComponent')) {
+      this.get('listComponent')._refilterDataset();
+    }
   },
   swipeRight() {
     this._dismissAction();

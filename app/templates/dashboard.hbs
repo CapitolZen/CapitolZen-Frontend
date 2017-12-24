@@ -1,2 +1,20 @@
 {{ui-page-property "Dashboard" property="title"}}
-{{user/user-dashboard model=model}}
+{{#global/page-title-actions}}
+  {{#link-to "reports.index" class="btn btn-primary"}}
+    {{fa-icon "map" class="mr-2"}}Reports
+  {{/link-to}}
+  {{#link-to "organization.team" class="btn btn-primary"}}
+    {{fa-icon "users" class="mr-2"}}My Team
+  {{/link-to}}
+{{/global/page-title-actions}}
+
+<div class="row">
+  <div class="col-md-4 order-md-2">
+    <h4>My Clients</h4>
+    {{dashboard/user-clients}}
+  </div>
+  <div class="col-md-8 order-md-1">
+    <h4>What's New</h4>
+    {{dashboard/user-actions}}
+  </div>
+</div>

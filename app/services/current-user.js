@@ -13,6 +13,7 @@ export default CurrentUser.extend({
   didSetupOrganization() {
     this.update();
   },
+
   update() {
     get(this, 'intercom').set('user', get(this, 'intercomData'));
     get(this, 'metrics').identify('mixpanel', {
@@ -20,11 +21,11 @@ export default CurrentUser.extend({
     });
   },
 
-  intercomData: computed(function() {
+  intercomData: computed('currentUser', function() {
     return {
       name: get(this, 'currentUser.name'),
       email: get(this, 'currentUser.username'),
-      user_id: get(this, 'currentUser.user_id'),
+      user_id: get(this, 'currentUser.id'),
       user_is_admin: get(this, 'currentUser.user_is_admin'),
       user_is_staff: get(this, 'currentUser.user_is_staff'),
       company: {

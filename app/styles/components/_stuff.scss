@@ -155,3 +155,13 @@ td .btn-group {
     }
   }
 }
+
+/**
+ * hacky fix because I can't figure out how to for real remove it from the
+ * impagniation dataset
+ */
+.action-summary {
+  &.dismissed {
+    display: none;
+  }
+}
