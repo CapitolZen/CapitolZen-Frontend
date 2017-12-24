@@ -1,8 +1,10 @@
 import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  media: service(),
   sort: 'state_id',
   recordType: 'bill',
   table: null,
@@ -17,6 +19,11 @@ export default Component.extend({
         .add(1, 'second') //makes the query include the current day
     }
   },
+
+  facetsToggled: false,
+  facetsCollapsed: computed('facetsToggled', function() {
+    return this.get('media').get('isMobile') && !this.get('facetsToggled');
+  }),
 
   tableOptions: {
     height: '90vh',
@@ -96,6 +103,9 @@ export default Component.extend({
   ],
 
   actions: {
+    toggleMobileFacets() {
+      this.toggleProperty('facetsToggled');
+    },
     /**
      * Post Table Setup Hook
      */
