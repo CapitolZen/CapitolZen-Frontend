@@ -27,7 +27,7 @@ export default Component.extend({
    * @param record
    * @returns {boolean}
    */
-  filterCallback(record, index, records) {
+  filterCallback(record) {
     return true;
   },
 
