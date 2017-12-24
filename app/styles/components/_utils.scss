@@ -24,3 +24,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.ember-light-table table {
+  @include media-breakpoint-only(xs) {
+    font-size: 0.7rem;
+  }
+}

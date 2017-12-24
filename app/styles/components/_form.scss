@@ -13,6 +13,10 @@
   }
   .form-group {
     margin-right: 10px;
+    @include media-breakpoint-only(xs) {
+      display: block;
+      width: 100%;
+    }
   }
   .table-filters-actions {
     margin-left: auto;
@@ -26,6 +30,16 @@
 
   .ember-basic-dropdown-trigger {
     width: 120px;
+  }
+}
+
+.filter-button-wrapper {
+  text-align: right;
+  width: 100%;
+  padding: 8px 0;
+  .btn {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
   }
 }
 
