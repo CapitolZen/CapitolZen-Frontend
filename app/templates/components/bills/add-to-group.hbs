@@ -12,27 +12,28 @@
 {{#bs-modal open=openModal onHidden=(action "closeModal") as |modal|}}
   {{#modal.header}}
     <h4 class="modal-title">
-      Add {{bill.stateId}} To:
+      Add {{title}} To:
     </h4>
   {{/modal.header}}
   {{#modal.body}}
 
     <div class="list-group">
-      {{#each groupList as |group|}}
-          <button class="list-group-item list-group-item-action {{if group.isSelected "active"}}" onclick={{perform addBillToGroup group}}>
-            {{#if group.isSelected}}
-              {{#if addBillToGroup.isRunning}}
-                {{ui/inline-loading}}
-              {{else}}
-                {{fa-icon "check"}}
-              {{/if}}
+      {{#each clients as |row|}}
+        <button class="list-group-item list-group-item-action {{if row.selected "active"}}"
+                onclick={{perform addBillsToClient row}}>
+          {{#if row.selected}}
+            {{#if addBillToGroup.isRunning}}
+              {{ui/inline-loading}}
             {{else}}
-              {{fa-icon "plus"}}
+              {{fa-icon "check"}}
             {{/if}}
-            {{group.title}}
-          </button>
+          {{else}}
+            {{fa-icon "plus"}}
+          {{/if}}
+          {{row.content.title}}
+        </button>
       {{else}}
-        {{#if listGroups.isRunning}}
+        {{#if fetchClients.isRunning}}
           {{ui/inline-loading}}
         {{else}}
           <span class="dropdown-item"><em>Bill saved for all clients</em></span>
@@ -41,6 +42,6 @@
     </div>
   {{/modal.body}}
   {{#modal.footer}}
-        {{#bs-button type="light" onClick=(action modal.close)}}Done{{/bs-button}}
+    {{#bs-button type="light" onClick=(action modal.close)}}Done{{/bs-button}}
   {{/modal.footer}}
 {{/bs-modal}}

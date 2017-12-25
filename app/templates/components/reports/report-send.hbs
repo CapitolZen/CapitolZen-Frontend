@@ -1,9 +1,9 @@
 {{#if send.isRunning}}
   {{ui/inline-loading}}
-{{/if}}
-{{#if hasBlock}}
-  {{yield}}
 {{else}}
-  Email
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    Email
+  {{/if}}
 {{/if}}
-
