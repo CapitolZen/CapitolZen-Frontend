@@ -6,13 +6,9 @@ Global page elements wrapper.
     <div class="col">
       <h1 class="page-title">{{uiGlobal.pageTitle}}</h1>
       <div class="text-muted page-desc">{{uiGlobal.pageDescription}}</div>
+      {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true crumbClass="breadcrumb-item"}}
     </div>
     <div class="col-auto page-header-actions" id="page-header-actions">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-    {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true crumbClass="breadcrumb-item"}}
     </div>
   </div>
 </div>

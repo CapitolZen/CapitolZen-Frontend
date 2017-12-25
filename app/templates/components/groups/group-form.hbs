@@ -5,7 +5,7 @@
       {{form.element controlType="textarea"  label="Description" property="description"}}
       {{form.element controlType="avatar"    label="Logo" property="avatar"}}
       {{#form.element controlType="power-select-multiple" label="Assigned To" property="assigned_to" options=assignedToOptions as |el|}}
-        {{#el.control as |item|}}
+        {{#el.control searchEnabled=false as |item|}}
           {{user/user-select-label user=item}}
         {{/el.control}}
       {{/form.element}}

@@ -1,10 +1,11 @@
 {{#bs-button type=buttonType size=buttonSize onClick=(action "openModal")}}
   {{#if listGroups.isRunning}}
-    {{ui/inline-loading}}
-  {{/if}}
-  {{fa-icon "bookmark-o"}}
-  {{#if displayText}}
-    {{buttonText}}
+    {{fa-icon "spinner" spin=true}}
+  {{else}}
+    {{fa-icon "bookmark-o"}}
+    {{#if displayText}}
+      {{buttonText}}
+    {{/if}}
   {{/if}}
 {{/bs-button}}
 
