@@ -3498,17 +3498,6 @@ ember-crumbly@^2.0.0-alpha.1:
     ember-cli-htmlbars "^1.1.0"
     ember-getowner-polyfill "^1.1.1"
 
-ember-data-model-fragments@^2.14.0:
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/ember-data-model-fragments/-/ember-data-model-fragments-2.14.0.tgz#f31a03cdcf2449eaaaf84e0996324bf6af6c7b8e"
-  dependencies:
-    broccoli-file-creator "^1.1.1"
-    broccoli-merge-trees "^2.0.0"
-    ember-cli-babel "^6.0.0"
-    exists-sync "^0.0.4"
-    git-repo-info "^1.4.1"
-    npm-git-info "^1.0.3"
-
 ember-data@2.17.0:
   version "2.17.0"
   resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-2.17.0.tgz#d952cf98d7461abf41ed6d248cf2a5836c623276"
@@ -6947,7 +6936,7 @@ normalize-path@^2.0.0, normalize-path@^2.0.1:
   dependencies:
     remove-trailing-separator "^1.0.1"
 
-npm-git-info@^1.0.0, npm-git-info@^1.0.3:
+npm-git-info@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/npm-git-info/-/npm-git-info-1.0.3.tgz#a933c42ec321e80d3646e0d6e844afe94630e1d5"
 

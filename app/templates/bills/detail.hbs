@@ -1,7 +1,7 @@
 {{ui-page-property model.bill.stateId property="title"}}
 
 {{#global/page-title-actions}}
-  {{bills/add-to-group bill=model.bill buttonType="primary"}}
+  {{bills/add-to-group bills=model.bill buttonType="primary"}}
 {{/global/page-title-actions}}
 
 {{#if (get model.bill "sponsor")}}

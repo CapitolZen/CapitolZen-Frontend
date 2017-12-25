@@ -8,11 +8,6 @@
 </div>
 
 {{#bs-nav class="user-menu-wrapper" type="" as |nav|}}
-  {{#nav.item}}
-    <a href="#" {{action (action (mut helpModal) true) on="click"}}>
-      {{fa-icon "question-circle"}} <span class="d-none d-md-inline"> Help</span>
-    </a>
-  {{/nav.item}}
   {{#nav.dropdown tagName="li" class="nav-item" as |dd|}}
     {{#dd.toggle}}
       {{user/user-avatar user=currentUser.user size=26}} <span class="d-none d-md-inline">{{currentUser.user.name}}</span>
@@ -48,8 +43,3 @@
   {{/nav.dropdown}}
 
 {{/bs-nav}}
-
-{{!--
-  Modals
---}}
-{{global/help-modal open=helpModal onHidden=(action (mut helpModal) false)}}
