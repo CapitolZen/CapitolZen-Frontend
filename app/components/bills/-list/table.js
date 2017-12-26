@@ -27,7 +27,8 @@ export default Component.extend({
 
   tableOptions: {
     height: '90vh',
-    canSelect: true
+    canSelect: true,
+    responsive: true
   },
 
   hasSelection: notEmpty('table.selectedRows'),
@@ -71,6 +72,12 @@ export default Component.extend({
 
   columns: [
     {
+      width: '40px',
+      sortable: false,
+      cellComponent: 'table/row-toggle',
+      breakpoints: ['mobile', 'tablet']
+    },
+    {
       label: 'Bill ID',
       valuePath: 'stateId',
       sortable: true,
@@ -92,7 +99,7 @@ export default Component.extend({
       label: 'Recent Activity',
       cellComponent: 'bills/-list/cell/status',
       sortable: false,
-      breakpoints: ['mobile', 'tablet', 'desktop']
+      breakpoints: ['tablet', 'desktop']
     },
     {
       label: 'Actions',

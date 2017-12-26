@@ -27,6 +27,10 @@
     {{/t.filter}}
   {{/bs-collapse}}
 
+  {{#t.expandedRow as |row|}}
+    {{table/responsive-table-row table=table row=row}}
+  {{/t.expandedRow}}
+
   {{#t.boxHeader}}
     <div class="row justify-content-end align-items-center">
       {{#if hasSelection}}
