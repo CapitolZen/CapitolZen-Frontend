@@ -107,6 +107,7 @@
     "ember-toggle": "^5.2.1",
     "ember-truth-helpers": "^2.0.0",
     "ember-uuid": "^1.0.0",
+    "ember-web-app": "^2.3.0",
     "ember-windoc": "^0.2.0",
     "ember-wormhole": "^0.5.2",
     "eslint-config-prettier": "^2.3.0",
