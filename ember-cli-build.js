@@ -3,6 +3,9 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
+    'ember-service-worker': {
+      versionStrategy: 'every-build'
+    },
     'ember-bootstrap': {
       importBootstrapCSS: false,
       importBootstrapTheme: false,
