@@ -84,16 +84,16 @@ export default Component.extend({
       width: '100px'
     },
     {
-      label: 'Sponsor',
-      valuePath: 'sponsor.fullName',
-      sortable: false,
-      breakpoints: ['mobile', 'tablet', 'desktop']
+      label: 'Summary',
+      valuePath: 'title',
+      breakpoints: ['desktop'],
+      cellClassNames: ['smaller-text']
     },
     {
-      label: 'Party',
-      valuePath: 'sponsor.party',
+      label: 'Sponsor',
+      cellComponent: 'bills/-list/cell/sponsor',
       sortable: false,
-      breakpoints: ['tablet', 'desktop']
+      breakpoints: ['mobile', 'tablet', 'desktop']
     },
     {
       label: 'Recent Activity',
