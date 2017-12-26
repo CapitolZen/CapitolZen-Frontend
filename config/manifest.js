@@ -15,9 +15,9 @@ module.exports = function(/* environment, appConfig */) {
     theme_color: '#006a59',
     icons: [
       {
-        src: '/assets/images/capitolzen_logo.svg',
-        sizes: '540x540',
-        type: 'image/svg+xml'
+        src: '/assets/images/logo-icon-192x192.png',
+        sizes: '192x192',
+        type: 'image/png'
       }
     ],
     ms: {
