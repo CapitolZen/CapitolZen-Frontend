@@ -72,6 +72,12 @@ export default Component.extend({
 
   columns: [
     {
+      width: '40px',
+      sortable: false,
+      cellComponent: 'table/row-toggle',
+      breakpoints: ['mobile', 'tablet']
+    },
+    {
       label: 'Bill ID',
       valuePath: 'stateId',
       sortable: true,
