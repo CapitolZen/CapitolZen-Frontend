@@ -11,7 +11,7 @@ module.exports = function(/* environment, appConfig */) {
     description: 'Enlightenment by Intuition',
     start_url: '/login',
     display: 'standalone',
-    background_color: '#fff',
+    background_color: '#006a59',
     theme_color: '#006a59',
     icons: [
       {
