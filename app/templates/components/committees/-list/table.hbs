@@ -4,4 +4,9 @@
   columns=columns
   tableOptions=tableOptions
   recordType=recordType as |t| }}
+
+  {{#t.expandedRow as |row|}}
+    {{table/responsive-table-row table=table row=row}}
+  {{/t.expandedRow}}
+
 {{/table/model-table}}
