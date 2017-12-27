@@ -34,8 +34,9 @@ export default Component.extend({
   }),
 
   tableOptions: {
-    height: '90vh',
-    canSelect: true
+    height: '65vh',
+    canSelect: true,
+    responsive: true
   },
 
   dateFilterOptions: ['introduced', 'active'],
@@ -71,6 +72,12 @@ export default Component.extend({
   ],
 
   columns: [
+    {
+      width: '40px',
+      sortable: false,
+      cellComponent: 'table/row-toggle',
+      breakpoints: ['mobile', 'tablet']
+    },
     {
       label: 'Bill ID',
       valuePath: 'bill.stateId',

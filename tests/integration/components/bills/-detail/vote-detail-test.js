@@ -2,8 +2,8 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent(
-  'bills/-list/cell/sponsor',
-  'Integration | Component | bills/ list/cell/sponsor',
+  'bills/-detail/vote-detail',
+  'Integration | Component | bills/ detail/vote detail',
   {
     integration: true
   }
@@ -13,7 +13,7 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{bills/-list/cell/sponsor}}`);
+  this.render(hbs`{{bills/-detail/vote-detail}}`);
 
   assert.equal(
     this.$()
@@ -24,9 +24,9 @@ test('it renders', function(assert) {
 
   // Template block usage:
   this.render(hbs`
-    {{#bills/-list/cell/sponsor}}
+    {{#bills/-detail/vote-detail}}
       template block text
-    {{/bills/-list/cell/sponsor}}
+    {{/bills/-detail/vote-detail}}
   `);
 
   assert.equal(

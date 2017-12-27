@@ -1,0 +1,36 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    <div class="row">
+      <div class="col-md-1">
+        {{vote.chamber}}
+      </div>
+      <div class="col col-md-11">
+        <div class="progress vote-progress">
+          {{#if breakdown.yes.percent}}
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{breakdown.yes.percent}}%">
+              {{breakdown.yes.label}}
+            </div>
+          {{/if}}
+
+          {{#if breakdown.no.percent}}
+            <div class="progress-bar bg-danger" role="progressbar" style="width: {{breakdown.no.percent}}%">
+              {{breakdown.no.label}}
+            </div>
+          {{/if}}
+
+          {{#if breakdown.other.percent}}
+            <div class="progress-bar bg-info" role="progressbar" style="width: {{breakdown.other.percent}}%">
+              {{breakdown.other.label}}
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/b.header}}
+  {{#b.body}}
+  <div>
+    {{vote.motion}}
+  </div>
+    <strong>Voted On:</strong> {{vote.date}} <br>
+  {{/b.body}}
+{{/ui/ui-box}}

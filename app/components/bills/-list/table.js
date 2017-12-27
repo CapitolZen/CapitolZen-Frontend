@@ -26,7 +26,7 @@ export default Component.extend({
   }),
 
   tableOptions: {
-    height: '90vh',
+    height: '65vh',
     canSelect: true,
     responsive: true
   },
