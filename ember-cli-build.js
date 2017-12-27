@@ -6,6 +6,9 @@ module.exports = function(defaults) {
     'ember-service-worker': {
       versionStrategy: 'every-build'
     },
+    'esw-index': {
+      version: '1'
+    },
     'ember-bootstrap': {
       importBootstrapCSS: false,
       importBootstrapTheme: false,
@@ -13,7 +16,7 @@ module.exports = function(defaults) {
       importBootstrapFont: false
     },
     sourcemaps: {
-      enabled: true
+      enabled: EmberApp.env() !== 'production'
     },
     'ember-cli-babel': {
       // disable comments
@@ -23,7 +26,7 @@ module.exports = function(defaults) {
       enabled: EmberApp.env() === 'production' || EmberApp.env() === 'qa'
     },
     'ember-font-awesome': {
-      removeUnusedIcons: false
+      removeUnusedIcons: EmberApp.env() === 'production'
     },
     'ember-power-select': {
       theme: 'bootstrap'
