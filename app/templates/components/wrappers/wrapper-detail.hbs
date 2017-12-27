@@ -67,14 +67,14 @@
               {{bills/doc-list docs=bill.documents class="mt-1"}}
             </div>
             <div class="col-md-6">
-              {{bills/bill-history bill=bill}}
+              {{bills/-detail/history bill=bill}}
 
             </div>
           </div>
           {{#if bill.votes}}
             <div class="row">
               <div class="col-md-12">
-                {{bills/vote-list votes=bill.votes}}
+                {{bills/-detail/vote-list votes=bill.votes}}
               </div>
             </div>
           {{/if}}

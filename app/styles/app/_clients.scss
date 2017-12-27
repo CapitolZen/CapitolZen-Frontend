@@ -55,11 +55,15 @@
       background: #fff;
       padding: 10px;
       display: flex;
+      align-items: center;
       .group-avatar {
         margin-right: 10px;
       }
       .group-info {
         flex: 1;
+      }
+      .group-actions {
+        width: 280px;
       }
     }
     @include make-col-ready();

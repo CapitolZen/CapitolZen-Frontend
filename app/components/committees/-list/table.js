@@ -5,9 +5,16 @@ export default Component.extend({
   dir: 'asc',
   sort: false,
   tableOptions: {
-    height: '90vh'
+    height: '65vh',
+    responsive: true
   },
   columns: [
+    {
+      width: '40px',
+      sortable: false,
+      cellComponent: 'table/row-toggle',
+      breakpoints: ['mobile', 'tablet']
+    },
     {
       label: 'Chamber',
       valuePath: 'chamber',

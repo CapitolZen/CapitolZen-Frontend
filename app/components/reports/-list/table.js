@@ -15,7 +15,18 @@ export default Component.extend({
     return query;
   }),
 
+  tableOptions: {
+    height: '65vh',
+    responsive: true
+  },
+
   columns: [
+    {
+      width: '40px',
+      sortable: false,
+      cellComponent: 'table/row-toggle',
+      breakpoints: ['mobile', 'tablet']
+    },
     {
       label: 'Title',
       valuePath: 'title'

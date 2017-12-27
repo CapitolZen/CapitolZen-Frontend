@@ -34,8 +34,9 @@ export default Component.extend({
   }),
 
   tableOptions: {
-    height: '90vh',
-    canSelect: true
+    height: '65vh',
+    canSelect: true,
+    responsive: true
   },
 
   dateFilterOptions: ['introduced', 'active'],
@@ -72,6 +73,12 @@ export default Component.extend({
 
   columns: [
     {
+      width: '40px',
+      sortable: false,
+      cellComponent: 'table/row-toggle',
+      breakpoints: ['mobile', 'tablet']
+    },
+    {
       label: 'Bill ID',
       valuePath: 'bill.stateId',
       sortable: true,
@@ -82,17 +89,22 @@ export default Component.extend({
       cellComponent: 'wrappers/-list/cell/position'
     },
     {
+      label: 'Summary',
+      valuePath: 'bill.title',
+      breakpoints: ['desktop'],
+      cellClassNames: ['smaller-text']
+    },
+    {
       label: 'Sponsor',
-      valuePath: 'bill.sponsor.fullName',
+      cellComponent: 'bills/-list/cell/sponsor',
       sortable: false,
-      breakpoints: ['tablet', 'desktop']
+      breakpoints: ['mobile', 'tablet', 'desktop']
     },
     {
       label: 'Recent Activity',
-      valuePath: 'bill.lastActionDate',
       cellComponent: 'bills/-list/cell/status',
-      sortable: true,
-      breakpoints: ['mobile', 'tablet', 'desktop']
+      sortable: false,
+      breakpoints: ['tablet', 'desktop']
     },
     {
       label: 'Actions',
@@ -103,6 +115,13 @@ export default Component.extend({
   ],
 
   actions: {
+    /**
+     * Post Table Setup Hook
+     */
+    postTableSetup(table) {
+      this.set('table', table);
+    },
+
     /**
      * Alter pojo represents query filtering before sending it over.
      * @param query

@@ -1,7 +1,6 @@
 <div class="btn-group btn-group-sm" role="group" aria-label="Bill Actions">
-  {{#link-to "reports.detail" row.id class="btn btn-primary btn-sm"}}
-    {{fa-icon "eye" class="d-block d-sm-none mt-1"}}
-    <span class="d-none d-sm-block">View</span>
+  {{#link-to "reports.detail" row.id class="btn btn-outline-secondary btn-sm"}}
+    {{fa-icon "eye"}}
   {{/link-to}}
   {{#reports/report-download report=row type="outline-secondary" size="btn-sm" class="d-none d-sm-block"}}
     {{fa-icon "cloud-download"}}

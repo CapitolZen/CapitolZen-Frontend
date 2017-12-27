@@ -26,7 +26,7 @@ export default Component.extend({
   }),
 
   tableOptions: {
-    height: '90vh',
+    height: '65vh',
     canSelect: true,
     responsive: true
   },
@@ -72,28 +72,22 @@ export default Component.extend({
 
   columns: [
     {
-      width: '40px',
-      sortable: false,
-      cellComponent: 'table/row-toggle',
-      breakpoints: ['mobile', 'tablet']
-    },
-    {
       label: 'Bill ID',
       valuePath: 'stateId',
       sortable: true,
       width: '100px'
     },
     {
-      label: 'Sponsor',
-      valuePath: 'sponsor.fullName',
-      sortable: false,
-      breakpoints: ['mobile', 'tablet', 'desktop']
+      label: 'Summary',
+      valuePath: 'title',
+      breakpoints: ['desktop'],
+      cellClassNames: ['smaller-text']
     },
     {
-      label: 'Party',
-      valuePath: 'sponsor.party',
+      label: 'Sponsor',
+      cellComponent: 'bills/-list/cell/sponsor',
       sortable: false,
-      breakpoints: ['tablet', 'desktop']
+      breakpoints: ['mobile', 'tablet', 'desktop']
     },
     {
       label: 'Recent Activity',
@@ -113,6 +107,7 @@ export default Component.extend({
     toggleMobileFacets() {
       this.toggleProperty('facetsToggled');
     },
+
     /**
      * Post Table Setup Hook
      */
