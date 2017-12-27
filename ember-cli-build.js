@@ -30,7 +30,8 @@ module.exports = function(defaults) {
       enabled: EmberApp.env() === 'production' || EmberApp.env() === 'qa'
     },
     'ember-font-awesome': {
-      removeUnusedIcons: EmberApp.env() === 'production'
+      // Keep false... doesn't work.
+      removeUnusedIcons: false
     },
     'ember-power-select': {
       theme: 'bootstrap'
