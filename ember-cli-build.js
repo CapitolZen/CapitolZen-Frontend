@@ -9,6 +9,10 @@ module.exports = function(defaults) {
     'esw-index': {
       version: '1'
     },
+    'asset-cache': {
+      include: ['assets/**/*', 'fonts/font-awesome.*'],
+      version: '2'
+    },
     'ember-bootstrap': {
       importBootstrapCSS: false,
       importBootstrapTheme: false,
