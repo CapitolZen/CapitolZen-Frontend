@@ -1,33 +1,39 @@
 {{#if (eq presentation "grid")}}
-<div class="card">
-  <div class="card-img-top">
-    {{ember-initials
-      image=group.avatar
-      name=group.title
-      defaultName="?"
-      seedText=group.title
-      textColor="white"
-      fontSize=45
-      fontWeight=100
-      fontFamily="Helvetica Neue Light, Arial, sans-serif"
-      size=140
-      class="img-thumbnail rounded-circle"
-    }}
+  <div class="card">
+    <div class="card-img-top">
+      {{ember-initials
+        image=group.avatar
+        name=group.title
+        defaultName="?"
+        seedText=group.title
+        textColor="white"
+        fontSize=45
+        fontWeight=100
+        fontFamily="Helvetica Neue Light, Arial, sans-serif"
+        size=140
+        class="img-thumbnail rounded-circle"
+      }}
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">
+        {{#link-to "groups.detail" group.id}}
+          {{group.title}}
+        {{/link-to}}
+      </h4>
+      <p class="card-text text-muted">
+        {{group.description}} <br/>
+        {{#if group.active}}
+          Active
+        {{else}}
+          Inactive
+        {{/if}}
+      </p>
+
+    </div>
+    <div class="card-footer">
+      {{ui/group-nav group=group view=true}}
+    </div>
   </div>
-  <div class="card-body">
-    <h4 class="card-title">
-      {{#link-to "groups.detail" group.id}}
-        {{group.title}}
-      {{/link-to}}
-    </h4>
-    {{#if group.description}}
-      <p class="card-text text-muted">{{group.description}}</p>
-    {{/if}}
-  </div>
-  <div class="card-footer">
-    {{ui/group-nav group=group view=true}}
-  </div>
-</div>
 {{else}}
   <div class="group-content d-flex justify-content-between">
     <div class="group-avatar">
