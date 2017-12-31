@@ -96,6 +96,8 @@ Router.map(function() {
   this.route('anon.register', { path: 'register' });
   this.route('anon.forgot-password', { path: 'forgot-password' });
   this.route('anon.reset-password', { path: '/reset/:token' });
+  this.route('anon.privacy', { path: 'privacy' });
+  this.route('anon.legal', { path: 'legal' });
 });
 
 export default Router;
