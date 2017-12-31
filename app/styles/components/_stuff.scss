@@ -79,6 +79,18 @@
 .user-summary {
   display: flex;
   align-items: center;
+
+  @include media-breakpoint-down('sm') {
+    flex-direction: column;
+    text-align: center;
+    > div {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   .user-info {
     flex: 1;
     padding: 0 1rem;
@@ -125,4 +137,35 @@
       padding: 0.375rem 0.75rem;
     }
   }
+}
+
+td .btn-group {
+  a,
+  .btn {
+    margin-left: 6px !important;
+    border-radius: $btn-border-radius !important;
+  }
+}
+
+.nav-tabs {
+  @include media-breakpoint-only('xs') {
+    .nav-item {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+  }
+}
+
+/**
+ * hacky fix because I can't figure out how to for real remove it from the
+ * impagniation dataset
+ */
+.action-summary {
+  &.dismissed {
+    display: none;
+  }
+}
+
+.smaller-text {
+  font-size: 0.85rem;
 }

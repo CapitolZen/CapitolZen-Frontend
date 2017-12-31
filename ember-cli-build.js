@@ -3,6 +3,16 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   const app = new EmberApp(defaults, {
+    'ember-service-worker': {
+      versionStrategy: 'every-build'
+    },
+    'esw-index': {
+      version: '1'
+    },
+    'asset-cache': {
+      include: ['assets/**/*', 'fonts/font-awesome.*'],
+      version: '2'
+    },
     'ember-bootstrap': {
       importBootstrapCSS: false,
       importBootstrapTheme: false,
@@ -10,7 +20,7 @@ module.exports = function(defaults) {
       importBootstrapFont: false
     },
     sourcemaps: {
-      enabled: true
+      enabled: EmberApp.env() !== 'production'
     },
     'ember-cli-babel': {
       // disable comments
@@ -20,6 +30,7 @@ module.exports = function(defaults) {
       enabled: EmberApp.env() === 'production' || EmberApp.env() === 'qa'
     },
     'ember-font-awesome': {
+      // Keep false... doesn't work.
       removeUnusedIcons: false
     },
     'ember-power-select': {

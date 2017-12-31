@@ -1,0 +1,16 @@
+<h5>History</h5>
+<ul class="timeline">
+  {{#each sortedHistory as |history|}}
+    <li>
+      <div class="timeline-badge">
+        {{fa-icon "rocket"}}
+      </div>
+      {{#ui/ui-box class="timeline-panel" as |b|}}
+        {{#b.body}}
+          <span>{{history.action}}</span> <br>
+          <small class="text-secondary">{{history.date}}</small>
+        {{/b.body}}
+      {{/ui/ui-box}}
+    </li>
+  {{/each}}
+</ul>

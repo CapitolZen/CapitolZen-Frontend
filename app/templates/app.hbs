@@ -8,29 +8,42 @@
     <ul>
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "dashboard"}}Dashboard{{/link-to}}
+        {{#link-to "dashboard"}}{{fa-icon "tachometer"}} Dashboard{{/link-to}}
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills"}}All Bills{{/link-to}}
+        {{#link-to "bills"}}{{fa-icon "file-text"}} All Bills{{/link-to}}
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "groups"}}Clients{{/link-to}}
+        {{#link-to "groups"}}{{fa-icon "address-book"}} Clients{{/link-to}}
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "reports"}}Reports{{/link-to}}
+        {{#link-to "reports"}}{{fa-icon "flag"}} Reports{{/link-to}}
       {{/menu.item}}
 
+      {{!--
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "bills.search"}}Search{{/link-to}}
+      {{/menu.item}}
+      --}}
+
+      {{!--
       {{#menu.item dismissOnClick=true}}
         {{#link-to "bills.saved"}}Saved Bills{{/link-to}}
       {{/menu.item}}
+      --}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "committees.index"}}Committees{{/link-to}}
+       {{#link-to "committees.index"}}{{fa-icon "calendar-check-o"}} Committees{{/link-to}}
       {{/menu.item}}
 
+      {{#menu.item dismissOnClick=true}}
+        <a href="#" {{action (action (mut helpModal) true) on="click"}}>
+          {{fa-icon "question-circle"}} <span>Help</span>
+        </a>
+      {{/menu.item}}
 
     </ul>
   {{/burger.menu}}
@@ -48,3 +61,9 @@
     {{global/app-footer}}
   {{/burger.outlet}}
 {{/burger-menu}}
+
+
+{{!--
+  Modals
+--}}
+{{global/help-modal open=helpModal onHidden=(action (mut helpModal) false)}}

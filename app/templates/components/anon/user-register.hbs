@@ -1,10 +1,20 @@
-{{#if (or submit.isRunning submit.last.isSuccessful)}}
-  <h4 class="text-center">
-    {{setupStep}}
-  </h4>
-  <div class="row justify-content-center">
-    {{ui/loading-animation}}
-  </div>
+{{#if media.isMobile}}
+  {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+      <h4 class="card-title">Register Now</h4>
+      {{form.element controlType="text" label="Your Name" placeholder="Your Name" property="name"}}
+      {{form.element controlType="text" label="Organization Name" placeholder="Organization Name"
+                     property="organization_name"}}
+      {{form.element controlType="email" label="Email" placeholder="Email" property="username"}}
+      {{form.element controlType="password" label="Password" placeholder="Password" property="password"
+                     helpText="Minimum 8 characters"}}
+      {{form.element controlType="password" label="Confirm" placeholder="Confirm Password" property="confirm_password"}}
+      {{form/changeset-form-submit block=true submit=submit loadingOnComplete=true defaultIcon="sign-in"
+                                   defaultText="Create Account"}}
+
+      <div class="login-help">
+        {{#link-to 'anon.login'}}I already have an account{{/link-to}}
+      </div>
+  {{/bs-form}}
 {{else}}
   {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
     <div class="card-body">
@@ -18,10 +28,10 @@
       {{form.element controlType="password" label="Confirm" placeholder="Confirm Password" property="confirm_password"}}
     </div>
     <div class="card-footer">
-      {{form/changeset-form-submit submit=submit loadingOnComplete=true defaultIcon="sign-in" defaultText="Create Account"}}
+      {{form/changeset-form-submit submit=submit loadingOnComplete=true defaultIcon="sign-in"
+                                   defaultText="Create Account"}}
       {{#link-to 'anon.login' class="btn btn-secondary pull-right"}}I already have an account{{/link-to}}
     </div>
   {{/bs-form}}
+
 {{/if}}
-
-

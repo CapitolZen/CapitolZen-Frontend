@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   presentation: 'grid',
   store: service(),
+  media: service(),
   currentUser: service('current-user'),
   filters: {
     title__icontains: '',
@@ -12,6 +13,11 @@ export default Component.extend({
     assigned_to: null,
     assigned_to_other: null
   },
+
+  facetsToggled: false,
+  facetsCollapsed: computed('facetsToggled', function() {
+    return this.get('media').get('isMobile') && !this.get('facetsToggled');
+  }),
 
   assignedToOptions: computed(function() {
     return this.get('store').findAll('user');
@@ -24,6 +30,9 @@ export default Component.extend({
   },
 
   actions: {
+    toggleMobileFacets() {
+      this.toggleProperty('facetsToggled');
+    },
     filter() {
       this._resetDataset();
     },

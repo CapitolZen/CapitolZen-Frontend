@@ -14,6 +14,9 @@
 }
 
 .lt-body {
+  td {
+    vertical-align: middle;
+  }
   .lt-row {
     //padding: ($spacer-y *.5) ($spacer-x * .5) !important;
 

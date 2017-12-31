@@ -3,6 +3,7 @@
   sort=sort
   columns=columns
   tableOptions=tableOptions
+  postTableSetup=(action "postTableSetup")
   recordQuery=defaultRecordQuery
   recordType=recordType as |t| }}
 
@@ -15,5 +16,9 @@
       {{filter.element controlType="baremetrics" options=(hash presets=dateFilterPresents) property="daterange"}}
     {{/t.filter}}
   {{/if}}
+
+  {{#t.expandedRow as |row|}}
+    {{table/responsive-table-row table=table row=row}}
+  {{/t.expandedRow}}
 
 {{/table/model-table}}

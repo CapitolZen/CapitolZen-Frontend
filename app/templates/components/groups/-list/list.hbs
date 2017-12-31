@@ -1,43 +1,56 @@
 <div class="row">
-  <div class="col-sm-4 col-lg-3 col-xl-2  client-facet-wrapper">
-    <div class="client-facet">
-      <h6>View As:</h6>
-      {{#bs-button-group value=presentation type="radio" onChange=(action (mut presentation)) as |bg|}}
-        {{#bg.button type="default" value="grid"}}{{fa-icon "th"}}{{/bg.button}}
-        {{#bg.button type="default" value="list"}}{{fa-icon "bars"}}{{/bg.button}}
-      {{/bs-button-group}}
-    </div>
-    <div class="client-facet">
-      <h6>Filter:</h6>
-      {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
-        {{form.element label="Client Name" controlType="text" property="title__icontains"}}
-        {{#form.element label="Is Active" property="active" useIcons=false as |el|}}
-          {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
-            {{#bg.button type="default" value=1}}Active{{/bg.button}}
-            {{#bg.button type="default" value=0}}Inactive{{/bg.button}}
-            {{#bg.button type="default" value=null}}Any{{/bg.button}}
-          {{/bs-button-group}}
-        {{/form.element}}
-        {{#form.element label="Assigned To" property="assigned_to" useIcons=false as |el|}}
-          {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio" onChange=(action (mut el.value)) as |bg|}}
-            {{#bg.button type="default" value="me"}}Me{{/bg.button}}
-            {{#bg.button type="default" value="other"}}Other{{/bg.button}}
-            {{#bg.button type="default" value=null}}Any{{/bg.button}}
-          {{/bs-button-group}}
-        {{/form.element}}
-        {{#if (eq filters.assigned_to "other")}}
-          {{#form.element controlType="power-select" label="Other..." property="assigned_to_other" options=assignedToOptions as |el|}}
-            {{#el.control as |item|}}
-              {{user/user-select-label user=item}}
-            {{/el.control}}
-          {{/form.element}}
-        {{/if}}
-        <div class="client-facet-submit">
-          {{bs-button class="btn-block" defaultText="Filter" pendingText="Saving..." type="success" buttonType="submit"}}
-        </div>
-      {{/bs-form}}
-    </div>
 
+  {{#if media.isMobile}}
+    <div class="filter-button-wrapper">
+      {{#bs-button type="primary" onClick=(action "toggleMobileFacets")}}
+        Filters {{fa-icon "caret-down"}}
+      {{/bs-button}}
+    </div>
+  {{/if}}
+  <div id="client-facet-wrapper" class="col-sm-4 col-lg-3 col-xl-2 client-facet-wrapper">
+    {{#bs-collapse collapsed=facetsCollapsed}}
+      <div class="client-facet">
+        <h6>View As:</h6>
+        {{#bs-button-group value=presentation type="radio" onChange=(action (mut presentation)) as |bg|}}
+          {{#bg.button type="default" value="grid"}}{{fa-icon "th"}}{{/bg.button}}
+          {{#bg.button type="default" value="list"}}{{fa-icon "bars"}}{{/bg.button}}
+        {{/bs-button-group}}
+      </div>
+      <div class="client-facet">
+        <h6>Filter:</h6>
+        {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
+          {{form.element label="Client Name" controlType="text" property="title__icontains"}}
+          {{#form.element label="Is Active" property="active" useIcons=false as |el|}}
+            {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
+                               onChange=(action (mut el.value)) as |bg|}}
+              {{#bg.button type="default" value=1}}Active{{/bg.button}}
+              {{#bg.button type="default" value=0}}Inactive{{/bg.button}}
+              {{#bg.button type="default" value=null}}Any{{/bg.button}}
+            {{/bs-button-group}}
+          {{/form.element}}
+          {{#form.element label="Assigned To" property="assigned_to" useIcons=false as |el|}}
+            {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
+                               onChange=(action (mut el.value)) as |bg|}}
+              {{#bg.button type="default" value="me"}}Me{{/bg.button}}
+              {{#bg.button type="default" value="other"}}Other{{/bg.button}}
+              {{#bg.button type="default" value=null}}Any{{/bg.button}}
+            {{/bs-button-group}}
+          {{/form.element}}
+          {{#if (eq filters.assigned_to "other")}}
+            {{#form.element controlType="power-select" label="Other..." property="assigned_to_other"
+                            options=assignedToOptions as |el|}}
+              {{#el.control as |item|}}
+                {{user/user-select-label user=item}}
+              {{/el.control}}
+            {{/form.element}}
+          {{/if}}
+          <div class="client-facet-submit">
+            {{bs-button class="btn-block" defaultText="Filter" pendingText="Saving..." type="success"
+                        buttonType="submit"}}
+          </div>
+        {{/bs-form}}
+      </div>
+    {{/bs-collapse}}
   </div>
   <div class="col-sm-8 col-lg-9 col-xl-10">
     <div class="row">

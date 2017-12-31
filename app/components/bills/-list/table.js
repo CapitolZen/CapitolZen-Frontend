@@ -1,8 +1,10 @@
 import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  media: service(),
   sort: 'state_id',
   recordType: 'bill',
   table: null,
@@ -18,9 +20,15 @@ export default Component.extend({
     }
   },
 
+  facetsToggled: false,
+  facetsCollapsed: computed('facetsToggled', function() {
+    return this.get('media').get('isMobile') && !this.get('facetsToggled');
+  }),
+
   tableOptions: {
-    height: '90vh',
-    canSelect: true
+    height: '65vh',
+    canSelect: true,
+    responsive: true
   },
 
   hasSelection: notEmpty('table.selectedRows'),
@@ -64,28 +72,34 @@ export default Component.extend({
 
   columns: [
     {
-      label: 'State ID',
+      width: '40px',
+      sortable: false,
+      cellComponent: 'table/row-toggle',
+      breakpoints: ['mobile', 'tablet']
+    },
+    {
+      label: 'Bill ID',
       valuePath: 'stateId',
       sortable: true,
       width: '100px'
     },
     {
+      label: 'Summary',
+      valuePath: 'title',
+      breakpoints: ['desktop'],
+      cellClassNames: ['smaller-text']
+    },
+    {
       label: 'Sponsor',
-      valuePath: 'sponsor.fullName',
+      cellComponent: 'bills/-list/cell/sponsor',
       sortable: false,
       breakpoints: ['mobile', 'tablet', 'desktop']
     },
     {
-      label: 'Party',
-      valuePath: 'sponsor.party',
-      sortable: false,
-      breakpoints: ['tablet', 'desktop']
-    },
-    {
-      label: 'Last Action',
+      label: 'Recent Activity',
       cellComponent: 'bills/-list/cell/status',
       sortable: false,
-      breakpoints: ['mobile', 'tablet', 'desktop']
+      breakpoints: ['tablet', 'desktop']
     },
     {
       label: 'Actions',
@@ -96,6 +110,10 @@ export default Component.extend({
   ],
 
   actions: {
+    toggleMobileFacets() {
+      this.toggleProperty('facetsToggled');
+    },
+
     /**
      * Post Table Setup Hook
      */

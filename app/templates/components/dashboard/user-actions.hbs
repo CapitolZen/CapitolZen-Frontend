@@ -1,0 +1,35 @@
+{{#impagination-dataset
+  fetch=(action "fetch")
+  on-observe=(action "observeDataset")
+  on-init=(action 'initializeReadOffset')
+  filter=filterCallback
+  load-horizon=10
+  page-size=pageSize
+as |records|}}
+  {{#if records}}
+    {{#each records as |record index|}}
+      {{#if record.content}}
+        {{actions/action-view listComponent=this model=record.content}}
+      {{/if}}
+    {{/each}}
+    {{in-viewport did-enter=(action records.setReadOffset records.length)}}
+    <button style="display:none; visibility:hidden"></button>
+  {{else}}
+    {{#ui/ui-box class="w-100" as |b|}}
+      {{#b.header class="text-white bg-success"}}
+        All Caught Up!
+      {{/b.header}}
+      {{#b.body}}
+        <h4 class="card-title">
+          No New Actions</h4>
+        <p class="card-text">
+          Nothing to review here. We'll email you when there's something new to report.</p>
+      {{/b.body}}
+    {{/ui/ui-box}}
+  {{/if}}
+
+  {{#if isLoading}}
+    {{ui/loading-animation}}
+  {{/if}}
+
+{{/impagination-dataset}}

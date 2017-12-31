@@ -1,3 +1,13 @@
+{{#if media.isMobile}}
+  <div class="row">
+    <div class="filter-button-wrapper">
+      {{#bs-button type="primary" onClick=(action "toggleMobileFacets")}}
+        Filters {{fa-icon "caret-down"}}
+      {{/bs-button}}
+    </div>
+  </div>
+{{/if}}
+
 {{#table/model-table
   dir=dir
   sort=sort
@@ -6,19 +16,30 @@
   tableOptions=tableOptions
   recordType=recordType as |t| }}
 
-  {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
-    {{filter.element label="Search" controlType="text" property="search"}}
-    {{#filter.element label="Date Range" controlType="power-select" property="date_filter_type" options=dateFilterOptions as |el|}}
-      {{el.control searchEnabled=false}}
-    {{/filter.element}}
-    {{filter.element controlType="baremetrics" options=(hash presets=dateFilterPresents) property="daterange"}}
-  {{/t.filter}}
+  {{#bs-collapse collapsed=facetsCollapsed}}
+    {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
+      {{filter.element label="Search" controlType="text" property="search"}}
+      {{#filter.element label="Date Range" controlType="power-select" property="date_filter_type"
+                        options=dateFilterOptions as |el|}}
+        {{el.control searchEnabled=false}}
+      {{/filter.element}}
+      {{filter.element controlType="baremetrics" options=(hash presets=dateFilterPresents) property="daterange"}}
+    {{/t.filter}}
+  {{/bs-collapse}}
+
+  {{#t.expandedRow as |row|}}
+    {{table/responsive-table-row table=table row=row}}
+  {{/t.expandedRow}}
 
   {{#t.boxHeader}}
     <div class="row justify-content-end align-items-center">
       {{#if hasSelection}}
         {{fa-icon "check-square-o" click=(action "deselectAll") class="pull-left"}}
-        {{bills/add-to-group fullWidth=false billList=selectedRows buttonText="Save Selected" billAdded=(action "deselectAll") class="mr-3"}}
+        {{bills/add-to-group
+          fullWidth=false
+          bills=selectedRows
+          buttonText="Save Selected"
+          billAdded=(action "deselectAll") class="mr-3"}}
       {{else}}
         {{fa-icon "square-o" click=(action "selectAll") class="mr-3"}}
       {{/if}}

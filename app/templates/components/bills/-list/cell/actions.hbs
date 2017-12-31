@@ -1,4 +1,4 @@
 <div class="btn-group btn-group-sm mr-3" role="group" aria-label="Bill Actions">
-  {{#link-to "bills.detail" row.id class="btn btn-primary btn-sm"}}View{{/link-to}}
-  {{bills/add-to-group bill=row.content buttonSize="sm" displayText=false menuAlign="right"}}
+  {{#link-to "bills.detail" row.id class="btn btn-outline-secondary btn-sm"}}{{fa-icon "eye"}}{{/link-to}}
+  {{bills/add-to-group bills=row.content buttonSize="sm" displayText=false menuAlign="right"}}
 </div>
