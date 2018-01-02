@@ -44,8 +44,10 @@
     {{/modal.header}}
     {{#modal.body}}
       <dl>
-        <dt>Time</dt>
+        <dt>Start Time</dt>
         <dd>{{moment-format selectedEventModel.start "MMM D - h:mm a"}}</dd>
+        <dt>End Time</dt>
+        <dd>{{moment-format selectedEventModel.end "MMM D - h:mm a"}}</dd>
         <dt>Location</dt>
         {{selectedEventModel.locationText}}
         <dt>Agenda</dt>

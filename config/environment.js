@@ -23,6 +23,7 @@ module.exports = function(environment) {
     },
     moment: {
       outputFormat: 'MMMM Do YYYY',
+      includeTimezone: 'all',
       allowEmpty: true
     }
   };
