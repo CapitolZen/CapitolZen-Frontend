@@ -29,10 +29,10 @@ export default DS.Model.extend({
     return map[get(this, 'eventType')];
   }),
   start: computed('time', function() {
-    return moment(get(this, 'time'));
+    return moment(get(this, 'time'), 'YYYY-MM-DDTHH:mm:ssZZ');
   }),
   end: computed('time', function() {
-    let start = get(this, 'start');
+    let start = moment(get(this, 'time'), 'YYYY-MM-DDTHH:mm:ssZZ');
     return start.add(90, 'minutes');
   }),
   descriptionHtml: computed('description', function() {
