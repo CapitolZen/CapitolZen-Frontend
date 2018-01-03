@@ -1,0 +1,13 @@
+<nav class="navbar justify-content-center navbar-light bg-white">
+  <ul class="nav">
+    <li class="nav-item">
+      <a href="/" class="nav-link">Copyright {{moment-format (now) "YYYY"}} Capitol Zen</a>
+    </li>
+    <li class="nav-item">
+      {{#link-to "anon.legal" class="nav-link"}}Subscription Agreement{{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to "anon.privacy" class="nav-link"}}Privacy Policy{{/link-to}}
+    </li>
+  </ul>
+</nav>

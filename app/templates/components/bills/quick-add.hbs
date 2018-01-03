@@ -1,0 +1,28 @@
+{{#basic-dropdown as |dd|}}
+  {{#dd.trigger class="btn btn-outline-secondary ml-1"}}
+    {{fa-icon "search-plus"}} Add Bill
+  {{/dd.trigger}}
+  {{#dd.content class="dropdown-menu show"}}
+    <div class="p-2" style="min-width: 250px">
+      Select Bill
+      {{#power-select
+        search=(perform searchBills)
+        selected=selected
+        onchange=(action (mut selected))
+        renderInPlace=true
+      as |bill|}}
+        {{bill.stateId}} {{bill.sponsor.fullName}}
+      {{/power-select}}
+
+      {{#bs-button disabled=isDisabled onClick=(action "saveBill") class="btn btn-primary mt-1"}}
+        {{#if createWrapper.isRunning}}
+          {{ui/inline-loading}} Saving...
+        {{else}}
+          {{fa-icon "save"}} Save To Client
+        {{/if}}
+      {{/bs-button}}
+
+    </div>
+
+  {{/dd.content}}
+{{/basic-dropdown}}
