@@ -10,6 +10,7 @@ import { all } from 'rsvp';
 export default Component.extend({
   store: service(),
   media: service(),
+  features: service(),
   currentUser: service(),
   flashMessages: service(),
   classNameBindings: ['fullWidth:w-100'],
@@ -32,10 +33,13 @@ export default Component.extend({
   fullWidth: true,
   buttonSize: false,
   displayText: true,
-  buttonText: 'Add to Client',
   buttonType: 'outline-secondary',
   menuAlign: 'right',
   isMobile: alias('media.isMobile'),
+  buttonText: alias('defaultButtonText'),
+  defaultButtonText: computed(function() {
+    return `Add To ${this.features.clientLabel}`;
+  }),
 
   title: computed('internalBills', function() {
     let bills = this.get('internalBills');
