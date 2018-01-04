@@ -8,6 +8,8 @@ export default CurrentUser.extend({
   intercom: service(),
   metrics: service(),
   raven: service(),
+  features: service(),
+
   didSetupUser(user) {
     this.update();
     let data = {
@@ -16,7 +18,12 @@ export default CurrentUser.extend({
     };
     get(this, 'raven').callRaven('setUserContext', [data]);
   },
-  didSetupOrganization() {
+
+  didSetupOrganization(organization) {
+    let clientLabel = organization.get('clientLabel'),
+      clientLabelPlural = organization.get('clientLabelPlural');
+    set(this, 'features.clientLabel', clientLabel);
+    set(this, 'features.clientLabelPlural', clientLabelPlural);
     this.update();
   },
 

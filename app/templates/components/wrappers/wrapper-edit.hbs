@@ -4,7 +4,7 @@
       Danger Zone
     {{/b.header}}
     {{#b.body}}
-      {{#form.element property="group" label="Client" as |el|}}
+      {{#form.element property="group" label=feature.clientLabel as |el|}}
         {{#power-select options=groups searchField="title" selected=el.value onchange=(action (mut el.value)) as |group|}}
           {{group.title}}
         {{/power-select}}

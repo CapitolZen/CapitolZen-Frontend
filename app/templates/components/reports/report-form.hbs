@@ -5,7 +5,7 @@
       {{#ui/ui-box as |b|}}
         {{#b.body}}
 
-          {{#form.element label="Client" property="group" as |el|}}
+          {{#form.element label=features.clientLabel property="group" as |el|}}
             {{#power-select
               options=groups
               selected=selectedGroup
@@ -52,7 +52,7 @@
             {{/form.element}}
 
           {{else}}
-            Select Client to continue
+            Select {{features.clientLabel}} to continue
           {{/if}}
 
         {{/b.body}}

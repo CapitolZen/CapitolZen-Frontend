@@ -47,7 +47,7 @@ export default Component.extend({
       keyend: '_title__icontains'
     },
     {
-      label: 'Client Position',
+      label: 'Position',
       component: 'tools/-query/client-position',
       keyend: 'position'
     }

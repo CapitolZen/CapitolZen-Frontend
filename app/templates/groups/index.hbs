@@ -1,8 +1,8 @@
-{{ui-page-property "Clients" property="title"}}
+{{ui-page-property features.clientLabelPlural property="title"}}
 
 {{#global/page-title-actions}}
   {{#link-to "groups.add" class="btn btn-primary"}}
-    {{fa-icon "plus"}} Add Client
+    {{fa-icon "plus"}} Add {{features.clientLabel}}
   {{/link-to}}
   {{#link-to "bills.add" class="btn btn-primary"}}
     {{fa-icon "plus-square"}} Add Draft

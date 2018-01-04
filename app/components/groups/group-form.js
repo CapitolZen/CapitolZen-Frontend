@@ -25,7 +25,7 @@ export default FormComponent.extend({
    * Success
    */
   onSubmitSuccess() {
-    get(this, 'flashMessages').success('Client Saved');
+    get(this, 'flashMessages').success(`${get(this, 'features.clientLabel')}`);
     get(this, 'router').transitionTo('groups.index');
   },
 
