@@ -9,11 +9,9 @@ import { US_STATES } from 'common/constants';
 export default FormComponent.extend({
   flashMessages: service(),
   validator: OrganizationValidations,
-
   states: computed(function() {
     return US_STATES;
   }),
-
   model: computed(function() {
     return get(this, 'organization');
   }),
