@@ -2,7 +2,7 @@ import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 export default Route.extend({
   breadCrumb: {
-    title: 'Clients'
+    title: this.features.clientLabelPlural
   },
 
   model(params) {

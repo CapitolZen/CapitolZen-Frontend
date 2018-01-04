@@ -17,5 +17,8 @@ export default DS.Model.extend({
   billing_zip_code: DS.attr('string'),
   planType: DS.attr('string'),
   avatar: DS.attr('string'),
-  available_states: DS.attr()
+  available_states: DS.attr(),
+  features: DS.attr(),
+  clientLabel: DS.attr('string'),
+  clientLabelPlural: DS.attr('string')
 });

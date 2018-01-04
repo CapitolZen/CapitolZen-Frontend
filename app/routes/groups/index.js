@@ -5,7 +5,7 @@ import { A } from '@ember/array';
 
 export default Route.extend(AuthenticatedRouteMixin, {
   breadCrumb: {
-    title: 'Clients'
+    title: this.features.clientLabelPlural
   },
   model() {
     return this.store.findAll('group', { filter: { sort: 'title' } });
