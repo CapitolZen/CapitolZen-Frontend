@@ -36,7 +36,7 @@
         {{#if fetchClients.isRunning}}
           {{ui/inline-loading}}
         {{else}}
-          <span class="dropdown-item"><em>Bill saved for all clients</em></span>
+          <span class="dropdown-item"><em>Bill saved for all <span class="lowercase">{{features.clientLabelPlural}}</span></em></span>
         {{/if}}
       {{/each}}
     </div>

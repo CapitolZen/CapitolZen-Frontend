@@ -29,5 +29,7 @@ export default {
   ],
   billing_city: validatePresence({ presence: true }),
   */
-  features: validateLength({ allowBlank: true })
+  features: validateLength({ allowBlank: true }),
+  clientLabel: [validateLength({ min: 1 })],
+  clientLabelPlural: [validateLength({ min: 1 })]
 };

@@ -2,9 +2,8 @@ import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 export default Route.extend({
   breadCrumb: {
-    title: 'Clients'
+    title: 'clients'
   },
-
   model(params) {
     return this.store.findRecord('group', params.id);
   },

@@ -7,10 +7,23 @@ import { A } from '@ember/array';
 export default CurrentUser.extend({
   intercom: service(),
   metrics: service(),
-  didSetupUser() {
+  raven: service(),
+  features: service(),
+
+  didSetupUser(user) {
     this.update();
+    let data = {
+      email: get(user, 'username'),
+      id: get(user, 'id')
+    };
+    get(this, 'raven').callRaven('setUserContext', [data]);
   },
-  didSetupOrganization() {
+
+  didSetupOrganization(organization) {
+    let clientLabel = organization.get('clientLabel'),
+      clientLabelPlural = organization.get('clientLabelPlural');
+    set(this, 'features.clientLabel', clientLabel);
+    set(this, 'features.clientLabelPlural', clientLabelPlural);
     this.update();
   },
 

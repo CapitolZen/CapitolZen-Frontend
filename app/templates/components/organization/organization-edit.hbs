@@ -17,6 +17,11 @@
           {{/bs-button-group}}
         {{/form.element}}
       </fieldset>
+      <fieldset>
+        <legend>Settings</legend>
+        {{form.element property="clientLabel" controlType="text" label="Client Label"}}
+        {{form.element property="clientLabelPlural" controlType="text" label="Plural Client Label"}}
+      </fieldset>
     {{/b.body}}
     {{#b.footer}}
       {{form/changeset-form-submit submit=submit loadingText="Saving..." defaultIcon="hdd-o" defaultText="Save Organization"}}

@@ -1,5 +1,8 @@
 <div class="footer">
-  Copyright 2017 - Capitol Zen
+  <span class="mx-2">Copyright {{moment-format (now) "YYYY"}} Capitol Zen</span>
+
+  {{#link-to "anon.legal" class="mx-2"}}Terms{{/link-to}}
+  {{#link-to "anon.privacy" class="mx-2"}}Privacy{{/link-to}}
 </div>
 
 

@@ -1,12 +1,12 @@
 {{#unless isEditing}}
-  Client Position: <span class="text-capitalize">{{position}}</span>
+  {{features.clientLabel}} Position: <span class="text-capitalize">{{position}}</span>
   <div class="btn-group">
     {{#bs-button type="outline-secodnary" size="sm" onClick=(action (mut isEditing) true)}}
       Edit
     {{/bs-button}}
   </div>
 {{else}}
-  <h6>Select By Client Position</h6>
+  <h6>Select By {{features.clientLabel}} Position</h6>
   {{#bs-form onSubmit=(action "save") model=value as |form|}}
     {{#form.element property="position" as |el|}}
       {{#bs-button-group
