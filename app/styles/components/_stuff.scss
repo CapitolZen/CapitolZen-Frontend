@@ -169,3 +169,44 @@ td .btn-group {
 .smaller-text {
   font-size: 0.85rem;
 }
+
+.form-group-info {
+  label {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .form-group-info-content {
+    font-size: 0.85rem;
+  }
+}
+
+//
+// Subscription Styling
+//////////////////////////////////////////
+.subscription-plan {
+  .subscription-icon {
+    padding: 2rem;
+    text-align: center;
+    i {
+      font-size: 4rem;
+    }
+  }
+  .card-title {
+    text-align: center;
+  }
+  .plan-points {
+    margin: 0.5rem;
+  }
+  .plan-cost {
+    text-align: center;
+    font-weight: bold;
+  }
+  .plan-action {
+    text-align: center;
+    padding: 0.5rem 0 0 0;
+  }
+
+  &.selected {
+    border-color: $primary;
+  }
+}

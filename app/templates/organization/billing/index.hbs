@@ -1,0 +1,27 @@
+{{ui-page-property "Billing" property="title"}}
+{{log model.billing}}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="row row-flex">
+      <div class="col-md-6">
+        {{organization/-billing/info-summary model=model}}
+      </div>
+      <div class="col-md-6">
+        {{organization/-billing/subscription-summary model=model}}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Thank you!</h1>
+    <p class="lead">
+      Thank you so much for trying out Capitol Zen during our beta period.
+    </p>
+    <p>We appreciate your feedback. If you have any feedback - good, bad, or indifferent - we want to talk!</p>
+    <p>{{#intercom-button class="btn btn-outline-primary btn-large"}}Let us know!{{/intercom-button}}</p>
+    <p>Want to talk live? Give Donald a call at 989-859-6392.</p>
+  </div>
+</div>

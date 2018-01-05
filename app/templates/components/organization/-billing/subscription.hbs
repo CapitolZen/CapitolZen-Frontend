@@ -1,0 +1,25 @@
+<h2 class="text-center">Plans</h2>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="card-deck">
+      {{#each plans as |plan|}}
+        {{organization/-billing/subscription-plan plan=plan parentComponent=this}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{#if canChangePlan}}
+  <div class="row mt-4">
+    <div class="col-md-6 offset-md-3">
+      {{#ui/ui-box as |b|}}
+        {{#b.body class="text-right"}}
+          {{#bs-button type="primary" icon="glyphicon glyphicon-download" onClick=(action "changeSubscription")}}
+            {{fa-icon "arrow-right"}} Confirm & Update Subscription
+          {{/bs-button}}
+        {{/b.body}}
+      {{/ui/ui-box}}
+    </div>
+  </div>
+{{/if}}

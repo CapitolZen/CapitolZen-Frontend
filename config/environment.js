@@ -38,7 +38,9 @@ module.exports = function(environment) {
   };
 
   ENV.junkDrawer = {
-    defaultPageTitle: 'Capitol Zen'
+    defaultPageTitle: 'Capitol Zen',
+    enableIntercom: false,
+    enableFeatures: false
   };
 
   ENV.metricsAdapters = [
@@ -57,6 +59,10 @@ module.exports = function(environment) {
 
   ENV['ember-full-story'] = {
     org: '6KYSM'
+  };
+
+  ENV['stripe'] = {
+    key: 'pk_test_2Ft7dlWczuYcNEc6LUtHqcZ9'
   };
 
   if (environment === 'development') {
@@ -103,6 +109,8 @@ module.exports = function(environment) {
       appId: 'lqg6n3a1'
     };
 
+    ENV['stripe']['key'] = 'pk_live_F783PWGxgNCDtyVXYp0NMDQu';
+
     ENV.contentSecurityPolicy = {
       'script-src': "'self' 'unsafe-inline' cdn.ravenjs.com",
       'connect-src': "'self' http://localhost:* app.getsentry.com",
@@ -138,11 +146,6 @@ module.exports = function(environment) {
     headers: {
       Accept: '*/*'
     }
-  };
-
-  ENV['ember-junkdrawer'] = {
-    enableIntercom: false,
-    enableFeatures: false
   };
 
   return ENV;

@@ -1,0 +1,39 @@
+<div class="card-body">
+  <div class="subscription-icon">
+    {{fa-icon plan.icon}}
+  </div>
+  <h5 class="card-title">{{plan.name}}</h5>
+
+  <ul>
+    {{#each plan.points as |note|}}
+      <ul> {{fa-icon "check-circle-o"}} {{note}}</ul>
+    {{/each}}
+  </ul>
+
+  <div class="plan-cost">
+    {{plan.cost}}
+  </div>
+
+  <div class="plan-action">
+    {{#if isCurrentPlan}}
+      {{#if (eq isCurrentPlan isSelectedPlan)}}
+        {{#bs-button type="primary" disabled=true}}
+          Current Plan
+        {{/bs-button}}
+      {{else}}
+        {{#bs-button type="primary" onClick=(action "selectPlan" plan.id)}}
+          Select
+        {{/bs-button}}
+      {{/if}}
+
+    {{else if isSelectedPlan}}
+      {{#bs-button type="primary" disabled=true}}
+        New Plan
+      {{/bs-button}}
+    {{else}}
+      {{#bs-button type="primary" onClick=(action "selectPlan" plan.id)}}
+        Select
+      {{/bs-button}}
+    {{/if}}
+  </div>
+</div>
