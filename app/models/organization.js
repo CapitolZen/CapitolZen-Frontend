@@ -30,5 +30,9 @@ export default DS.Model.extend({
   updatesubscription: memberAction({
     path: 'update_subscription/',
     type: 'POST'
+  }),
+  updatesource: memberAction({
+    path: 'update_source/',
+    type: 'POST'
   })
 });

@@ -1,0 +1,16 @@
+{{#stripe-card options=options as |stripeElement stripeError|}}
+  {{#ui/ui-box as |b|}}
+    {{#b.header}}
+      Update Card
+    {{/b.header}}
+    {{#b.body}}
+      <div role="mount-point" class="form-control"></div>
+      {{#if stripeError}}
+        <p class="error">{{stripeError.message}}</p>
+      {{/if}}
+    {{/b.body}}
+    {{#b.footer}}
+      {{bs-button defaultText="Save Card" type="primary" onClick=(action "submit" stripeElement)}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
+{{/stripe-card}}

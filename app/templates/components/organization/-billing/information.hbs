@@ -1,8 +1,9 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
   {{#ui/ui-box as |b|}}
+    {{#b.header}}
+      Billing Contact Information
+    {{/b.header}}
     {{#b.body}}
-    <fieldset>
-      <legend>Billing Info</legend>
       {{form.element label="Billing Contact Name" controlType="text" property="billing_name"}}
       {{form.element label="Billing Email" controlType="text" property="billing_email"}}
       {{form.element label="Billing Phone" controlType="text" property="billing_phone"}}
@@ -21,10 +22,10 @@
           </div>
         </div>
       {{/form.group}}
-    </fieldset>
     {{/b.body}}
     {{#b.footer}}
-      {{form/changeset-form-submit submit=submit loadingText="Saving..." defaultIcon="hdd-o" defaultText="Save Information"}}
+      {{form/changeset-form-submit submit=submit loadingText="Saving..." defaultIcon="hdd-o"
+                                   defaultText="Save Information"}}
     {{/b.footer}}
   {{/ui/ui-box}}
 {{/bs-form}}
