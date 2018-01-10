@@ -57,7 +57,7 @@ export default DS.Model.extend({
       return get(this, 'notificationPreferences.committee-meeting');
     },
     set(key, value) {
-      this.set('notificationPreferences.committee_meeting', value);
+      this.set('notificationPreferences.committee-meeting', value);
       this.notifyPropertyChange('notificationPreferences');
       return value;
     }
