@@ -17,6 +17,7 @@ export default CurrentUser.extend({
       id: get(user, 'id')
     };
     get(this, 'raven').callRaven('setUserContext', [data]);
+    set(this, 'metrics.context.userId', get(user, 'id'));
   },
 
   didSetupOrganization(organization) {
@@ -24,6 +25,7 @@ export default CurrentUser.extend({
       clientLabelPlural = organization.get('clientLabelPlural');
     set(this, 'features.clientLabel', clientLabel);
     set(this, 'features.clientLabelPlural', clientLabelPlural);
+    set(this, 'metrics.context.orgId', get(organization, 'id'));
     this.update();
   },
 
@@ -57,7 +59,8 @@ export default CurrentUser.extend({
     'action:snoozed',
     'action:flagged',
     'wrapper:saved',
-    'wrapper:comment'
+    'wrapper:comment',
+    'committee:subscribed'
   ]),
   event(event) {
     assert(
@@ -65,6 +68,6 @@ export default CurrentUser.extend({
       get(this, 'events').includes(event)
     );
     get(this, 'intercom').trackEvent(event);
-    get(this, 'metrics').trackEvent('mixpanel', { event });
+    get(this, 'metrics').trackEvent({ event: event });
   }
 });

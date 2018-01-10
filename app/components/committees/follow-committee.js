@@ -29,6 +29,7 @@ const Button = Component.extend({
   }),
   click() {
     let isFollowing = get(this, 'isFollowing');
+    get(this, 'currentUser').event('committee:subscribed');
     get(this, 'updatePreferences').perform(isFollowing);
   },
   updatePreferences: task(function*(isFollowing) {
