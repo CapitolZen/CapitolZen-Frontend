@@ -169,3 +169,7 @@ td .btn-group {
 .smaller-text {
   font-size: 0.85rem;
 }
+
+[data-ember-action]:not(:disabled) {
+  cursor: pointer;
+}
