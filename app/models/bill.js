@@ -1,5 +1,7 @@
 import { get, computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
+
 export default DS.Model.extend({
   title: DS.attr('string'),
   sponsor: DS.belongsTo('legislator'),
@@ -20,6 +22,9 @@ export default DS.Model.extend({
   introducedDate: DS.attr('string'),
   wrappers: DS.hasMany('wrappers'),
   currentCommittee: DS.belongsTo('committee'),
+  relatedBillIds: DS.attr(),
+  billTextAnalysis: DS.attr(),
+  textSummary: alias('billTextAnalysis.content'),
   computedStatus: computed('remoteStatus', function() {
     let history = get(this, 'history');
 

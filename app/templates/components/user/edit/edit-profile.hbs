@@ -4,6 +4,10 @@
       {{form.element controlType="textfield" label="Name" property="name" required=true}}
       {{form.element label="Avatar" controlType="avatar" property="avatar"}}
       {{form.element controlType="email" label="Email" placeholder="Email" property="username" required=true}}
+      <strong>Notification Preferences</strong>
+      <hr class="hr">
+      {{form.element controlType="checkbox" label="Bill Introductions" property="billIntroductionNotification"}}
+
     {{/b.body}}
     {{#b.footer}}
       {{bs-button defaultText="Save Profile" pendingText="Saving..." type="primary" buttonType="submit"}}

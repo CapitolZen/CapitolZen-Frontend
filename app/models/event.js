@@ -2,7 +2,6 @@ import DS from 'ember-data';
 import { computed, get } from '@ember/object';
 import moment from 'moment';
 import { htmlSafe } from '@ember/string';
-import { chamberName } from '../helpers/chamber-name';
 import { alias } from '@ember/object/computed';
 
 export default DS.Model.extend({
@@ -38,11 +37,7 @@ export default DS.Model.extend({
   descriptionHtml: computed('description', function() {
     return htmlSafe(get(this, 'description'));
   }),
-  title: computed('commmittee.displayName', function() {
-    return `${chamberName([
-      get(this, 'committee.chamber')
-    ])} ${get(this, 'committee.displayName')}`;
-  }),
+  title: alias('committee.displayName'),
   loadCommittee() {
     return get(this, 'committee');
   }

@@ -1,5 +1,5 @@
 {{#unless isEditing}}
-  <p><strong>Include Bills In: {{chamber-name selectedCommittee.chamber}} {{selectedCommittee.displayName}}</strong></p>
+  <p><strong>Include Bills In: {{selectedCommittee.displayName}}</strong></p>
 {{else}}
   <h6>Select Committee</h6>
   <div class="row">
@@ -11,7 +11,7 @@
         onchange=(action (mut selectedCommittee))
       as |cmte|
       }}
-        {{chamber-name selectedCommittee.chamber}} {{cmte.displayName}}
+        {{cmte.displayName}}
       {{/power-select}}
     </div>
     <div class="col-4">
