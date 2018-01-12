@@ -47,8 +47,10 @@
               {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
               <h5>Summary</h5>
               {{wrappers/wrapper-summary wrapper=wrapper class="mb-2"}}
-              <h5>Saved By</h5>
-              <p>{{wrapper.metadata.savedby}} | {{tools/date-display wrapper.metadata.savedtime}}</p>
+              {{#if wrapper.metadata.savedby}}
+                <h5>Saved By</h5>
+                <p>{{wrapper.metadata.savedby}} | {{tools/date-display wrapper.metadata.savedtime}}</p>
+              {{/if}}
 
             </div>
           </div>
