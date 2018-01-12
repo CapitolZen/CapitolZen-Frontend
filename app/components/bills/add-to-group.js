@@ -76,6 +76,7 @@ export default Component.extend({
    */
   fetchClients: task(function*() {
     // Filter out clients who've already selected these bills.
+    let user = get(this, 'currentUser.user');
     let alreadySelectedBills = get(this, 'internalBills')
       .mapBy('id')
       .join(',');
@@ -86,17 +87,25 @@ export default Component.extend({
       active: true
     });
 
-    let clients = [];
+    let allClients = [],
+      userClients = [];
 
     clientModels.forEach(client => {
-      clients.push({
+      let data = {
         content: client,
         selected: false,
         wrappers: []
-      });
+      };
+
+      if (client.get('assigned_to').contains(user)) {
+        userClients.push(data);
+      } else {
+        allClients.push(data);
+      }
     });
 
-    set(this, 'clients', clients);
+    set(this, 'allClients', allClients);
+    set(this, 'userClients', userClients);
   }),
 
   /**
@@ -104,6 +113,8 @@ export default Component.extend({
    * @row = {'content': <client>, selected: false|true}
    */
   addBillsToClient: task(function*(row) {
+    let user = get(this, 'currentUser.user');
+
     let operation = 'add';
 
     if (row.wrappers.length) {
