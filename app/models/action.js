@@ -13,7 +13,10 @@ export default DS.Model.extend({
   priority: DS.attr('number'),
   state: DS.attr('string'),
   referencedModelName: computed('actionObject', function() {
-    return capitalize(singularize(get(this, 'actionObject').type));
+    if (get(this, 'actionObject.type')) {
+      return capitalize(singularize(get(this, 'actionObject.type')));
+    }
+    return null;
   }),
   modelId: alias('actionObject.id'),
   displayTitle: computed('title', function() {
