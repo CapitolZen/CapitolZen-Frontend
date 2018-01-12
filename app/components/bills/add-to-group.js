@@ -6,6 +6,7 @@ import { assert } from '@ember/debug';
 import { task, hash } from 'ember-concurrency';
 import { A, isArray } from '@ember/array';
 import { all } from 'rsvp';
+import moment from 'moment';
 
 export default Component.extend({
   store: service(),
@@ -127,7 +128,11 @@ export default Component.extend({
         return get(this, 'store')
           .createRecord('wrapper', {
             bill: bill,
-            group: row.content
+            group: row.content,
+            metadata: {
+              savedby: user.get('name'),
+              saveddate: moment().unix()
+            }
           })
           .save();
       });
