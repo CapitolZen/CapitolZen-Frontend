@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
+import { assign } from '@ember/polyfills';
 
 export default Component.extend({
   media: service(),
@@ -38,7 +39,7 @@ export default Component.extend({
     });
   }),
 
-  dateFilterOptions: ['introduced', 'active'],
+  dateFilterOptions: ['active', 'introduced'],
   dateFilterPresents: [
     {
       label: 'Today',
@@ -140,6 +141,10 @@ export default Component.extend({
         query[query['date_filter_type'] + '_range'] = range;
       }
 
+      // Get externally passed-in params
+      let externalRQ = get(this, 'recordQuery');
+
+      query = assign(query, externalRQ);
       return query;
     },
 

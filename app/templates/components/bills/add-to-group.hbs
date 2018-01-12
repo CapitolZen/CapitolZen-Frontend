@@ -16,21 +16,66 @@
     </h4>
   {{/modal.header}}
   {{#modal.body}}
-
-    <div class="list-group">
-      {{#each clients as |row|}}
-        <button class="list-group-item list-group-item-action {{if row.selected "active"}}"
-                onclick={{perform addBillsToClient row}}>
-          {{#if row.selected}}
-            {{#if addBillToGroup.isRunning}}
-              {{ui/inline-loading}}
+    {{#if fetchClients.isRunning}}
+      {{ui/loading-animation}}
+    {{/if}}
+    {{#if userClients.length}}
+      <h5>My Clients</h5>
+      {{#bs/list-group as |g|}}
+        {{#each userClients as |row|}}
+          {{#g.action class=(if row.selected 'active') onClick=(perform addBillsToClient row)}}
+            {{#if row.selected}}
+              {{#if addBillToGroup.isRunning}}
+                {{ui/inline-loading}}
+              {{else}}
+                {{fa-icon "check"}}
+              {{/if}}
             {{else}}
-              {{fa-icon "check"}}
+              {{fa-icon "plus"}}
             {{/if}}
-          {{else}}
-            {{fa-icon "plus"}}
-          {{/if}}
-          {{row.content.title}}
+            {{row.content.title}}
+          {{/g.action}}
+        {{/each}}
+
+      {{/bs/list-group}}
+    {{/if}}
+
+    {{#if allClients.length}}
+      <h5 class="mt-3">All Clients</h5>
+      {{#bs/list-group as |g|}}
+        {{#each allClients as |row|}}
+          {{#g.action class=(if row.selected 'active') onClick=(perform addBillsToClient row)}}
+            {{#if row.selected}}
+              {{#if addBillToGroup.isRunning}}
+                {{ui/inline-loading}}
+              {{else}}
+                {{fa-icon "check"}}
+              {{/if}}
+            {{else}}
+              {{fa-icon "plus"}}
+            {{/if}}
+            {{row.content.title}}
+          {{/g.action}}
+        {{/each}}
+
+      {{/bs/list-group}}
+    {{/if}}
+
+
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button type="light" onClick=(action modal.close)}}Done{{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}
+
+
+{{!--
+
+ <div class="list-group">
+      {{#each allClients as |row|}}
+        <button class="list-group-item list-group-item-action "
+                onclick={{perform addBillsToClient row}}>
+
         </button>
       {{else}}
         {{#if fetchClients.isRunning}}
@@ -40,8 +85,5 @@
         {{/if}}
       {{/each}}
     </div>
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button type="light" onClick=(action modal.close)}}Done{{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+
+ --}}
