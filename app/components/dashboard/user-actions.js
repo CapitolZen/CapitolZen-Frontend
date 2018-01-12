@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),
-  currentUser: service('current-user'),
+  currentUser: service(),
   isLoading: false,
   pageSize: 12,
   'timeout-ms': 0,
