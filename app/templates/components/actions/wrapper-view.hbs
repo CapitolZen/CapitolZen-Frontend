@@ -1,1 +1,27 @@
-{{yield}}
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    {{displayTitle}}: {{referencedModel.bill.stateId}}
+
+    {{close-button (action "dismiss") class="pull-right"}}
+  {{/b.header}}
+  {{#b.body}}
+    {{#if referencedModel}}
+        <dl>
+          <dt>{{features.clientLabel}}</dt>
+          <dd>{{referencedModel.group.title}}</dd>
+          <dt>Position</dt>
+          <dd>{{wrappers/wrapper-position wrapper=referencedModel canEdit=false}}</dd>
+          <dt>Status</dt>
+          <dd>{{referencedModel.bill.remoteStatus}}</dd>
+        </dl>
+
+    {{/if}}
+
+  {{/b.body}}
+  {{#b.footer class=footerClasses}}
+    {{#if referencedModel}}
+      {{#link-to "groups.detail.bill" referencedModel.id class="btn btn-outline-info ml-1"}}View{{/link-to}}
+    {{/if}}
+    {{bs-button defaultText="Dismiss" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
+  {{/b.footer}}
+{{/ui/ui-box}}
