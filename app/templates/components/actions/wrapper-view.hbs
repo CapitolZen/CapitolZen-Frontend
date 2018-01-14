@@ -5,7 +5,8 @@
     {{close-button (action "dismiss") class="pull-right"}}
   {{/b.header}}
   {{#b.body}}
-    {{#if referencedModel}}
+    <div class="row">
+      {{#if referencedModel}}
         <dl>
           <dt>{{features.clientLabel}}</dt>
           <dd>{{referencedModel.group.title}}</dd>
@@ -14,8 +15,10 @@
           <dt>Status</dt>
           <dd>{{referencedModel.bill.remoteStatus}}</dd>
         </dl>
+      
+      {{/if}}
+    </div>
 
-    {{/if}}
 
   {{/b.body}}
   {{#b.footer class=footerClasses}}

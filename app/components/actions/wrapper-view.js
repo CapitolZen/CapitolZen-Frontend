@@ -8,7 +8,5 @@ export default Base.extend({
   dismiss({ length }) {},
   hasCommittee: computed(function() {
     return getWithDefault(this, 'referencedModel.metadata.committee-id', false);
-  }),
-  referencedCommittee: false,
-  fetchCommittee: task(function*() {})
+  })
 });
