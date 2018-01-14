@@ -18,7 +18,8 @@ export default Component.extend(RecognizerMixin, {
   displayTitle: computed('actionModel.title', function() {
     let titleMap = {
       'bill:introduced': 'Bill Introduced',
-      'bill:updated': 'Bill Updated',
+      'wrapper:updated': 'Bill Updated',
+      'wrapper:committee_scheduled': 'Hearing for Bill',
       'organization:user-add': 'User Joined',
       'organization:user-invite': 'User Invited',
       'user:mention': 'Mentioned',
