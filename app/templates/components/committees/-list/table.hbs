@@ -4,7 +4,11 @@
   columns=columns
   tableOptions=tableOptions
   recordType=recordType as |t| }}
-
+  {{#t.filter
+    defaultRecordQuery=defaultRecordQuery
+  as |filter|}}
+    {{filter.element label="Search" controlType="text" property="search"}}
+  {{/t.filter}}
   {{#t.expandedRow as |row|}}
     {{table/responsive-table-row table=table row=row}}
   {{/t.expandedRow}}
