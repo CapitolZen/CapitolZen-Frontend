@@ -16,13 +16,13 @@ as |records|}}
     <button style="display:none; visibility:hidden"></button>
   {{else}}
     {{#ui/ui-box class="w-100" as |b|}}
-      {{#b.header class="text-white bg-success"}}
+      {{#b.header class="text-white bg-primary"}}
         {{fa-icon "check-square-o"}} All Caught Up!
       {{/b.header}}
       {{#b.body}}
 
         <p class="card-text"> Nothing new here, check back later or watch your email for updates. 👍</p>
-        <p class="card-text">Here are some things to check on in the meantime:</p>
+        <p class="card-text">Here are some things to do in the meantime:</p>
         <ul class="list-group list-group-flush">
           {{#link-to "committees.meetings" class="list-group-item list-group-item-action"}}{{fa-icon "calendar"}}
             View Committee Schedule{{/link-to}}
