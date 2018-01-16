@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 
 export default Component.extend({
   recordType: 'report',
@@ -10,6 +10,13 @@ export default Component.extend({
     height: '65vh',
     responsive: true
   },
+  defaultRecordQuery: computed(function() {
+    let query = {};
+    if (this.get('group')) {
+      query['group'] = this.get('group.id');
+    }
+    return query;
+  }),
   columns: computed(function() {
     let clientLabel = this.features.clientLabel;
     return [
@@ -44,14 +51,5 @@ export default Component.extend({
         align: 'right'
       }
     ];
-  }),
-  actions: {
-    preFilterAlter(query) {
-      if (this.get('group')) {
-        query['group'] = this.get('group.id');
-      }
-
-      return query;
-    }
-  }
+  })
 });
