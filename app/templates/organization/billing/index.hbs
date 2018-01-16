@@ -10,9 +10,43 @@
         {{organization/-billing/subscription-summary model=model}}
       </div>
     </div>
-
   </div>
 </div>
+
+{{#if model.billing.invoices}}
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      {{#ui/ui-box as |b|}}
+        {{#b.header}}Recent Invoices{{/b.header}}
+        {{#b.body class="p-0"}}
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Period</th>
+              <th>Amount</th>
+              <th>Paid</th>
+            </tr>
+
+            </thead>
+            {{#each model.billing.invoices.data as |invoice|}}
+              <tr>
+                <td>
+                  {{invoice.period_start}} - {{invoice.period_end}}
+                </td>
+                <td>
+                  {{format-money invoice.total}}
+                </td>
+                <td>
+                  {{invoice.paid}}
+                </td>
+              </tr>
+            {{/each}}
+          </table>
+        {{/b.body}}
+      {{/ui/ui-box}}
+    </div>
+  </div>
+{{/if}}
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">

@@ -34,7 +34,6 @@ export default Component.extend({
       });
 
     if (this.get('token')) {
-      console.log('b');
       let payload = {
         data: {
           type: 'organizations',
