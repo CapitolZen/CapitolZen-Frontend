@@ -173,3 +173,7 @@ td .btn-group {
 [data-ember-action]:not(:disabled) {
   cursor: pointer;
 }
+
+.help-modal > .modal-lg {
+  min-width: 50%;
+}
