@@ -6,15 +6,6 @@ export default Component.extend({
   dir: 'asc',
   sort: false,
 
-  defaultRecordQuery: computed(function() {
-    let query = {};
-    if (this.get('group')) {
-      query['group'] = this.get('group.id');
-    }
-
-    return query;
-  }),
-
   tableOptions: {
     height: '65vh',
     responsive: true
@@ -22,12 +13,12 @@ export default Component.extend({
   columns: computed(function() {
     let clientLabel = this.features.clientLabel;
     return [
-      {
+      /*{
         width: '40px',
         sortable: false,
         cellComponent: 'table/row-toggle',
         breakpoints: ['mobile', 'tablet']
-      },
+      },*/
       {
         label: 'Title',
         valuePath: 'title'
@@ -53,5 +44,14 @@ export default Component.extend({
         align: 'right'
       }
     ];
-  })
+  }),
+  actions: {
+    preFilterAlter(query) {
+      if (this.get('group')) {
+        query['group'] = this.get('group.id');
+      }
+
+      return query;
+    }
+  }
 });

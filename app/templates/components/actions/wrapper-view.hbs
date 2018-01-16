@@ -5,19 +5,21 @@
     {{close-button (action "dismiss") class="pull-right"}}
   {{/b.header}}
   {{#b.body}}
-    <div class="row">
+    <p class="row card-body">
       {{#if referencedModel}}
-        <dl>
-          <dt>{{features.clientLabel}}</dt>
-          <dd>{{referencedModel.group.title}}</dd>
-          <dt>Position</dt>
-          <dd>{{wrappers/wrapper-position wrapper=referencedModel canEdit=false}}</dd>
-          <dt>Status</dt>
-          <dd>{{referencedModel.bill.remoteStatus}}</dd>
-        </dl>
+        <div class="col-md-6">
+          <dl>
+            <dt>{{features.clientLabel}}</dt>
+            <dd>{{referencedModel.group.title}}</dd>
+            <dt>Position</dt>
+            <dd>{{wrappers/wrapper-position wrapper=referencedModel canEdit=false}}</dd>
+            <dt>Status</dt>
+            <dd>{{referencedModel.bill.remoteStatus}}</dd>
+          </dl>
+        </div>
       
       {{/if}}
-    </div>
+    </p>
 
 
   {{/b.body}}

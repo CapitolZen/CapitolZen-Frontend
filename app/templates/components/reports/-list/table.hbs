@@ -1,7 +1,16 @@
+
+
 {{#table/model-table
   dir=dir
   sort=sort
-  recordQuery=defaultRecordQuery
   columns=columns
   recordType=recordType as |t| }}
+
+  {{#t.filter
+    defaultRecordQuery=defaultRecordQuery
+    preFilterAlter=(action "preFilterAlter")
+  as |filter|}}
+    {{filter.element label="Search" controlType="text" property="search"}}
+  {{/t.filter}}
+
 {{/table/model-table}}
