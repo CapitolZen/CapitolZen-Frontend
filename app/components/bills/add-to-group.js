@@ -6,6 +6,7 @@ import { assert } from '@ember/debug';
 import { task, hash } from 'ember-concurrency';
 import { A, isArray } from '@ember/array';
 import { all } from 'rsvp';
+import moment from 'moment';
 
 export default Component.extend({
   store: service(),
@@ -76,6 +77,7 @@ export default Component.extend({
    */
   fetchClients: task(function*() {
     // Filter out clients who've already selected these bills.
+    let user = get(this, 'currentUser.user');
     let alreadySelectedBills = get(this, 'internalBills')
       .mapBy('id')
       .join(',');
@@ -86,17 +88,25 @@ export default Component.extend({
       active: true
     });
 
-    let clients = [];
+    let allClients = [],
+      userClients = [];
 
     clientModels.forEach(client => {
-      clients.push({
+      let data = {
         content: client,
         selected: false,
         wrappers: []
-      });
+      };
+
+      if (client.get('assigned_to').contains(user)) {
+        userClients.push(data);
+      } else {
+        allClients.push(data);
+      }
     });
 
-    set(this, 'clients', clients);
+    set(this, 'allClients', allClients);
+    set(this, 'userClients', userClients);
   }),
 
   /**
@@ -104,6 +114,8 @@ export default Component.extend({
    * @row = {'content': <client>, selected: false|true}
    */
   addBillsToClient: task(function*(row) {
+    let user = get(this, 'currentUser.user');
+
     let operation = 'add';
 
     if (row.wrappers.length) {
@@ -116,7 +128,11 @@ export default Component.extend({
         return get(this, 'store')
           .createRecord('wrapper', {
             bill: bill,
-            group: row.content
+            group: row.content,
+            metadata: {
+              savedby: user.get('name'),
+              saveddate: moment().unix()
+            }
           })
           .save();
       });

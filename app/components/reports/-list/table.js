@@ -1,33 +1,31 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 
 export default Component.extend({
   recordType: 'report',
   dir: 'asc',
   sort: false,
 
+  tableOptions: {
+    height: '65vh',
+    responsive: true
+  },
   defaultRecordQuery: computed(function() {
     let query = {};
     if (this.get('group')) {
       query['group'] = this.get('group.id');
     }
-
     return query;
   }),
-
-  tableOptions: {
-    height: '65vh',
-    responsive: true
-  },
   columns: computed(function() {
     let clientLabel = this.features.clientLabel;
     return [
-      {
+      /*{
         width: '40px',
         sortable: false,
         cellComponent: 'table/row-toggle',
         breakpoints: ['mobile', 'tablet']
-      },
+      },*/
       {
         label: 'Title',
         valuePath: 'title'

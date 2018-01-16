@@ -17,13 +17,26 @@ as |records|}}
   {{else}}
     {{#ui/ui-box class="w-100" as |b|}}
       {{#b.header class="text-white bg-success"}}
-        All Caught Up!
+        {{fa-icon "check-square-o"}} All Caught Up!
       {{/b.header}}
       {{#b.body}}
-        <h4 class="card-title">
-          No New Actions</h4>
-        <p class="card-text">
-          Nothing to review here. We'll email you when there's something new to report.</p>
+
+        <p class="card-text"> Nothing new here, check back later or watch your email for updates. 👍</p>
+        <p class="card-text">Here are some things to check on in the meantime:</p>
+        <ul class="list-group list-group-flush">
+          {{#link-to "committees.meetings" class="list-group-item list-group-item-action"}}{{fa-icon "calendar"}}
+            View Committee Schedule{{/link-to}}
+          {{#link-to "reports.index" class="list-group-item list-group-item-action"}}
+            {{fa-icon "map"}}
+            Manage Reports
+          {{/link-to}}
+          {{#link-to "groups.index" class="list-group-item list-group-item-action"}}
+            {{fa-icon "address-book"}} Add {{features.clientLabelPlural}}
+          {{/link-to}}
+          {{#link-to "organization.team" class="list-group-item list-group-item-action"}}
+            {{fa-icon "users"}} Invite Teammates
+          {{/link-to}}
+        </ul>
       {{/b.body}}
     {{/ui/ui-box}}
   {{/if}}

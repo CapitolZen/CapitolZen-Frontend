@@ -47,6 +47,10 @@
               {{wrappers/wrapper-position wrapper=wrapper canEdit=true}}
               <h5>Summary</h5>
               {{wrappers/wrapper-summary wrapper=wrapper class="mb-2"}}
+              {{#if wrapper.metadata.savedby}}
+                <h5>Saved By</h5>
+                <p>{{wrapper.metadata.savedby}} | {{tools/date-display wrapper.metadata.savedtime}}</p>
+              {{/if}}
 
             </div>
           </div>
@@ -60,7 +64,7 @@
           <div class="row">
             <div class="col-md-6">
               <p>
-                <a href="{{bill.remoteUrl}}" class="btn btn-secondary">View Bill Text</a>
+                <a href="{{bill.remoteUrl}}" target="_blank" class="btn btn-light">View Bill Text {{fa-icon "external-link"}}</a>
               </p>
               {{bills/bill-cosponosrs bill}}
               {{bills/source-list sources=bill.sources class="mt-1"}}

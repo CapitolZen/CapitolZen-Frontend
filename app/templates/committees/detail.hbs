@@ -1,2 +1,6 @@
 {{ui-page-property model.committee.displayName property="title"}}
+{{#global/page-title-actions}}
+  {{committees/follow-committee model.committee}}
+{{/global/page-title-actions}}
+
 {{bills/-list/table model=model.array recordQuery=(hash committee=model.id)}}

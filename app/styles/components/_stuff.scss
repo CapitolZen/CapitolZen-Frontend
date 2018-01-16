@@ -170,6 +170,10 @@ td .btn-group {
   font-size: 0.85rem;
 }
 
+[data-ember-action]:not(:disabled) {
+  cursor: pointer;
+}
+
 .form-group-info {
   label {
     font-size: 0.85rem;

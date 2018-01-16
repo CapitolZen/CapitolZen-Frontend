@@ -1,0 +1,9 @@
+{{#if updatePreferences.isRunning}}
+  {{ui/inline-loading}}
+{{else}}
+  {{#if isFollowingAll}}
+    {{fa-icon "rss"}} Following All
+  {{else}}
+    {{fa-icon "rss"}} {{if isFollowing "Unfollow" "Follow"}} Meetings
+  {{/if}}
+{{/if}}

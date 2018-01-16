@@ -12,7 +12,8 @@ export default DS.Model.extend({
   avatar: DS.attr('string'),
   organizations: DS.hasMany('organization'),
   isActive: DS.attr('boolean'),
-
+  features: DS.attr(),
+  notificationPreferences: DS.attr(),
   //
   // Relationship to current organization
   // Owner || Admin || Member
@@ -32,6 +33,33 @@ export default DS.Model.extend({
       return get(this, 'name');
     } else {
       return get(this, 'username');
+    }
+  }),
+
+  billIntroductionNotification: computed('notificationPreferences', {
+    get() {
+      return this.get('notificationPreferences.bill-introduced');
+    },
+    set(key, value) {
+      this.set('notificationPreferences.bill-introduced', value);
+      this.notifyPropertyChange('notificationPreferences');
+      return value;
+    }
+  }),
+  wrapperUpdateNotification: computed('notificationPreferences', {
+    get() {
+      return this.get('notificationPreferences.wrapper-updated');
+    },
+    set(key, value) {}
+  }),
+  committeeNotifications: computed('notificationPreferences', {
+    get() {
+      return get(this, 'notificationPreferences.committee-meeting');
+    },
+    set(key, value) {
+      this.set('notificationPreferences.committee-meeting', value);
+      this.notifyPropertyChange('notificationPreferences');
+      return value;
     }
   }),
 
