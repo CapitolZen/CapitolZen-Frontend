@@ -1,0 +1,35 @@
+<h5>{{fa-icon "flask"}} Labs</h5>
+<small>These are experimental features: your mileage may vary.</small>
+{{#bs-accordion as |acc|}}
+  {{#unless hasRelated}}
+    {{#acc.item value="1" title="Related Bills"}}
+      <p>We use a machine-learning algorithm to find similar bills across our database.</p>
+      {{#bs/list-group as |g|}}
+        {{#each bills as |bill|}}
+          {{#g.item tagName="div" class="d-flex justify-content-between"}}
+            {{bill.stateId}}
+            {{#link-to "bills.detail" bill.id}}View{{/link-to}}
+          {{/g.item}}
+        {{/each}}
+
+      {{/bs/list-group}}
+    {{/acc.item}}
+  {{/unless}}
+  {{#if summary}}
+    {{#acc.item value="2" title="Text Summary"}}
+      <div style="height:500px">
+
+        {{#ember-scrollable vertical=true}}
+
+            <p>{{summary}}</p>
+
+        {{/ember-scrollable}}
+      </div>
+
+
+    {{/acc.item}}
+  {{/if}}
+
+{{/bs-accordion}}
+
+

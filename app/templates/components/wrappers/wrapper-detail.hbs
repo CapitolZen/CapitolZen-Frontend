@@ -66,9 +66,12 @@
               <p>
                 <a href="{{bill.remoteUrl}}" target="_blank" class="btn btn-light">View Bill Text {{fa-icon "external-link"}}</a>
               </p>
+              <h5>Title</h5>
+              <p>{{bill.title}}</p>
               {{bills/bill-cosponosrs bill}}
               {{bills/source-list sources=bill.sources class="mt-1"}}
               {{bills/doc-list docs=bill.documents class="mt-1"}}
+              {{bills/-detail/bill-labs bill class="mt-1"}}
             </div>
             <div class="col-md-6">
               {{bills/-detail/history bill=bill}}

@@ -24,6 +24,7 @@ export default DS.Model.extend({
   currentCommittee: DS.belongsTo('committee'),
   relatedBillIds: DS.attr(),
   billTextAnalysis: DS.attr(),
+  companions: DS.attr(),
   textSummary: alias('billTextAnalysis.content'),
   computedStatus: computed('remoteStatus', function() {
     let history = get(this, 'history');
