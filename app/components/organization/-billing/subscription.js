@@ -62,7 +62,7 @@ export default Component.extend({
    * Billing Step Completed
    */
   billingStepCompleted() {
-    this.set('activeStep', 'billing');
+    this.set('activeStep', 'card');
   },
 
   /**
