@@ -23,7 +23,6 @@ const Button = Component.extend({
   }),
   isFollowing: computed('user', 'committee', function() {
     let notificationArray = get(this, 'user.committeeNotifications');
-    console.log(get(this, 'user'));
     let id = get(this, 'committee.id');
     return notificationArray.includes(id);
   }),
