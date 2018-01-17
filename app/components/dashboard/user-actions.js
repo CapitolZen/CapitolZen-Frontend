@@ -28,7 +28,11 @@ export default Component.extend({
    * @returns {boolean}
    */
   filterCallback(record) {
-    return true;
+    if (record) {
+      return record.get('state') === 'active';
+    }
+
+    return false;
   },
 
   actions: {
@@ -39,6 +43,10 @@ export default Component.extend({
 
     initializeReadOffset(dataset) {
       dataset.setReadOffset(0);
+    },
+
+    refilterDataset() {
+      this._refilterDataset();
     },
 
     fetch(pageOffset, pageSize, stats) {

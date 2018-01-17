@@ -9,7 +9,7 @@ as |records|}}
   {{#if records}}
     {{#each records as |record index|}}
       {{#if record.content}}
-        {{actions/action-view listComponent=this model=record.content}}
+        {{actions/action-view listComponent=this model=record.content onDismiss=(action "refilterDataset")}}
       {{/if}}
     {{/each}}
     {{in-viewport did-enter=(action records.setReadOffset records.length)}}
