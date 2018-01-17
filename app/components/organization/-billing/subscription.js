@@ -73,19 +73,31 @@ export default Component.extend({
 
     let plans = [
       {
-        id: 'free',
-        name: 'Free - Forever',
-        icon: 'rocket',
-        points: ['Is Free', 'Limited Functionality'],
+        id: 'basic',
+        name: 'Basic',
+        icon: 'leaf',
+        points: [
+          'One Client Limit',
+          'One User Limit',
+          'One Report Limit',
+          '10 Saved Bills Limit',
+          'Capitol Zen Branding Added To Reports'
+        ],
         cost: '$0.00 per month',
         current: false,
         selected: false
       },
       {
-        id: 'pro-team',
-        name: 'Pro - Team',
+        id: 'professional',
+        name: 'Professional',
         icon: 'rocket',
-        points: ['Is Not Free', 'Full Functionality'],
+        points: [
+          'Unlimited Clients',
+          'Unlimited teammates',
+          'Unlimited Reports',
+          'Unlimited Saved Bills',
+          'Whitelabeled Reports'
+        ],
         cost: '$200.00 per month',
         current: false,
         selected: false
