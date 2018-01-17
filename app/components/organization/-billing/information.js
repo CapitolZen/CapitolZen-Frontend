@@ -6,6 +6,9 @@ import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 export default FormComponent.extend({
   flashMessages: service(),
+  standalone: true,
+  parentComponent: false,
+
   validator: organizationBillingInfo,
 
   model: computed(function() {
@@ -13,6 +16,12 @@ export default FormComponent.extend({
   }),
 
   onSubmitSuccess() {
-    get(this, 'flashMessages').success('Organization Updated');
+    if (get(this, 'standalone')) {
+      get(this, 'flashMessages').success('Billing Information Updated');
+    }
+
+    if (get(this, 'parentComponent')) {
+      get(this, 'parentComponent').billingStepCompleted();
+    }
   }
 });

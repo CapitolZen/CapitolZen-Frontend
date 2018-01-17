@@ -1,22 +1,48 @@
-<h2 class="text-center">Plans</h2>
-
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <div class="card-deck">
-      {{#each plans as |plan|}}
-        {{organization/-billing/subscription-plan plan=plan parentComponent=this}}
-      {{/each}}
+{{#if (eq activeStep "billing")}}
+  <div class="row mt-4">
+    <div class="col-md-6 offset-md-3">
+      <h4 class="text-center">1) Update Billing Information</h4>
+      {{organization/-billing/information standalone=false parentComponent=this organization=model.organization}}
     </div>
   </div>
-</div>
+{{/if}}
+
+{{#if (eq activeStep "card")}}
+  <div class="row mt-4">
+    <div class="col-md-6 offset-md-3">
+      <h4 class="text-center">2) Add Credit Card</h4>
+      {{organization/-billing/card standalone=false parentComponent=this organization=model.organization}}
+    </div>
+  </div>
+{{/if}}
+
+
+{{#if (eq activeStep "plan")}}
+  <h4 class="text-center">3) Select Plan</h4>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card-deck">
+        {{#each plans as |plan|}}
+          {{organization/-billing/subscription-plan plan=plan parentComponent=this}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+{{/if}}
 
 {{#if canChangePlan}}
   <div class="row mt-4">
     <div class="col-md-6 offset-md-3">
       {{#ui/ui-box as |b|}}
         {{#b.body class="text-right"}}
-          {{#bs-button type="primary" icon="glyphicon glyphicon-download" onClick=(action "changeSubscription")}}
-            {{fa-icon "arrow-right"}} Confirm & Update Subscription
+          {{#bs-button buttonType="submit" disabled=(or submit.isRunning submit.last.isSuccessful) type="primary"
+                       onClick=(action "changeSubscription")}}
+            {{#if (or submit.isRunning submit.last.isSuccessful)}}
+              {{fa-icon "spinner" spin=true}}
+            {{else}}
+              {{fa-icon "arrow-right"}} Confirm & Update Subscription
+            {{/if}}
           {{/bs-button}}
         {{/b.body}}
       {{/ui/ui-box}}

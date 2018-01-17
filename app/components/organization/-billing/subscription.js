@@ -6,6 +6,28 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   router: service(),
+
+  init() {
+    this._super(...arguments);
+
+    //
+    // Set the initial active step based on info we know.
+    if (!this.get('model.organization.billing_address_one')) {
+      this.set('activeStep', 'billing');
+    } else if (!this.get('model.billing.customer.sources.data').length) {
+      this.set('activeStep', 'card');
+    } else {
+      this.set('activeStep', 'plan');
+    }
+  },
+
+  /**
+   * 1) "billing"
+   * 2) "card"
+   * 3) "plan"
+   */
+  activeStep: false,
+
   changeSelectedPlan(plan) {
     this.set('selectedPlan', plan);
   },
@@ -19,10 +41,33 @@ export default Component.extend({
 
   selectedPlan: false,
 
+  /**
+   * Determines if we show the final "checkout" button.
+   */
   canChangePlan: computed('selectedPlan', 'currentPlan', function() {
-    return this.get('currentPlan') !== this.get('selectedPlan');
+    return (
+      this.get('currentPlan') !== this.get('selectedPlan') &&
+      this.get('selectedPlan') !== false
+    );
   }),
 
+  /**
+   * Callback for when card step is completed.
+   */
+  cardStepCompleted() {
+    this.set('activeStep', 'plan');
+  },
+
+  /**
+   * Billing Step Completed
+   */
+  billingStepCompleted() {
+    this.set('activeStep', 'billing');
+  },
+
+  /**
+   *
+   */
   plans: computed('selectedPlan', 'currentPlan', function() {
     let currentPlan = this.get('currentPlan');
 
@@ -93,7 +138,6 @@ export default Component.extend({
    */
   actions: {
     changeSubscription() {
-      console.log('changeSubscription');
       return this.get('submit').perform();
     }
   }

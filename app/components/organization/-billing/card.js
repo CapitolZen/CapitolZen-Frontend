@@ -5,6 +5,9 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   stripev3: service(),
+  flashMessages: service(),
+  parentComponent: false,
+  standalone: true,
 
   options: {
     hidePostalCode: true,
@@ -29,6 +32,7 @@ export default Component.extend({
         return set(this, 'token', token);
       })
       .catch(e => {
+        get(this, 'flashMessages').danger('Card Failed To Update');
         console.log(e);
         throw e;
       });
@@ -45,10 +49,18 @@ export default Component.extend({
       yield this.get('organization')
         .updatesource(payload)
         .then(data => {
-          console.log(data);
+          if (this.get('standalone')) {
+            get(this, 'flashMessages').success('Card Updated');
+          }
+
+          if (this.get('parentComponent')) {
+            this.get('parentComponent').cardStepCompleted();
+          }
+
           return true;
         })
         .catch(e => {
+          get(this, 'flashMessages').danger('Card Failed To Update');
           console.log(e);
           throw e;
         });
