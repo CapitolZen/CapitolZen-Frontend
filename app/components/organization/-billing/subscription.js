@@ -77,11 +77,26 @@ export default Component.extend({
         name: 'Basic',
         icon: 'leaf',
         points: [
-          'One Client Limit',
-          'One User Limit',
-          'One Report Limit',
-          '10 Saved Bills Limit',
-          'Capitol Zen Branding Added To Reports'
+          {
+            label: 'One Client Limit',
+            icon: 'times-circle-o'
+          },
+          {
+            label: 'One User Limit',
+            icon: 'times-circle-o'
+          },
+          {
+            label: 'One Report Limit',
+            icon: 'times-circle-o'
+          },
+          {
+            label: '10 Saved Bills Limit',
+            icon: 'times-circle-o'
+          },
+          {
+            label: 'Capitol Zen Branding Added To Reports',
+            icon: 'times-circle-o'
+          }
         ],
         cost: '$0.00 per month',
         current: false,
@@ -92,11 +107,26 @@ export default Component.extend({
         name: 'Professional',
         icon: 'rocket',
         points: [
-          'Unlimited Clients',
-          'Unlimited teammates',
-          'Unlimited Reports',
-          'Unlimited Saved Bills',
-          'Whitelabeled Reports'
+          {
+            label: 'Unlimited Clients',
+            icon: 'check-circle-o'
+          },
+          {
+            label: 'Unlimited teammates',
+            icon: 'check-circle-o'
+          },
+          {
+            label: 'Unlimited Reports',
+            icon: 'check-circle-o'
+          },
+          {
+            label: 'Unlimited Saved Bills',
+            icon: 'check-circle-o'
+          },
+          {
+            label: 'Whitelabeled Reports',
+            icon: 'check-circle-o'
+          }
         ],
         cost: '$200.00 per month',
         current: false,

@@ -188,8 +188,13 @@ td .btn-group {
 // Subscription Styling
 //////////////////////////////////////////
 .subscription-plan {
+  .card-body {
+    padding: 0;
+  }
   .subscription-icon {
     padding: 2rem;
+    background: $gray-lightest;
+    color: $primary;
     text-align: center;
     i {
       font-size: 4rem;
@@ -197,17 +202,38 @@ td .btn-group {
   }
   .card-title {
     text-align: center;
+    padding: 1rem;
   }
   .plan-points {
-    margin: 0.5rem;
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    li.list-group-item {
+      border-left: none;
+      border-right: none;
+      border-bottom-right-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+    i {
+      font-size: 1.2rem;
+      position: relative;
+      top: 0.2rem;
+      &.fa-times-circle-o {
+        color: $danger;
+      }
+      &.fa-check-circle-o {
+        color: $success;
+      }
+    }
   }
   .plan-cost {
     text-align: center;
     font-weight: bold;
+    margin-bottom: 0.5rem;
   }
   .plan-action {
     text-align: center;
-    padding: 0.5rem 0 0 0;
+    padding: 0.5rem;
   }
 
   &.selected {
