@@ -40,7 +40,11 @@ Router.map(function() {
     // Organization Management
     this.route('organization', { resetNamespace: true }, function() {
       this.route('team');
-      this.route('billing');
+      this.route('billing', function() {
+        this.route('index', { path: '' });
+        this.route('information');
+        this.route('subscription');
+      });
     });
 
     //

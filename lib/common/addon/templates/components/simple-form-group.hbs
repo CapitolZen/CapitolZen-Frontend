@@ -1,0 +1,18 @@
+{{#if hasBlock}}
+  <label>{{label}}</label>
+  <div class="form-group-info-content">
+    {{yield}}
+  </div>
+{{else}}
+  {{#if value}}
+    <label>{{label}}</label>
+    <div class="form-group-info-content">
+      {{value}}
+    </div>
+  {{else}}
+    <label>{{label}}</label>
+    <div class="form-group-info-content">
+      None
+    </div>
+  {{/if}}
+{{/if}}

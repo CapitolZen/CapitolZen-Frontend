@@ -1,0 +1,33 @@
+{{#stripe-card options=options as |stripeElement stripeError|}}
+  {{#ui/ui-box as |b|}}
+    {{#if standalone}}
+      {{#b.header}}
+        Update Card
+      {{/b.header}}
+    {{/if}}
+    {{#b.body}}
+      <div role="mount-point" class="form-control"></div>
+      {{#if stripeError}}
+        <p class="error">{{stripeError.message}}</p>
+      {{/if}}
+    {{/b.body}}
+    {{#b.footer}}
+      {{#if standalone}}
+
+      {{else}}
+
+      {{/if}}
+      {{#bs-button buttonType="submit" disabled=submit.isRunning type="primary" onClick=(action "submit" stripeElement)}}
+        {{#if (or submit.isRunning (and submit.last.isSuccessful loadingOnComplete))}}
+          {{fa-icon "spinner" spin=true}} {{#if loadingText}}{{loadingText}}{{/if}}
+        {{else}}
+          {{#if standalone}}
+            {{fa-icon "hdd-o"}} Save Card
+          {{else}}
+            {{fa-icon "hdd-o"}} Next
+          {{/if}}
+        {{/if}}
+      {{/bs-button}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
+{{/stripe-card}}

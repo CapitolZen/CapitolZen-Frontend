@@ -1,5 +1,7 @@
 import DS from 'ember-data';
 
+import { memberAction } from 'ember-api-actions';
+
 export default DS.Model.extend({
   created: DS.attr('date'),
   modified: DS.attr('date'),
@@ -20,5 +22,17 @@ export default DS.Model.extend({
   available_states: DS.attr(),
   features: DS.attr(),
   clientLabel: DS.attr('string'),
-  clientLabelPlural: DS.attr('string')
+  clientLabelPlural: DS.attr('string'),
+
+  //
+  // Actions / Sub Routes
+  billing: memberAction({ path: 'billing/', type: 'GET' }),
+  updatesubscription: memberAction({
+    path: 'update_subscription/',
+    type: 'POST'
+  }),
+  updatesource: memberAction({
+    path: 'update_source/',
+    type: 'POST'
+  })
 });
