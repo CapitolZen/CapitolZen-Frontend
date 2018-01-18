@@ -164,20 +164,17 @@ body > .ember-view {
   padding: 0.4rem 0;
 
   @include media-breakpoint-up(xl) {
-    padding: 1rem 10rem;
+    padding: 0.3rem 10rem;
   }
 
   .page-title {
     font-weight: 300;
+    font-size: 2rem;
     padding-right: 22px;
     display: inline-block;
     margin: 0;
     @include media-breakpoint-down(md) {
       font-size: 2rem;
-    }
-
-    @include media-breakpoint-up(sm) {
-      border-bottom: 1px solid #212529;
     }
   }
 
@@ -190,8 +187,10 @@ body > .ember-view {
   }
   .breadcrumb {
     background: transparent;
+    font-style: italic;
     padding: 0;
     margin: 0;
+    font-size: 0.85rem;
     @include media-breakpoint-down(md) {
       display: none;
     }

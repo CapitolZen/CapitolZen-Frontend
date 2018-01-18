@@ -22,28 +22,6 @@
         {{form.element property="clientLabel" controlType="text" label="Client Label"}}
         {{form.element property="clientLabelPlural" controlType="text" label="Plural Client Label"}}
       </fieldset>
-      {{!--
-      <fieldset>
-        <legend>Billing</legend>
-        {{form.element label="Billing Contact Name" controlType="text" property="billing_name"}}
-        {{form.element label="Billing Email" controlType="text" property="billing_email"}}
-        {{form.element label="Billing Phone" controlType="text" property="billing_phone"}}
-        {{#form.group}}
-          {{form.element label="Billing Address" controlType="text" property="billing_address_one"}}
-          {{form.element label="Address 2" controlType="text" property="billing_address_two"}}
-          <div class="row">
-            <div class="col-md-6">
-              {{form.element label="City" controlType="text" property="billing_city"}}
-            </div>
-            <div class="col-md-3">
-              {{form.element label="State" controlType="text" property="billing_state"}}
-            </div>
-            <div class="col-md-3">
-              {{form.element label="Zip Code" controlType="text" property="billing_zip_code"}}
-            </div>
-          </div>
-        {{/form.group}}
-      </fieldset>--}}
     {{/b.body}}
     {{#b.footer}}
       {{form/changeset-form-submit submit=submit loadingText="Saving..." defaultIcon="hdd-o" defaultText="Save Organization"}}

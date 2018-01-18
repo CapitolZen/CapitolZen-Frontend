@@ -1,0 +1,23 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}Subscription{{/b.header}}
+  {{#b.body}}
+    {{#if model.billing.subscription}}
+      {{#simple-form-group label="Status"}}
+        {{model.billing.subscription.status}}
+      {{/simple-form-group}}
+
+      {{#simple-form-group label="Plan"}}
+        {{model.billing.subscription.plan.name}} <br />
+        $ {{planCost}} per {{model.billing.subscription.plan.interval}}
+      {{/simple-form-group}}
+
+    {{else}}
+      No subscription
+    {{/if}}
+  {{/b.body}}
+  {{#b.footer}}
+    {{#link-to 'organization.billing.subscription' class="btn btn-outline-primary btn-sm"}}
+      Change Subscription
+    {{/link-to}}
+  {{/b.footer}}
+{{/ui/ui-box}}

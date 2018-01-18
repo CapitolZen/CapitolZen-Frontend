@@ -1,0 +1,77 @@
+{{ui-page-property "Billing" property="title"}}
+{{log model.billing}}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="row row-flex">
+      <div class="col-md-6">
+        {{organization/-billing/info-summary model=model}}
+      </div>
+      <div class="col-md-6">
+        {{organization/-billing/subscription-summary model=model}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#if model.billing.invoices}}
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      {{#ui/ui-box as |b|}}
+        {{#b.header}}Recent Invoices{{/b.header}}
+        {{#b.body class="p-0"}}
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>Items</th>
+              <th>Amount</th>
+              <th>Paid</th>
+            </tr>
+
+            </thead>
+            {{#each model.billing.invoices.data as |invoice|}}
+              <tr>
+                <td>
+                  {{moment-format (unix invoice.date)}}
+                </td>
+                <td>
+                  <div class="small-text">
+                    {{#each invoice.lines.data as |item|}}
+                      -- {{item.description}} ({{tools/format-cents value=item.amount}})<br />
+                    {{/each}}
+                  </div>
+                </td>
+                <td>
+                  {{tools/format-cents value=invoice.total}}
+                </td>
+                <td>
+                  {{#if invoice.paid}}
+                    Yes
+                  {{else}}
+                    No
+                  {{/if}}
+                </td>
+              </tr>
+            {{/each}}
+          </table>
+        {{/b.body}}
+      {{/ui/ui-box}}
+    </div>
+  </div>
+{{/if}}
+
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        <h3 >Thank you!</h3>
+        <p class="lead">
+          Thank you so much for trying out Capitol Zen during our beta period.
+        </p>
+        <p>We appreciate your feedback. If you have any feedback - good, bad, or indifferent - we want to talk!</p>
+        <p>{{#intercom-button class="btn btn-outline-primary btn-large"}}Let us know!{{/intercom-button}}</p>
+        <p>Want to talk live? Give Donald a call at 989-859-6392.</p>
+      {{/b.body}}
+    {{/ui/ui-box}}
+  </div>
+</div>

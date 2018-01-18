@@ -1,0 +1,45 @@
+{{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+  {{#ui/ui-box as |b|}}
+    {{#if standalone}}
+      {{#b.header}}
+        Billing Contact Information
+      {{/b.header}}
+    {{/if}}
+    {{#b.body}}
+      {{form.element label="Billing Contact Name" controlType="text" property="billing_name"}}
+      {{form.element label="Billing Email" controlType="text" property="billing_email"}}
+      {{form.element label="Billing Phone" controlType="text" property="billing_phone"}}
+      {{#form.group}}
+        {{form.element label="Billing Address" controlType="text" property="billing_address_one"}}
+        {{form.element label="Address 2" controlType="text" property="billing_address_two"}}
+        <div class="row">
+          <div class="col-md-6">
+            {{form.element label="City" controlType="text" property="billing_city"}}
+          </div>
+          <div class="col-md-3">
+            {{form.element label="State" controlType="text" property="billing_state"}}
+          </div>
+          <div class="col-md-3">
+            {{form.element label="Zip Code" controlType="text" property="billing_zip_code"}}
+          </div>
+        </div>
+      {{/form.group}}
+    {{/b.body}}
+    {{#b.footer}}
+      {{#if standalone}}
+        {{form/changeset-form-submit
+          submit=submit
+          loadingText="Saving..."
+          defaultIcon="hdd-o"
+          defaultText="Save Information"}}
+      {{else}}
+        {{form/changeset-form-submit
+          submit=submit
+          loadingText="Saving..."
+          defaultIcon="hdd-o"
+          defaultText="Next"}}
+      {{/if}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
+{{/bs-form}}
+

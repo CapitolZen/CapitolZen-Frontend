@@ -1,0 +1,42 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    Billing Information
+  {{/b.header}}
+  {{#b.body}}
+    {{#simple-form-group label="Contact Info"}}
+      {{#if model.organization.billing_email}}
+        <div class="row">
+          <div class="col-md-7">
+            {{model.organization.billing_name}} <br />
+            {{model.organization.billing_email}} <br />
+            {{model.organization.billing_phone}}
+          </div>
+          <div class="col-md-5">
+            {{model.organization.billing_address_one}} <br />
+            {{#if model.organization.billing_address_one}}
+              {{model.organization.billing_address_two}} <br />
+            {{/if}}
+            {{model.organization.billing_city}}, {{model.organization.billing_state}} {{model.organization.billing_zip}}
+          </div>
+        </div>
+      {{else}}
+        Not Set
+      {{/if}}
+    {{/simple-form-group}}
+    {{#simple-form-group label="Payment Method"}}
+      {{#if model.billing.customer.sources.data}}
+        {{#each model.billing.customer.sources.data as |source|}}
+          Type: {{source.brand}}<br />
+          Card: ****{{source.last4}} - Exp: {{source.exp_month}} / {{source.exp_year}}
+        {{/each}}
+      {{else}}
+        Not Set
+      {{/if}}
+    {{/simple-form-group}}
+  {{/b.body}}
+  {{#b.footer}}
+    {{#link-to 'organization.billing.information' class="btn btn-outline-primary btn-sm"}}
+      Update Billing Information
+    {{/link-to}}
+  {{/b.footer}}
+{{/ui/ui-box}}

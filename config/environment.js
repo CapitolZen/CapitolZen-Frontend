@@ -41,6 +41,10 @@ module.exports = function(environment) {
     defaultPageTitle: 'Capitol Zen'
   };
 
+  ENV.stripe = {
+    publishableKey: 'pk_test_2Ft7dlWczuYcNEc6LUtHqcZ9'
+  };
+
   ENV.metricsAdapters = [
     {
       name: 'Mixpanel',
@@ -102,6 +106,8 @@ module.exports = function(environment) {
     ENV.intercom = {
       appId: 'lqg6n3a1'
     };
+
+    ENV['stripe']['publishableKey'] = 'pk_live_F783PWGxgNCDtyVXYp0NMDQu';
 
     ENV.contentSecurityPolicy = {
       'script-src': "'self' 'unsafe-inline' cdn.ravenjs.com",
