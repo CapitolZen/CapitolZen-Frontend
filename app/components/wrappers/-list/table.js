@@ -10,18 +10,6 @@ export default Component.extend({
   defaultRecordQuery: computed(function() {
     let query = {};
 
-    if (this.get('filtering')) {
-      query['date_filter_type'] = 'active';
-      query['daterange'] = {
-        startDate: moment()
-          .startOf('day')
-          .subtract(1, 'month'),
-        endDate: moment()
-          .endOf('day')
-          .add(1, 'second') //makes the query include the current day
-      };
-    }
-
     if (this.get('group')) {
       query['group'] = this.get('group.id');
     }
@@ -38,38 +26,6 @@ export default Component.extend({
     canSelect: true,
     responsive: true
   },
-
-  dateFilterOptions: ['introduced', 'active'],
-  dateFilterPresents: [
-    {
-      label: 'Today',
-      start: moment().startOf('day'),
-      end: moment().endOf('day')
-    },
-    {
-      label: 'Last Week',
-      start: moment()
-        .subtract(1, 'week')
-        .startOf('week'),
-      end: moment()
-        .subtract(1, 'week')
-        .endOf('week')
-    },
-    {
-      label: 'Last Month',
-      start: moment()
-        .subtract(1, 'month')
-        .startOf('month'),
-      end: moment()
-        .subtract(1, 'month')
-        .endOf('month')
-    },
-    {
-      label: 'This Session',
-      start: moment().startOf('year'),
-      end: moment()
-    }
-  ],
 
   columns: [
     {
@@ -128,19 +84,6 @@ export default Component.extend({
      * @returns {*}
      */
     preFilterAlter(query) {
-      //
-      // Parse daterange into api friendly format.
-      if ('daterange' in query) {
-        let { startDate, endDate } = query['daterange'];
-        let range = `${startDate.toISOString()},${endDate.toISOString()}`;
-
-        delete query['daterange'];
-        delete query['active_range'];
-        delete query['introduced_range'];
-
-        query[query['date_filter_type'] + '_range'] = range;
-      }
-
       return query;
     }
   }

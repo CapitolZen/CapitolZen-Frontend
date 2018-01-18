@@ -1,37 +1,23 @@
 {{#bs-modal class="help-modal modal-center" open=open size="lg" onHidden=onHidden as |modal|}}
   {{#modal.header}}
     <h4 class="modal-title text-center">
-      Get Help
+      Need Help?
     </h4>
   {{/modal.header}}
   {{#modal.body}}
-    <div class="row row-flex justify-content-between">
-      <div class="col-6">
-        <div class="card text-center">
-          <div class="card-header">
-            Chat Live
-          </div>
-          <div class="card-body">
-            <p class="card-text">Send us a message and we'll get back with you asap.</p>
-          </div>
-          <div class="card-footer card-footer-action">
-            {{#bs-button type="primary" onClick=(action "triggerChat")}}Chat Now{{/bs-button}}
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="card text-center">
-          <div class="card-header">
-            Report Problem
-          </div>
-          <div class="card-body">
-            <p class="card-text">Report a problem and we'll fix it right away!</p>
-          </div>
-          <div class="card-footer card-footer-action">
-            {{#bs-button onClick=(action "triggerFeedback")}}Give Feedback{{/bs-button}}
-          </div>
-        </div>
-      </div>
-    </div>
+    {{#bs/list-group as |g|}}
+      {{#g.item tagName="div" class="d-flex justify-content-between"}}
+        {{#bs-button type="primary" onClick=(action "triggerChat")}}Chat Now{{/bs-button}}
+        <span>Send us a message and we'll respond ASAP</span>
+      {{/g.item}}
+      {{#g.item tagName="div" class="d-flex justify-content-between"}}
+        <a class="btn btn-outline-secondary" href="http://help.capitolzen.com">Knowledge Base</a>
+        <span>Search and read all of our help materials</span>
+      {{/g.item}}
+      {{#g.item class="d-flex justify-content-between"}}
+        {{#bs-button type="outline-secondary" onClick=(action "triggerFeedback")}}Give Feedback{{/bs-button}}
+        <span>Report a problem and we'll fix it right away!</span>
+      {{/g.item}}
+    {{/bs/list-group}}
   {{/modal.body}}
 {{/bs-modal}}

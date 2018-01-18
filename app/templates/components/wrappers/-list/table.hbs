@@ -4,18 +4,12 @@
   columns=columns
   tableOptions=tableOptions
   postTableSetup=(action "postTableSetup")
-  recordQuery=defaultRecordQuery
   recordType=recordType as |t| }}
 
-  {{#if filtering}}
-    {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
-      {{filter.element label="Search" controlType="text" property="search"}}
-      {{#filter.element label="Date Range" controlType="power-select" property="date_filter_type" options=dateFilterOptions as |el|}}
-        {{el.control searchEnabled=false}}
-      {{/filter.element}}
-      {{filter.element controlType="baremetrics" options=(hash presets=dateFilterPresents) property="daterange"}}
-    {{/t.filter}}
-  {{/if}}
+  {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
+    {{filter.element label="Search" controlType="text" property="search"}}
+  {{/t.filter}}
+
 
   {{#t.expandedRow as |row|}}
     {{table/responsive-table-row table=table row=row}}
