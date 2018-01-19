@@ -7,7 +7,6 @@ export default Component.extend({
   breakdown: computed('vote', function() {
     let vote = this.get('vote');
     let total = vote['no-count'] + vote['yes-count'] + vote['other-count'];
-    console.log(total);
     let breakdown = {
       yes: {
         label: 'Yes - ( ' + vote['yes-count'] + ' )',
@@ -25,7 +24,6 @@ export default Component.extend({
         votes: vote['other-votes']
       }
     };
-    console.log(breakdown);
 
     return breakdown;
   })

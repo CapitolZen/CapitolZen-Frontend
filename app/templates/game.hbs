@@ -1,0 +1,17 @@
+{{ui-page-property "Pretend To Look Busy" property="title"}}
+{{#global/page-title-actions}}
+  {{#bs/link-button "dashboard" type="primary"}}
+    {{fa-icon "tachometer"}} Dashboard
+  {{/bs/link-button}}
+  {{#bs/link-button "committees.meetings" type="primary"}}
+    {{fa-icon "calendar"}} Committees
+  {{/bs/link-button}}
+
+  {{#link-to "reports.index" class="btn btn-primary"}}
+    {{fa-icon "map" class="mr-2"}}Reports
+  {{/link-to}}
+  {{#link-to "organization.team" class="btn btn-primary"}}
+    {{fa-icon "users" class="mr-2"}}My Team
+  {{/link-to}}
+{{/global/page-title-actions}}
+{{tools/trivia-container}}

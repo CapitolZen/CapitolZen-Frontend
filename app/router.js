@@ -28,6 +28,7 @@ const Router = EmberRouter.extend(IntercomRoute, {
 Router.map(function() {
   this.route('app', { resetNamespace: true, path: '' }, function() {
     this.route('dashboard', { resetNamespace: true, path: '' });
+    this.route('game', { resetNamespace: true });
 
     //
     // User Accounts

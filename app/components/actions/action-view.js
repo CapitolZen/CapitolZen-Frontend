@@ -45,6 +45,10 @@ export default Component.extend(RecognizerMixin, {
   title: alias('model.displayTitle'),
 
   /**
+   * Noop for actions
+   */
+  onDismiss() {},
+  /**
    *
    * @private
    */
@@ -53,6 +57,7 @@ export default Component.extend(RecognizerMixin, {
       .updateState('dismissed')
       .then(() => {
         get(this, 'currentUser').event('action:dismiss');
+        this.onDismiss();
       })
       .catch(err => {
         console.error(err);
