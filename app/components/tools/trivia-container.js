@@ -17,31 +17,50 @@ const Question = EmberObject.extend({
 export default Component.extend({
   ajax: service(),
   questionStore: A(),
-  init() {
-    this._super(...arguments);
-    get(this, 'loadQuestions').perform();
-  },
   loadQuestions: task(function*() {
     try {
-      let results = yield get(this, 'ajax').request('/trivia/');
-      results.forEach(r => {
+      let { data } = yield get(this, 'ajax').request('/trivia/');
+      data.forEach(r => {
         let question = Question.create({
-          questionType: r.questionType,
           question: r.question,
-          category: r.category,
-          choices: r.choices,
+          category: r.category.title,
+          value: r.value,
           answer: r.answer
         });
-
         get(this, 'questionStore').addObject(question);
       });
     } catch (err) {
       console.log(err);
       set(this, 'isError', true);
     }
-  }),
+  }).on('init'),
   availableQuestions: filterBy('questionStore', 'answered', false),
   currentQuestion: computed('availableQuestions.[]', function() {
-    return get(this, 'availableQuestions').firstObject();
-  })
+    return get(this, 'availableQuestions.firstObject');
+  }),
+  actions: {
+    checkAnswer() {
+      let answer = get(this, 'userAnswer'),
+        currentQuestion = get(this, 'currentQuestion');
+      let rightAnswer = currentQuestion.get('answer');
+      rightAnswer = rightAnswer.toLowerCase();
+
+      let answerResponse = '';
+      if (rightAnswer.includes(answer.toLowerCase())) {
+        answerResponse = `Correct! ${currentQuestion.get('answer')}`;
+        set(this, 'modalTitle', 'Correct Answer!');
+      } else {
+        answerResponse = `The right answer is: ${rightAnswer}`;
+        set(this, 'modalTitle', 'Sorry, Incorrect.');
+      }
+
+      set(this, 'answerResponse', answerResponse);
+      currentQuestion.set('answered', true);
+      set(this, 'openAnswerModal', true);
+    },
+    closeModal() {
+      set(this, 'userAnswer', null);
+      set(this, 'openAnswerModal', false);
+    }
+  }
 });

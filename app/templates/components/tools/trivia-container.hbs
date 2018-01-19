@@ -1,8 +1,47 @@
-{{#ui/ui-box as |b|}}
-  {{#b.header class="bg-warning"}}
-    A Problem Occurred
-  {{/b.header}}
-  {{#b.body}}
-    <p>We're sorry, but we're having a problem with our trivia provider, you'll have to actually do something...</p>
-  {{/b.body}}
-{{/ui/ui-box}}
+{{#if isError}}
+  {{#ui/ui-box as |b|}}
+    {{#b.header class="bg-warning"}}
+      A Problem Occurred
+    {{/b.header}}
+    {{#b.body}}
+      <p>We're sorry, but we're having a problem with our trivia provider, you'll have to actually do something...</p>
+    {{/b.body}}
+  {{/ui/ui-box}}
+{{/if}}
+
+
+{{#unless isError}}
+  {{#if (and loadQuestion.isRunning currentQuestion)}}
+    {{ui/loading-animation}}
+  {{else}}
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2">
+        {{#ui/ui-box as |b|}}
+          {{#b.header}}
+            <span class="text-capitalize">{{currentQuestion.category}}</span> for {{currentQuestion.value}}, Alex.
+          {{/b.header}}
+
+          {{#b.body}}
+            <h6 class="card-text">{{currentQuestion.question}}</h6>
+            <div class="input-group my-3">
+              {{input class="form-control" placeholder="Your Answer"
+                     aria-label="Recipient's username" value=userAnswer}}
+              <div class="input-group-append">
+                {{bs-button type="outline-secondary" defaultText="Submit Answer" onClick=(action "checkAnswer")}}
+              </div>
+            </div>
+          {{/b.body}}
+        {{/ui/ui-box}}
+      </div>
+    </div>
+  {{/if}}
+{{/unless}}
+
+{{#bs-modal-simple
+  open=openAnswerModal
+  title=modalTitle
+  closeButton="Try Again"
+  onHidden=(action "closeModal")
+  renderInPlace=true}}
+  {{answerResponse}}
+{{/bs-modal-simple}}
