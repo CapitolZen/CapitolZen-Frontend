@@ -39,7 +39,7 @@
       {{#if selectedEventModel.committee.isPending}}
         {{ui/inline-loading}}
       {{else}}
-        {{chamber-name selectedEventModel.chamber}} {{selectedEventModel.committee.content.displayName}}
+        {{selectedEventModel.committee.content.displayName}}
       {{/if}}
     {{/modal.header}}
     {{#modal.body}}
