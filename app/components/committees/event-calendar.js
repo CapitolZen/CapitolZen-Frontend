@@ -9,6 +9,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),
+  currentUser: service(),
   internalModel: null,
   defaultDate: moment(),
   viewName: 'listMonth',
@@ -67,6 +68,9 @@ export default Component.extend({
     close() {
       set(this, 'showModal', false);
       set(this, 'selectedEventId', null);
+    },
+    sendEvent() {
+      get(this, 'currentUser').event('event:calendar');
     }
   }
 });

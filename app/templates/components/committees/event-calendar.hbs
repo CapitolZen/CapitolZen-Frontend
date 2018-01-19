@@ -56,7 +56,7 @@
 
     {{/modal.body}}
     {{#modal.footer class="justify-content-between" as |footer|}}
-      {{#calendar-button selectedEventModel class="mr-2" as |b|}}
+      {{#calendar-button selectedEventModel class="mr-2" onClick=(action "sendEvent") as |b|}}
         {{#b.ical class="btn btn-outline-primary"}}{{fa-icon "calendar-plus-o"}}{{/b.ical}}
         {{#b.google class="btn btn-outline-info"}}{{fa-icon "google"}}{{/b.google}}
       {{/calendar-button}}

@@ -54,7 +54,7 @@ export default CurrentUser.extend({
   events: A([
     'report:create',
     'report:download',
-    'event:download',
+    'event:calendar',
     'action:dismiss',
     'action:snoozed',
     'action:flagged',
