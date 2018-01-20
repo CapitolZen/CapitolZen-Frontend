@@ -2789,9 +2789,9 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-ember-add-calendar-button@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/ember-add-calendar-button/-/ember-add-calendar-button-0.0.2.tgz#e2b34b0e30c005f7c81e23b7ac5a11cdcf010631"
+ember-add-calendar-button@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/ember-add-calendar-button/-/ember-add-calendar-button-0.0.4.tgz#5a2dcfa2d727d8f64c9da787270e943b1128bd16"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
