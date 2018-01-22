@@ -59,6 +59,9 @@ export default Component.extend({
       set(this, 'openAnswerModal', true);
     },
     closeModal() {
+      if (!get(this, 'availableQuestions.length')) {
+        get(this, 'loadQuestions').perform();
+      }
       set(this, 'userAnswer', null);
       set(this, 'openAnswerModal', false);
     }
