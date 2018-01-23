@@ -1,24 +1,35 @@
-{{#if previewUrl}}
-  <img src="{{previewUrl}}" class="" alt="{{name}}">
-{{/if}}
-{{#if isEditing}}
-  <div class="card-body">
-    <h4 class="card-title">Edit</h4>
-    {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+
+
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    {{#if isEditing}}
+      Edit
+    {{else}}
+      {{name}}
+    {{/if}}
+  {{/b.header}}
+
+  {{#unless isEditing}}
+    {{#b.body}}
+      <h6 class="card-subtitle mb-2 text-muted">Modified: {{tools/date-display modified}}</h6>
+      <p class="card-text">{{description}}</p>
+    {{/b.body}}
+    {{#b.footer}}
+      <a href="{{url}}" class="btn btn-primary text-white" target="_blank"> {{fa-icon "download"}} View</a>
+      {{#bs-button type="light" onClick=(action "toggleEditing")}}Edit{{/bs-button}}
+
+    {{/b.footer}}
+  {{else}}
+  {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+    {{#b.body}}
       {{form.element controlType="text" label="Name" property="name"}}
       {{form.element controlType="textarea" label="description" property="description"}}
+    {{/b.body}}
+    {{#b.footer}}
       {{bs-button defaultText="Update" type="primary" buttonType="submit"}}
-    {{/bs-form}}
-  </div>
+      {{bs-button defaultText="Delete" type="danger" onClick=(action "deleteFile") class="pull-right"}}
+    {{/b.footer}}
+  {{/bs-form}}
+  {{/unless}}
 
-{{else}}
-  <div class="card-body">
-    <h4 class="card-title">{{name}}</h4>
-    <h6 class="card-subtitle mb-2 text-muted">Modified: {{tools/date-display modified}}</h6>
-    <p class="card-text">{{description}}</p>
-  </div>
-  <div class="card-footer">
-    <a href="{{url}}" class="btn btn-primary text-white" target="_blank"> {{fa-icon "download"}} View</a>
-    {{#bs-button type="light" onClick=(action "toggleEditing")}}Edit{{/bs-button}}
-  </div>
-{{/if}}
+{{/ui/ui-box}}

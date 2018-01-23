@@ -8,7 +8,6 @@ import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 const FileCard = FormComponent.extend({
   flashMessages: service(),
-  classNames: ['card'],
   file: null,
   isEditing: false,
   previewUrl: alias('file.previewUrl'),
@@ -21,16 +20,7 @@ const FileCard = FormComponent.extend({
     this._super(...arguments);
     set(this, 'isEditing', false);
   },
-  initModel() {
-    let file = get(this, 'file');
-    let changeset = new Changeset(
-      file,
-      lookupValidator(FileValidations),
-      FileValidations
-    );
-    set(this, 'changeset', changeset);
-    set(this, 'model', file);
-  },
+  model: alias('file'),
   onSubmitSuccess() {
     set(this, 'isEditing', false);
     get(this, 'flashMessages').success('File Updated');
@@ -43,6 +33,9 @@ const FileCard = FormComponent.extend({
   actions: {
     toggleEditing() {
       this.toggleProperty('isEditing');
+    },
+    deleteFile() {
+      get(this, 'model').destoryRecord();
     }
   }
 });

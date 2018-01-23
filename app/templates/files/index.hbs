@@ -1,0 +1,11 @@
+{{ui-page-property "Files" property="title"}}
+{{#global/page-title-actions}}
+  {{#bs/link-button "files.upload" type="primary"}}{{fa-icon "upload"}} Upload{{/bs/link-button}}
+{{/global/page-title-actions}}
+
+
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    {{files/-list/table}}
+  </div>
+</div>
