@@ -40,6 +40,10 @@
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
+        {{#link-to "files"}}{{fa-icon "cloud"}} Files{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
         <a href="#" {{action (action (mut helpModal) true) on="click"}}>
           {{fa-icon "question-circle"}} <span>Help</span>
         </a>
