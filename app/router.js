@@ -86,7 +86,11 @@ Router.map(function() {
       this.route('detail', { path: '/:id' });
     });
 
-    this.route('files', { resetNamespace: true });
+    this.route('files', { resetNamespace: true }, function() {
+      this.route('detail', { path: '/:id' });
+      this.route('upload');
+    });
+
     this.route('actions', function() {});
   });
 
