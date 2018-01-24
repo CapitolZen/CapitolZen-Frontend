@@ -35,7 +35,7 @@ const FileCard = FormComponent.extend({
       this.toggleProperty('isEditing');
     },
     deleteFile() {
-      get(this, 'model').destoryRecord();
+      get(this, 'model').destroyRecord();
     }
   }
 });
