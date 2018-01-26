@@ -41,7 +41,6 @@ export default Component.extend(RecognizerMixin, {
   isBill: equal('referencedModelType', 'Bill'),
   isCommittee: equal('referencedModelType', 'Event'),
   isWrapper: equal('referencedModelType', 'Wrapper'),
-
   title: alias('model.displayTitle'),
 
   /**
@@ -67,9 +66,6 @@ export default Component.extend(RecognizerMixin, {
       });
 
     this.notifyPropertyChange('model');
-    if (this.get('listComponent')) {
-      this.get('listComponent')._refilterDataset();
-    }
   },
   swipeRight() {
     this._dismissAction();

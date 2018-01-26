@@ -10,6 +10,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   store: service(),
   currentUser: service(),
+  media: service(),
   internalModel: null,
   defaultDate: moment(),
   viewName: 'listMonth',
