@@ -16,7 +16,7 @@ export default DS.Model.extend({
     if (get(this, 'actionObject.type')) {
       return capitalize(singularize(get(this, 'actionObject.type')));
     }
-    return null;
+    return false;
   }),
   modelId: alias('actionObject.id'),
   displayTitle: computed('title', function() {
