@@ -7,10 +7,15 @@ import { A } from '@ember/array';
 
 export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
-  model(params) {
+  model() {
     const parent_params = this.paramsFor('groups.detail');
     return RSVP.hash({
-      group: this.get('store').findRecord('group', parent_params.id)
+      group: this.store.findRecord('group', parent_params.id),
+      latest: this.store.query('wrapper', {
+        group: parent_params.id,
+        sort: 'bill__updated_at',
+        page_size: 5
+      })
     });
   }
 });
