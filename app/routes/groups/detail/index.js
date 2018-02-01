@@ -11,6 +11,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     const parent_params = this.paramsFor('groups.detail');
     return RSVP.hash({
       group: this.store.findRecord('group', parent_params.id),
+      organization: get(this, 'currentUser.organization'),
       latest: this.store.query('wrapper', {
         group: parent_params.id,
         sort: 'bill__updated_at',

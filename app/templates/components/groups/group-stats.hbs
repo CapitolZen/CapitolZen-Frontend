@@ -7,9 +7,23 @@
   {{/each}}
 </dl>
 
-<h6>Overview</h6>
+<h6>Status</h6>
 <hr class="mt-0">
 <dl class="row">
+  <dt class="col-sm-6">Passed {{chamber-name "lower"}}</dt>
+  <dd class="col-sm-6 text-right">{{stats.lower_passed_count}}</dd>
+
+  <dt class="col-sm-6">Passed {{chamber-name "upper"}}</dt>
+  <dd class="col-sm-6 text-right">{{stats.upper_passed_count}}</dd>
+
+  <dt class="col-sm-6">Signed</dt>
+  <dd class="col-sm-6 text-right">{{stats.signed}}</dd>
+</dl>
+
+
+<h6>Position</h6>
+<hr class="mt-0">
+<dl>
   <dt class="col-sm-6">Total Saved</dt>
   <dd class="col-sm-6 text-right">{{stats.saved_count}}</dd>
 
@@ -21,13 +35,6 @@
 
   <dt class="col-sm-6">Total Neutral</dt>
   <dd class="col-sm-6 text-right">{{stats.neutral_count}}</dd>
-
-  <dt class="col-sm-6">Passed {{chamber-name "lower"}}</dt>
-  <dd class="col-sm-6 text-right">{{stats.lower_passed_count}}</dd>
-
-  <dt class="col-sm-6">Passed {{chamber-name "upper"}}</dt>
-  <dd class="col-sm-6 text-right">{{stats.upper_passed_count}}</dd>
-
-  <dt class="col-sm-6">Signed</dt>
-  <dd class="col-sm-6 text-right">{{stats.signed}}</dd>
 </dl>
+
+
