@@ -17,6 +17,5 @@ export default Component.extend({
       `groups/${id}/stats/`
     );
     set(this, 'stats', stats);
-    console.log(stats);
   })
 });
