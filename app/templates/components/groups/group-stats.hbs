@@ -1,0 +1,40 @@
+<h6>Top Committees</h6>
+<hr class="mt-0">
+<dl class="row">
+  {{#each stats.top_committees as |cmte|}}
+    <dt class="col-sm-6">{{chamber-name cmte.chamber}} {{cmte.name}}</dt>
+    <dd class="col-sm-6 text-right">{{cmte.count}}</dd>
+  {{/each}}
+</dl>
+
+<h6>Status</h6>
+<hr class="mt-0">
+<dl class="row">
+  <dt class="col-sm-6">Passed {{chamber-name "lower"}}</dt>
+  <dd class="col-sm-6 text-right">{{stats.lower_passed_count}}</dd>
+
+  <dt class="col-sm-6">Passed {{chamber-name "upper"}}</dt>
+  <dd class="col-sm-6 text-right">{{stats.upper_passed_count}}</dd>
+
+  <dt class="col-sm-6">Signed</dt>
+  <dd class="col-sm-6 text-right">{{stats.signed}}</dd>
+</dl>
+
+
+<h6>Position</h6>
+<hr class="mt-0">
+<dl>
+  <dt class="col-sm-6">Total Saved</dt>
+  <dd class="col-sm-6 text-right">{{stats.saved_count}}</dd>
+
+  <dt class="col-sm-6">Total Support</dt>
+  <dd class="col-sm-6 text-right">{{stats.support_count}}</dd>
+
+  <dt class="col-sm-6">Total Oppose</dt>
+  <dd class="col-sm-6 text-right">{{stats.oppose_count}}</dd>
+
+  <dt class="col-sm-6">Total Neutral</dt>
+  <dd class="col-sm-6 text-right">{{stats.neutral_count}}</dd>
+</dl>
+
+

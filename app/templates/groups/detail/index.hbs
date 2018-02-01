@@ -15,7 +15,7 @@
 {{/global/page-title-actions}}
 
 <div class="row">
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-8 offset-md-2">
     {{#bs-tab as |tab|}}
       {{#tab.pane title="Overview"}}
         {{#ui/ui-box as |b|}}
@@ -54,12 +54,44 @@
                 {{/if}}
               </div>
             </div>
+
           {{/b.body}}
         {{/ui/ui-box}}
+
+        {{#ui/ui-box as |b|}}
+          {{#b.header}}Recently Updated{{/b.header}}
+          {{#b.body}}
+            {{#bs/list-group class="flush-group-list" as |g|}}
+              {{#each model.latest as |wrapper|}}
+                {{#g.item tagName="div" class="d-flex justify-content-between"}}
+
+                  {{wrapper.bill.stateId}}
+                  <span>
+               <strong>Status:</strong>
+                    {{wrapper.bill.remoteStatus}}
+              </span>
+                  {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
+                  {{#link-to "groups.detail.bill.detail" wrapper.id}}View{{/link-to}}
+                {{/g.item}}
+              {{/each}}
+            {{/bs/list-group}}
+          {{/b.body}}
+        {{/ui/ui-box}}
+
+        {{#ui/ui-box class="mt-3" as |b|}}
+          {{#b.header}}
+            Saved Bill Overview
+          {{/b.header}}
+          {{#b.body}}
+            {{groups/group-stats group=model.group}}
+          {{/b.body}}
+        {{/ui/ui-box}}
+
       {{/tab.pane}}
       {{#tab.pane title="Edit"}}
         {{groups/group-form group=model.group organization=model.organization}}
       {{/tab.pane}}
     {{/bs-tab}}
+
   </div>
 </div>
