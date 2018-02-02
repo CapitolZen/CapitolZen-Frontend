@@ -1,7 +1,12 @@
 {{ui-page-property model.bill.stateId property="title"}}
 
 {{#global/page-title-actions}}
-  {{bills/add-to-group bills=model.bill buttonType="primary"}}
+  {{#if model.bill.votes}}
+    {{#bs/link-button "bills.votes" model.bill.id type="primary"}}{{fa-icon "gavel"}} Votes{{/bs/link-button}}
+  {{else}}
+    {{bills/add-to-group bills=model.bill fullWidth=false buttonType="primary"}}
+  {{/if}}
+
 {{/global/page-title-actions}}
 
 {{#if (get model.bill "sponsor")}}
@@ -20,7 +25,7 @@
 {{/if}}
 
 {{#if model.bill.votes}}
-  {{bills/-detail/vote-list votes=model.bill.votes}}
+  {{bills/-detail/vote-list bill=model.bill votes=model.bill.votes}}
 {{/if}}
 
 

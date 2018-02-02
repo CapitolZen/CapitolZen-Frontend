@@ -3541,6 +3541,12 @@ ember-crumbly@^2.0.0-alpha.1:
     ember-cli-htmlbars "^1.1.0"
     ember-getowner-polyfill "^1.1.1"
 
+ember-css-transitions@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/ember-css-transitions/-/ember-css-transitions-0.1.11.tgz#68071239d6e600dd795689f940c2e8a161f280a6"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-data@2.18.0:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-2.18.0.tgz#8e374e540ea7c3b101983eb51cd0beedaa4d230d"
