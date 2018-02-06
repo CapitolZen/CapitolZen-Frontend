@@ -21,7 +21,7 @@ export default DS.Model.extend({
   billVersions: DS.attr(),
   introducedDate: DS.attr('string'),
   wrappers: DS.hasMany('wrappers'),
-  currentCommittee: DS.belongsTo('committee'),
+  currentCommittee: DS.belongsTo('committee', { async: false }),
   relatedBillIds: DS.attr(),
   billTextAnalysis: DS.attr(),
   companions: DS.attr(),

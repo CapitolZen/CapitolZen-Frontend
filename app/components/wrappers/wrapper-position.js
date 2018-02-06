@@ -7,17 +7,19 @@ export default Component.extend({
   isEditing: false,
   canEdit: false,
   showDetails: true,
-  positions: ['support', 'oppose', 'neutral'],
+  positions: ['none', 'neutral', 'support', 'oppose'],
   position: alias('wrapper.position'),
   positionIcons: {
     support: 'thumbs-up',
     oppose: 'thumbs-down',
-    neutral: 'circle-o'
+    neutral: 'circle-o',
+    none: 'minus'
   },
   positionClassMap: {
     support: 'success',
     oppose: 'danger',
-    neutral: 'light'
+    neutral: 'warning',
+    none: 'light'
   },
   positionModifier: computed('wrapper.position', function() {
     let position = get(this, 'wrapper.position');
