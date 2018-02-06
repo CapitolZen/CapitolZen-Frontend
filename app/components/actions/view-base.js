@@ -11,6 +11,7 @@ export default Component.extend(RecognizerMixin, {
   actionModel: null,
   referencedModelType: null,
   referencedModelId: null,
+  _didLoad: false,
   footerClasses: 'd-flex justify-content-center',
   referencedModelLinkTo: computed('referencedModelType', function() {
     return get(this, 'referencedModelType').toLowerCase();
@@ -30,12 +31,16 @@ export default Component.extend(RecognizerMixin, {
 
   //optional hook
   postLoadHook(model) {},
+  // For contextual component
+  didLoad() {},
   loadReferencedModel: task(function*() {
     let record = yield get(this, 'store').findRecord(
       get(this, 'referencedModelType'),
       get(this, 'referencedModelId')
     );
     this.postLoadHook(record);
+    set(this, '_didLoad', true);
+    this.didLoad(record);
     set(this, 'referencedModel', record);
   }).on('didReceiveAttrs'),
   actions: {

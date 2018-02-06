@@ -1,22 +1,25 @@
 import Component from '@ember/component';
 import RecognizerMixin from 'ember-gestures/mixins/recognizers';
-import { task } from 'ember-concurrency';
 import { computed, get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { alias, equal } from '@ember/object/computed';
+import { alias, equal, not } from '@ember/object/computed';
+import { later } from '@ember/runloop';
 
 export default Component.extend(RecognizerMixin, {
   store: service(),
   currentUser: service(),
   flashMessages: service(),
+  classNames: ['action-summary'],
+  classNameBindings: [
+    'actualClassNames',
+    'isDismissed:action-leave',
+    'isLoading'
+  ],
 
-  classNameBindings: ['actualClassNames'],
-
-  actualClassNames: computed('model', function() {
-    let classes = 'action-summary';
-    classes += ' ' + this.get('model.state');
-    return classes;
-  }),
+  isDismissed: false,
+  didLoad: false,
+  isLoading: not('didLoad'),
+  actualClassNames: alias('model.state'),
 
   referencedModelType: alias('model.referencedModelName'),
   referencedModelId: alias('model.modelId'),
@@ -52,18 +55,22 @@ export default Component.extend(RecognizerMixin, {
    * @private
    */
   _dismissAction() {
-    get(this, 'model')
-      .updateState('dismissed')
-      .then(() => {
-        get(this, 'currentUser').event('action:dismiss');
-        this.onDismiss();
-      })
-      .catch(err => {
-        console.error(err);
-        get(this, 'flashMessages').danger(
-          'An error occurred, and our team has been notified!'
-        );
-      });
+    set(this, 'isDismissed', true);
+    later(
+      get(this, 'model')
+        .updateState('dismissed')
+        .then(() => {
+          get(this, 'currentUser').event('action:dismiss');
+          this.onDismiss();
+        })
+        .catch(err => {
+          console.error(err);
+          get(this, 'flashMessages').danger(
+            'An error occurred, and our team has been notified!'
+          );
+        }),
+      10000
+    );
 
     this.notifyPropertyChange('model');
   },
@@ -73,6 +80,9 @@ export default Component.extend(RecognizerMixin, {
   actions: {
     dismiss() {
       this._dismissAction();
+    },
+    didLoad() {
+      set(this, 'didLoad', true);
     }
   }
 });
