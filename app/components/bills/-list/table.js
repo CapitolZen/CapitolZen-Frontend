@@ -87,10 +87,11 @@ export default Component.extend({
     preFilterAlter(query) {
       if (query.hasOwnProperty('search')) {
         if (get(this, 'searchParams') !== query.search) {
-          delete query.page;
           set(this, 'searchParams', query.search);
+          return {
+            search: query.search.toLowerCase()
+          };
         }
-        query.search = query.search.toLowerCase();
       }
       return query;
     },

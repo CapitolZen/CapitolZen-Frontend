@@ -1,0 +1,34 @@
+
+{{#bs/list-group as |g|}}
+  {{#g.item tagName="div" class="row d-flex"}}
+    <div class="col-md-1">
+      <strong>ID</strong>
+    </div>
+    <div class="col-md-4">
+      <strong>Status</strong>
+    </div>
+    <div class="col-md-5">
+      <strong>Title</strong>
+    </div>
+  {{/g.item}}
+  {{#if loadBills.isRunning}}
+    {{ui/loading-animation}}
+  {{else}}
+    {{#each billList as |bill|}}
+      {{#g.item tagName="div" class="row d-flex"}}
+        <div class="col-md-1">
+          {{bill.stateId}}
+        </div>
+        <div class="col-md-4">
+          {{bill.remoteStatus}} {{bill.lastActionDate}}
+        </div>
+        <div class="col-md-5">
+          {{bill.title}}
+        </div>
+        <div class="col-md-2 text-right">
+          {{#link-to "bills.detail" bill.id}}View{{/link-to}}
+        </div>
+      {{/g.item}}
+    {{/each}}
+  {{/if}}
+{{/bs/list-group}}

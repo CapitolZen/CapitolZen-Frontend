@@ -1,0 +1,20 @@
+
+  {{#ui/ui-box as |b|}}
+    {{#b.header}}
+      {{wrapper.bill.stateId}} for {{wrapper.group.title}}  Updated
+      {{close-button (action "dismiss") class="pull-right"}}
+    {{/b.header}}
+    {{#b.body}}
+      <dl class="row">
+        <dt class="col-md-2">Position</dt>
+        <dd class="col-md-2">{{wrappers/wrapper-position wrapper=wrapper canEdit=false}}</dd>
+        <dt class="col-md-2">Status</dt>
+        <dd class="col-md-6">{{wrapper.bill.remoteStatus}}</dd>
+      </dl>
+    {{/b.body}}
+    {{#b.footer class=footerClasses}}
+      {{#bs/link-button "groups.detail.bill" wrapper.id type="outline-primary" class="mr-1"}}View{{/bs/link-button}}
+      {{#bs/link-button "reports.client" wrapper.group.id type="outline-info"}}Send Report{{/bs/link-button}}
+      {{bs-button defaultText="Dismiss" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
+    {{/b.footer}}
+  {{/ui/ui-box}}

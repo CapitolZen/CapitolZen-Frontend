@@ -1,0 +1,26 @@
+<h4>What's Latest</h4>
+<div class="row">
+
+  {{#ui/ui-box direction="row" class="mx-1" as |b|}}
+    {{#b.icon colSize=4}}
+      {{stats.introduced}}
+    {{/b.icon}}
+    {{#b.body}}
+      Introduced Bills For Review
+    {{/b.body}}
+  {{/ui/ui-box}}
+</div>
+<div class="row">
+
+</div>
+
+<div class="row">
+  {{#ui/ui-box direction="row" class="mx-1" as |b|}}
+    {{#b.icon colSize=4}}
+      {{stats.updated}}
+    {{/b.icon}}
+    {{#b.body}}
+      Actions on your saved bills
+    {{/b.body}}
+  {{/ui/ui-box}}
+</div>

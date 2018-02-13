@@ -1,0 +1,26 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+      {{action.displayTitle}} {{event.title}}
+    {{close-button (action "dismiss") class="pull-right"}}
+  {{/b.header}}
+  {{#b.body}}
+    <div class="w-100">
+      <dl>
+        <dt>Time</dt>
+        <dd>{{moment-format referencedModel.start "MMM D - h:mm a"}}</dd>
+        <dt>Location</dt>
+        {{referencedModel.locationText}}
+        <dt>Agenda</dt>
+        <dd>{{referencedModel.descriptionHtml}}</dd>
+      </dl>
+    </div>
+
+  {{/b.body}}
+  {{#b.footer class=footerClasses}}
+      {{#calendar-button referencedModel class="d-inline" onClick=(action "trackEvent") as |b|}}
+        {{#b.ical class="btn btn-outline-primary"}}{{fa-icon "calendar-plus-o"}}{{/b.ical}}
+        {{#b.google class="btn btn-outline-primary"}}{{fa-icon "google"}}{{/b.google}}
+      {{/calendar-button}}
+    {{bs-button defaultText="Dismiss" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
+  {{/b.footer}}
+{{/ui/ui-box}}

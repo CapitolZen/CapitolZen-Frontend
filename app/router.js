@@ -70,6 +70,13 @@ Router.map(function() {
     });
 
     //
+    // Actions
+    this.route('alerts', { resetNamespace: true }, function() {
+      this.route('active');
+      this.route('dismissed');
+    });
+
+    //
     // Reports
     this.route('reports', { resetNamespace: true }, function() {
       this.route('add', { path: '/add' });

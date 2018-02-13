@@ -98,7 +98,7 @@ export default Component.extend({
         wrappers: []
       };
 
-      if (client.get('assigned_to').contains(user)) {
+      if (client.get('assigned_to').includes(user)) {
         userClients.push(data);
       } else {
         allClients.push(data);

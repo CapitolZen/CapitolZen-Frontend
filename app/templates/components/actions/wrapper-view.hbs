@@ -7,16 +7,7 @@
   {{#b.body}}
     <p class="row card-body">
       {{#if referencedModel}}
-        <div class="col-md-6">
-          <dl>
-            <dt>{{features.clientLabel}}</dt>
-            <dd>{{referencedModel.group.title}}</dd>
-            <dt>Position</dt>
-            <dd>{{wrappers/wrapper-position wrapper=referencedModel canEdit=false}}</dd>
-            <dt>Status</dt>
-            <dd>{{referencedModel.bill.remoteStatus}}</dd>
-          </dl>
-        </div>
+
       
       {{/if}}
     </p>

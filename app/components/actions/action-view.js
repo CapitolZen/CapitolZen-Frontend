@@ -56,21 +56,18 @@ export default Component.extend(RecognizerMixin, {
    */
   _dismissAction() {
     set(this, 'isDismissed', true);
-    later(
-      get(this, 'model')
-        .updateState('dismissed')
-        .then(() => {
-          get(this, 'currentUser').event('action:dismiss');
-          this.onDismiss();
-        })
-        .catch(err => {
-          console.error(err);
-          get(this, 'flashMessages').danger(
-            'An error occurred, and our team has been notified!'
-          );
-        }),
-      10000
-    );
+    get(this, 'model')
+      .updateState('dismissed')
+      .then(() => {
+        get(this, 'currentUser').event('action:dismiss');
+        this.onDismiss();
+      })
+      .catch(err => {
+        console.error(err);
+        get(this, 'flashMessages').danger(
+          'An error occurred, and our team has been notified!'
+        );
+      });
 
     this.notifyPropertyChange('model');
   },

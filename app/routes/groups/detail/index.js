@@ -14,7 +14,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       organization: get(this, 'currentUser.organization'),
       latest: this.store.query('wrapper', {
         group: parent_params.id,
-        sort: 'bill__updated_at',
+        sort: '-bill__updated_at',
         page_size: 5
       })
     });
