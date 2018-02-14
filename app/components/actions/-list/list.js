@@ -66,7 +66,6 @@ export default Component.extend({
   cachedParams: null,
 
   fetchRecords: task(function*() {
-    console.log(get(this, 'cachedParams'));
     let params = { pageSize: 12 };
 
     params.sort = `${get(this, 'sortsDirection')}${get(this, 'sorts')}`;
@@ -81,7 +80,9 @@ export default Component.extend({
 
     params = Object.assign(filters, params);
 
-    let currentParams = JSON.stringify(params);
+    let precache = params;
+    delete precache.page;
+    let currentParams = JSON.stringify(precache);
 
     let paramsMatch = currentParams === get(this, 'cachedParams');
     set(this, 'cachedParams', currentParams);
@@ -118,7 +119,13 @@ export default Component.extend({
         modelLength = get(this, 'model.length'),
         totalServerCount = get(this, 'totalRecordCount');
 
-      if (top / total > 0.55 && modelLength < totalServerCount) {
+      let height = top / total > 0.55;
+
+      if (height && modelLength < totalServerCount) {
+        get(this, 'fetchRecords').perform();
+      }
+
+      if (top === 0 && modelLength < 10 && modelLength < totalServerCount) {
         get(this, 'fetchRecords').perform();
       }
       return modelLength <= totalServerCount;

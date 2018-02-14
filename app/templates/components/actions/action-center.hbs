@@ -1,28 +1,24 @@
 <div class="row justify-content-between">
-  {{#if stats.introduced}}
-    {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
-      {{#b.icon colSize=4}}
-        {{fa-icon "rss" size=3}}
-      {{/b.icon}}
-      {{#b.body}}
-        <h5>{{stats.introduced}} Introduced Bills</h5>
-        <p>{{#link-to "todos" (query-params type="bill:introduced") class="btn btn-light btn-sm"}}View To-Do's{{/link-to}}</p>
-      {{/b.body}}
-    {{/ui/ui-box}}
-
-
-  {{/if}}
-  {{#if stats.updated}}
-    {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
-      {{#b.icon colSize=4}}
-        {{fa-icon "gavel" size=3}}
-      {{/b.icon}}
-      {{#b.body}}
-        <h5>{{stats.updated}} Updated Saved Bills</h5>
-        <p>{{#link-to "todos" (query-params type="wrapper:updated") class="btn btn-light btn-sm"}}View To-Do's{{/link-to}}</p>
-      {{/b.body}}
-      {{/ui/ui-box}}
-  {{/if}}
+  {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
+    {{#b.icon colSize=4}}
+      {{fa-icon "rss" size=3}}
+    {{/b.icon}}
+    {{#b.body}}
+      <h5>{{stats.introduced}} Introduced Bills</h5>
+      <p>{{#link-to "todos" (query-params type="bill:introduced") class="btn btn-light btn-sm"}}
+        View To-Do's{{/link-to}}</p>
+    {{/b.body}}
+  {{/ui/ui-box}}
+  {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
+    {{#b.icon colSize=4}}
+      {{fa-icon "gavel" size=3}}
+    {{/b.icon}}
+    {{#b.body}}
+      <h5>{{stats.updated}} Updated Saved Bills</h5>
+      <p>{{#link-to "todos" (query-params type="wrapper:updated") class="btn btn-light btn-sm"}}
+        View To-Do's{{/link-to}}</p>
+    {{/b.body}}
+  {{/ui/ui-box}}
 </div>
 
 {{#if media.isMobile}}
