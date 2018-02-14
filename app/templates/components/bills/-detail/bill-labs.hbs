@@ -5,7 +5,7 @@
     {{#acc.item value="1" title="Related Bills"}}
       <p>We use a machine-learning algorithm to find similar bills across our database.</p>
       {{#bs/list-group as |g|}}
-        {{#each bills as |bill|}}
+        {{#each relatedBills as |bill|}}
           {{#g.item tagName="div" class="d-flex justify-content-between"}}
             {{bill.stateId}}
             {{#link-to "bills.detail" bill.id}}View{{/link-to}}

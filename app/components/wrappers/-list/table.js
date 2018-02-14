@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import moment from 'moment';
-import { computed } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 
 export default Component.extend({
   recordType: 'wrapper',
@@ -84,6 +84,14 @@ export default Component.extend({
      * @returns {*}
      */
     preFilterAlter(query) {
+      if (query.hasOwnProperty('search')) {
+        if (get(this, 'searchParams') !== query.search) {
+          set(this, 'searchParams', query.search);
+          return {
+            search: query.search.toLowerCase()
+          };
+        }
+      }
       return query;
     }
   }

@@ -2,10 +2,10 @@
 
 {{#global/page-title-actions}}
   {{#link-to "groups.detail.bills" model.group.id class="btn btn-primary"}}
-    {{fa-icon "file-text"}} Saved Bills
+    {{fa-icon "floppy-o"}} Saved Bills
   {{/link-to}}
   {{#link-to "reports.client" model.group.id class="btn btn-primary"}}
-    {{fa-icon "pencil-square-o"}} Reports
+    {{fa-icon "file-text"}} Reports
   {{/link-to}}
   {{#link-to "bills.add" class="btn btn-primary"}}
     {{fa-icon "briefcase"}} Add Draft
@@ -62,16 +62,37 @@
           {{#b.header}}Recently Updated{{/b.header}}
           {{#b.body}}
             {{#bs/list-group class="flush-group-list" as |g|}}
+              {{#g.item tagName="div" class="row d-flex"}}
+                <div class="col-md-2">
+                  <strong>Number</strong>
+                </div>
+                <div class="col-md-2">
+                  <strong>Date</strong>
+                </div>
+                <div class="col-md-4">
+                 <strong> Status</strong>
+                </div>
+                <div class="col-md-3">
+                  <strong>Position</strong>
+                </div>
+              {{/g.item}}
               {{#each model.latest as |wrapper|}}
-                {{#g.item tagName="div" class="d-flex justify-content-between"}}
-
-                  {{wrapper.bill.stateId}}
-                  <span>
-               <strong>Status:</strong>
+                {{#g.item tagName="div" class="row d-flex"}}
+                  <div class="col-md-2">
+                    {{wrapper.bill.stateId}}
+                  </div>
+                  <div class="col-md-2">
+                    {{tools/date-display wrapper.bill.lastActionDate}}
+                  </div>
+                  <div class="col-md-4">
                     {{wrapper.bill.remoteStatus}}
-              </span>
-                  {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
-                  {{#link-to "groups.detail.bill.detail" wrapper.id}}View{{/link-to}}
+                  </div>
+                  <div class="col-md-2">
+                    {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
+                  </div>
+                  <div class="col-md-2 text-right">
+                    {{#link-to "groups.detail.bill.detail" wrapper.id}}View{{/link-to}}
+                  </div>
                 {{/g.item}}
               {{/each}}
             {{/bs/list-group}}

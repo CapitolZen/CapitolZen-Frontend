@@ -1,0 +1,38 @@
+<div class="row justify-content-between">
+  {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
+    {{#b.icon colSize=4}}
+      {{fa-icon "rss" size=3}}
+    {{/b.icon}}
+    {{#b.body}}
+      <h5>{{stats.introduced}} Introduced Bills</h5>
+      <p>{{#link-to "todos" (query-params type="bill:introduced") class="btn btn-light btn-sm"}}
+        View To-Do's{{/link-to}}</p>
+    {{/b.body}}
+  {{/ui/ui-box}}
+  {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
+    {{#b.icon colSize=4}}
+      {{fa-icon "gavel" size=3}}
+    {{/b.icon}}
+    {{#b.body}}
+      <h5>{{stats.updated}} Updated Saved Bills</h5>
+      <p>{{#link-to "todos" (query-params type="wrapper:updated") class="btn btn-light btn-sm"}}
+        View To-Do's{{/link-to}}</p>
+    {{/b.body}}
+  {{/ui/ui-box}}
+</div>
+
+{{#if media.isMobile}}
+  <div class="row my-4">
+    <div class="col-12">
+      {{#bs/link-button "todos" type="primary" class="btn-block"}}View All To-Do's <span class="badge badge-light">{{stats.total}}</span>{{/bs/link-button}}
+    </div>
+  </div>
+{{/if}}
+
+{{#if media.isDesktop}}
+  <div class="row mt-4">
+    <div class="col-12">
+      {{tools/to-do}}
+    </div>
+  </div>
+{{/if}}

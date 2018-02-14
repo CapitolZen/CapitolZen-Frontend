@@ -1,0 +1,75 @@
+<div class="row">
+  {{#if media.isMobile}}
+    <div class="filter-button-wrapper">
+      {{#bs-button type="primary" onClick=(action "toggleMobileFacets")}}
+        Filters {{fa-icon "caret-down"}}
+      {{/bs-button}}
+    </div>
+  {{/if}}
+  <div id="client-facet-wrapper" class="col-sm-4 col-lg-3 col-xl-2 client-facet-wrapper">
+    {{#unless setupFacets.isRunning}}
+      {{#bs-collapse collapsed=facetsCollapsed}}
+        <div class="client-facet">
+          <h6>Sort:</h6>
+          {{#bs-button-group class="btn-group-vertical" justified=true value=sorts type="radio"
+                             onChange=(action (mut sorts)) as |bg|}}
+            {{#bg.button type="default" value='created'}}Date{{/bg.button}}
+            {{#bg.button type="default" value='bill__state_id'}}Bill ID{{/bg.button}}
+          {{/bs-button-group}}
+        </div>
+        <div class="client-facet">
+          <h6>Direction:</h6>
+          {{#bs-button-group justified=true value=sortsDirection type="radio"
+                             onChange=(action (mut sortsDirection)) as |bg|}}
+            {{#bg.button type="default" value=''}}{{fa-icon "caret-up"}} Asc{{/bg.button}}
+            {{#bg.button type="default" value='-'}}{{fa-icon "caret-down"}} Desc{{/bg.button}}
+          {{/bs-button-group}}
+        </div>
+        <div class="client-facet">
+          <h6>Filter:</h6>
+          {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
+            {{form.element label="Keyword" controlType="text" property="search"}}
+            {{form.element controlType="power-select" property="group" label="Client" searchEnabled=false options=availableGroups optionLabelPath="title"}}
+            {{#form.element label="Type" property="title" useIcons=false as |el|}}
+              {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
+                                 onChange=(action (mut el.value)) as |bg|}}
+                {{#bg.button type="default" value=null}}Any{{/bg.button}}
+                {{#bg.button type="default" value='bill:introduced'}}Bill Introduced{{/bg.button}}
+                {{#bg.button type="default" value='wrapper:updated'}}Saved Bill Update{{/bg.button}}
+              {{/bs-button-group}}
+            {{/form.element}}
+            {{#form.element label="Status" property="state" useIcons=false as |el|}}
+              {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
+                                 onChange=(action (mut el.value)) as |bg|}}
+                {{#bg.button type="default" value='active'}}{{fa-icon "bell"}} Active{{/bg.button}}
+                {{#bg.button type="default" value='dismissed'}}{{fa-icon "bell-slash-o"}} Dismissed{{/bg.button}}
+              {{/bs-button-group}}
+            {{/form.element}}
+            <div class="client-facet-submit">
+              {{bs-button class="btn-block" defaultText="Filter" pendingText="Saving..." type="success"
+                          buttonType="submit"}}
+            </div>
+          {{/bs-form}}
+        </div>
+      {{/bs-collapse}}
+    {{else}}
+      {{ui/inline-loading}}
+    {{/unless}}
+  </div>
+  <div class="col-sm-8 col-lg-9 col-xl-10">
+    {{#each model as |record|}}
+      {{actions/-list/item action=record onDismiss=(action "dismissAction")}}
+    {{else}}
+      {{#if fetchRecords.isRunning}}
+        {{ui/loading-animation}}
+      {{/if}}
+    {{/each}}
+    {{#if recordsComplete}}
+      {{#if (lt totalRecordCount 1)}}
+        <h6 class="text-center">No Results Found</h6>
+      {{/if}}
+    {{/if}}
+
+  </div>
+</div>
+
