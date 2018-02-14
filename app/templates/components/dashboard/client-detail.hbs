@@ -2,7 +2,7 @@
   {{#b.header}}
     {{group.title}}
     {{#if actionsCount}}
-      {{#bs/link-button "actions" (query-params group=group.id) type="primary" class="pull-right btn-sm"}}
+      {{#bs/link-button "todos" (query-params group=group.id) type="primary" class="pull-right btn-sm"}}
         Actions <span class="badge badge-light">{{actionsCount}}</span>
       {{/bs/link-button}}
 

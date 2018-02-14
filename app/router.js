@@ -70,8 +70,8 @@ Router.map(function() {
     });
 
     //
-    // Actions
-    this.route('actions', { resetNamespace: true }, function() {
+    // Actionswe
+    this.route('todos', { resetNamespace: true }, function() {
       this.route('index', { path: '' });
     });
 
