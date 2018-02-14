@@ -1,6 +1,7 @@
-{{log recordList}}
-
-{{#each recordList as |record|}}
-  {{record.id}}
-  {{record.displayTitle}}
-{{/each}}
+{{#if loadRecords.isRunning}}
+  {{ui/loading-animation}}
+{{else}}
+  {{#each recordList as |action|}}
+    {{actions/-list/item action=action onDismiss=(action "dismissAction")}}
+  {{/each}}
+{{/if}}

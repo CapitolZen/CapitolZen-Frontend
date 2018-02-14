@@ -65,10 +65,9 @@
       {{/if}}
     {{/each}}
     {{#if recordsComplete}}
-      <hr>
-      <div class="text-center">
-        All Done!
-      </div>
+      {{#if (lt totalRecordCount 1)}}
+        <h6 class="text-center">No Results Found</h6>
+      {{/if}}
     {{/if}}
 
   </div>

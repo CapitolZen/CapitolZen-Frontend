@@ -9,12 +9,16 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'fetchStats').perform();
+    get(this, 'fetchEvents').perform();
   },
   fetchStats: task(function*() {
     let { data: { stats } } = yield get(this, 'ajax').request(
       '/actions/stats/'
     );
-    console.log(stats);
     set(this, 'stats', stats);
+  }),
+  fetchEvents: task(function*() {
+    let events = get(this, 'store').query('event', { future: true });
+    set(this, 'events', events);
   })
 });

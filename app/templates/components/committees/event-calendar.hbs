@@ -11,7 +11,7 @@
       <div class="col-4 text-center">
         {{tools/date-display defaultDate}}
       </div>
-      {{#if media.isDesktop}}
+    {{!--{{#if media.isDesktop}}
         <div class="col-4">
           {{#bs-button-group type="radio" value=viewName class="float-right" onChange=(action (mut viewName)) as |bg|}}
             {{#bg.button type="outline-secondary" value="listMonth"}}List{{/bg.button}}
@@ -20,7 +20,7 @@
             {{#bg.button type="outline-secondary" value="month"}}Month{{/bg.button}}
           {{/bs-button-group}}
         </div>
-      {{/if}}
+      {{/if}}--}}
 
     </div>
   {{/b.header}}

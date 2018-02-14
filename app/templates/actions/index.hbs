@@ -1,1 +1,7 @@
-{{outlet}}
+{{ui-page-property "Your Actions" property="title"}}
+
+{{#global/page-title-actions}}
+  {{#bs/link-button "dashboard" type="primary"}}{{fa-icon "tachometer"}} Dashboard{{/bs/link-button}}
+{{/global/page-title-actions}}
+
+{{actions/-list/list group=group type=type}}

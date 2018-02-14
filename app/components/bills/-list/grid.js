@@ -10,12 +10,10 @@ export default Component.extend({
     this._super(...arguments);
     get(this, 'loadBills').perform();
   },
-  filterParams: computed(function() {
-    return {};
-  }),
+  params: {},
   billList: A(),
   loadBills: task(function*() {
-    let params = get(this, 'filterParams');
+    let params = get(this, 'params');
 
     if (!params.page_size) {
       params.page_size = 10;

@@ -71,9 +71,8 @@ Router.map(function() {
 
     //
     // Actions
-    this.route('alerts', { resetNamespace: true }, function() {
-      this.route('active');
-      this.route('dismissed');
+    this.route('actions', { resetNamespace: true }, function() {
+      this.route('index', { path: '' });
     });
 
     //
@@ -98,8 +97,6 @@ Router.map(function() {
       this.route('detail', { path: '/:id' });
       this.route('upload');
     });
-
-    this.route('actions', function() {});
   });
 
   this.route('freestyle');

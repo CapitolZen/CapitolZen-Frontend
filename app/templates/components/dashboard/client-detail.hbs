@@ -2,25 +2,17 @@
   {{#b.header}}
     {{group.title}}
     {{#if actionsCount}}
-      {{#bs/link-button "alerts.active" (query-params group=group.id) type="primary" class="pull-right btn-sm"}}
+      {{#bs/link-button "actions" (query-params group=group.id) type="primary" class="pull-right btn-sm"}}
         <span class="badge badge-light">{{actionsCount}}</span> Unread Actions
       {{/bs/link-button}}
 
     {{/if}}
   {{/b.header}}
   {{#b.body}}
-    <div class="row">
-      <div class="col-4">
-        {{#bs/link-button "groups.detail.index" group.id type="light"}}View{{/bs/link-button}}
-      </div>
-      <div class="col-4">
-        {{#bs/link-button "groups.detail.bills" group.id type="light"}}Saved Bills{{/bs/link-button}}
-      </div>
-      <div class="col-4">
-        {{#bs/link-button "reports.client" group.id type="light"}}Reports{{/bs/link-button}}
-      </div>
+    <div class="row justify-content-between">
+      {{#bs/link-button "groups.detail.index" group.id type="light"}}View{{/bs/link-button}}
+      {{#bs/link-button "groups.detail.bills" group.id type="light"}}Saved Bills{{/bs/link-button}}
+      {{#bs/link-button "reports.client" group.id type="light"}}Reports{{/bs/link-button}}
     </div>
   {{/b.body}}
 {{/ui/ui-box}}
-
-{{log wrappers}}

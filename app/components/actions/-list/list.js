@@ -41,6 +41,10 @@ export default Component.extend({
       set(this, 'filters.group', { id: null, title: 'None' });
     }
 
+    if (get(this, 'media.isMobile')) {
+      set(this, 'facetsCollapsed', true);
+    }
+
     if (
       get(this, 'type') &&
       get(this, 'titleOptions').includes(get(this, 'type'))
@@ -125,7 +129,7 @@ export default Component.extend({
       this._updateRecords();
     },
     toggleMobileFacets() {
-      this.toggleProperty('facetsToggled');
+      this.toggleProperty('facetsCollapsed');
     },
     dismissAction(action) {
       action.updateState('dismissed');
