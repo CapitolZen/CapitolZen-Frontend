@@ -16,16 +16,17 @@
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills"}}{{fa-icon "file-text"}} All Bills{{/link-to}}
+        {{#link-to "reports"}}{{fa-icon "flag"}} Reports{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "bills"}}{{fa-icon "book"}} All Bills{{/link-to}}
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
         {{#link-to "groups"}}{{fa-icon "address-book"}} {{features.clientLabelPlural}}{{/link-to}}
       {{/menu.item}}
 
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "reports"}}{{fa-icon "flag"}} Reports{{/link-to}}
-      {{/menu.item}}
 
       {{!--
       {{#menu.item dismissOnClick=true}}

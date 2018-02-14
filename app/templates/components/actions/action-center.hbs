@@ -1,17 +1,12 @@
-{{#link-to "todos"}}<h4>The Latest</h4>{{/link-to}}
 <div class="row justify-content-between">
   {{#if stats.introduced}}
-
     {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
       {{#b.icon colSize=4}}
-        <h4 class="text-center">
-          {{fa-icon "rss"}}<br>
-          {{stats.introduced}}
-        </h4>
+        {{fa-icon "rss" size=3}}
       {{/b.icon}}
       {{#b.body}}
-        <h6>Introduced Bills</h6>
-        <p>{{#link-to "todos" (query-params type="bill:introduced") class="btn btn-light"}}View{{/link-to}}</p>
+        <h5>{{stats.introduced}} Introduced Bills</h5>
+        <p>{{#link-to "todos" (query-params type="bill:introduced") class="btn btn-light btn-sm"}}View To Do's{{/link-to}}</p>
       {{/b.body}}
     {{/ui/ui-box}}
 
@@ -20,14 +15,11 @@
   {{#if stats.updated}}
     {{#ui/ui-box direction="row" class="icon-box-50" as |b|}}
       {{#b.icon colSize=4}}
-        <h4 class="text-center">
-          {{fa-icon "gavel"}}<br>
-          {{stats.updated}}
-        </h4>
+        {{fa-icon "gavel" size=3}}
       {{/b.icon}}
       {{#b.body}}
-        <h6>Updated Saved Bills</h6>
-        <p>{{#link-to "todos" (query-params type="wrapper:updated") class="btn btn-light"}}View{{/link-to}}</p>
+        <h5>{{stats.updated}} Updated Saved Bills</h5>
+        <p>{{#link-to "todos" (query-params type="wrapper:updated") class="btn btn-light btn-sm"}}View To Do's{{/link-to}}</p>
       {{/b.body}}
       {{/ui/ui-box}}
   {{/if}}
@@ -36,7 +28,7 @@
 {{#if media.isMobile}}
   <div class="row my-4">
     <div class="col-12">
-      {{#bs/link-button "todos" type="primary" class="btn-block"}}View All Actions <span class="badge badge-light">{{stats.total}}</span>{{/bs/link-button}}
+      {{#bs/link-button "todos" type="primary" class="btn-block"}}View All To Do's <span class="badge badge-light">{{stats.total}}</span>{{/bs/link-button}}
     </div>
   </div>
 {{/if}}
