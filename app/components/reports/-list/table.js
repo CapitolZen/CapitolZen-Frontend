@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { computed, get } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 
 export default Component.extend({
   recordType: 'report',
@@ -51,5 +51,27 @@ export default Component.extend({
         align: 'right'
       }
     ];
-  })
+  }),
+  /**
+   * Post Table Setup Hook
+   */
+  postTableSetup(table) {
+    this.set('table', table);
+  },
+  /**
+   * Alter pojo represents query filtering before sending it over.
+   * @param query
+   * @returns {*}
+   */
+  preFilterAlter(query) {
+    if (query.hasOwnProperty('search')) {
+      if (get(this, 'searchParams') !== query.search) {
+        set(this, 'searchParams', query.search);
+        return {
+          search: query.search.toLowerCase()
+        };
+      }
+    }
+    return query;
+  }
 });
