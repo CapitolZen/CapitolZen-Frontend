@@ -3,7 +3,7 @@
     {{group.title}}
     {{#if actionsCount}}
       {{#bs/link-button "actions" (query-params group=group.id) type="primary" class="pull-right btn-sm"}}
-        <span class="badge badge-light">{{actionsCount}}</span> Unread Actions
+        Actions <span class="badge badge-light">{{actionsCount}}</span>
       {{/bs/link-button}}
 
     {{/if}}

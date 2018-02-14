@@ -11,7 +11,7 @@
       {{/b.icon}}
       {{#b.body}}
         <h6>Introduced Bills</h6>
-        <p>{{#link-to "actions" (query-params type="bill:introduced") class="btn btn-light"}}See All{{/link-to}}</p>
+        <p>{{#link-to "actions" (query-params type="bill:introduced") class="btn btn-light"}}View{{/link-to}}</p>
       {{/b.body}}
     {{/ui/ui-box}}
 
@@ -27,8 +27,24 @@
       {{/b.icon}}
       {{#b.body}}
         <h6>Updated Saved Bills</h6>
-        <p>{{#link-to "actions" (query-params type="wrapper:updated") class="btn btn-light"}}See All{{/link-to}}</p>
+        <p>{{#link-to "actions" (query-params type="wrapper:updated") class="btn btn-light"}}View{{/link-to}}</p>
       {{/b.body}}
       {{/ui/ui-box}}
   {{/if}}
 </div>
+
+{{#if media.isMobile}}
+  <div class="row my-4">
+    <div class="col-12">
+      {{#bs/link-button "actions" type="primary" class="btn-block"}}View All Actions <span class="badge badge-light">{{stats.total}}</span>{{/bs/link-button}}
+    </div>
+  </div>
+{{/if}}
+
+{{#if media.isDesktop}}
+  <div class="row mt-4">
+    <div class="col-12">
+      {{tools/to-do}}
+    </div>
+  </div>
+{{/if}}
