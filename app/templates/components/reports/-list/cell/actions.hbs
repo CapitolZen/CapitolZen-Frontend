@@ -1,12 +1,16 @@
 <div class="btn-group btn-group-sm" role="group" aria-label="Bill Actions">
   {{#link-to "reports.detail" row.id class="btn btn-outline-secondary btn-sm"}}
     {{fa-icon "eye"}}
+    {{#bs-tooltip placement="top"}}View{{/bs-tooltip}}
   {{/link-to}}
   {{#reports/report-download report=row type="outline-secondary" size="btn-sm" class="d-none d-sm-block"}}
     {{fa-icon "cloud-download"}}
+    {{#bs-tooltip placement="top"}}Download{{/bs-tooltip}}
+
   {{/reports/report-download}}
   {{#reports/report-send report=row type="outline-secondary" size="btn-sm"}}
     {{fa-icon "envelope"}}
+    {{#bs-tooltip placement="top"}}Send to Email{{/bs-tooltip}}
   {{/reports/report-send}}
 </div>
 
