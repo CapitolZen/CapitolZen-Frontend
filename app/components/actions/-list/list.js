@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, computed, set } from '@ember/object';
+import { get, getWithDefault, computed, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { A } from '@ember/array';
@@ -9,6 +9,7 @@ export default Component.extend({
   media: service(),
   currentUser: service(),
   windoc: service(),
+  router: service(),
   facetsCollapsed: false,
   group: false,
   model: A(),
@@ -132,8 +133,10 @@ export default Component.extend({
     }
   ),
   actions: {
-    filter() {
+    filter(filters) {
       this._updateRecords();
+      let title = getWithDefault(filters, 'title', false);
+      get(this, 'router').transitionTo({ queryParams: { type: title } });
     },
     toggleMobileFacets() {
       this.toggleProperty('facetsCollapsed');
