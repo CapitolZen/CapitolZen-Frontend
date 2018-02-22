@@ -33,7 +33,7 @@ export default FormComponent.extend({
     get(this, 'session')
       .authenticate(authenticator, creds)
       .then(() => {
-        this.get('router').transitionToRoute('dashboard');
+        this.get('router').transitionTo('dashboard');
       });
   },
 
