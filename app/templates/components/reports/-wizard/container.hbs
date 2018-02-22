@@ -1,0 +1,44 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    Wizard - {{stepDescription}}
+  {{/b.header}}
+  {{#b.body}}
+      <div class="row">
+        <div class="col-md-3">
+          {{#bs-button onClick=(action "setSubject" "details")}}
+            Details
+          {{/bs-button}}
+        </div>
+        <div class="col-md-3">
+          {{#bs-button onClick=(action "setSubject" "importance")}}
+            What's Important
+          {{/bs-button}}
+        </div>
+        <div class="col-md-3">
+          {{#bs-button onClick=(action "setSubject" "scorecard")}}
+            Scorecard
+          {{/bs-button}}
+        </div>
+        <div class="col-md-3">
+          {{#bs-button onClick=(action "setSubject" "latest")}}
+            Latest
+          {{/bs-button}}
+        </div>
+      </div>
+      <div class="row">
+
+      </div>
+    {{reportSubject}}
+      {{#if reportSubject}}
+          {{reports/-wizard/steps/input onComplete=(action "nextStep")}}
+      {{/if}}
+
+  {{/b.body}}
+{{/ui/ui-box}}
+
+
+{{#ui/ui-box as |b|}}
+  {{#b.body}}
+
+  {{/b.body}}
+{{/ui/ui-box}}

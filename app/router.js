@@ -82,6 +82,7 @@ Router.map(function() {
       this.route('detail', { path: '/:report' });
       this.route('edit', { path: '/:report/edit' });
       this.route('client', { path: '/client/:group' });
+      this.route('wizard');
     });
 
     this.route('committees', { resetNamespace: true }, function() {
