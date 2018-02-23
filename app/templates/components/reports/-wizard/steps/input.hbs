@@ -1,4 +1,12 @@
-{{#bs-form model=this onSubmit=(action "submit") as |form|}}
-  {{form.element controlType="textarea" label="Bills" property="billIds"}}
-  {{bs-button defaultText="Add Bills" type="primary" buttonType="submit"}}
-{{/bs-form}}
+
+
+<div class="row">
+  <div class="col-md-6">
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        {{textarea value=billIds key-press="updateData"}}
+      {{/b.body}}
+    {{/ui/ui-box}}
+  </div>
+
+</div>

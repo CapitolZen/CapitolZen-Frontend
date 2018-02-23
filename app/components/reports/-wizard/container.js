@@ -5,30 +5,52 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  store: service(),
-  stepList: A(['Select Type', 'Input Bills', 'Add Details', 'Publish']),
-  step: 0,
+  router: service(),
+  stepList: A([
+    'Select Group',
+    'Select Type',
+    'Input Bills',
+    'Add Details',
+    'Publish'
+  ]),
+  step: null,
   init() {
     this._super(...arguments);
-    get(this, 'setupGroups').perform();
+    if (!get(this, 'step')) {
+      set(this, 'step', 0);
+    }
   },
-  setupGroups: task(function*() {
-    let groups = get(this, 'store').findAll('group');
-    set(this, 'groups', groups);
-  }),
-
+  config: {},
+  updateConfig(config) {
+    let currentConfig = get(this, 'config');
+    currentConfig = Object.assign(currentConfig, config);
+    set(this, 'config', currentConfig);
+  },
+  updateParams() {
+    let config = get(this, 'config');
+    let params = { step: get(this, 'step') };
+    params = Object.assign(params, config);
+    get(this, 'router').transitionTo({ queryParams: params });
+  },
   stepDescription: computed('step', function() {
     return get(this, 'stepList')[get(this, 'step')];
   }),
-  componentList: A(['']),
-  setComponent: computed(),
+  componentList: A(['group', 'select', 'input', 'configure']),
+  stepComponent: computed('step', function() {
+    return `reports/-wizard/steps/${
+      get(this, 'componentList')[get(this, 'step')]
+    }`;
+  }),
   actions: {
     setSubject(type) {
       set(this, 'reportSubject', type);
       set(this, 'step', 1);
     },
-    nextStep() {
-      this.incrementProperty('step');
+    nextStep(currentStep, config = {}) {
+      let step = ++currentStep;
+      set(this, 'step', step);
+      this.updateConfig(config);
+      this.updateParams();
     }
   }
 });
