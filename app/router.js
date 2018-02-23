@@ -102,6 +102,7 @@ Router.map(function() {
   this.route('freestyle');
   this.route('error-route', { path: 'error' });
   this.route('not-found', { path: '/*path' });
+  this.route('welcome', { path: '/dashboard' });
 
   //
   // Anon Pages
