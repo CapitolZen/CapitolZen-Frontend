@@ -25,6 +25,7 @@ export default Component.extend({
     let currentConfig = get(this, 'config');
     currentConfig = Object.assign(currentConfig, config);
     set(this, 'config', currentConfig);
+    console.log(currentConfig);
   },
   updateParams() {
     let config = get(this, 'config');
