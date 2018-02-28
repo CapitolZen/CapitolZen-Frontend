@@ -1,0 +1,33 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    {{action.displayTitle}}: {{bill.stateId}}
+    {{close-button (action "dismiss") class="pull-right"}}
+  {{/b.header}}
+  {{#b.body}}
+    {{#if bill.sponsor}}
+      <div class="w-100">
+        {{#legislator/legislator-info legislator=bill.sponsor class="clearfix pr-2" as |l|}}
+          <strong>{{l.name class="d-inline" tagName="span"}}</strong> {{l.party class="d-inline" tagName="span"}}
+        {{/legislator/legislator-info}}
+      </div>
+      <hr class="mt-0">
+    {{/if}}
+    {{#if bill.currentCommittee}}
+      <p class="card-text"><strong>Committee:</strong> {{bill.currentCommittee.displayName}}</p>
+    {{/if}}
+    <p class="card-text">{{bill.title}}</p>
+  {{/b.body}}
+  {{#b.footer class=footerClasses}}
+    {{#if bill}}
+      {{bills/add-to-group
+        bills=bill
+        buttonType="outline-primary"
+        buttonText="Save"
+        fullWidth=false
+        billAdded=(action "dismiss")
+      }}
+      {{#link-to "bills.detail" action.bill.id class="btn btn-outline-info ml-1"}}View{{/link-to}}
+    {{/if}}
+    {{bs-button defaultText="Complete" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
+  {{/b.footer}}
+{{/ui/ui-box}}

@@ -10,11 +10,19 @@
 }
 
 .badge-republican {
-  @include badge-variant(#dc3545);
+  @include badge-variant($republican);
 }
 
 .badge-democrat {
-  @include badge-variant(#007bff);
+  @include badge-variant($democrat);
+}
+
+.text-democrat {
+  color: $democrat !important;
+}
+
+.text-republican {
+  color: $republican !important;
 }
 
 #us_report_button {

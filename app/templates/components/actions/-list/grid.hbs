@@ -1,0 +1,7 @@
+{{#if loadRecords.isRunning}}
+  {{ui/loading-animation}}
+{{else}}
+  {{#each recordList as |action|}}
+    {{actions/-list/item action=action onDismiss=(action "dismissAction")}}
+  {{/each}}
+{{/if}}

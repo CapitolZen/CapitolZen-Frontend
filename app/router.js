@@ -54,6 +54,7 @@ Router.map(function() {
       this.route('detail', { path: '/:id' });
       this.route('saved');
       this.route('add');
+      this.route('votes', { path: '/:id/votes' });
     });
 
     //
@@ -66,6 +67,12 @@ Router.map(function() {
         });
       });
       this.route('add');
+    });
+
+    //
+    // Actionswe
+    this.route('todos', { resetNamespace: true }, function() {
+      this.route('index', { path: '' });
     });
 
     //
@@ -86,13 +93,16 @@ Router.map(function() {
       this.route('detail', { path: '/:id' });
     });
 
-    this.route('files', { resetNamespace: true });
-    this.route('actions', function() {});
+    this.route('files', { resetNamespace: true }, function() {
+      this.route('detail', { path: '/:id' });
+      this.route('upload');
+    });
   });
 
   this.route('freestyle');
   this.route('error-route', { path: 'error' });
   this.route('not-found', { path: '/*path' });
+  this.route('welcome', { path: '/dashboard' });
 
   //
   // Anon Pages

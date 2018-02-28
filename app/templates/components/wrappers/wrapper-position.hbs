@@ -11,7 +11,7 @@
 
 
 {{else}}
-  <span class="badge badge-{{positionModifier}}">{{fa-icon positionIcon}} {{position}}</span>
+  <span class="text-capitalize badge badge-{{positionModifier}}">{{fa-icon positionIcon}} {{position}}</span>
   {{#if canEdit}}
     <button class="btn btn-link btn-sm" {{action "toggleEditing"}}>
       {{fa-icon "pencil"}}

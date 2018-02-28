@@ -7,9 +7,9 @@ import moment from 'moment';
 import { A } from '@ember/array';
 
 export default DS.Model.extend({
-  bill: DS.belongsTo('bill'),
-  group: DS.belongsTo('group'),
-  organization: DS.belongsTo('organization'),
+  bill: DS.belongsTo('bill', { async: false }),
+  group: DS.belongsTo('group', { async: false }),
+  organization: DS.belongsTo('organization', { async: false }),
   notes: DS.attr(),
   files: DS.attr(),
   position: DS.attr('string', { defaultValue: 'neutral' }),

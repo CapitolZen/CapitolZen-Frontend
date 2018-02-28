@@ -1,0 +1,6 @@
+{{ui-page-property model.bill.stateId "Vote Results" property="title"}}
+{{#global/page-title-actions}}
+  {{#bs/link-button "bills.detail" model.bill.id type="primary"}}{{fa-icon "file"}} Bill{{/bs/link-button}}
+{{/global/page-title-actions}}
+
+{{bills/-detail/vote-results votes=model.votes}}

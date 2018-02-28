@@ -6,7 +6,7 @@ export default Component.extend({
   presentation: 'grid',
   store: service(),
   media: service(),
-  currentUser: service('current-user'),
+  currentUser: service(),
   filters: {
     title__icontains: '',
     active: 1,

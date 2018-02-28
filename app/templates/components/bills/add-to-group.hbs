@@ -5,6 +5,8 @@
     {{fa-icon "bookmark-o"}}
     {{#if displayText}}
       {{buttonText}}
+    {{else}}
+      {{#bs-tooltip placement="top"}}Save Bill{{/bs-tooltip}}
     {{/if}}
   {{/if}}
 {{/bs-button}}

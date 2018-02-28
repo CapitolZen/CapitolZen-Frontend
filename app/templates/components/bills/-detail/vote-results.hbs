@@ -1,0 +1,35 @@
+{{log votes}}
+{{#each votes as |vote|}}
+  {{#ui/ui-box as |b|}}
+    {{#b.header}}
+      {{chamber-name vote.chamber}}: <span class="text-capitalize">{{vote.motion}}</span>
+    {{/b.header}}
+    {{#b.body}}
+      <h6>Support</h6>
+      <hr class="mt-0">
+      <div class="row">
+        {{#each vote.records as |person|}}
+          {{#if (eq person.vote "support")}}
+            <div class="col-md-3">
+              <span class="{{if (eq person.party "Republican") "text-republican" "text-democrat"}}">{{person.name}}
+                ({{person.party}})</span>
+
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+
+      <h6 class="mt-2">Oppose</h6>
+      <hr class="mt-0">
+      <div class="row">
+        {{#each vote.records as |person|}}
+          {{#if (eq person.vote "oppose")}}
+            <div class="col-md-3">
+              <span class="{{if (eq person.party "Republican") "text-republican" "text-democrat"}}">{{person.name}} ({{person.party}})</span>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    {{/b.body}}
+  {{/ui/ui-box}}
+{{/each}}

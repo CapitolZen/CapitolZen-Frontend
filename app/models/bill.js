@@ -4,7 +4,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   title: DS.attr('string'),
-  sponsor: DS.belongsTo('legislator'),
+  sponsor: DS.belongsTo('legislator', { async: false }),
   cosponsors: DS.attr(),
   state: DS.attr('string'),
   stateId: DS.attr('string'),
@@ -21,7 +21,7 @@ export default DS.Model.extend({
   billVersions: DS.attr(),
   introducedDate: DS.attr('string'),
   wrappers: DS.hasMany('wrappers'),
-  currentCommittee: DS.belongsTo('committee'),
+  currentCommittee: DS.belongsTo('committee', { async: false }),
   relatedBillIds: DS.attr(),
   billTextAnalysis: DS.attr(),
   companions: DS.attr(),

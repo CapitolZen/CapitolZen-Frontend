@@ -1,10 +1,6 @@
 {{#ui/ui-box as |b|}}
   {{#b.header}}
-    {{#if referencedModel.committee.isPending}}
-      {{ui/inline-loading}}
-    {{else}}
-      {{displayTitle}} <small>{{referencedModel.title}}</small>
-    {{/if}}
+      {{action.displayTitle}} {{event.title}}
     {{close-button (action "dismiss") class="pull-right"}}
   {{/b.header}}
   {{#b.body}}
@@ -21,12 +17,10 @@
 
   {{/b.body}}
   {{#b.footer class=footerClasses}}
-    {{#if committee}}
       {{#calendar-button referencedModel class="d-inline" onClick=(action "trackEvent") as |b|}}
         {{#b.ical class="btn btn-outline-primary"}}{{fa-icon "calendar-plus-o"}}{{/b.ical}}
         {{#b.google class="btn btn-outline-primary"}}{{fa-icon "google"}}{{/b.google}}
       {{/calendar-button}}
-    {{/if}}
-    {{bs-button defaultText="Dismiss" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
+    {{bs-button defaultText="Complete" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
   {{/b.footer}}
 {{/ui/ui-box}}

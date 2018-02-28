@@ -9,7 +9,7 @@ export default Component.extend({
   sort: 'state_id',
   recordType: 'bill',
   table: null,
-
+  searchParams: false,
   facetsToggled: false,
   facetsCollapsed: computed('facetsToggled', function() {
     return this.get('media').get('isMobile') && !this.get('facetsToggled');
@@ -86,7 +86,12 @@ export default Component.extend({
      */
     preFilterAlter(query) {
       if (query.hasOwnProperty('search')) {
-        query.search = query.search.toLowerCase();
+        if (get(this, 'searchParams') !== query.search) {
+          set(this, 'searchParams', query.search);
+          return {
+            search: query.search.toLowerCase()
+          };
+        }
       }
       return query;
     },

@@ -12,16 +12,21 @@
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills"}}{{fa-icon "file-text"}} All Bills{{/link-to}}
+        {{#link-to "todos"}}{{fa-icon "check-circle-o"}} To-Do's{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "reports"}}{{fa-icon "file-text"}} Reports{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "bills"}}{{fa-icon "book"}} All Bills{{/link-to}}
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
         {{#link-to "groups"}}{{fa-icon "address-book"}} {{features.clientLabelPlural}}{{/link-to}}
       {{/menu.item}}
 
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "reports"}}{{fa-icon "flag"}} Reports{{/link-to}}
-      {{/menu.item}}
 
       {{!--
       {{#menu.item dismissOnClick=true}}
@@ -37,6 +42,10 @@
 
       {{#menu.item dismissOnClick=true}}
        {{#link-to "committees.index"}}{{fa-icon "calendar-check-o"}} Committees{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
+        {{#link-to "files"}}{{fa-icon "cloud"}} Files{{/link-to}}
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}

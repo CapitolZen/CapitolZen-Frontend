@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   store: service(),
-  router: service('-routing'),
+  router: service(),
   flashMessages: service(),
   actions: {
     submit() {

@@ -4,20 +4,27 @@
     {{fa-icon "calendar"}} Committees
   {{/link-to}}
   {{#link-to "reports.index" class="btn btn-primary"}}
-    {{fa-icon "map" class="mr-2"}}Reports
+    {{fa-icon "file-text" class="mr-2"}}Reports
   {{/link-to}}
   {{#link-to "organization.team" class="btn btn-primary"}}
     {{fa-icon "users" class="mr-2"}}My Team
   {{/link-to}}
 {{/global/page-title-actions}}
 
-<div class="row">
-  <div class="col-md-4 order-md-2">
-    <h4>My {{features.clientLabelPlural}}</h4>
-    {{dashboard/user-clients}}
+<div class="row mt-4">
+  <div class="col-md-6 order-md-first">
+    {{actions/action-center}}
   </div>
-  <div class="col-md-8 order-md-1">
-    <h4>What's New</h4>
-    {{dashboard/user-actions}}
+  <div class="col-md-5 offset-md-1">
+      {{dashboard/user-clients}}
   </div>
+
 </div>
+
+{{#if media.isMobile}}
+  <div class="row mt-4">
+    <div class="col-12">
+      {{tools/to-do}}
+    </div>
+  </div>
+{{/if}}
