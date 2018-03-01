@@ -1,0 +1,19 @@
+{{ui-page-property "Labs" property="title"}}
+
+<div class="row">
+  <div class="offset-md-3 col-md-6">
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}
+        Bill Parser
+      {{/b.header}}
+      {{#b.body}}
+        Take any random set of text and extract out the bills
+        <br />
+        <br />
+        <div>
+          {{#link-to 'labs.bill-parse' class="btn btn-primary"}}View{{/link-to}}
+        </div>
+      {{/b.body}}
+    {{/ui/ui-box}}
+  </div>
+</div>

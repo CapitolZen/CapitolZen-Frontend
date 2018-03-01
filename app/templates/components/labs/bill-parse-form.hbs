@@ -1,0 +1,24 @@
+<h6>Input Data</h6>
+<div class="form-group">
+  <label>Data</label>
+  {{textarea type="textarea" value=input key-up="getBills" class="form-control" rows=10}}
+</div>
+
+
+<h6>Parsed Bills</h6>
+<hr/>
+{{#if this.submit.isRunning}}
+  {{fa-icon "spinner" spin=true}}
+{{else}}
+  {{#if (and (not bills) (not input))}}
+    Please enter some text to get started.
+  {{else if (and (not bills) input)}}
+    No results found.
+  {{else}}
+    <ul>
+      {{#each bills as |bill|}}
+        <li>{{bill}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
+{{/if}}
