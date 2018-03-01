@@ -7,6 +7,7 @@ import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
   showEditor: true,
+  autoSave: false,
   activateKeyboard: on('init', function() {
     set(this, 'keyboardActivated', true);
   }),
@@ -27,9 +28,11 @@ export default Component.extend(EKMixin, {
       args.docId = get(this, 'docId');
     }
     get(this, 'saveAction')(args);
-    run(() => {
-      $('.mobiledoc-editor__editor').empty();
-    });
+    if (!get(this, 'autoSave')) {
+      run(() => {
+        $('.mobiledoc-editor__editor').empty();
+      });
+    }
   },
   cancel() {
     get(this, 'cancelAction')();
@@ -42,6 +45,9 @@ export default Component.extend(EKMixin, {
   actions: {
     mobileDocUpdated(doc) {
       set(this, 'doc', doc);
+      if (get(this, 'autoSave')) {
+        this.save();
+      }
     },
     saveDocument() {
       this.save();

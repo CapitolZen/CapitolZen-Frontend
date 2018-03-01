@@ -1,0 +1,8 @@
+{{#bs-form model=formData onSubmit=(action "submit") class="bulk-form" as |form|}}
+  <h4>{{wrapper.bill.stateId}} <small class="pull-right">{{wrapper.bill.sponsor.fullName}}</small></h4>
+  {{form.element controlType="textarea" property="summary" label="Summary"}}
+  {{form.element controlType="power-select" property="position" options=positions label="Position" searchEnabled=false}}
+  {{#form.element label="Comments" property="note" as |el|}}
+    {{tools/text-editor isNew=true autoSave=true saveAction=(action (mut el.value))}}
+  {{/form.element}}
+{{/bs-form}}

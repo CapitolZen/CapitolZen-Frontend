@@ -281,3 +281,15 @@ footer {
     margin-left: auto;
   }
 }
+
+@for $i from 1 through 8 {
+  .flex-grow-#{$i} {
+    flex-grow: $i;
+  }
+}
+
+@for $i from 1 through 8 {
+  .flex-shrink-#{$i} {
+    flex-shrink: $i;
+  }
+}

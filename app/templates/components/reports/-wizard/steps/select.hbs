@@ -1,28 +1,34 @@
+{{log config}}
+<div class="row">
+  <div class="col-md-4">
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        {{#bs/list-group as |g|}}
+          {{#g.action active=(eq reportType "slideshow") onClick=(action "setSubject" "slideshow")}}
+            Slide Show
+          {{/g.action}}
+          {{#g.action active=(eq reportType "list") onClick=(action "setSubject" "list")}}
+            Interactive List
+          {{/g.action}}
+          {{#g.action active=(eq reportType "table") onClick=(action "setSubject" "table")}}
+            Table
+          {{/g.action}}
+          {{#g.action active=(eq reportType "scorecard") onClick=(action "setSubject" "scorecard")}}
+            Scorecard
+          {{/g.action}}
 
-
-{{#ui/ui-box as |b|}}
-  {{#b.body}}
-    <div class="row">
-      <div class="col-md-3">
-        {{#bs-button onClick=(action "setSubject" "details")}}
-          Details
-        {{/bs-button}}
-      </div>
-      <div class="col-md-3">
-        {{#bs-button onClick=(action "setSubject" "importance")}}
-          What's Important
-        {{/bs-button}}
-      </div>
-      <div class="col-md-3">
-        {{#bs-button onClick=(action "setSubject" "scorecard")}}
-          Scorecard
-        {{/bs-button}}
-      </div>
-      <div class="col-md-3">
-        {{#bs-button onClick=(action "setSubject" "latest")}}
-          Latest
-        {{/bs-button}}
-      </div>
-    </div>
-  {{/b.body}}
-{{/ui/ui-box}}
+        {{/bs/list-group}}
+      {{/b.body}}
+      {{#b.footer}}
+        {{bs-button defaultText="Next" type="primary" disabled=(not reportType) onClick=(action "next")}}
+      {{/b.footer}}
+    {{/ui/ui-box}}
+  </div>
+  <div class="col-md-8">
+    {{#if reportType}}
+      {{component previewComponent config=config isPreview=true}}
+    {{else}}
+      <h5>Select a Type to Preview Report</h5>
+    {{/if}}
+  </div>
+</div>

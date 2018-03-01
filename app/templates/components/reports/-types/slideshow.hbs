@@ -1,0 +1,67 @@
+<h6>Preview Slide Show</h6>
+{{#if isLoading}}
+  {{ui/loading-animation}}
+{{/if}}
+{{#if recordsLoaded}}
+  {{#slide-deck as |d|}}
+    <div class="row">
+      {{#unless isPreview}}
+        <div class="col-md-4">
+          {{#ui/ui-box as |b|}}
+            {{#b.header}}
+              Saved Bills
+            {{/b.header}}
+            {{#b.body}}
+              {{#bs/list-group as |g|}}
+                {{#each d.slides as |s|}}
+                  {{#g.action onClick=(action d.show s.name) disabled=s.isActive}}
+                    {{s.name}}
+                  {{/g.action}}
+                {{/each}}
+              {{/bs/list-group}}
+            {{/b.body}}
+          {{/ui/ui-box}}
+        </div>
+      {{/unless}}
+      <div class="flex-grow-1">
+        {{#each wrappers as |wrapper|}}
+          {{#d.slide name=wrapper.bill.stateId}}
+            {{#ui/ui-box as |b|}}
+              {{#b.header}}
+                {{wrapper.bill.stateId}} {{wrapper.sponsorDisplay}}
+              {{/b.header}}
+              {{#b.body}}
+                <div class="row">
+                  <div class="col-6">
+                    <dl>
+                      <dt>Position</dt>
+                      <dd>{{wrappers/wrapper-position wrapper=wrapper canEdit=false}}</dd>
+                      <dt>Summary</dt>
+                      <dd>{{wrapper.displaySummary}}</dd>
+                      <dt>Bill Text</dt>
+                      <dd><a href="{{wrapper.bill.remoteUrl}}" target="_blank">View {{fa-icon "external-link"}}</a>
+                      </dd>
+                    </dl>
+
+                    <div class="mt-2">
+                      {{bills/doc-list docs=wrapper.bill.documents}}
+                    </div>
+                  </div>
+                </div>
+
+              {{/b.body}}
+              {{#b.footer class="d-flex justify-content-center"}}
+                <button class="btn btn-link" {{action d.prev}} disabled={{d.prevDisabled}}>{{fa-icon
+                  "chevron-left"}}</button>
+                <button class="btn btn-link" {{action d.next}} disabled={{d.nextDisabled}}>{{fa-icon
+                  "chevron-right"}}</button>
+              {{/b.footer}}
+            {{/ui/ui-box}}
+          {{/d.slide}}
+        {{/each}}
+      </div>
+    </div>
+
+
+  {{/slide-deck}}
+{{/if}}

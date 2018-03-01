@@ -1,11 +1,18 @@
 import Component from '@ember/component';
-import { get, set, computed } from '@ember/object';
+import { get, getWithDefault, set, computed } from '@ember/object';
 
 export default Component.extend({
-  onComplete() {},
+  previewComponent: computed('reportType', function() {
+    return `reports/-types/${get(this, 'reportType')}`;
+  }),
   actions: {
     setSubject(subject) {
-      get(this, 'onComplete')(1, { reportType: subject });
+      set(this, 'reportType', subject);
+    },
+    next() {
+      get(this, 'onComplete')(get(this, 'step'), {
+        reportType: get(this, 'reportType')
+      });
     }
   }
 });

@@ -6,6 +6,8 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   store: service(),
   currentUser: service(),
+  flashMessages: service(),
+  features: service(),
   chooseOption: null,
   model: { newGroup: null, existingGroup: null },
   init() {
@@ -30,10 +32,18 @@ export default Component.extend({
   }),
   actions: {
     submit({ newGroup, existingGroup }) {
-      if (newGroup) {
-        get(this, 'createAndSubmit').perform(newGroup);
+      if (!newGroup && !existingGroup) {
+        get(this, 'flashMessages').danger(
+          `You must select a ${get(this, 'features.clientLabel')}`
+        );
       } else {
-        get(this, 'onComplete')(0, { group: existingGroup.get('id') });
+        if (newGroup) {
+          get(this, 'createAndSubmit').perform(newGroup);
+        } else {
+          get(this, 'onComplete')(get(this, 'step'), {
+            group: existingGroup.get('id')
+          });
+        }
       }
     }
   }

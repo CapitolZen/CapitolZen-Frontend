@@ -2,6 +2,12 @@
   {{#b.header}}
     Wizard - {{stepDescription}}
   {{/b.header}}
+  {{#b.body}}
+    {{progressValue}}
+    {{#bs-progress as |p|}}
+      {{p.bar value=progressValue}}
+    {{/bs-progress}}
+  {{/b.body}}
 {{/ui/ui-box}}
 
-{{component stepComponent onComplete=(action "nextStep")}}
+{{component stepComponent config=config step=step onComplete=(action "nextStep")}}

@@ -1,4 +1,4 @@
-
+{{log config}}
 
 <div class="row">
   <div class="col-md-6">
@@ -6,7 +6,7 @@
       {{#b.body}}
         <h6>Select Bills</h6>
         <div class="row mb-3">
-          <div class="col-12">
+          {{!--<div class="col-12">
             {{#bs-button-group
               value=inputType
               type="radio"
@@ -14,7 +14,7 @@
               {{#bg.button value="one"}}One At A Time{{/bg.button}}
               {{#bg.button value="many"}}Paste a Big List{{/bg.button}}
             {{/bs-button-group}}
-          </div>
+          </div>--}}
         </div>
         <div class="row">
           <div class="col-12">
@@ -36,7 +36,8 @@
           </div>
         </div>
       {{/b.body}}
-      {{#b.footer}}
+      {{#b.footer class="mt-4"}}
+        {{bs-button defaultText="Next" type="primary" disabled=(lt selectedBills.length 1) onClick=(perform createWrappers)}}
       {{/b.footer}}
     {{/ui/ui-box}}
   </div>
