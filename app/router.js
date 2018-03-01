@@ -70,7 +70,7 @@ Router.map(function() {
     });
 
     //
-    // Actionswe
+    // Actions
     this.route('todos', { resetNamespace: true }, function() {
       this.route('index', { path: '' });
     });
@@ -96,6 +96,13 @@ Router.map(function() {
     this.route('files', { resetNamespace: true }, function() {
       this.route('detail', { path: '/:id' });
       this.route('upload');
+    });
+
+    //
+    // Labs
+    this.route('labs', { resetNamespace: true }, function() {
+      this.route('index', { path: '' });
+      this.route('bill-parse');
     });
   });
 
