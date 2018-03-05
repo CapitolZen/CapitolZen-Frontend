@@ -1,4 +1,3 @@
-{{log config}}
 <div class="row">
   <div class="col-md-4">
     {{#ui/ui-box as |b|}}
@@ -12,9 +11,6 @@
           {{/g.action}}
           {{#g.action active=(eq reportType "table") onClick=(action "setSubject" "table")}}
             Table
-          {{/g.action}}
-          {{#g.action active=(eq reportType "scorecard") onClick=(action "setSubject" "scorecard")}}
-            Scorecard
           {{/g.action}}
 
         {{/bs/list-group}}

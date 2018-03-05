@@ -6,9 +6,12 @@
   postTableSetup=(action "postTableSetup")
   recordType=recordType as |t| }}
 
-  {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
-    {{filter.element label="Search" controlType="text" property="search"}}
-  {{/t.filter}}
+  {{#if filtering}}
+    {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
+      {{filter.element label="Search" controlType="text" property="search"}}
+    {{/t.filter}}
+  {{/if}}
+
 
 
   {{#t.expandedRow as |row|}}

@@ -1,0 +1,60 @@
+
+
+{{#unless setupData.isRunning}}
+  {{#ui/ui-box as |b|}}
+    {{#b.header}}
+      Edit Report
+    {{/b.header}}
+
+    {{#bs-form model=report id=reportFormId submit=(action "submitReport") as |form|}}
+      {{#b.body}}
+        {{form.element controlType="text" property="title" label="Title" required=true}}
+        {{form.element controlType="textarea" property="description" label="Description"}}
+        {{#form.element controlType="power-select" property="displayType" options=displayTypes label="Report Type" as |el|}}
+          {{#el.control searchEnabled=false as |item|}}
+            {{#if (eq item "slideshow")}}
+              Slide Show
+            {{else}}
+              <span class="text-capitalize">{{item}}</span>
+            {{/if}}
+          {{/el.control}}
+        {{/form.element}}
+
+        {{form.element controlType="checkbox" property="published" label="Published"}}
+      {{/b.body}}
+      {{#b.footer}}
+        {{bs-button defaultText="Save" buttonType="submit" type="primary"}}
+      {{/b.footer}}
+    {{/bs-form}}
+  {{/ui/ui-box}}
+
+  {{!--#bs-form model=reportLink submit=(action "submitReportLink") as |form|}}
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}Visibility Settings{{/b.header}}
+      {{#b.body}}
+        {{#form.element property="visibility" controlType="power-select" options=visibilityOptions label="Who Can See" as |el|}}
+          {{#el.control searchEnabled=false as |item|}}
+            {{#if (eq item "anyone")}}
+              Anyone with the link
+            {{/if}}
+            {{#if (eq item "organization")}}
+              People in {{currentUser.organization.name}}
+            {{/if}}
+            {{#if (eq item "contacts")}}
+              People with the following email address
+            {{/if}}
+          {{/el.control}}
+        {{/form.element}}
+
+        {{#if (eq reportLink.visibility "contacts")}}
+          {{form.element controlType="textarea" property="contactList" label="Email Addresses seperated by comma"}}
+        {{/if}}
+      {{/b.body}}
+      {{#b.footer}}
+        {{bs-button defaultText="Save" buttonType="submit" type="primary"}}
+      {{/b.footer}}
+    {{/ui/ui-box}}
+  {{/bs-form--}}
+{{else}}
+  {{ui/loading-animation}}
+{{/unless}}

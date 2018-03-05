@@ -1,1 +1,13 @@
-{{yield}}
+<div class="row">
+  <div class="col-md-8">
+    {{reports/report-edit groupId=config.groupId group=config.group options=(hash type=config.reportType)}}
+  </div>
+  <div class="col-md-4">
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}Time to share your report!{{/b.header}}
+      {{#b.body}}
+        <p>Publish and set the visibility settings of your report.</p>
+      {{/b.body}}
+    {{/ui/ui-box}}
+  </div>
+</div>

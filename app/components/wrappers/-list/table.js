@@ -7,11 +7,16 @@ export default Component.extend({
   sort: 'stateId',
   filtering: true,
   group: null,
+  groupId: null,
   defaultRecordQuery: computed(function() {
     let query = {};
 
     if (this.get('group')) {
       query['group'] = this.get('group.id');
+    }
+
+    if (this.get('groupId')) {
+      query['group'] = this.get('groupId');
     }
 
     if (this.get('report')) {

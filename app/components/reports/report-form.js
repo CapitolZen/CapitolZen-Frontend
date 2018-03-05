@@ -13,7 +13,7 @@ export default Component.extend({
   currentUser: service(),
   flashMessages: service(),
   request: service(),
-  router: service('-routing'),
+  router: service(),
   model: false,
   wrapperList: [],
   useAllWrappers: true,

@@ -3,9 +3,8 @@
     Wizard - {{stepDescription}}
   {{/b.header}}
   {{#b.body}}
-    {{progressValue}}
     {{#bs-progress as |p|}}
-      {{p.bar value=progressValue}}
+      {{p.bar value=progressValue showLabel=true}}
     {{/bs-progress}}
   {{/b.body}}
 {{/ui/ui-box}}

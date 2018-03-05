@@ -1,4 +1,4 @@
-<h6>Preview Slide Show</h6>
+
 {{#if isLoading}}
   {{ui/loading-animation}}
 {{/if}}
@@ -32,7 +32,7 @@
               {{/b.header}}
               {{#b.body}}
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <dl>
                       <dt>Position</dt>
                       <dd>{{wrappers/wrapper-position wrapper=wrapper canEdit=false}}</dd>
@@ -43,9 +43,19 @@
                       </dd>
                     </dl>
 
-                    <div class="mt-2">
-                      {{bills/doc-list docs=wrapper.bill.documents}}
-                    </div>
+                    {{bills/doc-list docs=wrapper.bill.documents class="mt-2"}}
+                    {{bills/bill-cosponosrs wrapper.bill class="mt-2"}}
+
+                  </div>
+                  <div class="col-md-6">
+                    {{#if wrapper.notes.length}}
+                      <h6>Comments</h6>
+                      <div class="note-list-wrapper">
+                        {{#each wrapper.notes as |note|}}
+                          {{tools/note-component note=note canEditNote=false}}
+                        {{/each}}
+                      </div>
+                    {{/if}}
                   </div>
                 </div>
 

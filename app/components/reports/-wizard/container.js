@@ -38,7 +38,6 @@ export default Component.extend({
   progressValue: computed(function() {
     let step = get(this, 'step'),
       total = get(this, 'stepList.length');
-    step = ++step;
     return step / total * 100;
   }),
 
