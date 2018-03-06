@@ -65,6 +65,11 @@ Router.map(function() {
         this.route('bill', { path: '/bill' }, function() {
           this.route('detail', { path: '/:bill' });
         });
+
+        this.route('pages', function() {
+          this.route('edit', { path: '/:page/edit' });
+          this.route('add');
+        });
       });
       this.route('add');
     });

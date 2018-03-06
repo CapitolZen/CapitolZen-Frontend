@@ -1,0 +1,12 @@
+{{updates/update-form update=newUpdate callSuccess=(action "resetUpdate")}}
+{{#if loadUpdates.isRunning}}
+  {{ui/loading-animation}}
+{{else}}
+  {{#each updates as |update|}}
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        {{updates/update-item update=update}}
+      {{/b.body}}
+    {{/ui/ui-box}}
+  {{/each}}
+{{/if}}
