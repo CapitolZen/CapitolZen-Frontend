@@ -118,6 +118,11 @@ Router.map(function() {
   this.route('anon.reset-password', { path: '/reset/:token' });
   this.route('anon.privacy', { path: 'privacy' });
   this.route('anon.legal', { path: 'legal' });
+  this.route('anon.redirect', { path: 'r' });
+
+  this.route('page', { path: 'p/:id' }, function() {
+    this.route('update', { path: '/:update' });
+  });
 });
 
 export default Router;

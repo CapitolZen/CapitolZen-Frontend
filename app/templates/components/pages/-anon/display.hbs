@@ -1,0 +1,25 @@
+<h3>Your Latest Updates</h3>
+<div class="row justify-content-between">
+  <div class="col-md-4">
+    {{#unless loadUpdates.isRunning}}
+      {{#bs/list-group as |g|}}
+        {{#each updateList as |update|}}
+          {{#g.link  "page.update" update.id}}
+            <h5>{{update.title}}</h5>
+            <p class="mb-0">
+              {{tools/date-display update.created}}<br>
+              <em>{{update.user.name}}</em>
+            </p>
+          {{/g.link}}
+        {{/each}}
+      {{/bs/list-group}}
+    {{else}}
+      <div class="text-center">
+        {{ui/inline-loading}}
+      </div>
+    {{/unless}}
+  </div>
+  <div class="col-md-7 order-sm-1">
+    {{yield}}
+  </div>
+</div>

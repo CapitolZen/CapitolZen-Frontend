@@ -86,7 +86,7 @@
     "ember-in-viewport": "^2.1.1",
     "ember-initials": "^3.4.0",
     "ember-intercom-io": "donaldwasserman/ember-intercom-io#stable",
-    "ember-junkdrawer": "0.6.2",
+    "ember-junkdrawer": "mwisner/ember-junkdrawer#master",
     "ember-keyboard": "^3.0.0",
     "ember-light-table": "^1.12.2",
     "ember-link-action": "^0.0.36",
