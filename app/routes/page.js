@@ -5,7 +5,7 @@ import { hash } from 'rsvp';
 export default Route.extend(AuthenticatedRouteMixin, {
   model({ id }) {
     return hash({
-      updates: this.store.query('update', { groupPage: id }),
+      updates: this.store.query('update', { group_page: id }),
       page: this.store.findRecord('page', id)
     });
   },

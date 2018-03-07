@@ -1,9 +1,9 @@
 import { inject as service } from '@ember/service';
 import { computed, set, get } from '@ember/object';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
-import UpdateEdit from '../../validators/update-edit';
 import { alias } from '@ember/object/computed';
 import { A } from '@ember/array';
+import { task, timeout } from 'ember-concurrency';
 
 export default FormComponent.extend({
   store: service(),
@@ -21,6 +21,11 @@ export default FormComponent.extend({
         user: get(this, 'currentUser.user')
       });
     }
+  }),
+
+  searchWrappers: task(function*(term) {
+    yield timeout(400);
+    return get(this, 'store').query('wrapper', { search: term });
   }),
   callSuccess() {},
   onSubmitSuccess(model) {

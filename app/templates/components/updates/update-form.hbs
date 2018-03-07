@@ -6,6 +6,14 @@
     {{#b.body}}
       {{form.element controlType="text" property="title" placeholder="Headline"}}
       {{form.element controlType="mobiledoc" property="document"}}
+      
+      {{#form.element controlType="power-select-multiple" property="wrappers" label="Saved Bills" as |el|}}
+        {{#el.control search=(perform searchWrappers) as |item|}}
+          <div class="d-flex justify-content-between">
+            {{item.bill.stateId}} {{wrappers/wrapper-position wrapper=item canEdit=false class="d-inline"}}
+          </div>
+        {{/el.control}}
+      {{/form.element}}
 
       <h6>{{fa-icon "paperclip"}} Attachments</h6>
       {{files/file-upload group=model.group didCreateFile=(action "selectFile")}}

@@ -13,8 +13,8 @@ export default Component.extend({
     get(this, 'loadUpdates').perform();
   },
   loadUpdates: task(function*() {
-    let groupPage = get(this, 'page.id');
-    let updates = yield get(this, 'store').query('update', { groupPage });
+    let group_page = get(this, 'page.id');
+    let updates = yield get(this, 'store').query('update', { group_page });
     console.log(updates);
     get(this, 'updateList').addObjects(updates);
   })

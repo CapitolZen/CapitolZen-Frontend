@@ -12,7 +12,7 @@
           {{user/user-select-label user=item}}
         {{/el.control}}
       {{/form.element}}
-      {{#form.element controlType="power-select" label="Visibility Settings" property="visibility" options=visibilityOptions as |el|}}
+      {{!--#form.element controlType="power-select" label="Visibility Settings" property="visibility" options=visibilityOptions as |el|}}
         {{#el.control searchEnabled=false as |item|}}
           {{#if (eq item "organization")}}
             Just people in my organization
@@ -21,8 +21,8 @@
             Anyone with the link
           {{/if}}
         {{/el.control}}
-      {{/form.element}}
-      {{form.element controlType="checkbox" property="published" label="published"}}
+      {{/form.element--}}
+      {{form.element controlType="checkbox" property="published" label="Published"}}
     {{/b.body}}
     {{#b.footer}}
       {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}

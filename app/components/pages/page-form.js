@@ -8,14 +8,19 @@ import { A } from '@ember/array';
 export default FormComponent.extend({
   store: service(),
   flashMessages: service(),
+  router: service(),
   model: alias('page'),
   validator: PageEdit,
   assignedToOptions: computed(function() {
     return this.get('store').findAll('user');
   }),
   visibilityOptions: A(['organization', 'anyone']),
-  statusOptions: A(['draft', 'publ']),
-  onSubmitSuccess() {
+  statusOptions: A(['draft', 'published']),
+  onSubmitSuccess(model) {
     get(this, 'flashMessages').success('New Page Created!');
+    get(this, 'router').transitionTo(
+      'groups.detail.pages.index',
+      model.get('group.id')
+    );
   }
 });
