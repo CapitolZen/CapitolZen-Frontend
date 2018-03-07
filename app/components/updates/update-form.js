@@ -9,6 +9,7 @@ export default FormComponent.extend({
   store: service(),
   currentUser: service(),
   flashMessages: service(),
+  fileList: A(),
   model: computed('page', 'update', function() {
     if (get(this, 'update')) {
       return get(this, 'update');
@@ -25,5 +26,14 @@ export default FormComponent.extend({
   onSubmitSuccess(model) {
     get(this, 'flashMessages').success('New Page Created!');
     get(this, 'callSuccess')(model);
+  },
+  actions: {
+    selectFile(file) {
+      get(this, 'changeset.files').unshiftObject(file);
+    },
+    removeFile(file) {
+      get(this, 'changeset.files').removeObject(file);
+      file.destroyRecord();
+    }
   }
 });

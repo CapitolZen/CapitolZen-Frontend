@@ -8,6 +8,7 @@ export default Component.extend({
   ajax: service(),
   store: service(),
   currentUser: service(),
+  group: false,
   upload: task(function*(file) {
     let type = get(file, 'type');
     let upload_params = yield get(this, 'ajax')
@@ -36,6 +37,10 @@ export default Component.extend({
       name: file.get('name'),
       file: upload_response.headers.location
     });
+
+    if (get(this, 'group')) {
+      model.set('group', get(this, 'group'));
+    }
 
     let created = yield model.save();
     get(this, 'didCreateFile')(created);
