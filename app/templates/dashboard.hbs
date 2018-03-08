@@ -1,12 +1,12 @@
 {{ui-page-property "Dashboard" property="title"}}
 {{#global/page-title-actions}}
-  {{#link-to "committees.meetings" class="btn btn-primary"}}
+  {{#link-to "groups.index"}}
+    {{fa-icon "address-book"}} {{features.clientLabelPlural}}
+  {{/link-to}}
+  {{#link-to "committees.meetings"}}
     {{fa-icon "calendar"}} Committees
   {{/link-to}}
-  {{#link-to "reports.index" class="btn btn-primary"}}
-    {{fa-icon "file-text" class="mr-2"}}Reports
-  {{/link-to}}
-  {{#link-to "organization.team" class="btn btn-primary"}}
+  {{#link-to "organization.team"}}
     {{fa-icon "users" class="mr-2"}}My Team
   {{/link-to}}
 {{/global/page-title-actions}}

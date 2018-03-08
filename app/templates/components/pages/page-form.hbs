@@ -1,8 +1,5 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
   {{#ui/ui-box as |b|}}
-    {{#b.header}}
-      Share information quickly and easily with your <span class="text-lowercase">{{features.clientLabel}}</span> page
-    {{/b.header}}
     {{#b.body}}
       {{form.element controlType="text" label="Page Title" property="title"}}
       {{form.element controlType="textarea" label="Page Description" property="description"}}
