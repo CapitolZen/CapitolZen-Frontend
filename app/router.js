@@ -119,6 +119,7 @@ Router.map(function() {
   this.route('anon.privacy', { path: 'privacy' });
   this.route('anon.legal', { path: 'legal' });
   this.route('anon.redirect', { path: 'r' });
+  this.route('anon.page-access', { path: 'r/:page/access' });
 
   this.route('page', { path: 'p/:id' }, function() {
     this.route('update', { path: '/:update' });
