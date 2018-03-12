@@ -7,8 +7,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
   beforeModel(transition) {
     this._super(...arguments);
-    if (this.get('currentUser.user.organization_role') === 'guest') {
-      this.transitionTo('not-found');
+    let role = this.get('currentUser.user.organization_role');
+    if (role === 'Guest') {
+      this.transitionTo('error-route');
     }
   }
 });

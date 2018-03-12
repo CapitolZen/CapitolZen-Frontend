@@ -16,8 +16,5 @@ export default jwt.extend({
           reject(err);
         });
     });
-  },
-  _magicLogin: task(function*(oldToken) {
-    let { token } = yield this.refreshAccessToken(oldToken);
-  })
+  }
 });

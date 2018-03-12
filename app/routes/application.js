@@ -54,7 +54,7 @@ export default Route.extend(ApplicationRouteMixin, {
       if (error.errors) {
         console.error(error.errors);
         if (ENV.environment === 'production') {
-          if (parseInt(error.errors[0].status) == 404) {
+          if (parseInt(error.errors[0].status) === 404) {
             this.transitionTo('not-found');
           } else {
             this.transitionTo('error-route');
