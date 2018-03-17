@@ -27,11 +27,14 @@
     ]
   },
   "dependencies": {
+    "@fortawesome/fontawesome-pro-light": "^5.0.8",
+    "@fortawesome/fontawesome-pro-regular": "^5.0.8",
+    "@fortawesome/fontawesome-pro-solid": "^5.0.8",
     "ember-cli-babel": "^6.8.2",
-    "ember-cli-htmlbars": "^2.0.1",
-    "ember-font-awesome": "^4.0.0-rc.2"
+    "ember-cli-htmlbars": "^2.0.1"
   },
   "devDependencies": {
+    "@fortawesome/ember-fontawesome": "^0.0.12",
     "bootstrap": "4.0.0",
     "broccoli-asset-rev": "^2.6.0",
     "ember-add-calendar-button": "^0.0.4",

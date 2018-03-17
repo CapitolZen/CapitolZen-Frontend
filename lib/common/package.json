@@ -5,12 +5,10 @@
   ],
   "dependencies": {
     "ember-cli-htmlbars": "*",
-    "ember-cli-babel": "*",
-    "ember-font-awesome": "*"
+    "ember-cli-babel": "*"
   },
   "devDependencies": {
     "ember-bootstrap": "*",
-    "ember-block-slots": "*",
     "ember-light-table": "*",
     "ember-bootstrap-changeset-validations": "*",
     "ember-changeset": "*",
@@ -19,10 +17,5 @@
     "ember-power-select": "*",
     "ember-bootstrap-power-select": "*",
     "ember-power-select-blockless": "*"
-  },
-  "ember-addon": {
-    "paths": [
-      "../ui"
-    ]
   }
 }

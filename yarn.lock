@@ -54,7 +54,7 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@ember-decorators/argument@^0.8.10", "@ember-decorators/argument@ember-decorators/argument":
+"@ember-decorators/argument@^0.8.10":
   version "0.8.12"
   resolved "https://codeload.github.com/ember-decorators/argument/tar.gz/80d75a27dab4070fd9e115b5be7f63293a1d9831"
   dependencies:
@@ -87,6 +87,54 @@
   dependencies:
     broccoli-funnel "^2.0.1"
     ember-cli-babel "^6.8.1"
+
+"@fortawesome/ember-fontawesome@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@fortawesome/ember-fontawesome/-/ember-fontawesome-0.0.12.tgz#dff2b1c199a3437832f9fb97097cca63ac27d373"
+  dependencies:
+    "@fortawesome/fontawesome" ">=1.2.0-5"
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-plugin "^1.3.0"
+    broccoli-rollup "^2.0.0"
+    broccoli-source "^1.1.0"
+    broccoli-stew "^1.5.0"
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.3"
+    glob "^7.1.2"
+    rollup-plugin-node-resolve "^3.0.2"
+
+"@fortawesome/fontawesome-common-types@^0.1.3":
+  version "0.1.3"
+  resolved "https://npm.fontawesome.com/E679E952-E557-4E86-B496-4AFFD52ABE4F/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.1.3.tgz#8475e0f2d1ad1f858c4ec2e76ed9a2456a09ad83"
+
+"@fortawesome/fontawesome-common-types@^0.2.0-1":
+  version "0.2.0-2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.0-2.tgz#40a38dd8a206885cf3a4c3459589374538d0d21e"
+
+"@fortawesome/fontawesome-pro-light@^5.0.8":
+  version "5.0.8"
+  resolved "https://npm.fontawesome.com/E679E952-E557-4E86-B496-4AFFD52ABE4F/@fortawesome/fontawesome-pro-light/-/fontawesome-pro-light-5.0.8.tgz#084092503f1140086a7aa66de3107e76139cb08b"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.1.3"
+
+"@fortawesome/fontawesome-pro-regular@^5.0.8":
+  version "5.0.8"
+  resolved "https://npm.fontawesome.com/E679E952-E557-4E86-B496-4AFFD52ABE4F/@fortawesome/fontawesome-pro-regular/-/fontawesome-pro-regular-5.0.8.tgz#e24d3067d3dc07c4032285a212f61a2cffe792de"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.1.3"
+
+"@fortawesome/fontawesome-pro-solid@^5.0.8":
+  version "5.0.8"
+  resolved "https://npm.fontawesome.com/E679E952-E557-4E86-B496-4AFFD52ABE4F/@fortawesome/fontawesome-pro-solid/-/fontawesome-pro-solid-5.0.8.tgz#a5d40aa9c79db80d695ba0152c1e296e3ed9533e"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.1.3"
+
+"@fortawesome/fontawesome@>=1.2.0-5":
+  version "1.2.0-6"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome/-/fontawesome-1.2.0-6.tgz#567c7c76850d042bcd4ffa2e061b2919e7e9b791"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.0-1"
 
 "@glimmer/compiler@^0.27.0":
   version "0.27.0"
@@ -146,6 +194,27 @@
     ember-cli-htmlbars "^1.1.1"
     ember-compatibility-helpers "^0.1.2"
     ember-raf-scheduler "0.1.0"
+
+"@types/acorn@*":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/acorn/-/acorn-4.0.3.tgz#d1f3e738dde52536f9aad3d3380d14e448820afd"
+  dependencies:
+    "@types/estree" "*"
+
+"@types/estree@*":
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.38.tgz#c1be40aa933723c608820a99a373a16d215a1ca2"
+
+"@types/node@^8.0.53":
+  version "8.9.5"
+  resolved "http://registry.npmjs.org/@types/node/-/node-8.9.5.tgz#162b864bc70be077e6db212b322754917929e976"
+
+"@types/rollup@^0.51.0":
+  version "0.51.4"
+  resolved "https://registry.yarnpkg.com/@types/rollup/-/rollup-0.51.4.tgz#2432f308f889ad59c9a8ed1c9ec72523d872e612"
+  dependencies:
+    "@types/acorn" "*"
+    source-map "^0.6.1"
 
 BaremetricsCalendar@^1.0.8:
   version "1.0.8"
@@ -1709,6 +1778,21 @@ broccoli-rollup@^1.2.0:
     symlink-or-copy "^1.1.8"
     walk-sync "^0.3.1"
 
+broccoli-rollup@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/broccoli-rollup/-/broccoli-rollup-2.0.0.tgz#db73f129e1c39b7829ae2b2054b5a5802ac94e46"
+  dependencies:
+    "@types/node" "^8.0.53"
+    "@types/rollup" "^0.51.0"
+    broccoli-plugin "^1.2.1"
+    fs-tree-diff "^0.5.2"
+    heimdalljs "^0.2.1"
+    heimdalljs-logger "^0.1.7"
+    node-modules-path "^1.0.1"
+    rollup "^0.51.6"
+    symlink-or-copy "^1.1.8"
+    walk-sync "^0.3.1"
+
 broccoli-sass-source-maps@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/broccoli-sass-source-maps/-/broccoli-sass-source-maps-2.0.0.tgz#7f25f9f4b296918cec6e00672c63e75abce33d45"
@@ -1969,6 +2053,10 @@ builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
+builtin-modules@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-2.0.0.tgz#60b7ef5ae6546bd7deefa74b08b62a43a232648e"
+
 builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
@@ -2109,14 +2197,6 @@ chalk@^2.3.0:
     ansi-styles "^3.1.0"
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
-
-chalk@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.3.1.tgz#523fe2678aec7b04e8041909292fe8b17059b796"
-  dependencies:
-    ansi-styles "^3.2.0"
-    escape-string-regexp "^1.0.5"
-    supports-color "^5.2.0"
 
 charm@^1.0.0:
   version "1.0.2"
@@ -2874,13 +2954,6 @@ ember-assign-polyfill@^2.0.1:
 ember-ast-helpers@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/ember-ast-helpers/-/ember-ast-helpers-0.3.1.tgz#7740080aea8c29356ff88311fae04b3bc7498aeb"
-  dependencies:
-    "@glimmer/compiler" "^0.27.0"
-    "@glimmer/syntax" "^0.27.0"
-
-ember-ast-helpers@0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/ember-ast-helpers/-/ember-ast-helpers-0.3.5.tgz#db72afd9bc3de03759720ff7b03d4e3b2c7f2351"
   dependencies:
     "@glimmer/compiler" "^0.27.0"
     "@glimmer/syntax" "^0.27.0"
@@ -3745,23 +3818,6 @@ ember-font-awesome@^4.0.0-alpha.13:
     font-awesome "^4.7.0"
     fs-readdir-recursive "^1.0.0"
     postcss "^6.0.9"
-    sync-disk-cache "^1.3.2"
-
-ember-font-awesome@^4.0.0-rc.2:
-  version "4.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/ember-font-awesome/-/ember-font-awesome-4.0.0-rc.2.tgz#27735f57eb56509b51f2b5000da85e7fd84791df"
-  dependencies:
-    "@ember-decorators/argument" ember-decorators/argument
-    "@ember-decorators/babel-transforms" "^0.1.1"
-    broccoli-filter "^1.2.4"
-    broccoli-funnel "^2.0.1"
-    chalk "^2.3.0"
-    ember-ast-helpers "0.3.5"
-    ember-cli-babel "^6.11.0"
-    ember-cli-htmlbars "^2.0.2"
-    font-awesome "^4.7.0"
-    fs-readdir-recursive "^1.1.0"
-    postcss "^6.0.14"
     sync-disk-cache "^1.3.2"
 
 ember-freestyle@^0.6.1:
@@ -5146,10 +5202,6 @@ fs-readdir-recursive@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs-readdir-recursive/-/fs-readdir-recursive-1.0.0.tgz#8cd1745c8b4f8a29c8caec392476921ba195f560"
 
-fs-readdir-recursive@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/fs-readdir-recursive/-/fs-readdir-recursive-1.1.0.tgz#e32fc030a2ccee44a6b5371308da54be0b397d27"
-
 fs-tree-diff@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/fs-tree-diff/-/fs-tree-diff-0.3.1.tgz#41a84ee34994bd564c63d9852f1109c5de7f9290"
@@ -5481,10 +5533,6 @@ has-cors@1.1.0:
 has-flag@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
-
-has-flag@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
 
 has-unicode@^2.0.0:
   version "2.0.1"
@@ -5902,6 +5950,10 @@ is-integer@^1.0.4:
   resolved "https://registry.yarnpkg.com/is-integer/-/is-integer-1.0.7.tgz#6bde81aacddf78b659b6629d629cadc51a886d5c"
   dependencies:
     is-finite "^1.0.0"
+
+is-module@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-module/-/is-module-1.0.0.tgz#3258fb69f78c14d5b815d664336b4cffb6441591"
 
 is-number@^2.1.0:
   version "2.1.0"
@@ -7641,14 +7693,6 @@ portfinder@^1.0.7:
     debug "^2.2.0"
     mkdirp "0.5.x"
 
-postcss@^6.0.14:
-  version "6.0.19"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.19.tgz#76a78386f670b9d9494a655bf23ac012effd1555"
-  dependencies:
-    chalk "^2.3.1"
-    source-map "^0.6.1"
-    supports-color "^5.2.0"
-
 postcss@^6.0.9:
   version "6.0.13"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.13.tgz#b9ecab4ee00c89db3ec931145bd9590bbf3f125f"
@@ -8183,6 +8227,14 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
+rollup-plugin-node-resolve@^3.0.2:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.2.0.tgz#31534952f3ab21f9473c1d092be7ed43937ea4d4"
+  dependencies:
+    builtin-modules "^2.0.0"
+    is-module "^1.0.0"
+    resolve "^1.1.6"
+
 rollup-plugin-replace@^1.1.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/rollup-plugin-replace/-/rollup-plugin-replace-1.2.1.tgz#6307ee15f223aa1fd3207cd3c08052468f180daf"
@@ -8211,6 +8263,10 @@ rollup@^0.41.4:
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.41.6.tgz#e0d05497877a398c104d816d2733a718a7a94e2a"
   dependencies:
     source-map-support "^0.4.0"
+
+rollup@^0.51.6:
+  version "0.51.8"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.51.8.tgz#58bd0b642885f4770b5f93cc64f14e4233c2236d"
 
 rsvp@^3.0.14, rsvp@^3.0.16, rsvp@^3.0.17, rsvp@^3.0.18, rsvp@^3.0.21, rsvp@^3.0.6, rsvp@^3.1.0, rsvp@^3.2.1, rsvp@^3.3.3, rsvp@^3.5.0:
   version "3.6.2"
@@ -8790,12 +8846,6 @@ supports-color@^4.4.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.5.0.tgz#be7a0de484dec5c5cddf8b3d59125044912f635b"
   dependencies:
     has-flag "^2.0.0"
-
-supports-color@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.2.0.tgz#b0d5333b1184dd3666cbe5aa0b45c5ac7ac17a4a"
-  dependencies:
-    has-flag "^3.0.0"
 
 symbol-observable@^0.2.2:
   version "0.2.4"
