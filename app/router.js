@@ -75,7 +75,7 @@ Router.map(function() {
     });
 
     //
-    // Actionswe
+    // Actions
     this.route('todos', { resetNamespace: true }, function() {
       this.route('index', { path: '' });
     });
@@ -103,11 +103,19 @@ Router.map(function() {
       this.route('detail', { path: '/:id' });
       this.route('upload');
     });
+
+    //
+    // Labs
+    this.route('labs', { resetNamespace: true }, function() {
+      this.route('index', { path: '' });
+      this.route('bill-parse');
+    });
   });
 
   this.route('freestyle');
   this.route('error-route', { path: 'error' });
   this.route('not-found', { path: '/*path' });
+  this.route('welcome', { path: '/dashboard' });
 
   //
   // Anon Pages

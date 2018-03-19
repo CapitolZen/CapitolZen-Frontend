@@ -1,10 +1,18 @@
 .card {
   margin-bottom: 1rem;
   box-shadow: $card-box-shadow;
+  border: 0;
   .card-title > a {
     &:hover {
       text-decoration: none;
     }
+  }
+  .card-header {
+    border-bottom: none;
+    background: transparent;
+  }
+  .card-footer {
+    border-top: none;
   }
 }
 .row-flex .card-body {

@@ -4,7 +4,7 @@ jobs:
     build:
         working_directory: ~/app
         docker:
-            - image: circleci/node:8-browsers
+            - image: circleci/node:9.8.0-browsers
               environment:
                 CHROME_BIN: "/usr/bin/google-chrome"
         steps:
@@ -17,8 +17,9 @@ jobs:
             - run:
                 name: Install node global dependencies
                 command: |
-                  sudo npm install -g yarn \
-                    ember-cli
+                  sudo npm install -g ember-cli yarn
+                  which yarn
+
             ##
             # NPM
             ##
@@ -26,7 +27,7 @@ jobs:
                 key: dependency-cache-{{ checksum "yarn.lock" }}
             - run:
                 name: Install npm dependencies
-                command: sudo yarn install
+                command: yarn install
             - save_cache:
                 key: dependency-cache-{{ checksum "yarn.lock" }}
                 paths:
