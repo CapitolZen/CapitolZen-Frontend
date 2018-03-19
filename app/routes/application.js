@@ -40,7 +40,11 @@ export default Route.extend(ApplicationRouteMixin, {
       .sessionAuthenticated()
       .then(() => {
         if (this.get('currentUser.user')) {
-          this.transitionTo(this.get('routeAfterAuthentication'));
+          if (this.get('session.data.currentPageId')) {
+            this.transitionTo('page', this.get('session.data.currentPageId'));
+          } else {
+            this.transitionTo(this.get('routeAfterAuthentication'));
+          }
         }
       });
   },

@@ -18,5 +18,9 @@ export default Base.extend({
     if (this.get('session.data.currentOrganizationId')) {
       block('X-Organization', this.get('session.data.currentOrganizationId'));
     }
+
+    if (this.get('session.data.currentPageId')) {
+      block('X-Page', this.get('session.data.currentPageId'));
+    }
   }
 });

@@ -19,6 +19,7 @@ export default Route.extend({
     return get(this, 'session')
       .authenticate(authenticator, token)
       .then(() => {
+        console.log('sup');
         this.transitionTo('page', p);
       });
   }

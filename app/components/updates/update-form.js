@@ -29,7 +29,7 @@ export default FormComponent.extend({
   }),
   callSuccess() {},
   onSubmitSuccess(model) {
-    get(this, 'flashMessages').success('New Page Created!');
+    get(this, 'flashMessages').success('New update posted!');
     get(this, 'callSuccess')(model);
   },
   actions: {

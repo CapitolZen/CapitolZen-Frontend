@@ -3,14 +3,19 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import { hash } from 'rsvp';
 
 export default Route.extend(AuthenticatedRouteMixin, {
+  beforeModel(...args) {
+    this._super(...arguments);
+
+    console.log(args);
+  },
   model({ id }) {
+    console.log('sup');
     return hash({
       updates: this.store.query('update', { group_page: id }),
       page: this.store.findRecord('page', id)
     });
   },
-  afterModel({ updates }) {
-    let obj = updates.get('firstObject');
-    this.transitionTo('page.update', obj.get('id'));
+  sessionAuthenticated(...args) {
+    console.log(args);
   }
 });

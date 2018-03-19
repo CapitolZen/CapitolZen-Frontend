@@ -15,16 +15,36 @@
         }}
       {{model.page.organization.name}}
     </span>
-    {{#link-to "app"}}
+    <span>
+      {{#if isGuest}}
+        <em>Welcome {{userName}}</em>
+      {{/if}}
+    </span>
+    {{#if isGuest}}
       <img class="img-fluid d-inline" src="/assets/images/capitolzenwordmark_logo.svg" width="125" height="50"
            alt="Capitol Zen">
+    {{else}}
+      {{#bs-dropdown tagName="span" as |dd|}}
+        {{#dd.toggle}}
+          <img class="img-fluid d-inline" src="/assets/images/capitolzenwordmark_logo.svg" width="125" height="50"
+               alt="Capitol Zen"> <span class="caret"></span>{{/dd.toggle}}
+        {{#dd.menu as |menu|}}
+          {{#menu.link-to "groups.detail.pages" model.page.group.id}}Post Update{{/menu.link-to}}
+          {{menu.divider}}
+          {{#menu.item}}
+            {{#menu.link-to "app"}}Dashboard{{/menu.link-to}}
+          {{/menu.item}}
+          {{#menu.item}}
+            {{#menu.link-to "groups.detail" model.page.group.id}}Edit {{model.page.group.name}}{{/menu.link-to}}
+          {{/menu.item}}
 
-    {{/link-to}}
+        {{/dd.menu}}
+      {{/bs-dropdown}}
+    {{/if}}
   </div>
 </nav>
 
 
-{{log model}}
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
