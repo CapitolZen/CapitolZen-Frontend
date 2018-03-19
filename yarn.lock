@@ -3841,12 +3841,6 @@ ember-getowner-polyfill@^2.0.0, ember-getowner-polyfill@^2.0.1:
     ember-cli-version-checker "^1.2.0"
     ember-factory-for-polyfill "^1.1.0"
 
-ember-group-by@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ember-group-by/-/ember-group-by-0.0.5.tgz#e0d8cf5fa0b0931cb5701738c0bd58e1ad7848e9"
-  dependencies:
-    ember-cli-babel "^6.6.0"
-
 ember-hammertime@^1.2.4:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/ember-hammertime/-/ember-hammertime-1.2.5.tgz#b6081de6ece6ffdc084ac00099560a04a2426948"
