@@ -15,6 +15,7 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   priority: DS.attr('number'),
   state: DS.attr('string'),
+
   referencedModelType: computed('actionObject', function() {
     let models = ['bill', 'wrapper', 'event'];
     let selected = false;
@@ -26,6 +27,11 @@ export default DS.Model.extend({
 
     return selected;
   }),
+
+  day: computed('created', function() {
+    return this.get('created').split('T')[0];
+  }),
+
   referencedModel: computed('referencedModelName', function() {
     let name = get(this, 'referencedModelName');
     return get(this, name);

@@ -13,6 +13,7 @@ export default Component.extend({
   facetsCollapsed: false,
   group: false,
   model: A(),
+  activeDay: null,
   filters: {
     search: '',
     group: null,
@@ -24,10 +25,18 @@ export default Component.extend({
   sortsDirection: '-',
   type: false,
   titleOptions: A(['bill:introduced', 'wrapper:updated']),
+
+  /**
+   *
+   */
   didReceiveAttrs() {
     this._super(...arguments);
     get(this, 'setupFacets').perform();
   },
+
+  /**
+   *
+   */
   setupFacets: task(function*() {
     let groups = yield get(this, 'store').query('group', {
       active: true,
@@ -63,11 +72,15 @@ export default Component.extend({
   _updateRecords() {
     get(this, 'fetchRecords').perform();
   },
+
   // Prevent pagination fails
   cachedParams: null,
 
+  /**
+   *
+   */
   fetchRecords: task(function*() {
-    let params = { pageSize: 12 };
+    let params = { pageSize: 30 };
 
     params.sort = `${get(this, 'sortsDirection')}${get(this, 'sorts')}`;
     let currentPage = get(this, 'currentPage');
@@ -99,6 +112,7 @@ export default Component.extend({
     try {
       let records = yield get(this, 'store').query('action', params);
       get(this, 'model').addObjects(records);
+
       let meta = records.get('meta');
       let { pages, page, count } = meta.pagination;
       page++;
@@ -109,6 +123,10 @@ export default Component.extend({
       console.log(e);
     }
   }).drop(),
+
+  /**
+   *
+   */
   recordsComplete: computed(
     'windoc.scrollTop',
     'windoc.scrollHeight',
@@ -132,7 +150,15 @@ export default Component.extend({
       return modelLength <= totalServerCount;
     }
   ),
+
+  /**
+   *
+   */
   actions: {
+    loadMore() {
+      get(this, 'fetchRecords').perform();
+    },
+
     filter(filters) {
       this._updateRecords();
       let title = getWithDefault(filters, 'title', false);
@@ -147,6 +173,11 @@ export default Component.extend({
         get(this, 'currentUser').event('action:dismiss');
         get(this, 'model').removeObject(action);
       });
+    },
+    updateActiveDate(action) {
+      if (get(this, 'activeDay') !== action.get('day')) {
+        set(this, 'activeDay', action.get('day'));
+      }
     }
   }
 });
