@@ -1,4 +1,11 @@
 {{ui-page-property "Updates for" model.group.title property="title"}}
+{{#global/page-title-actions}}
+
+  {{#link-to "groups.detail" model.group.id}}
+    {{fa-icon "address-book"}} {{features.clientLabel}}
+  {{/link-to}}
+
+{{/global/page-title-actions}}
 
 <div class="row">
   <div class="col-md-8">

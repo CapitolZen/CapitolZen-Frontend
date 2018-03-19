@@ -9,6 +9,7 @@ export default Component.extend({
   store: service(),
   currentUser: service(),
   updates: A(),
+  isNew: true,
   didReceiveAttrs() {
     this._super(...arguments);
     this.generateNewUpdate();

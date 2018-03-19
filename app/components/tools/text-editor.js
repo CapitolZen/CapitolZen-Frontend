@@ -1,6 +1,6 @@
 import { set, get } from '@ember/object';
 import Component from '@ember/component';
-import { EKMixin, keyUp, keyDown, keyPress, getKeyCode } from 'ember-keyboard';
+import { EKMixin, keyUp, keyDown, keyPress } from 'ember-keyboard';
 import { on } from '@ember/object/evented';
 import { run } from '@ember/runloop';
 import $ from 'jquery';

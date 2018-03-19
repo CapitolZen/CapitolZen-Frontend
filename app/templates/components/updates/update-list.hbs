@@ -1,4 +1,4 @@
-{{updates/update-form update=newUpdate callSuccess=(action "resetUpdate")}}
+{{updates/update-form update=newUpdate isNew=isNew callSuccess=(action "resetUpdate")}}
 {{#if loadUpdates.isRunning}}
   {{ui/loading-animation}}
 {{else}}
