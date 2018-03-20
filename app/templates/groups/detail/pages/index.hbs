@@ -13,7 +13,7 @@
   </div>
   <div class="col-md-4">
     {{#ui/ui-box as |b|}}
-      {{#b.header class=(if model.published "bg-info" "bg-warning")}}
+      {{#b.header}}
         {{model.title}}
       {{/b.header}}
       {{#b.body}}

@@ -12,7 +12,7 @@ export default FormComponent.extend({
   model: alias('page'),
   validator: PageEdit,
   assignedToOptions: computed(function() {
-    return this.get('store').findAll('user');
+    return this.get('store').query('user', {});
   }),
   visibilityOptions: A(['organization', 'anyone']),
   statusOptions: A(['draft', 'published']),

@@ -18,14 +18,16 @@ export default FormComponent.extend({
   }),
 
   assignedToOptions: computed(function() {
-    return this.get('store').findAll('user');
+    return this.get('store').query('user', {});
   }),
 
   /**
    * Success
    */
   onSubmitSuccess() {
-    get(this, 'flashMessages').success(`${get(this, 'features.clientLabel')}`);
+    get(this, 'flashMessages').success(
+      `${get(this, 'features.clientLabel')} Saved!`
+    );
     get(this, 'router').transitionTo('groups.index');
   },
 

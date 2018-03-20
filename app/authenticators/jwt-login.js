@@ -7,7 +7,7 @@ export default jwt.extend({
    *
    */
   authenticate(oldToken) {
-    let { page_id } = this.getTokenData(oldToken);
+    let { page_id, organization_id } = this.getTokenData(oldToken);
     this.get('session').set('data.currentPageId', page_id);
     return new Promise((resolve, reject) => {
       this.refreshAccessToken(oldToken)

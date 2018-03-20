@@ -20,14 +20,10 @@
         <em>Welcome {{userName}}</em>
       {{/if}}
     </span>
-    {{#if isGuest}}
-      <img class="img-fluid d-inline" src="/assets/images/capitolzenwordmark_logo.svg" width="125" height="50"
-           alt="Capitol Zen">
-    {{else}}
+    {{#unless isGuest}}
       {{#bs-dropdown tagName="span" as |dd|}}
         {{#dd.toggle}}
-          <img class="img-fluid d-inline" src="/assets/images/capitolzenwordmark_logo.svg" width="125" height="50"
-               alt="Capitol Zen"> <span class="caret"></span>{{/dd.toggle}}
+          Menu <span class="caret"></span>{{/dd.toggle}}
         {{#dd.menu as |menu|}}
           {{#menu.link-to "groups.detail.pages" model.page.group.id}}Post Update{{/menu.link-to}}
           {{menu.divider}}
@@ -40,7 +36,7 @@
 
         {{/dd.menu}}
       {{/bs-dropdown}}
-    {{/if}}
+    {{/unless}}
   </div>
 </nav>
 
@@ -48,7 +44,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
-      <h1 class="display-3">{{model.page.title}}</h1>
+      <h2>{{model.page.title}}</h2>
     </div>
     <div class="col-md-6">
       <div class="media float-md-right">

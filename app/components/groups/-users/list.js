@@ -6,10 +6,14 @@ import { A } from '@ember/array';
 
 export default Component.extend({
   store: service(),
-  guests: A(),
+  guests: false,
   init() {
     this._super(...arguments);
     get(this, 'loadGuests').perform();
+  },
+  didReceiveAttrs() {
+    this._super(...arguments);
+    set(this, 'guests', A());
   },
   loadGuests: task(function*() {
     let guests = yield get(this, 'store').query('user', {
