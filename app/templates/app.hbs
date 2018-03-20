@@ -40,7 +40,7 @@
       --}}
 
       {{#menu.item dismissOnClick=true}}
-       {{#link-to "committees.index"}}{{fa-icon "calendar-check-o"}} Committees{{/link-to}}
+        {{#link-to "committees.index"}}{{fa-icon "calendar-check-o"}} Committees{{/link-to}}
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
@@ -58,6 +58,8 @@
   {{#burger.outlet}}
     {{global/static-nav toggler=(action "toggleMenuState") menuState=menuState}}
     {{global/app-page-title}}
+    <div id="sticky-header-container">
+    </div>
     <div class="app-container">
       <div class="content-container container-fluid">
         {{#each flashMessages.queue as |flash|}}

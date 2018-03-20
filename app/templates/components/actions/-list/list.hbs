@@ -29,7 +29,8 @@
           <h6>Filter:</h6>
           {{#bs-form model=filters onSubmit=(action "filter") as |form|}}
             {{form.element label="Keyword" controlType="text" property="search"}}
-            {{form.element controlType="power-select" property="group" label="Client" searchEnabled=false options=availableGroups optionLabelPath="title"}}
+            {{form.element controlType="power-select" property="group" label="Client" searchEnabled=false
+                           options=availableGroups optionLabelPath="title"}}
             {{#form.element label="Type" property="title" useIcons=false as |el|}}
               {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
                                  onChange=(action (mut el.value)) as |bg|}}
@@ -57,18 +58,37 @@
     {{/unless}}
   </div>
   <div class="col-sm-8 col-lg-9 col-xl-10">
+    {{#if activeDay}}
+
+      {{#sticky-element}}
+        <div class="current-day-title">
+          <div class="card as-title">
+            <div class="body">
+              <h5>
+                {{moment-format activeDay}}
+              </h5>
+            </div>
+          </div>
+        </div>
+      {{/sticky-element}}
+    {{/if}}
+
     {{#each model as |record|}}
-      {{actions/-list/item action=record onDismiss=(action "dismissAction")}}
-    {{else}}
-      {{#if fetchRecords.isRunning}}
-        {{ui/loading-animation}}
-      {{/if}}
+        {{actions/-list/item action=record onDismiss=(action "dismissAction")
+                             onEnterViewport=(action "updateActiveDate")}}
     {{/each}}
+    {{in-viewport did-enter=(action "loadMore")}}
+
+    {{#if fetchRecords.isRunning}}
+      {{ui/loading-animation}}
+    {{/if}}
+    {{!--
     {{#if recordsComplete}}
       {{#if (lt totalRecordCount 1)}}
         <h6 class="text-center">No Results Found</h6>
       {{/if}}
     {{/if}}
+    --}}
 
   </div>
 </div>
