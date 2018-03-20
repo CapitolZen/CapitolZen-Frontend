@@ -131,6 +131,8 @@ Router.map(function() {
 
   this.route('page', { path: 'p/:id' }, function() {
     this.route('update', { path: '/:update' });
+    this.route('bills', { path: '/bills' });
+    this.route('bill', { path: 'bill/:bill' });
   });
 });
 
