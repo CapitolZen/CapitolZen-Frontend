@@ -21,13 +21,13 @@
     {{#if bill}}
       {{bills/add-to-group
         bills=bill
-        buttonType="outline-primary"
+        buttonType="primary"
         buttonText="Save"
         fullWidth=false
         billAdded=(action "dismiss")
       }}
-      {{#link-to "bills.detail" action.bill.id class="btn btn-outline-info ml-1"}}View{{/link-to}}
+      {{#link-to "bills.detail" action.bill.id class="ml-1 btn btn-link"}}View{{/link-to}}
     {{/if}}
-    {{bs-button defaultText="Complete" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
+    {{bs-button defaultText="Complete" type="link" class="mx-1" onClick=(action "dismiss")}}
   {{/b.footer}}
 {{/ui/ui-box}}

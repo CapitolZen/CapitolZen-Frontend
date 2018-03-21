@@ -13,8 +13,8 @@
       </dl>
     {{/b.body}}
     {{#b.footer class=footerClasses}}
-      {{#bs/link-button "groups.detail.bill.detail" wrapper.group.id wrapper.id type="outline-primary" class="mr-1"}}View{{/bs/link-button}}
-      {{#bs/link-button "reports.client" wrapper.group.id type="outline-info"}}Send Report{{/bs/link-button}}
-      {{bs-button defaultText="Complete" type="outline-secondary" class="mx-1" onClick=(action "dismiss")}}
+      {{#bs/link-button "groups.detail.bill.detail" wrapper.group.id wrapper.id type="primary" class="mr-1"}}View{{/bs/link-button}}
+      {{#bs/link-button "reports.client" wrapper.group.id type="link"}}Send Report{{/bs/link-button}}
+      {{bs-button defaultText="Complete" type="link" class="mx-1" onClick=(action "dismiss")}}
     {{/b.footer}}
   {{/ui/ui-box}}
