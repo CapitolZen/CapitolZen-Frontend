@@ -4,6 +4,8 @@ import { task } from 'ember-concurrency';
 import { all, allSettled } from 'rsvp';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import { run } from '@ember/runloop';
+import $ from 'jquery';
 
 export default Component.extend({
   store: service(),
@@ -12,7 +14,9 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.get('fetchGroups').perform();
+    this._setupModel();
   },
+
   groupList: null,
   pageList: null,
   selectedGroups: null,
@@ -33,12 +37,26 @@ export default Component.extend({
     return !this.get('selectedGroups.length');
   }),
 
-  model: computed(function() {
-    return this.get('store').createRecord('update', {
+  model: null,
+  /**
+   * Purge data from model to reset form
+   * @private
+   */
+  _setupModel() {
+    let model = this.get('store').createRecord('update', {
       organization: get(this, 'currentUser.organization'),
       user: get(this, 'currentUser.user')
     });
-  }),
+    set(this, 'model', model);
+    set(this, 'selectedGroups', A());
+    run(() => {
+      $('.mobiledoc-editor__editor').empty();
+    });
+  },
+
+  /**
+   * This is all pretty bad...
+   */
   submit: task(function*() {
     let pagePromises = get(this, 'selectedGroups').map(group => {
       return get(this, 'store')
@@ -68,6 +86,7 @@ export default Component.extend({
     });
 
     yield all(promises);
+    this._setupModel();
     get(this, 'flashMessages').success('Updates sent!');
   }),
   actions: {
