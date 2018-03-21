@@ -1,11 +1,14 @@
 <h4>Your {{features.clientLabelPlural}}</h4>
-{{#each clients as |group|}}
-  {{dashboard/client-detail group=group}}
+{{#if loadClients.isRunning}}
+  {{ui/inline-loading class="float-left"}} Loading Clients...
 {{else}}
-  No Assigned Clients?
-  <div class="row justify-content-between">
-    {{#bs/link-button "groups.add" type="primary" class="col-6"}}Add {{features.clientLabel}}{{/bs/link-button}}
-    {{#bs/link-button "groups.index" type="secondary" class="col-6"}}View All{{/bs/link-button}}
-  </div>
-
-{{/each}}
+  {{#each clients as |group|}}
+    {{dashboard/client-detail group=group}}
+  {{else}}
+    No Assigned Clients?
+    <div class="row justify-content-between">
+      {{#bs/link-button "groups.add" type="primary" class="col-6"}}Add {{features.clientLabel}}{{/bs/link-button}}
+      {{#bs/link-button "groups.index" type="secondary" class="col-6"}}View All{{/bs/link-button}}
+    </div>
+  {{/each}}
+{{/if}}
