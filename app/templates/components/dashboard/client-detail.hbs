@@ -23,9 +23,9 @@
         {{/bs/link-button}}
 
       {{/if}}
-      {{#bs/link-button "groups.detail.index" group.id type="light" class="btn-sm"}}{{fa-icon "address-book"}} View{{/bs/link-button}}
-      {{#bs/link-button "groups.detail.bills" group.id type="light" class="btn-sm"}}{{fa-icon "floppy-o"}} Saved Bills{{/bs/link-button}}
-      {{#bs/link-button "reports.client" group.id type="light" class="btn-sm"}}{{fa-icon "file-text"}} Reports{{/bs/link-button}}
+      {{#link-to "groups.detail.index" group.id}}{{fa-icon "address-book"}} View{{/link-to}}
+      {{#link-to "groups.detail.bills" group.id}}{{fa-icon "floppy-o"}} Saved Bills{{/link-to}}
+      {{#link-to "groups.detail.pages" group.id}}{{fa-icon "paper-plane"}} Update{{/link-to}}
     </div>
   {{/b.body}}
 {{/ui/ui-box}}

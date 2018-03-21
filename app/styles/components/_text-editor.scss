@@ -5,11 +5,6 @@
 
 .note-editor {
   border: 1px solid $cz-grey-lt;
-  background: $cz-grey-lt;
-}
-
-.note-editor .toolbar {
-  @include box-shadow;
 }
 
 .bg-faded {
@@ -30,15 +25,19 @@
   }
 }
 
+.mobiledoc-editor {
+  border-radius: $border-radius-sm;
+  border: $input-border;
+}
+
 .note-editor .mobiledoc-editor__editor-wrapper {
   @extend .bg-faded;
   padding: 0.25rem 1rem;
+  box-shadow: $input-box-shadow;
 }
 
 .note-editor .toolbar {
-  background: white;
-  border-top: 2px solid $cz-grey-lt;
-  border-bottom: 1px solid $cz-grey-lt;
+  border-top: 1px solid $cz-grey-lt;
 }
 
 .note-add-wrapper {
@@ -51,4 +50,8 @@
 
 .note-component:hover .note-edit-button {
   visibility: visible;
+}
+
+.mobiledoc-form .mobiledoc-editor__editor-wrapper {
+  min-height: 15vh;
 }
