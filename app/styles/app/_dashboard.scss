@@ -1,0 +1,15 @@
+.dashboard-button {
+  height: 10vh;
+  border: $input-border;
+  border-radius: $border-radius;
+  text-align: center;
+  margin: 2rem auto;
+  background: white;
+
+  &.dashboard-active {
+    background: $primary;
+    color: white;
+    box-shadow: $card-box-shadow;
+    border-color: $primary;
+  }
+}

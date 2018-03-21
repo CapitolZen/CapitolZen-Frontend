@@ -1,31 +1,32 @@
 {{#ui/ui-box as |b|}}
-  {{#b.header}}
-    {{ember-initials
-      image=group.avatar
-      name=group.title
-      defaultName="?"
-      seedText=group.title
-      textColor="white"
-      fontSize=45
-      fontWeight=100
-      fontFamily="Helvetica Neue Light, Arial, sans-serif"
-      size=40
-      class="img-thumbnail rounded-circle mr-3"
-    }}
-    {{group.title}}
-
-  {{/b.header}}
   {{#b.body}}
-    <div class="row justify-content-between px-2">
-      {{#if actionsCount}}
-        {{#bs/link-button "todos" (query-params group=group.id) type="primary" class="pull-right btn-sm"}}
-          To-Do's <span class="badge badge-light">{{actionsCount}}</span>
-        {{/bs/link-button}}
-
-      {{/if}}
-      {{#link-to "groups.detail.index" group.id}}{{fa-icon "address-book"}} View{{/link-to}}
-      {{#link-to "groups.detail.bills" group.id}}{{fa-icon "floppy-o"}} Saved Bills{{/link-to}}
-      {{#link-to "groups.detail.pages" group.id}}{{fa-icon "paper-plane"}} Update{{/link-to}}
+    <div class="row">
+      <div class="col-2">
+        {{ember-initials
+          image=group.avatar
+          name=group.title
+          defaultName="?"
+          seedText=group.title
+          textColor="white"
+          fontSize=45
+          fontWeight=100
+          fontFamily="Helvetica Neue Light, Arial, sans-serif"
+          size=80
+          class="img-thumbnail rounded-circle mr-3"
+        }}
+      </div>
+      <div class="col-10">
+        <h3>
+          {{group.title}}
+        </h3>
+        {{#if actionsCount}}
+          {{#bs/link-button "todos" (query-params group=group.id) type="primary" class="pull-right btn-sm"}}
+            To-Do's <span class="badge badge-light">{{actionsCount}}</span>
+          {{/bs/link-button}}
+        {{/if}}
+        {{#link-to "groups.detail.index" group.id}}{{fa-icon "address-book"}} View{{/link-to}}
+        {{#link-to "groups.detail.bills" group.id}}{{fa-icon "floppy-o"}} Saved Bills{{/link-to}}
+        {{#link-to "groups.detail.pages" group.id}}{{fa-icon "paper-plane"}} Update{{/link-to}}      </div>
     </div>
   {{/b.body}}
 {{/ui/ui-box}}

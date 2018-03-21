@@ -55,3 +55,8 @@
 .mobiledoc-form .mobiledoc-editor__editor-wrapper {
   min-height: 15vh;
 }
+
+.mobiledoc-form.disabled {
+  background: $gray-200;
+  pointer-events: none;
+}

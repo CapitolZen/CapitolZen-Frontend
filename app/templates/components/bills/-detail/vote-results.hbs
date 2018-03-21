@@ -25,7 +25,8 @@
         {{#each vote.records as |person|}}
           {{#if (eq person.vote "oppose")}}
             <div class="col-md-3">
-              <span class="{{if (eq person.party "Republican") "text-republican" "text-democrat"}}">{{person.name}} ({{person.party}})</span>
+              <span class="{{if (eq person.party "Republican") "text-republican" "text-democrat"}}">{{person.name}}
+                ({{person.party}})</span>
             </div>
           {{/if}}
         {{/each}}

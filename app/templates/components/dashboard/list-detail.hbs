@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-4 order-md-first">
+    {{#each widgets as |widget|}}
+      <div class="dashboard-button row flex-column justify-content-center {{if (eq selectedWidget widget) "dashboard-active"}}" onclick={{action (mut selectedWidget) widget}}>
+        <div class="text-center">
+          <h5>
+            {{#if (eq widget "update")}}
+              Post Client Update
+            {{/if}}
+            {{#if (eq widget "groups")}}
+              My {{features.clientLabelPlural}}
+            {{/if}}
+            {{#if (eq widget "intros")}}
+              New Bills
+            {{/if}}
+            {{#if (eq widget "calendars")}}
+              Committee Meetings
+            {{/if}}
+          </h5>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="col-md-7 offset-md-1 order-first pt-4">
+    {{component selectedComponent}}
+  </div>
+</div>

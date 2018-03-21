@@ -70,6 +70,9 @@ body > .ember-view {
   flex-direction: column;
 }
 
+.ember-burger-menu > .bm-outlet {
+  perspective: none;
+}
 .ember-burger-menu > .bm-outlet > .bm-content {
   background: $body-bg;
   flex: 1;

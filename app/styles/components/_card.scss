@@ -37,3 +37,21 @@
     border: 0;
   }
 }
+
+.sticky-element {
+  z-index: 10;
+}
+
+.card.as-title {
+  .body {
+    padding: 6px;
+  }
+  .body > h1,
+  .body > h2,
+  .body > h3,
+  .body > h4,
+  .body > h5,
+  .body > h6 {
+    margin: 0;
+  }
+}

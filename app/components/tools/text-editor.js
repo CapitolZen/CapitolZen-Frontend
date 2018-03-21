@@ -6,6 +6,7 @@ import { run } from '@ember/runloop';
 import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
+  classNameBindings: ['disabled'],
   showEditor: true,
   autoSave: false,
   activateKeyboard: on('init', function() {

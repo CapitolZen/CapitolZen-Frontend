@@ -11,20 +11,6 @@
   {{/link-to}}
 {{/global/page-title-actions}}
 
-<div class="row mt-4">
-  <div class="col-md-6 order-md-first">
-    {{actions/action-center}}
-  </div>
-  <div class="col-md-5 offset-md-1">
-      {{dashboard/user-clients}}
-  </div>
-
+<div class="container">
+  {{dashboard/list-detail}}
 </div>
-
-{{#if media.isMobile}}
-  <div class="row mt-4">
-    <div class="col-12">
-      {{tools/to-do}}
-    </div>
-  </div>
-{{/if}}

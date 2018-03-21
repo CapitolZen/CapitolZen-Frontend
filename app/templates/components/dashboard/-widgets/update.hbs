@@ -1,1 +1,33 @@
-{{yield}}
+{{#bs-form model=model onSubmit=(action "submit") as |form|}}
+  {{#ui/ui-box as |b|}}
+    {{#b.body}}
+
+      <h6>Select {{features.clientLabelPlural}}</h6>
+      {{#unless fetchGroups.isRunning}}
+        {{#power-select-multiple
+          options=groupList
+          selected=selectedGroups
+          onchange=(action (mut selectedGroups))
+          searchField="title"
+
+        as |group|}}
+          {{group.title}}
+        {{/power-select-multiple}}
+      {{/unless}}
+      <div class="mb-3"></div>
+
+      {{#unless fetchGroups.isRunning}}
+        {{form.element controlType="text" property="title" placeholder="Headline" disabled=disableSubmit}}
+        {{form.element controlType="mobiledoc" property="document" disabled=disableSubmit}}
+      {{/unless}}
+
+    {{/b.body}}
+    {{#b.footer}}
+      {{bs-button defaultText="Post" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
+{{/bs-form}}
+
+{{#each pageList as |page|}}
+  {{page.id}}
+{{/each}}

@@ -16,19 +16,21 @@
       {{/form.element}}
 
       <h6>{{fa-icon "paperclip"}} Attachments</h6>
-      {{files/file-upload group=model.group didCreateFile=(action "selectFile")}}
-      {{#if changeset.files}}
-        <hr>
-        <h6 class="font-weight-light">Files</h6>
-        {{#bs/list-group as |g|}}
-          {{#each changeset.files as |file|}}
-            {{#g.item}}
-              {{file.name}}
-              {{close-button (action "removeFile" file)}}
-            {{/g.item}}
-          {{/each}}
-        {{/bs/list-group}}
-      {{/if}}
+      {{#unless hideFiles}}
+        {{files/file-upload group=model.group didCreateFile=(action "selectFile")}}
+        {{#if changeset.files}}
+          <hr>
+          <h6 class="font-weight-light">Files</h6>
+          {{#bs/list-group as |g|}}
+            {{#each changeset.files as |file|}}
+              {{#g.item}}
+                {{file.name}}
+                {{close-button (action "removeFile" file)}}
+              {{/g.item}}
+            {{/each}}
+          {{/bs/list-group}}
+        {{/if}}
+      {{/unless}}
 
     {{/b.body}}
     {{#b.footer}}
