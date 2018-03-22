@@ -1,0 +1,29 @@
+{{ui-page-property "Updates for" model.group.title property="title"}}
+
+{{pages/-ui/header page=model}}
+
+<div class="container">
+  {{#pages/-anon/display page=model}}
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}
+        {{model.title}} - All Updates
+      {{/b.header}}
+      {{#b.body}}
+        <div class="media">
+          {{user/user-avatar user=model.author class="mr-3" size=48 avatarRounded=true}}
+          <div class="media-body">
+            <h5 class="mt-0">By {{model.author.name}}</h5>
+            <h6 class="mt-0" class="font-weight-light">
+              {{if model.author.jobTitle model.author.jobTitle}} {{model.organization.name}}
+            </h6>
+
+            {{#if model.description}}
+              <p>{{model.description}}</p>
+            {{/if}}
+          </div>
+        </div>
+      {{/b.body}}
+    {{/ui/ui-box}}
+  
+  {{/pages/-anon/display}}
+</div>

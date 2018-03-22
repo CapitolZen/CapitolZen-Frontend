@@ -4,7 +4,7 @@
     {{#bs/list-group class="page-update-list" as |g|}}
       {{#ember-scrollable onScrolledToBottom=(perform loadUpdates)}}
           {{#each updateList as |update|}}
-            {{#g.link  "page.update" update.id}}
+            {{#g.link  "page.update" page.id update.id}}
               <h5>{{update.title}}</h5>
               <p class="mb-0">
                 {{tools/date-display update.created}}<br>
@@ -30,3 +30,4 @@
     {{yield}}
   </div>
 </div>
+

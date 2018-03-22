@@ -129,10 +129,11 @@ Router.map(function() {
   this.route('anon.redirect', { path: 'r' });
   this.route('anon.page-access', { path: 'r/:page/access' });
 
-  this.route('page', { path: 'p/:id' }, function() {
-    this.route('update', { path: '/:update' });
-    this.route('bills', { path: '/bills' });
-    this.route('bill', { path: 'bill/:bill' });
+  this.route('page', { path: 'p' }, function() {
+    this.route('updates', { path: ':id' });
+    this.route('update', { path: ':id/:update' });
+    this.route('bills', { path: ':id/bills' });
+    this.route('bill', { path: ':id/bill/:wrapper' });
   });
 });
 

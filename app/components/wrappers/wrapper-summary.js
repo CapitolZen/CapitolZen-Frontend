@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { set, get, computed } from '@ember/object';
 export default Component.extend({
   isEditing: false,
+  canEdit: true,
   displaySummary: computed('summary', function() {
     return get(this, 'summary') ? get(this, 'summary') : '';
   }),

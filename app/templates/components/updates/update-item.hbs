@@ -11,7 +11,6 @@
         {{/if}}
       </div>
     </div>
-
   {{/b.body}}
 
 
@@ -22,9 +21,9 @@
         <h6 class="mb-0">Saved Bills</h6>
         {{#bs/list-group class="mt-0" as |g|}}
           {{#each update.wrappers as |wrapper|}}
-            {{#g.item class="d-flex justify-content-between small border-0 px-0 bg-0"}}
+            {{#g.link "page.bill" update.page.id wrapper.id class="d-flex justify-content-between small border-0 px-0 bg-0"}}
               <span>{{wrapper.bill.stateId}}</span> <span>{{wrapper.bill.remoteStatus}}</span> {{wrappers/wrapper-position wrapper=wrapper canEdit=false}}
-            {{/g.item}}
+            {{/g.link}}
           {{/each}}
         {{/bs/list-group}}
       {{/if}}

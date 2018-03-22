@@ -1,6 +1,6 @@
 <h4>Your {{features.clientLabelPlural}}</h4>
 {{#if loadClients.isRunning}}
-  {{ui/inline-loading class="float-left"}} Loading Clients...
+  {{ui/loading-animation}}
 {{else}}
   {{#each clients as |group|}}
     {{dashboard/client-detail group=group}}
@@ -12,3 +12,4 @@
     </div>
   {{/each}}
 {{/if}}
+

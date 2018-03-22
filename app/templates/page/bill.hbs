@@ -1,1 +1,60 @@
-{{outlet}}
+{{ui-page-property "Updates for" model.page.group.title property="title"}}
+
+{{pages/-ui/header page=model.page}}
+{{pages/-ui/title page=model.page}}
+
+
+<div class="container mt-5">
+  {{#ui/ui-box as |b|}}
+    {{#b.header}}
+      <span class="pull-left">
+      {{model.wrapper.bill.stateId}}<br>
+        {{wrappers/wrapper-position wrapper=model.wrapper canEdit=false}}
+    </span>
+      {{#legislator/legislator-info legislator=model.wrapper.bill.sponsor class="float-right" as |fields|}}
+        {{fields.name}}
+        {{fields.party}}
+      {{/legislator/legislator-info}}
+    {{/b.header}}
+  {{/ui/ui-box}}
+
+  {{#bs-tab as |tab|}}
+    {{#tab.pane title="Summary"}}
+      {{#ui/ui-box as |b|}}
+        {{#b.body}}
+          <h5>Summary</h5>
+          {{wrappers/wrapper-summary wrapper=model.wrapper canEdit=false class="mb-2"}}
+          {{#if model.wrapper.metadata.savedby}}
+            <h5>Saved By</h5>
+            <p>{{model.wrapper.metadata.savedby}} | {{tools/date-display model.wrapper.metadata.savedtime}}</p>
+          {{/if}}
+
+          {{bills/bill-cosponosrs model.wrapper.bill}}
+          {{bills/source-list sources=model.wrapper.bill.sources class="mt-1"}}
+          {{bills/doc-list docs=model.wrapper.bill.documents class="mt-1"}}
+        {{/b.body}}
+      {{/ui/ui-box}}
+    {{/tab.pane}}
+    {{#tab.pane title="Notes"}}
+      {{#ui/ui-box as |b|}}
+        {{#b.body}}
+          <h5>Notes</h5>
+          <div class="note-list-wrapper">
+            {{#each model.wrapper.notes as |note|}}
+              {{tools/note-component note=note}}
+            {{else}}
+              <p class="text-center">No Notes Yet</p>
+            {{/each}}
+          </div>
+        {{/b.body}}
+      {{/ui/ui-box}}
+    {{/tab.pane}}
+    {{#tab.pane title="History"}}
+      {{#ui/ui-box as |b|}}
+        {{#b.body}}
+          {{bills/-detail/history bill=model.wrapper.bill}}
+        {{/b.body}}
+      {{/ui/ui-box}}
+    {{/tab.pane}}
+  {{/bs-tab}}
+</div>

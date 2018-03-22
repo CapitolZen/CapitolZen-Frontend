@@ -8,6 +8,7 @@ export default Component.extend({
   filtering: true,
   group: null,
   groupId: null,
+  actionCellComponent: { component: 'wrappers/-list/cell/actions' },
   defaultRecordQuery: computed(function() {
     let query = {};
 
@@ -32,48 +33,59 @@ export default Component.extend({
     responsive: true
   },
 
-  columns: [
-    {
-      width: '40px',
-      sortable: false,
-      cellComponent: 'table/row-toggle',
-      breakpoints: ['mobile', 'tablet']
-    },
-    {
-      label: 'Bill ID',
-      valuePath: 'bill.stateId',
-      sortable: true,
-      cellComponent: 'wrappers/-list/cell/title'
-    },
-    {
-      label: 'Position',
-      cellComponent: 'wrappers/-list/cell/position'
-    },
-    {
-      label: 'Summary',
-      valuePath: 'bill.title',
-      breakpoints: ['desktop'],
-      cellClassNames: ['smaller-text']
-    },
-    {
-      label: 'Sponsor',
-      cellComponent: 'bills/-list/cell/sponsor',
-      sortable: false,
-      breakpoints: ['mobile', 'tablet', 'desktop']
-    },
-    {
-      label: 'Recent Activity',
-      cellComponent: 'bills/-list/cell/status',
-      sortable: false,
-      breakpoints: ['tablet', 'desktop']
-    },
-    {
-      label: 'Actions',
-      cellComponent: 'wrappers/-list/cell/actions',
-      sortable: false,
-      align: 'right'
+  columns: computed('actionCellComponent', function() {
+    let actionCellComponent = this.get('actionCellComponent');
+
+    let columns = [
+      {
+        width: '40px',
+        sortable: false,
+        cellComponent: 'table/row-toggle',
+        breakpoints: ['mobile', 'tablet']
+      },
+      {
+        label: 'Bill ID',
+        valuePath: 'bill.stateId',
+        sortable: true,
+        cellComponent: 'wrappers/-list/cell/title'
+      },
+      {
+        label: 'Position',
+        cellComponent: 'wrappers/-list/cell/position'
+      },
+      {
+        label: 'Summary',
+        valuePath: 'bill.title',
+        breakpoints: ['desktop'],
+        cellClassNames: ['smaller-text']
+      },
+      {
+        label: 'Sponsor',
+        cellComponent: 'bills/-list/cell/sponsor',
+        sortable: false,
+        breakpoints: ['mobile', 'tablet', 'desktop']
+      },
+      {
+        label: 'Recent Activity',
+        cellComponent: 'bills/-list/cell/status',
+        sortable: false,
+        breakpoints: ['tablet', 'desktop']
+      },
+      {
+        label: 'Actions',
+        cellComponent: actionCellComponent.component,
+        sortable: false,
+        align: 'right',
+        extra: actionCellComponent.extras
+      }
+    ];
+
+    if (!get(this, 'tableOptions.expandOnClick')) {
+      columns.splice(0, 1);
     }
-  ],
+
+    return columns;
+  }),
 
   actions: {
     /**

@@ -15,5 +15,7 @@
   {{else}}
     {{wrapper.bill.title}}
   {{/if}}
-  <button class="btn-link btn btn-sm" {{action "toggleEditing"}}>{{fa-icon "pencil"}}</button>
+  {{#if canEdit}}
+    <button class="btn-link btn btn-sm" {{action "toggleEditing"}}>{{fa-icon "pencil"}}</button>
+  {{/if}}
 {{/if}}

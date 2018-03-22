@@ -1,1 +1,13 @@
-{{outlet}}
+{{ui-page-property "Updates for" model.page.group.title property="title"}}
+
+{{pages/-ui/header page=model.page}}
+{{pages/-ui/title page=model.page}}
+
+
+<div class="container mt-5">
+  {{wrappers/-list/table
+    filtering=false
+    groupId=model.page.group.id
+    tableOptions=(hash canSelect=false expandOnClick=false)
+    actionCellComponent=(hash component="pages/-ui/wrapper-action-cell" extras=(hash page=model.page))}}
+</div>
