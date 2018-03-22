@@ -6,7 +6,7 @@ import { getOwner } from '@ember/application';
 export default Route.extend({
   session: service(),
   currentUser: service(),
-  model({ token, p }) {
+  model({ token, p, u }) {
     if (!p) {
       this.transitionTo('not-found');
     }
@@ -19,7 +19,7 @@ export default Route.extend({
     return get(this, 'session')
       .authenticate(authenticator, token)
       .then(() => {
-        this.transitionTo('page.updates', p);
+        this.transitionTo('page.update', p, u);
       });
   }
 });
