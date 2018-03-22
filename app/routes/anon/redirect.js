@@ -19,7 +19,7 @@ export default Route.extend({
     return get(this, 'session')
       .authenticate(authenticator, token)
       .then(() => {
-        this.transitionTo('page', p);
+        this.transitionTo('page.updates', p);
       });
   }
 });
