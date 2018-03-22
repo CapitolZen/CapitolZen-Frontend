@@ -1,3 +1,5 @@
+// Everything that touches notes needs to be rewritten
+
 import { set, get, getWithDefault, computed } from '@ember/object';
 import DS from 'ember-data';
 import { alias, empty } from '@ember/object/computed';
@@ -26,17 +28,37 @@ export default DS.Model.extend({
       return get(this, 'metadata.draftsponsor');
     }
   }),
+  displaySummary: computed('summary', {
+    get() {
+      if (get(this, 'summary')) {
+        return get(this, 'summary');
+      } else {
+        return get(this, 'bill.title');
+      }
+    },
+    set(key, value) {
+      set(this, 'summary', value);
+    }
+  }),
   party: computed('bill.sponsor.party', function() {
     return getWithDefault(this, 'bill.sponsor.party', 'Draft');
   }),
   isDraft: empty('bill.id'),
+  firstNote: computed({
+    get() {
+      return {};
+    },
+    set(key, value) {
+      return this.saveNote(value);
+    }
+  }),
   saveNote({ doc, docId, user, ispublic = false }) {
     if (!docId) {
       docId = v4();
     }
 
     assert('must provide a valid document', doc);
-    assert('must provide a valid user', user);
+    // assert('must provide a valid user', user);
 
     let notes = getWithDefault(this, 'notes', []);
 

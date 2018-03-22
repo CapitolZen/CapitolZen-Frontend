@@ -1,7 +1,7 @@
 {{ui-page-property "All Bills" property="title"}}
 
 {{#global/page-title-actions}}
-  {{#link-to "bills.add" class="btn btn-primary"}}{{fa-icon "briefcase"}} Add Draft{{/link-to}}
+  {{#link-to "bills.add"}}{{fa-icon "briefcase"}} Add Draft{{/link-to}}
 {{/global/page-title-actions}}
 
 {{bills/-list/table model=model canMultiselect=true recordType="bill"}}

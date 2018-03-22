@@ -1,0 +1,33 @@
+<h3>Your Latest Updates</h3>
+<div class="row justify-content-between">
+  <div class="col-md-4 order-md-first order-xs-last order-last">
+    {{#bs/list-group class="page-update-list" as |g|}}
+      {{#ember-scrollable onScrolledToBottom=(perform loadUpdates)}}
+          {{#each updateList as |update|}}
+            {{#g.link  "page.update" page.id update.id}}
+              <h5>{{update.title}}</h5>
+              <p class="mb-0">
+                {{tools/date-display update.created}}<br>
+                <em>{{update.user.name}}</em>
+              </p>
+            {{/g.link}}
+          {{/each}}
+
+        {{#if loadUpdates.isRunning}}
+          {{#g.item}}
+            <div class="text-center">
+              {{ui/inline-loading}}
+            </div>
+          {{/g.item}}
+        {{/if}}
+      {{/ember-scrollable}}
+    {{/bs/list-group}}
+
+
+
+  </div>
+  <div class="col-md-7 order-first order-sm-first">
+    {{yield}}
+  </div>
+</div>
+

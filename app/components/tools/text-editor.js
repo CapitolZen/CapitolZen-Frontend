@@ -1,12 +1,14 @@
 import { set, get } from '@ember/object';
 import Component from '@ember/component';
-import { EKMixin, keyUp, keyDown, keyPress, getKeyCode } from 'ember-keyboard';
+import { EKMixin, keyUp, keyDown, keyPress } from 'ember-keyboard';
 import { on } from '@ember/object/evented';
 import { run } from '@ember/runloop';
 import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
+  classNameBindings: ['disabled'],
   showEditor: true,
+  autoSave: false,
   activateKeyboard: on('init', function() {
     set(this, 'keyboardActivated', true);
   }),
@@ -27,9 +29,11 @@ export default Component.extend(EKMixin, {
       args.docId = get(this, 'docId');
     }
     get(this, 'saveAction')(args);
-    run(() => {
-      $('.mobiledoc-editor__editor').empty();
-    });
+    if (!get(this, 'autoSave')) {
+      run(() => {
+        $('.mobiledoc-editor__editor').empty();
+      });
+    }
   },
   cancel() {
     get(this, 'cancelAction')();
@@ -42,6 +46,9 @@ export default Component.extend(EKMixin, {
   actions: {
     mobileDocUpdated(doc) {
       set(this, 'doc', doc);
+      if (get(this, 'autoSave')) {
+        this.save();
+      }
     },
     saveDocument() {
       this.save();

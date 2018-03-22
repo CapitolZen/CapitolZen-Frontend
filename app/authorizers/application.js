@@ -3,7 +3,7 @@ import Base from 'ember-simple-auth/authorizers/base';
 
 export default Base.extend({
   session: service(),
-  currentUser: service('current-user'),
+  currentUser: service(),
 
   authorize(data, block) {
     this._super(data, block);
@@ -13,6 +13,14 @@ export default Base.extend({
 
     if (this.get('currentUser.organization')) {
       block('X-Organization', this.get('currentUser.organization.id'));
+    }
+
+    if (this.get('session.data.currentOrganizationId')) {
+      block('X-Organization', this.get('session.data.currentOrganizationId'));
+    }
+
+    if (this.get('session.data.currentPageId')) {
+      block('X-Page', this.get('session.data.currentPageId'));
     }
   }
 });

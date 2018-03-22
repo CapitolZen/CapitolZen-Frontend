@@ -137,7 +137,7 @@ module.exports = function(environment) {
     passwordField: 'password',
     tokenPropertyName: 'data.token',
     refreshAccessTokens: true,
-    serverTokenRefreshEndpoint: `${ENV.APP.API_HOST}/api-token-verify/`,
+    serverTokenRefreshEndpoint: `${ENV.APP.API_HOST}/api-token-refresh/`,
     tokenExpireName: 'exp',
     refreshLeeway: 300,
     crossOriginWhitelist: ['*'],

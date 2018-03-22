@@ -65,6 +65,11 @@ Router.map(function() {
         this.route('bill', { path: '/bill' }, function() {
           this.route('detail', { path: '/:bill' });
         });
+
+        this.route('pages', function() {
+          this.route('edit', { path: '/:page/edit' });
+          this.route('add');
+        });
       });
       this.route('add');
     });
@@ -82,6 +87,7 @@ Router.map(function() {
       this.route('detail', { path: '/:report' });
       this.route('edit', { path: '/:report/edit' });
       this.route('client', { path: '/client/:group' });
+      this.route('wizard');
     });
 
     this.route('committees', { resetNamespace: true }, function() {
@@ -120,6 +126,15 @@ Router.map(function() {
   this.route('anon.reset-password', { path: '/reset/:token' });
   this.route('anon.privacy', { path: 'privacy' });
   this.route('anon.legal', { path: 'legal' });
+  this.route('anon.redirect', { path: 'r' });
+  this.route('anon.page-access', { path: 'r/:page/access' });
+
+  this.route('page', { path: 'p' }, function() {
+    this.route('updates', { path: ':id' });
+    this.route('update', { path: ':id/:update' });
+    this.route('bills', { path: ':id/bills' });
+    this.route('bill', { path: ':id/bill/:wrapper' });
+  });
 });
 
 export default Router;

@@ -1,18 +1,23 @@
 {{ui-page-property model.group.title property="title"}}
 
 {{#global/page-title-actions}}
-  {{#link-to "groups.detail.bills" model.group.id class="btn btn-primary"}}
+  {{#link-to "groups.detail.bills" model.group.id}}
     {{fa-icon "floppy-o"}} Saved Bills
   {{/link-to}}
-  {{#link-to "reports.client" model.group.id class="btn btn-primary"}}
-    {{fa-icon "file-text"}} Reports
+  {{#link-to "groups.detail.pages" model.group.id class="btn btn-link"}}
+    {{fa-icon "paper-plane"}} Updates
   {{/link-to}}
-  {{#link-to "bills.add" class="btn btn-primary"}}
+  {{#link-to "bills.add" class="btn btn-link"}}
     {{fa-icon "briefcase"}} Add Draft
   {{/link-to}}
-  {{bills/quick-add group=model.group}}
 
 {{/global/page-title-actions}}
+
+
+<div class="row">
+  <div class="col-md-6"></div>
+  <div class="col-md-6"></div>
+</div>
 
 <div class="row">
   <div class="col-md-8 offset-md-2">
@@ -53,13 +58,30 @@
                   </ul>
                 {{/if}}
               </div>
+
+              {{bills/quick-add group=model.group class="btn-link"}}
+
             </div>
 
           {{/b.body}}
         {{/ui/ui-box}}
 
+        {{#ui/ui-box class="mt-3" as |b|}}
+          {{#b.header}}
+            Saved Bill Overview
+          {{/b.header}}
+          {{#b.body}}
+            {{groups/group-stats group=model.group}}
+          {{/b.body}}
+        {{/ui/ui-box}}
+
+      {{/tab.pane}}
+      {{#tab.pane title="Contacts"}}
+        {{groups/-users/list group=model.group}}
+      {{/tab.pane}}
+      {{#tab.pane title="Recent Bills"}}
         {{#ui/ui-box as |b|}}
-          {{#b.header}}Recently Updated{{/b.header}}
+          {{#b.header}}Recently Saved Bills{{/b.header}}
           {{#b.body}}
             {{#bs/list-group class="flush-group-list" as |g|}}
               {{#g.item tagName="div" class="row d-flex"}}
@@ -70,7 +92,7 @@
                   <strong>Date</strong>
                 </div>
                 <div class="col-md-4">
-                 <strong> Status</strong>
+                  <strong> Status</strong>
                 </div>
                 <div class="col-md-3">
                   <strong>Position</strong>
@@ -98,16 +120,6 @@
             {{/bs/list-group}}
           {{/b.body}}
         {{/ui/ui-box}}
-
-        {{#ui/ui-box class="mt-3" as |b|}}
-          {{#b.header}}
-            Saved Bill Overview
-          {{/b.header}}
-          {{#b.body}}
-            {{groups/group-stats group=model.group}}
-          {{/b.body}}
-        {{/ui/ui-box}}
-
       {{/tab.pane}}
       {{#tab.pane title="Edit"}}
         {{groups/group-form group=model.group organization=model.organization}}

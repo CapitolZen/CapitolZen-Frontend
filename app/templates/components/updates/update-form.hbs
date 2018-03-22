@@ -1,0 +1,40 @@
+{{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
+  {{#ui/ui-box as |b|}}
+    {{#b.header}}
+      {{if model.isNew "Post New" "Edit"}} Update
+    {{/b.header}}
+    {{#b.body}}
+      {{form.element controlType="text" property="title" placeholder="Headline"}}
+      {{form.element controlType="mobiledoc" property="document"}}
+
+      {{#form.element controlType="power-select-multiple" property="wrappers" label="Saved Bills" options=(hash isNew=isNew) as |el|}}
+        {{#el.control search=(perform searchWrappers) as |item|}}
+          <div class="d-flex justify-content-between">
+            {{item.bill.stateId}} {{wrappers/wrapper-position wrapper=item canEdit=false class="d-inline"}}
+          </div>
+        {{/el.control}}
+      {{/form.element}}
+
+      <h6>{{fa-icon "paperclip"}} Attachments</h6>
+      {{#unless hideFiles}}
+        {{files/file-upload group=model.group didCreateFile=(action "selectFile")}}
+        {{#if changeset.files}}
+          <hr>
+          <h6 class="font-weight-light">Files</h6>
+          {{#bs/list-group as |g|}}
+            {{#each changeset.files as |file|}}
+              {{#g.item}}
+                {{file.name}}
+                {{close-button (action "removeFile" file)}}
+              {{/g.item}}
+            {{/each}}
+          {{/bs/list-group}}
+        {{/if}}
+      {{/unless}}
+
+    {{/b.body}}
+    {{#b.footer}}
+      {{bs-button defaultText="Post" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
+    {{/b.footer}}
+  {{/ui/ui-box}}
+{{/bs-form}}

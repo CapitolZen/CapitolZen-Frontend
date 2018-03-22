@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-8">
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        {{#if wrapperLoader.isRunning}}
+          {{ui/loading-animation}}
+        {{else}}
+          {{#bs/list-group as |g|}}
+            {{#each wrapperList as |wrapper|}}
+              {{#g.item tagName="div"}}
+                {{reports/-wizard/utils/wrapper-edit wrapper=wrapper}}
+              {{/g.item}}
+            {{/each}}
+          {{/bs/list-group}}
+        {{/if}}
+      {{/b.body}}
+      {{#b.footer}}
+        {{bs-button defaultText="Next" type="primary" onClick=(action "saveAll")}}
+      {{/b.footer}}
+    {{/ui/ui-box}}
+  </div>
+  <div class="col-md-4">
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}
+        Add Details
+      {{/b.header}}
+      {{#b.body}}
+        <p>Add details to saved bills in your report, including position, a custom summary, and notes.</p>
+        {{#if (eq reportType "details")}}
+
+        {{/if}}
+
+        {{#if (eq reportType "latest")}}
+
+        {{/if}}
+      {{/b.body}}
+    {{/ui/ui-box}}
+  </div>
+</div>

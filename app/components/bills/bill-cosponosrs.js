@@ -21,12 +21,10 @@ const Cosponsors = Component.extend({
   getCosponsors: task(function*() {
     let bill = yield get(this, 'bill');
     let sponsors = get(bill, 'cosponsors');
-    let promises = sponsors.map(s => {
-      return get(this, 'store').findRecord('legislator', s);
+    let legislators = yield get(this, 'store').query('legislator', {
+      id: sponsors.toString()
     });
-
-    let legislators = yield all(promises);
-    get(this, '_model').pushObjects(legislators);
+    set(this, '_model', legislators);
   }).on('init')
 });
 

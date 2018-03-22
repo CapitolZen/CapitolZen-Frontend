@@ -1,0 +1,11 @@
+{{ui-page-property model.title property="title"}}
+
+{{pages/-ui/header page=model.page}}
+{{pages/-ui/title page=model.page}}
+
+
+<div class="container">
+  {{#pages/-anon/display page=model.page}}
+    {{updates/update-item update=model}}
+  {{/pages/-anon/display}}
+</div>

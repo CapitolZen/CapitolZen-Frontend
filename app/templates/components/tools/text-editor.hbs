@@ -1,5 +1,6 @@
 {{#mobiledoc-editor mobiledoc=content
-                    autofocus=false
+                    autofocus=true
+                    spellcheck=true
                     on-change=(action "mobileDocUpdated")
                     class="note-editor d-flex flex-column-reverse"
 as |editor|}}
@@ -22,7 +23,9 @@ as |editor|}}
     </div>
     <div class="col-4 pt-1">
       <div class="pull-right btn-group btn-group-sm">
-        <button class="btn btn-primary" {{action "saveDocument"}}>{{if isNew "Add" "Save"}}</button>
+        {{#unless autoSave}}
+          <button class="btn btn-primary" {{action "saveDocument"}}>{{if isNew "Add" "Save"}}</button>
+        {{/unless}}
         {{#unless isNew}}
           <button class="btn btn-secondary" {{action "cancelDocument"}}>Cancel</button>
           <button class="btn btn-warning" {{action "deleteDocument"}}>Delete</button>

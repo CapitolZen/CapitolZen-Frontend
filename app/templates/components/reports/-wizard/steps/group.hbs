@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-8">
+    {{#ui/ui-box as |b|}}
+      {{#bs-form model=model onSubmit=(action "submit") as |form|}}
+        {{#b.body}}
+          {{#unless setupGroups.isRunning}}
+            {{form.element controlType="text" label="Create New" property="newGroup"}}
+            <h6>Or Choose Existing</h6>
+            <hr class="mt-0">
+            {{form.element controlType="power-select" property="existingGroup" label="Choose Existing" options=groups optionLabelPath="title"}}
+          {{else}}
+            {{ui/inline-loading}}
+          {{/unless}}
+        {{/b.body}}
+        {{#b.footer}}
+          {{bs-button defaultText="Next" type="primary" buttonType="submit"}}
+        {{/b.footer}}
+      {{/bs-form}}
+    {{/ui/ui-box}}
+  </div>
+  <div class="col-md-4">
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        <p>Select a {{features.clientLabel}} for this report.</p>
+        <p>Don't have a {{features.clientLabel}}? Just select your organization.</p>
+      {{/b.body}}
+    {{/ui/ui-box}}
+  </div>
+</div>
+
+
+
+

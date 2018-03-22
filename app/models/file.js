@@ -2,8 +2,9 @@ import DS from 'ember-data';
 import { alias } from '@ember/object/computed';
 
 export default DS.Model.extend({
-  organization: DS.belongsTo('organization'),
-  user: DS.belongsTo('user'),
+  organization: DS.belongsTo('organization', { async: false }),
+  user: DS.belongsTo('user', { async: false }),
+  group: DS.belongsTo('group', { async: false }),
   name: DS.attr('string'),
   userPath: DS.attr('string', { default: '' }),
   file: DS.attr('string'),

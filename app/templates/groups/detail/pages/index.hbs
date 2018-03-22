@@ -1,0 +1,39 @@
+{{ui-page-property "Updates for" model.group.title property="title"}}
+{{#global/page-title-actions}}
+
+  {{#link-to "groups.detail" model.group.id}}
+    {{fa-icon "address-book"}} {{features.clientLabel}}
+  {{/link-to}}
+
+{{/global/page-title-actions}}
+
+<div class="row">
+  <div class="col-md-8">
+    {{updates/update-list page=model}}
+  </div>
+  <div class="col-md-4">
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}
+        {{model.title}}
+      {{/b.header}}
+      {{#b.body}}
+        <dl>
+          <dt>Status</dt>
+          <dd>{{if model.published "Published" "Draft"}}</dd>
+          <dt>Created</dt>
+          <dd>{{tools/date-display model.created}}</dd>
+          {{#if model.description}}
+            <dt>Description</dt>
+            <dd>{{model.description}}</dd>
+          {{/if}}
+        </dl>
+      {{/b.body}}
+      {{#b.footer class="d-flex justify-content-between"}}
+        <strong>
+          {{#link-to "groups.detail.pages.edit" model.group.id model.id}}Edit{{/link-to}}
+        </strong>
+        {{#link-to "page.updates" model.id}}View{{/link-to}}
+      {{/b.footer}}
+    {{/ui/ui-box}}
+  </div>
+</div>

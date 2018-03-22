@@ -5,19 +5,32 @@ export default DS.Model.extend({
   user: DS.belongsTo('user'),
   organization: DS.belongsTo('organization'),
   group: DS.belongsTo('group'),
-  wrappers: DS.hasMany('wrapper'),
-  static: DS.attr('boolean', { defaultValue: false }),
-  filter: DS.attr('query'),
+  //filter: DS.attr('query'),
   title: DS.attr('string'),
   description: DS.attr('string'),
   attachments: DS.attr(),
-  scheduled: DS.attr('boolean'),
-  publishDate: DS.attr('date'),
+  status: DS.attr('string', { defaultValue: 'published' }),
+  displayType: DS.attr('string'),
   created: DS.attr('date'),
+  modified: DS.attr('date'),
+  preferences: DS.attr(),
+
+  published: computed({
+    get() {
+      return get(this, 'status') === 'published';
+    },
+    set(key, value) {
+      if (value) {
+        set(this, 'status', 'published');
+      } else {
+        set(this, 'status', 'draft');
+      }
+    }
+  }),
+
   downloadUrl: computed(function() {
     return this.get('attachments')['output-url'].url || false;
   }),
-  preferences: DS.attr(),
   layout: computed('preferences.layout', {
     get() {
       let value = getWithDefault(this, 'preferences.layout', 'detail_list');

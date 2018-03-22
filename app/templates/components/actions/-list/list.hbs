@@ -1,4 +1,7 @@
 <div class="row">
+  {{#if twoCol}}
+
+
   {{#if media.isMobile}}
     <div class="filter-button-wrapper">
       {{#bs-button type="primary" onClick=(action "toggleMobileFacets")}}
@@ -57,6 +60,7 @@
       {{ui/inline-loading}}
     {{/unless}}
   </div>
+  {{/if}}
   <div class="col-sm-8 col-lg-9 col-xl-10">
     {{#if activeDay}}
 

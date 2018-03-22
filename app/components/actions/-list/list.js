@@ -11,6 +11,7 @@ export default Component.extend({
   windoc: service(),
   router: service(),
   facetsCollapsed: false,
+  twoCol: true,
   group: false,
   model: A(),
   activeDay: null,

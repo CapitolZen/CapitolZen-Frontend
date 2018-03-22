@@ -40,7 +40,11 @@ export default Route.extend(ApplicationRouteMixin, {
       .sessionAuthenticated()
       .then(() => {
         if (this.get('currentUser.user')) {
-          this.transitionTo(this.get('routeAfterAuthentication'));
+          if (this.get('session.data.currentPageId')) {
+            this.transitionTo('page', this.get('session.data.currentPageId'));
+          } else {
+            this.transitionTo(this.get('routeAfterAuthentication'));
+          }
         }
       });
   },
@@ -54,7 +58,7 @@ export default Route.extend(ApplicationRouteMixin, {
       if (error.errors) {
         console.error(error.errors);
         if (ENV.environment === 'production') {
-          if (parseInt(error.errors[0].status) == 404) {
+          if (parseInt(error.errors[0].status) === 404) {
             this.transitionTo('not-found');
           } else {
             this.transitionTo('error-route');

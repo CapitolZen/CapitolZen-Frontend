@@ -1,7 +1,7 @@
 {{ui-page-property "Your" pageTitle "To-Do's" property="title"}}
 
 {{#global/page-title-actions}}
-  {{#bs/link-button "dashboard" type="primary"}}{{fa-icon "tachometer"}} Dashboard{{/bs/link-button}}
+  {{#link-to "dashboard"}}{{fa-icon "tachometer"}} Dashboard{{/link-to}}
 {{/global/page-title-actions}}
 
 {{actions/-list/list group=group type=type}}
