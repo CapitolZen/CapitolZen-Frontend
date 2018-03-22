@@ -2,6 +2,8 @@ import DS from 'ember-data';
 import Copyable from 'ember-data-copyable';
 
 export default DS.Model.extend(Copyable, {
+  created: DS.attr('string'),
+  modified: DS.attr('string'),
   user: DS.belongsTo('user', { async: false }),
   group: DS.belongsTo('group', { async: false }),
   organization: DS.belongsTo('organization', { async: false }),

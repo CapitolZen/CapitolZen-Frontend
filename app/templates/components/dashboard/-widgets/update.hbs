@@ -1,30 +1,48 @@
 {{#bs-form model=model onSubmit=(action "submit") as |form|}}
   {{#ui/ui-box as |b|}}
-    {{#b.body}}
+    {{#unless fetchGroups.isRunning}}
+      {{! no pages, no formy forms}}
+      {{#if groupList.length}}
+        {{#b.body}}
+          <h6>Select {{features.clientLabelPlural}}</h6>
+          {{#power-select-multiple
+            options=groupList
+            selected=selectedGroups
+            onchange=(action (mut selectedGroups))
+            searchField="title"
 
-      <h6>Select {{features.clientLabelPlural}}</h6>
-      {{#unless fetchGroups.isRunning}}
-        {{#power-select-multiple
-          options=groupList
-          selected=selectedGroups
-          onchange=(action (mut selectedGroups))
-          searchField="title"
+          as |group|}}
+            {{group.title}}
+          {{/power-select-multiple}}
+          <div class="mb-3"></div>
 
-        as |group|}}
-          {{group.title}}
-        {{/power-select-multiple}}
-      {{/unless}}
-      <div class="mb-3"></div>
+          {{#unless fetchGroups.isRunning}}
+            {{form.element controlType="text" property="title" placeholder="Headline" disabled=disableSubmit}}
+            {{form.element controlType="mobiledoc" property="document" disabled=disableSubmit}}
+          {{/unless}}
 
-      {{#unless fetchGroups.isRunning}}
-        {{form.element controlType="text" property="title" placeholder="Headline" disabled=disableSubmit}}
-        {{form.element controlType="mobiledoc" property="document" disabled=disableSubmit}}
-      {{/unless}}
+        {{/b.body}}
+        {{#b.footer}}
+          {{bs-button defaultText="Post" disabled=disableSubmit type="primary" pendingText="Saving..."
+                      buttonType="submit"}}
+        {{/b.footer}}
 
-    {{/b.body}}
-    {{#b.footer}}
-      {{bs-button defaultText="Post" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
-    {{/b.footer}}
+      {{else}}
+        {{! default content if no pages}}
+        {{#b.header}}
+          Setup Your {{features.clientLabel}} Updates!
+        {{/b.header}}
+        {{#b.body}}
+          <p class="lead">Share information quickly, easily, and on the go.</p>
+          <p>Add, contacts to your {{features.clientLabel}}, setup a page, and whenever you post updates your contacts will get and email
+           with a link view your comments, files, and saved bills.
+          </p>
+          <p class="text-center">{{#link-to "groups.index" class="btn btn-primary"}}Get Started{{/link-to}}</p>
+        {{/b.body}}
+
+      {{/if}}
+    {{/unless}}
+
   {{/ui/ui-box}}
 {{/bs-form}}
 

@@ -5,7 +5,7 @@
       {{user/user-avatar user=update.user class="mr-3" size=48 avatarRounded=true}}
       <div class="media-body">
         <h5 class="mt-0">{{update.title}}</h5>
-        <h6 class="mt-0" class="text-muted font-weight-light">{{tools/date-display update.modified}}</h6>
+        <h6 class="mt-0" class="text-muted font-weight-light">{{tools/date-display update.created}}</h6>
         {{#if update.document.doc}}
           {{render-mobiledoc mobiledoc=update.document.doc}}
         {{/if}}
