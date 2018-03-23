@@ -19,7 +19,7 @@
           {{/if}}
         {{/el.control}}
       {{/form.element--}}
-      {{form.element controlType="checkbox" property="published" label="Published"}}
+      {{form.element controlType="x-toggle" property="published" label="Published" options=(hash showLabels=false theme="light")}}
     {{/b.body}}
     {{#b.footer}}
       {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}

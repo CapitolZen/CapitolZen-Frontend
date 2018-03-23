@@ -175,7 +175,12 @@ body > .ember-view {
     display: flex;
     align-items: center;
     a {
-      margin-left: 10px;
+      border-left: 1px solid $gray-500;
+      display: inline-block;
+      padding: 0 10px;
+      &:first-child {
+        border-left: 0;
+      }
     }
   }
 }
