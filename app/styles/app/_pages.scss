@@ -1,3 +1,23 @@
+.navbar.bg-light {
+  padding: 0;
+  background: #fff !important;
+  .navbar-nav .nav-link {
+    padding: 25px 5px;
+    margin-left: 15px;
+  }
+}
+
 .page-update-list {
   height: 50vh;
+}
+
+.page-admin {
+  .admin-menu-toggle {
+    display: inline-block;
+    background: #fff;
+    padding: 5px 30px;
+    font-weight: bold;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
 }

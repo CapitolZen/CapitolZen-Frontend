@@ -1,5 +1,3 @@
-
-
 {{#bs-navbar as |navbar|}}
   <div class="container">
     <div class="navbar-header">
@@ -18,27 +16,26 @@
           class="img-thumbnail rounded-circle"
         }}
         {{page.organization.name}}
-
       {{/link-to}}
     </div>
     {{#navbar.content class="justify-content-md-end"}}
       {{#navbar.nav as |nav|}}
         {{#nav.item}}{{#nav.link-to "page.updates" page.id class="font-weight-bold"}}Updates{{/nav.link-to}}{{/nav.item}}
         {{#nav.item}}{{#nav.link-to "page.bills" page.id class="font-weight-bold"}}Saved Bills{{/nav.link-to}}{{/nav.item}}
-        {{#unless isGuest}}
-          {{#nav.dropdown as |dd|}}
-            {{#dd.toggle}}Admin <span class="caret"></span>{{/dd.toggle}}
-            {{#dd.menu as |ddm|}}
-              {{#ddm.item}}{{#ddm.link-to "app"}}Home{{/ddm.link-to}}{{/ddm.item}}
-              {{#ddm.item}}{{#ddm.link-to "groups.detail.pages" page.group.id}}Post Update{{/ddm.link-to}}{{/ddm.item}}
-              {{#ddm.item}}{{#ddm.link-to "groups.detail" page.group.id}}Edit{{/ddm.link-to}}{{/ddm.item}}
-            {{/dd.menu}}
-          {{/nav.dropdown}}
-        {{/unless}}
-
       {{/navbar.nav}}
     {{/navbar.content}}
   </div>
-
 {{/bs-navbar}}
 
+{{#unless isGuest}}
+  <div class="container page-admin">
+    {{#bs-dropdown as |dd|}}
+      {{#dd.toggle class="admin-menu-toggle"}}Manage Page <span class="caret"></span>{{/dd.toggle}}
+      {{#dd.menu as |ddm|}}
+        {{#ddm.item}}{{#ddm.link-to "app"}}Home{{/ddm.link-to}}{{/ddm.item}}
+        {{#ddm.item}}{{#ddm.link-to "groups.detail.pages" page.group.id}}Post Update{{/ddm.link-to}}{{/ddm.item}}
+        {{#ddm.item}}{{#ddm.link-to "groups.detail" page.group.id}}Edit{{/ddm.link-to}}{{/ddm.item}}
+      {{/dd.menu}}
+    {{/bs-dropdown}}
+  </div>
+{{/unless}}
