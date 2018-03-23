@@ -5,19 +5,55 @@
     </h4>
   {{/modal.header}}
   {{#modal.body}}
-    {{#bs/list-group as |g|}}
-      {{#g.item tagName="div" class="d-flex justify-content-between"}}
-        {{#bs-button type="primary" onClick=(action "triggerChat")}}Chat Now{{/bs-button}}
-        <span>Send us a message and we'll respond ASAP</span>
-      {{/g.item}}
-      {{#g.item tagName="div" class="d-flex justify-content-between"}}
-        <a class="btn btn-outline-secondary" target="_blank" href="http://help.capitolzen.com">Knowledge Base</a>
-        <span>Search and read all of our help materials</span>
-      {{/g.item}}
-      {{#g.item class="d-flex justify-content-between"}}
-        {{#bs-button type="outline-secondary" onClick=(action "triggerFeedback")}}Give Feedback{{/bs-button}}
-        <span>Report a problem and we'll fix it right away!</span>
-      {{/g.item}}
-    {{/bs/list-group}}
+    <div class="row">
+      <div class="col-md-4">
+        {{#ui/ui-box as |b|}}
+          {{#b.image}}
+            {{fa-icon "comments"}}
+          {{/b.image}}
+          {{#b.header}}
+            Chat
+          {{/b.header}}
+          {{#b.body}}
+            Send us a message and we'll respond ASAP
+          {{/b.body}}
+          {{#b.footer}}
+            {{#bs-button type="primary" onClick=(action "triggerChat")}}Chat Now{{/bs-button}}
+          {{/b.footer}}
+        {{/ui/ui-box}}
+      </div>
+      <div class="col-md-4">
+        {{#ui/ui-box as |b|}}
+          {{#b.image}}
+            {{fa-icon "graduation-cap"}}
+          {{/b.image}}
+          {{#b.header}}
+            Learn
+          {{/b.header}}
+          {{#b.body}}
+            Search and read all of our help materials
+          {{/b.body}}
+          {{#b.footer}}
+            <a class="btn btn-outline-secondary" target="_blank" href="http://help.capitolzen.com">Knowledge Base</a>
+          {{/b.footer}}
+        {{/ui/ui-box}}
+      </div>
+      <div class="col-md-4">
+        {{#ui/ui-box as |b|}}
+          {{#b.image}}
+            {{fa-icon "bullhorn"}}
+          {{/b.image}}
+          {{#b.header}}
+            Feedback
+          {{/b.header}}
+          {{#b.body}}
+            Report a problem and we'll fix it right away!
+          {{/b.body}}
+          {{#b.footer}}
+            {{#bs-button type="outline-secondary" onClick=(action "triggerFeedback")}}Give Feedback{{/bs-button}}
+          {{/b.footer}}
+        {{/ui/ui-box}}
+      </div>
+    </div>
   {{/modal.body}}
 {{/bs-modal}}
