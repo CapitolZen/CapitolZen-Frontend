@@ -35,8 +35,31 @@
     margin: 0;
   }
 
+  .card-thumbnail {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 3rem;
+    flex: 1;
+    text-align: center;
+    i {
+      font-size: 5rem;
+      flex: 1;
+      display: inline-block;
+    }
+  }
+
+  .card-header {
+    text-align: center;
+  }
+
   .card-body {
     padding: 1rem;
+    text-align: center;
+  }
+
+  .card-footer {
+    text-align: center;
   }
 }
 
@@ -251,4 +274,12 @@ td .btn-group {
   &.selected {
     border-color: $primary;
   }
+}
+
+#us_report_button {
+  display: none !important;
+}
+
+.nav.nav-tabs .nav-link.active {
+  box-shadow: none;
 }

@@ -14,10 +14,12 @@
   <div class="col-md-4">
     {{#ui/ui-box as |b|}}
       {{#b.header}}
-        {{model.title}}
+        Page Details
       {{/b.header}}
       {{#b.body}}
         <dl>
+          <dt>Page Title</dt>
+          <dd>{{model.title}}</dd>
           <dt>Status</dt>
           <dd>{{if model.published "Published" "Draft"}}</dd>
           <dt>Created</dt>
