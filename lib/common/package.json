@@ -5,8 +5,7 @@
   ],
   "dependencies": {
     "ember-cli-htmlbars": "*",
-    "ember-cli-babel": "*",
-    "ember-font-awesome": "*"
+    "ember-cli-babel": "*"
   },
   "devDependencies": {
     "ember-bootstrap": "*",
