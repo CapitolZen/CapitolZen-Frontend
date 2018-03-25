@@ -136,6 +136,7 @@ module.exports = function(environment) {
     identificationField: 'username',
     passwordField: 'password',
     tokenPropertyName: 'data.token',
+    refreshTokenPropertyName: 'data.token',
     refreshAccessTokens: true,
     serverTokenRefreshEndpoint: `${ENV.APP.API_HOST}/api-token-refresh/`,
     tokenExpireName: 'exp',
