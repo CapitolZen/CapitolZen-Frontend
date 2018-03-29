@@ -1185,7 +1185,7 @@ babel-plugin-transform-flow-strip-types@^6.8.0:
     babel-plugin-syntax-flow "^6.18.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-object-rest-spread@^6.22.0, babel-plugin-transform-object-rest-spread@^6.23.0:
+babel-plugin-transform-object-rest-spread@^6.22.0, babel-plugin-transform-object-rest-spread@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.26.0.tgz#0f36692d50fef6b7e2d4b3ac1478137a963b7b06"
   dependencies:
@@ -4337,13 +4337,13 @@ ember-initials@^3.11.0:
     ember-cli-babel "6.11.0"
     ember-md5 "1.1.0"
 
-ember-intercom-io@donaldwasserman/ember-intercom-io#stable:
-  version "0.1.4"
-  resolved "https://codeload.github.com/donaldwasserman/ember-intercom-io/tar.gz/71f4624d702a5529cd64dffe61540ac8845b0317"
+ember-intercom-io@donaldwasserman/ember-intercom-io#feat/try2:
+  version "0.3.0"
+  resolved "https://codeload.github.com/donaldwasserman/ember-intercom-io/tar.gz/9751eb9d0cc7153559075eb31f7fe33af31fbe7e"
   dependencies:
-    babel-plugin-transform-object-rest-spread "^6.23.0"
+    babel-plugin-transform-object-rest-spread "^6.26.0"
     ember-cli-babel "^6.6.0"
-    ember-cli-htmlbars "^2.0.2"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-invoke-action@^1.4.0:
   version "1.5.0"
@@ -4351,9 +4351,9 @@ ember-invoke-action@^1.4.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-junkdrawer@0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.6.3.tgz#ef5b6363c05ae201068385777b9683ad97c75362"
+ember-junkdrawer@^0.6.4:
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.6.5.tgz#bd4bf54b0a3189c3dc00801a0d17d1e03e22ed6b"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
