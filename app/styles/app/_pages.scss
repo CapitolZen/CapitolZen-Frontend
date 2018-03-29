@@ -1,6 +1,24 @@
-.navbar.bg-light {
+.page-masthead {
+  background: #fff;
+  position: relative;
+  height: 240px;
+  .masthead-logo {
+    position: absolute;
+  }
+}
+
+.pages-page-header {
   padding: 0;
   background: #fff !important;
+  height: 70px;
+  margin-top: 100px;
+  .navbar-brand {
+    h3 {
+      display: inline-block;
+      margin: 0 0 0 10px;
+      font-weight: normal;
+    }
+  }
   .navbar-nav .nav-link {
     padding: 25px 5px;
     margin-left: 15px;
@@ -12,6 +30,7 @@
 }
 
 .page-admin {
+  text-align: center;
   .admin-menu-toggle {
     display: inline-block;
     background: #fff;

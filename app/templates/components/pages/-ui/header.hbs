@@ -1,22 +1,46 @@
-{{#bs-navbar as |navbar|}}
+{{!--<div class="page-masthead">
+  <div class="container">
+    {{ember-initials
+      image=page.organization.avatar
+      name=page.organization.name
+      defaultName="?"
+      seedText=page.group.title
+      textColor="white"
+      fontSize=45
+      fontWeight=100
+      fontFamily="Helvetica Neue Light, Arial, sans-serif"
+      size=140
+      class="masthead-logo"
+    }}
+
+    <h3>
+      {{page.organization.name}}
+    </h3>
+
+  </div>
+
+</div>
+--}}
+{{log page}}
+{{#bs-navbar class="pages-page-header" as |navbar|}}
   <div class="container">
     <div class="navbar-header">
       {{navbar.toggle}}
-      {{#link-to "page.updates" page.id class="navbar-brand"}}
+      <div class="navbar-brand">
         {{ember-initials
-          image=page.organization.avatar
-          name=page.organization.name
+          image=page.group.avatar
+          name=page.group.name
           defaultName="?"
           seedText=page.group.title
           textColor="white"
           fontSize=45
           fontWeight=100
           fontFamily="Helvetica Neue Light, Arial, sans-serif"
-          size=40
-          class="img-thumbnail rounded-circle"
+          size=140
+          class="img-thumbnail"
         }}
-        {{page.organization.name}}
-      {{/link-to}}
+        <h3>{{page.title}}</h3>
+      </div>
     </div>
     {{#navbar.content class="justify-content-md-end"}}
       {{#navbar.nav as |nav|}}

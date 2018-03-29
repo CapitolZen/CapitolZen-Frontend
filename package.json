@@ -72,8 +72,8 @@
     "ember-cropperjs": "^0.2.0",
     "ember-crumbly": "^2.0.0-alpha.1",
     "ember-data": "3.0.2",
-    "ember-maybe-import-regenerator": "^0.1.6",
     "ember-data-copyable": "^0.3.2",
+    "ember-element-resize-detector": "^0.1.5",
     "ember-export-application-global": "^2.0.0",
     "ember-feature-flags": "^5.0.0",
     "ember-fetch": "^3.3.0",
@@ -92,6 +92,7 @@
     "ember-light-table": "^1.12.2",
     "ember-link-action": "^0.0.38",
     "ember-load-initializers": "^1.0.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^0.12.1",
     "ember-mobiledoc-dom-renderer": "^0.6.0",
     "ember-mobiledoc-editor": "^0.5.13",
@@ -133,7 +134,8 @@
   "private": true,
   "ember-addon": {
     "paths": [
-      "lib/common"
+      "lib/common",
+      "lib/koenig-editor"
     ]
   }
 }

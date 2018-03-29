@@ -1,14 +1,21 @@
-import { set, get } from '@ember/object';
+import { set, get, computed } from '@ember/object';
 import Component from '@ember/component';
 import { EKMixin, keyUp, keyDown, keyPress } from 'ember-keyboard';
 import { on } from '@ember/object/evented';
 import { run } from '@ember/runloop';
+import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-card';
+
 import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
   classNameBindings: ['disabled'],
   showEditor: true,
   autoSave: false,
+
+  cards: Ember.computed(function() {
+    return [createComponentCard('editor-test-hr')];
+  }),
+
   activateKeyboard: on('init', function() {
     set(this, 'keyboardActivated', true);
   }),

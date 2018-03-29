@@ -1,0 +1,55 @@
+<div class="koenig-editor__editor-wrapper">
+    <div class="koenig-editor__editor"></div>
+</div>
+
+{{!-- pop-up markup toolbar is shown when there's a selection --}}
+{{koenig-toolbar
+    editorRange=selectedRange
+    activeMarkupTagNames=activeMarkupTagNames
+    activeSectionTagNames=activeSectionTagNames
+    toggleMarkup=(action "toggleMarkup")
+    toggleSection=(action "toggleSection")
+}}
+
+{{!-- (+) icon and pop-up menu --}}
+{{koenig-plus-menu
+    editor=editor
+    editorRange=selectedRange
+    replaceWithCardSection=(action "replaceWithCardSection")
+}}
+
+{{!-- slash menu popup --}}
+{{koenig-slash-menu
+    editor=editor
+    editorRange=selectedRange
+    replaceWithCardSection=(action "replaceWithCardSection")
+}}
+
+{{!-- all component cards wormholed into the editor canvas --}}
+{{#each componentCards as |card|}}
+    {{!--
+        TODO: move to the public {{in-element}} API when it's available
+        https://github.com/cibernox/rfcs/blob/make-in-element-public/text/0000-promote-in-element-to-public-api.md
+    --}}
+    {{#-in-element card.destinationElement}}
+        {{component card.componentName
+            editor=editor
+            postModel=card.postModel
+            cardName=card.cardName
+            payload=card.payload
+            env=card.env
+            options=card.options
+            saveCard=(action card.env.save)
+            cancelCard=(action card.env.cancel)
+            removeCard=(action card.env.remove)
+            isSelected=card.isSelected
+            selectCard=(action "selectCard" card)
+            isEditing=card.isEditing
+            editCard=(action "editCard" card)
+            deleteCard=(action "deleteCard" card)
+            moveCursorToPrevSection=(action "moveCursorToPrevSection" card)
+            moveCursorToNextSection=(action "moveCursorToNextSection" card)
+            addParagraphAfterCard=(action "addParagraphAfterCard" card)
+        }}
+    {{/-in-element}}
+{{/each}}
