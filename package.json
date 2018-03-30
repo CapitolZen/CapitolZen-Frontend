@@ -113,6 +113,7 @@
     "ember-source": "^3.0.0",
     "ember-sticky-element": "^0.2.0",
     "ember-stripe-elements": "^0.3.0",
+    "ember-svg-jar": "0.12.0",
     "ember-test-free-g": "^0.0.1",
     "ember-toggle": "^5.2.1",
     "ember-truth-helpers": "^2.0.0",
@@ -126,6 +127,7 @@
     "impagination": "^1.0.0-alpha.3",
     "lint-staged": "^7.0.0",
     "loader.js": "^4.2.3",
+    "mobiledoc-kit": "0.10.21",
     "prettier": "^1.10.2"
   },
   "engines": {

@@ -109,6 +109,8 @@ Router.map(function() {
     this.route('labs', { resetNamespace: true }, function() {
       this.route('index', { path: '' });
       this.route('bill-parse');
+      this.route('editor');
+      this.route('embedly');
     });
   });
 

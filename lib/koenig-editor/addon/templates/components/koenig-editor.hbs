@@ -1,6 +1,7 @@
 <div class="koenig-editor__editor-wrapper">
     <div class="koenig-editor__editor"></div>
 </div>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
 {{!-- pop-up markup toolbar is shown when there's a selection --}}
 {{koenig-toolbar
@@ -10,13 +11,13 @@
     toggleMarkup=(action "toggleMarkup")
     toggleSection=(action "toggleSection")
 }}
-
 {{!-- (+) icon and pop-up menu --}}
 {{koenig-plus-menu
     editor=editor
     editorRange=selectedRange
     replaceWithCardSection=(action "replaceWithCardSection")
 }}
+</div>
 
 {{!-- slash menu popup --}}
 {{koenig-slash-menu

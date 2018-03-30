@@ -1,31 +1,27 @@
 {{#if showButton}}
-    <button class="koenig-plus-menu-button" {{action "openMenu"}}>{{svg-jar "plus"}}</button>
+  <div class="btn-group mr-2" role="group" aria-label="Fourth group">
+    <button class="btn btn-primary koenig-plus-menu-button" {{action "openMenu"}}>
+      {{fa-icon "plus"}}
+    </button>
+  </div>
 {{/if}}
 
 {{#if showMenu}}
-    <div class="koenig-cardmenu">
-        {{!-- <div class="koenig-cardmenu-search">
-            {{svg-jar "koenig/search"}}
-            <input type="text" placeholder="Search for a card..." class="gh-input koenig-cardmenu-search-input">
-        </div>
-        <div class="koenig-cardmenu-divider">
-            Primary
-        </div> --}}
-        <div class="koenig-cardmenu-card" {{action "replaceWithCardSection" "markdown" on="click"}}>
-            <div class="koenig-cardmenu-icon">{{svg-jar "koenig/markdown"}}</div>
-            <div class="koenig-cardmenu-label">Markdown</div>
-        </div>
-        <div class="koenig-cardmenu-card" {{action "replaceWithCardSection" "image" on="click"}}>
-            <div class="koenig-cardmenu-icon">{{svg-jar "koenig/image"}}</div>
-            <div class="koenig-cardmenu-label">Image</div>
-        </div>
-        <div class="koenig-cardmenu-card" {{action "replaceWithCardSection" "html" on="click"}}>
-            <div class="koenig-cardmenu-icon">{{svg-jar "koenig/embed"}}</div>
-            <div class="koenig-cardmenu-label">Embed</div>
-        </div>
-        <div class="koenig-cardmenu-card" {{action "replaceWithCardSection" "hr" on="click"}}>
-            <div class="koenig-cardmenu-icon">{{svg-jar "koenig/divider"}}</div>
-            <div class="koenig-cardmenu-label">Divider</div>
-        </div>
+  <div class="btn-group mr-2" role="group" aria-label="Fourth group">
+    <div class="btn btn-secondary koenig-cardmenu-card" {{action "replaceWithCardSection" "markdown" on="click"}}>
+      {{fa-icon "rocket"}}
     </div>
+    <div class="btn btn-secondary koenig-cardmenu-card" {{action "replaceWithCardSection" "image" on="click"}}>
+      {{fa-icon "image"}}
+    </div>
+    <div class="btn btn-secondary koenig-cardmenu-card" {{action "replaceWithCardSection" "embedly" on="click"}}>
+      {{fa-icon "share-alt"}}
+    </div>
+    <div class="btn btn-secondary koenig-cardmenu-card" {{action "replaceWithCardSection" "hr" on="click"}}>
+      {{fa-icon "coffee"}}
+    </div>
+  </div>
+  <div class="koenig-cardmenu">
+
+  </div>
 {{/if}}
