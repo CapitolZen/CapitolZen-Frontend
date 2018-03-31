@@ -1,0 +1,25 @@
+{{#koenig-card
+    tagName="div"
+    class=(concat (kg-style "media-card-h") " flex flex-column")
+    isSelected=isSelected
+    isEditing=isEditing
+    selectCard=(action selectCard)
+    editCard=(action editCard)
+    onLeaveEdit=(action "leaveEditMode")
+}}
+  {{#if isEditing}}
+    <div class="form-group">
+      <label for="">
+        Bill ID
+      </label>
+    </div>
+    {{input class="form-control" value=payload.bill update=(action "updateBill")}}
+  {{else}}
+    {{#if model.id}}
+      <div class="bill__card">
+        <h6>{{model.stateId}} - {{model.title}}</h6>
+        <p>{{model.currentCommittee}} {{model.textSummary}} {{model.remoteStatus}}</p>
+      </div>
+    {{/if}}
+  {{/if}}
+{{/koenig-card}}

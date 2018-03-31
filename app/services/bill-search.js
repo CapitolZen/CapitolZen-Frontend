@@ -8,6 +8,7 @@ export default Service.extend({
   query: '',
   queries: [],
   results: false,
+
   /**
    * @private
    */
