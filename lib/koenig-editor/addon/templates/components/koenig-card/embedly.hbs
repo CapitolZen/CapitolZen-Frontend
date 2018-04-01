@@ -1,0 +1,25 @@
+{{#koenig-card
+    tagName="div"
+    class=(concat (kg-style "media-card-h") " flex flex-column")
+    isSelected=isSelected
+    isEditing=isEditing
+    selectCard=(action selectCard)
+    editCard=(action editCard)
+    onLeaveEdit=(action "leaveEditMode")
+}}
+  {{#if isEditing}}
+    <div class="card__editor embedly__card__editor">
+      <h6>
+        Embed a link
+      </h6>
+      <div class="form-group">
+        <label for="">
+          URL
+        </label>
+        {{input class="form-control" value=payload.url update=(action "updateUrl")}}
+      </div>
+    </div>
+  {{else}}
+    <a data-card-controls="0" href={{payload.url}} class="embedly-card"></a>
+  {{/if}}
+{{/koenig-card}}

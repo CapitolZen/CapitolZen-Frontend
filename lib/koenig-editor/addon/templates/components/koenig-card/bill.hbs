@@ -8,12 +8,17 @@
     onLeaveEdit=(action "leaveEditMode")
 }}
   {{#if isEditing}}
-    <div class="form-group">
-      <label for="">
-        Bill ID
-      </label>
+    <div class="card__editor bill__card__editor">
+      <h6>
+        Find a bill
+      </h6>
+      <div class="form-group">
+        <label for="">
+          Bill ID
+        </label>
+        {{input class="form-control" value=payload.bill update=(action "updateBill")}}
+      </div>
     </div>
-    {{input class="form-control" value=payload.bill update=(action "updateBill")}}
   {{else}}
     {{#if model.id}}
       <div class="bill__card">

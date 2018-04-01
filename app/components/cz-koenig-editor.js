@@ -6,7 +6,7 @@ export default Component.extend({
   title: '',
   titlePlaceholder: '',
   body: null,
-  bodyPlaceholder: '',
+  bodyPlaceholder: 'Write update here...',
   bodyAutofocus: false,
 
   // internal properties

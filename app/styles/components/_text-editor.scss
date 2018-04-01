@@ -78,6 +78,10 @@
     .embedly-card-hug {
       box-shadow: $card-box-shadow;
     }
+    .card__editor {
+      box-shadow: $card-box-shadow;
+      padding: 0.5rem;
+    }
   }
   .bill__card {
     h6 {
