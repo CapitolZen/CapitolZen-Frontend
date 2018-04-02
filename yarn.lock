@@ -4244,7 +4244,7 @@ ember-initials@^3.11.0:
 
 ember-intercom-io@donaldwasserman/ember-intercom-io#feat/try2:
   version "0.3.0"
-  resolved "https://codeload.github.com/donaldwasserman/ember-intercom-io/tar.gz/eda2e8ee9f4285dae76c77368ba777d71073a5d0"
+  resolved "https://codeload.github.com/donaldwasserman/ember-intercom-io/tar.gz/79146bef6d0cffe78fe53f6aece4a7516e831c33"
   dependencies:
     babel-plugin-transform-object-rest-spread "^6.26.0"
     ember-cli-babel "^6.6.0"
