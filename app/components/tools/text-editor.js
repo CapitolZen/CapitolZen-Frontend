@@ -12,7 +12,7 @@ export default Component.extend(EKMixin, {
   showEditor: true,
   autoSave: false,
 
-  cards: Ember.computed(function() {
+  cards: computed(function() {
     return [createComponentCard('editor-test-hr')];
   }),
 
