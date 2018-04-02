@@ -1,6 +1,6 @@
 import CurrentUser from 'ember-junkdrawer/services/current-user';
 import { inject as service } from '@ember/service';
-import { get, set, computed } from '@ember/object';
+import { get, set, setProperties, computed } from '@ember/object';
 import { assert } from '@ember/debug';
 import { A } from '@ember/array';
 
@@ -30,7 +30,7 @@ export default CurrentUser.extend({
   },
 
   update() {
-    get(this, 'intercom').set('user', get(this, 'intercomData'));
+    set(this, 'intercom.user', get(this, 'intercomData'));
     get(this, 'metrics').identify('mixpanel', {
       distinctId: get(this, 'currentUser.user_id')
     });

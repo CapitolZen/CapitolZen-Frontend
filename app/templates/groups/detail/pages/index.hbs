@@ -20,6 +20,8 @@
         <dl>
           <dt>Page Title</dt>
           <dd>{{model.title}}</dd>
+          <dt>Visibility</dt>
+          <dd>{{if (eq model.visibility "organization") "Just people in my organization" "Anyone with the link"}}</dd>
           <dt>Status</dt>
           <dd>{{if model.published "Published" "Draft"}}</dd>
           <dt>Created</dt>
