@@ -1,0 +1,12 @@
+{{!-- full height content pane --}}
+<div class="gh-koenig-editor-pane" onclick={{action "focusEditor"}}>
+  {{koenig-editor
+    mobiledoc=body
+    placeholder=bodyPlaceholder
+    autofocus=bodyAutofocus
+    spellcheck=true
+    onChange=(action "onBodyChange")
+    didCreateEditor=(action "onEditorCreated")
+    cursorDidExitAtTop=(action "focusTitle")
+  }}
+</div>

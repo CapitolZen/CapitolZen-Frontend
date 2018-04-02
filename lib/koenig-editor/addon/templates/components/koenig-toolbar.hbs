@@ -1,0 +1,64 @@
+<div class="btn-group mr-2" role="group" aria-label="First group">
+  <button
+    type="button"
+    title="Bold"
+    class="btn btn-secondary koenig-toolbar-btn koenig-toolbar-btn-bold {{if activeMarkupTagNames.isB "selected"}}"
+    {{action "toggleMarkup" "b"}}
+  >
+    {{fa-icon "bold"}}
+  </button>
+  <button
+    type="button"
+    title="Italic"
+    class="btn btn-secondary koenig-toolbar-btn koenig-toolbar-btn-italic {{if
+      (or activeMarkupTagNames.isEm activeMarkupTagNames.isI) "selected"}}"
+    {{action "toggleMarkup" "em"}}
+  >
+    {{fa-icon "italic"}}
+  </button>
+</div>
+<div class="btn-group mr-2" role="group" aria-label="Second group">
+  <button
+    type="button"
+    title="Heading One"
+    class="btn btn-secondary  koenig-toolbar-btn koenig-toolbar-btn-h1 {{if activeSectionTagNames.isH1 "selected"}}"
+    {{action "toggleSection" "h1"}}
+  >
+    H1
+  </button>
+  <button
+    type="button"
+    title="Heading Two"
+    class="btn btn-secondary koenig-toolbar-btn koenig-toolbar-btn-h2 {{if activeSectionTagNames.isH2 "selected"}}"
+    {{action "toggleSection" "h2"}}
+  >
+    H2
+  </button>
+</div>
+<div class="btn-group mr-2" role="group" aria-label="Third group">
+  <button
+    type="button"
+    title="Unordered List"
+    class="btn btn-secondary koenig-toolbar-btn koenig-toolbar-btn-list {{if activeSectionTagNames.isUl "selected"}}"
+    {{action "toggleSection" "ul"}}
+  >
+    {{fa-icon "list-ul"}}
+  </button>
+  <button
+    type="button"
+    title="Ordered List"
+    class="btn btn-secondary koenig-toolbar-btn koenig-toolbar-btn-list {{if activeSectionTagNames.isOl "selected"}}"
+    {{action "toggleSection" "ol"}}
+  >
+    {{fa-icon "list-ol"}}
+  </button>
+  <button
+    type="button"
+    title="Quote"
+    class="btn btn-secondary koenig-toolbar-btn koenig-toolbar-btn-quote {{if activeSectionTagNames.isBlockquote
+                                                                              "selected"}}"
+    {{action "toggleSection" "blockquote"}}
+  >
+    {{fa-icon "quote-right"}}
+  </button>
+</div>

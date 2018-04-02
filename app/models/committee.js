@@ -15,7 +15,6 @@ export default DS.Model.extend({
   displayName: computed('name', 'subcommittee', function() {
     let name = get(this, 'name'),
       chamber = chamberName([get(this, 'chamber')]);
-
     name = `${chamber} ${name}`;
     if (get(this, 'subcommittee')) {
       name += `: ${get(this, 'subcommittee')}`;

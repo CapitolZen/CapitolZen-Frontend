@@ -1,3 +1,6 @@
+//
+// Normal mobile doc editor
+//////////////////////////////////////////
 .__mobiledoc-editor {
   font-family: $font-family-base;
   font-size: 1rem;
@@ -59,4 +62,35 @@
 .mobiledoc-form.disabled {
   background: $gray-200;
   pointer-events: none;
+}
+
+//
+// Experimental Editor
+//////////////////////////////////////////
+.koenig-editor {
+  .__mobiledoc-card {
+    display: block;
+    hr {
+      margin: 0.1rem 0;
+    }
+  }
+  .koenig-editor__editor {
+    .embedly-card-hug {
+      box-shadow: $card-box-shadow;
+    }
+    .card__editor {
+      box-shadow: $card-box-shadow;
+      padding: 0.5rem;
+    }
+  }
+  .bill__card {
+    h6 {
+      margin: 0 !important;
+    }
+    p {
+      margin: 0 !important;
+    }
+    box-shadow: $card-box-shadow;
+    padding: 0.4rem;
+  }
 }

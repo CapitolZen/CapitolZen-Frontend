@@ -34,6 +34,7 @@ module.exports = {
   globals: {
     Promise: true,
     document: true,
-    Raven: true
+    Raven: true,
+    embedly: true
   }
 };
