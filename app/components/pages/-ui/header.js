@@ -5,5 +5,9 @@ import { equal } from '@ember/object/computed';
 
 export default Component.extend({
   currentUser: service(),
-  isGuest: equal('currentUser.user.organization_role', 'Guest')
+  session: service(),
+  isGuest: equal('currentUser.user.organization_role', 'Guest'),
+  showContextMenu: computed(function() {
+    return this.get('session.isAuthenticated') && !this.get('isGuest');
+  })
 });

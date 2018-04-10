@@ -1,0 +1,20 @@
+
+
+{{#if success}}
+  {{#ui/ui-box as |b|}}
+    {{#b.body}}
+      <p>Check your email for the link to login.</p>
+    {{/b.body}}
+  {{/ui/ui-box}}
+{{else}}
+  {{#bs-form model=this onSubmit=(action "submit") as |form|}}
+    {{#ui/ui-box as |b|}}
+      {{#b.body}}
+        {{form.element property="email" controlType="email" label="Email Address"}}
+      {{/b.body}}
+      {{#b.footer}}
+        {{bs-button defaultText="Request Login Link" type="primary" buttonType="submit"}}
+      {{/b.footer}}
+    {{/ui/ui-box}}
+  {{/bs-form}}
+{{/if}}

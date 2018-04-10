@@ -27,7 +27,7 @@
   </div>
 {{/bs-navbar}}
 
-{{#unless isGuest}}
+{{#if showContextMenu}}
   <div class="container page-admin">
     {{#bs-dropdown as |dd|}}
       {{#dd.toggle class="admin-menu-toggle"}}Manage Page <span class="caret"></span>{{/dd.toggle}}
@@ -38,4 +38,4 @@
       {{/dd.menu}}
     {{/bs-dropdown}}
   </div>
-{{/unless}}
+{{/if}}
