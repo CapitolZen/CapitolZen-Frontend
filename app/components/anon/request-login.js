@@ -11,8 +11,9 @@ export default Component.extend({
   actions: {
     submit() {
       let payload = this.getProperties(['email', 'page']);
+      let data = { email: payload.email, page: payload.page.id };
       this.get('ajax')
-        .post('users/reset_password_request/', { data: payload })
+        .post('users/guest_login/', { data })
         .then(() => {
           this.get('flashMessages').success(
             'Check your email box for a link to login.'

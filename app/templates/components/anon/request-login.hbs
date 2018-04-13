@@ -3,12 +3,15 @@
 {{#if success}}
   {{#ui/ui-box as |b|}}
     {{#b.body}}
-      <p>Check your email for the link to login.</p>
+      <p class="text-center lead">Check your email for the link to login.</p>
     {{/b.body}}
   {{/ui/ui-box}}
 {{else}}
   {{#bs-form model=this onSubmit=(action "submit") as |form|}}
     {{#ui/ui-box as |b|}}
+      {{#b.header}}
+        Enter Email Address To Login
+      {{/b.header}}
       {{#b.body}}
         {{form.element property="email" controlType="email" label="Email Address"}}
       {{/b.body}}

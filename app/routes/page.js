@@ -8,12 +8,29 @@ export default Route.extend({
   beforeModel(transition) {
     console.log(transition);
     let { params } = transition;
-    let { id } = params['page.updates'];
+    let id;
+    if (params.hasOwnProperty('page.updates')) {
+      id = params['page.updates'];
+    }
+
+    if (params.hasOwnProperty('page.update')) {
+      id = params['page.update'];
+    }
+
     set(this, 'session.data.currentPageId', id);
   },
   actions: {
     error(err, { params }) {
-      this.replaceWith('anon.page-access', params['page.updates'].id);
+      let id;
+      if (params.hasOwnProperty('page.updates')) {
+        id = params['page.updates'];
+      }
+
+      if (params.hasOwnProperty('page.update')) {
+        id = params['page.update'];
+      }
+
+      this.replaceWith('anon.page-access', id);
     }
   }
 });
