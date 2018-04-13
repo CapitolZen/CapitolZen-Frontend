@@ -6,9 +6,13 @@
   {{#pages/-anon/display page=model}}
     {{#ui/ui-box as |b|}}
       {{#b.header}}
-        Updates For {{model.group.title}}{mobiledoc-editor
+        {{model.title}}
       {{/b.header}}
       {{#b.body}}
+        <p><strong>Prepared for:</strong> {{model.group.title}}</p>
+        {{#if model.description}}
+          <p>{{model.description}}</p>
+        {{/if}}
         <div class="media">
           {{ember-initials
             image=model.group.avatar
@@ -23,14 +27,13 @@
             class="img-thumbnail rounded-circle mr-3"
           }}
           <div class="media-body">
-            <h5 class="mt-0">Prepared By: {{model.author.name}}</h5>
+            <h6 class="mt-0">Contact:</h6>
+            <h6 class="mt-0 font-weight-light">{{model.author.name}}</h6>
             <h6 class="mt-0" class="font-weight-light">
               {{if model.author.jobTitle model.author.jobTitle}} {{model.organization.name}}
             </h6>
 
-            {{#if model.description}}
-              <p>{{model.description}}</p>
-            {{/if}}
+
           </div>
         </div>
       {{/b.body}}

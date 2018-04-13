@@ -63,11 +63,6 @@ export default DS.Model.extend({
     }
   }),
 
-  dismissWelcome() {
-    set(this, 'meta.hasViewedDashboard', true);
-    this.save();
-  },
-
   //
   // Actions
   change_password: memberAction({ path: 'change_password/', type: 'POST' }),

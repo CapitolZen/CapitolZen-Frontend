@@ -13,12 +13,16 @@ export default AjaxService.extend({
 
   headers: computed('session.data.authenticated.idToken', {
     get() {
+      if (!this.get('session.isAuthenticated')) {
+        return {};
+      }
       let headers = {};
-      this.get(
-        'session'
-      ).authorize('authorizer:application', (headerName, headerValue) => {
-        headers[headerName] = headerValue;
-      });
+      this.get('session').authorize(
+        'authorizer:application',
+        (headerName, headerValue) => {
+          headers[headerName] = headerValue;
+        }
+      );
       return headers;
     }
   })

@@ -18,7 +18,6 @@ jobs:
                 name: Install node global dependencies
                 command: |
                   sudo npm install -g ember-cli yarn
-                  which yarn
 
             ##
             # NPM

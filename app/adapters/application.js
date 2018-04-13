@@ -1,11 +1,13 @@
 import { underscore } from '@ember/string';
 import { computed } from '@ember/object';
 import { pluralize } from 'ember-inflector';
+import { inject as service } from '@ember/service';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import DS from 'ember-data';
 import ENV from '../config/environment';
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
+  session: service(),
   namespace: '',
   authorizer: 'authorizer:application',
   pathForType: function(type) {
@@ -14,6 +16,15 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   },
   host: computed(function() {
     return ENV.APP.API_HOST;
+  }),
+
+  headers: computed('session', 'session.data.currentPageId', function() {
+    if (!this.get('session.isAuthenticated')) {
+      console.log('hello');
+      let page = this.get('session.data.currentPageId');
+      return { 'X-Page': page };
+    }
+    return {};
   }),
 
   // Deals with django
