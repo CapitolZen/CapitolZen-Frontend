@@ -6,7 +6,6 @@ export default Route.extend({
   session: service(),
 
   beforeModel(transition) {
-    console.log(transition);
     let { params } = transition;
     let id;
     if (params.hasOwnProperty('page.updates')) {

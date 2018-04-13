@@ -15,5 +15,34 @@
         </div>
       {{/b.body}}
     {{/ui/ui-box}}
+
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}
+        Editor
+      {{/b.header}}
+      {{#b.body}}
+        New Editor
+        <br />
+        <br />
+        <div>
+          {{#link-to 'labs.editor' class="btn btn-primary"}}View{{/link-to}}
+        </div>
+      {{/b.body}}
+    {{/ui/ui-box}}
+
+    {{#ui/ui-box as |b|}}
+      {{#b.header}}
+        Embedly
+      {{/b.header}}
+      {{#b.body}}
+        Figure out how embedly works
+        <br />
+        <br />
+        <div>
+          {{#link-to 'labs.embedly' class="btn btn-primary"}}View{{/link-to}}
+        </div>
+      {{/b.body}}
+    {{/ui/ui-box}}
+
   </div>
 </div>

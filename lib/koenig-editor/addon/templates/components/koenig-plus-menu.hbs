@@ -1,0 +1,24 @@
+{{#if showButton}}
+  <div class="btn-group mr-2" role="group" aria-label="Fourth group">
+    <button class="btn btn-primary koenig-plus-menu-button" {{action "openMenu"}}>
+      {{fa-icon "plus"}}
+    </button>
+  </div>
+{{/if}}
+
+{{#if showMenu}}
+  <div class="btn-group mr-2" role="group" aria-label="Fourth group">
+    <div class="btn btn-secondary koenig-cardmenu-card" {{action "replaceWithCardSection" "bill" on="click"}}>
+      {{fa-icon "bell"}}
+    </div>
+    <div class="btn btn-secondary koenig-cardmenu-card" {{action "replaceWithCardSection" "embedly" on="click"}}>
+      {{fa-icon "share-alt"}}
+    </div>
+    <div class="btn btn-secondary koenig-cardmenu-card" {{action "replaceWithCardSection" "hr" on="click"}}>
+      {{fa-icon "coffee"}}
+    </div>
+  </div>
+  <div class="koenig-cardmenu">
+
+  </div>
+{{/if}}

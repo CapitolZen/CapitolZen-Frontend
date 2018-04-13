@@ -1,7 +1,9 @@
 //
 // App Layout
 //////////////////////////////////////////
-
+body {
+  background-color: rgba(126, 146, 191, 0.1);
+}
 // First weird div
 body > .ember-view {
   display: -ms-flexbox;
@@ -18,9 +20,6 @@ body > .ember-view {
   display: flex;
   flex: 1;
   flex-direction: column;
-  @include media-breakpoint-down(sm) {
-    background: #fff;
-  }
 }
 
 .app-loader {
@@ -74,8 +73,8 @@ body > .ember-view {
   perspective: none;
 }
 .ember-burger-menu > .bm-outlet > .bm-content {
-  background: $body-bg;
   flex: 1;
+  background: transparent;
 }
 
 //

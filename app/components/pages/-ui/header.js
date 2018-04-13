@@ -7,7 +7,7 @@ export default Component.extend({
   currentUser: service(),
   session: service(),
   isGuest: equal('currentUser.user.organization_role', 'Guest'),
-  showContextMenu: computed(function() {
+  showContextMenu: computed('session.isAuthenticated', 'isGuest', function() {
     return this.get('session.isAuthenticated') && !this.get('isGuest');
   })
 });
