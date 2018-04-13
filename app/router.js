@@ -131,6 +131,8 @@ Router.map(function() {
   this.route('anon.redirect', { path: 'r' });
   this.route('anon.page-access', { path: 'r/:page/access' });
 
+  //
+  // Note: you need to update the allowedRoutes array in `routes/page.js` for any of this to work
   this.route('page', { path: 'p' }, function() {
     this.route('updates', { path: ':id' });
     this.route('update', { path: ':id/:update' });

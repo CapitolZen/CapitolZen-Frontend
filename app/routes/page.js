@@ -7,14 +7,20 @@ export default Route.extend({
 
   beforeModel(transition) {
     let { params } = transition;
-    let id;
-    if (params.hasOwnProperty('page.updates')) {
-      id = params['page.updates'];
-    }
 
-    if (params.hasOwnProperty('page.update')) {
-      id = params['page.update'];
-    }
+    let allowedRoutes = [
+      'page.updates',
+      'page.update',
+      'page.bills',
+      'page.bill'
+    ];
+    let id;
+    allowedRoutes.forEach(r => {
+      console.log(r);
+      if (params.hasOwnProperty(r)) {
+        id = params[r].id;
+      }
+    });
 
     set(this, 'session.data.currentPageId', id);
   },
