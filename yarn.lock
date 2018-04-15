@@ -161,9 +161,9 @@
     ember-compatibility-helpers "^0.1.2"
     ember-raf-scheduler "0.1.0"
 
-BaremetricsCalendar@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/BaremetricsCalendar/-/BaremetricsCalendar-1.0.8.tgz#2b5902ce3fead294e3af6e5de0134cb043192134"
+BaremetricsCalendar@^1.0.6:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/BaremetricsCalendar/-/BaremetricsCalendar-1.0.11.tgz#309a31dae92811cc2907b86c9a55e2b6d784ea3e"
 
 JSONStream@^1.0.3:
   version "1.3.2"

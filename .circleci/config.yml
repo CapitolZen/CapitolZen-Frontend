@@ -4,7 +4,7 @@ jobs:
     build:
         working_directory: ~/app
         docker:
-            - image: circleci/node:9.8.0-browsers
+            - image: circleci/node:9.5-browsers
               environment:
                 CHROME_BIN: "/usr/bin/google-chrome"
         steps:
@@ -18,7 +18,7 @@ jobs:
                 name: Install node global dependencies
                 command: |
                   sudo npm install -g ember-cli yarn
-
+                  which yarn
             ##
             # NPM
             ##
