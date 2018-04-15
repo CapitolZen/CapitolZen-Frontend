@@ -1,21 +1,23 @@
-{{#bs-navbar as |navbar|}}
+
+{{#bs-navbar class="pages-page-header" as |navbar|}}
   <div class="container">
     <div class="navbar-header">
-      {{navbar.toggle}}
-      {{#link-to "page.updates" page.id class="navbar-brand"}}
-        {{ember-initials
-          image=page.organization.avatar
-          name=page.organization.name
-          defaultName="?"
-          seedText=page.group.title
-          textColor="white"
-          fontSize=45
-          fontWeight=100
-          fontFamily="Helvetica Neue Light, Arial, sans-serif"
-          size=40
-          class="img-thumbnail rounded-circle"
-        }}
-        {{page.organization.name}}
+    {{navbar.toggle}}
+      {{#link-to "page.updates" page.id}}
+        <div class="navbar-brand">
+          {{ember-initials
+            image=page.group.avatar
+            name=page.group.title
+            defaultName="?"
+            seedText=page.group.title
+            textColor="white"
+            fontSize=45
+            fontWeight=100
+            fontFamily="Helvetica Neue Light, Arial, sans-serif"
+            size=75
+            class="img-thumbnail"
+          }}
+        </div>
       {{/link-to}}
     </div>
     {{#navbar.content class="justify-content-md-end"}}
@@ -27,7 +29,7 @@
   </div>
 {{/bs-navbar}}
 
-{{#unless isGuest}}
+{{#if showContextMenu}}
   <div class="container page-admin">
     {{#bs-dropdown as |dd|}}
       {{#dd.toggle class="admin-menu-toggle"}}Manage Page <span class="caret"></span>{{/dd.toggle}}
@@ -38,4 +40,4 @@
       {{/dd.menu}}
     {{/bs-dropdown}}
   </div>
-{{/unless}}
+{{/if}}

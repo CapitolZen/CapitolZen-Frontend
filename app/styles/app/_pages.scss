@@ -1,10 +1,5 @@
-.navbar.bg-light {
-  padding: 0;
-  background: #fff !important;
-  .navbar-nav .nav-link {
-    padding: 25px 5px;
-    margin-left: 15px;
-  }
+.pages-page-header {
+  background-color: $card-bg !important;
 }
 
 .page-update-list {
@@ -12,6 +7,7 @@
 }
 
 .page-admin {
+  text-align: center;
   .admin-menu-toggle {
     display: inline-block;
     background: #fff;

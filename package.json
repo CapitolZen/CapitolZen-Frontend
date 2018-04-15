@@ -72,8 +72,8 @@
     "ember-cropperjs": "^0.2.0",
     "ember-crumbly": "^2.0.0-alpha.1",
     "ember-data": "3.0.2",
-    "ember-maybe-import-regenerator": "^0.1.6",
     "ember-data-copyable": "^0.3.2",
+    "ember-element-resize-detector": "^0.1.5",
     "ember-export-application-global": "^2.0.0",
     "ember-feature-flags": "^5.0.0",
     "ember-fetch": "^3.3.0",
@@ -86,12 +86,13 @@
     "ember-impagination": "^1.0.0-alpha.6",
     "ember-in-viewport": "^2.1.1",
     "ember-initials": "^3.11.0",
-    "ember-intercom-io": "donaldwasserman/ember-intercom-io#stable",
-    "ember-junkdrawer": "0.6.3",
+    "ember-intercom-io": "donaldwasserman/ember-intercom-io#feat/try2",
+    "ember-junkdrawer": "^0.6.4",
     "ember-keyboard": "^3.0.0",
     "ember-light-table": "^1.12.2",
     "ember-link-action": "^0.0.38",
     "ember-load-initializers": "^1.0.0",
+    "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^0.12.1",
     "ember-mobiledoc-dom-renderer": "^0.6.0",
     "ember-mobiledoc-editor": "^0.5.13",
@@ -112,6 +113,7 @@
     "ember-source": "^3.0.0",
     "ember-sticky-element": "^0.2.0",
     "ember-stripe-elements": "^0.3.0",
+    "ember-svg-jar": "0.12.0",
     "ember-test-free-g": "^0.0.1",
     "ember-toggle": "^5.2.1",
     "ember-truth-helpers": "^2.0.0",
@@ -125,6 +127,7 @@
     "impagination": "^1.0.0-alpha.3",
     "lint-staged": "^7.0.0",
     "loader.js": "^4.2.3",
+    "mobiledoc-kit": "0.10.21",
     "prettier": "^1.10.2"
   },
   "engines": {
@@ -133,7 +136,8 @@
   "private": true,
   "ember-addon": {
     "paths": [
-      "lib/common"
+      "lib/common",
+      "lib/koenig-editor"
     ]
   }
 }

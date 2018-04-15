@@ -84,7 +84,13 @@ module.exports = function(environment) {
     };
 
     ENV.intercom = {
-      appId: 'omszcfoy'
+      appId: 'omszcfoy',
+      userProperties: {
+        emailProp: 'email',
+        nameProp: 'name',
+        userHashProp: 'user_hash',
+        userIdProp: 'user_id'
+      }
     };
   }
 
