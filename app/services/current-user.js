@@ -9,6 +9,28 @@ export default CurrentUser.extend({
   metrics: service(),
   raven: service(),
   features: service(),
+  flashMessages: service(),
+  network: service(),
+
+  init() {
+    this._super(...arguments);
+    let network = this.get('network');
+    network.on('change', state => {
+      let sticky = true;
+      if (state === 'OFFLINE') {
+        this.get('flashMessages').danger('Network disconnected!', { sticky });
+      }
+
+      if (state === 'RECONNECTING') {
+        this.get('flashMessages').warning('Reconnecting');
+      }
+
+      if (state === 'ONLINE') {
+        this.get('flashMessages').clearMessages();
+        this.get('flashMessages').success('Reconnected!');
+      }
+    });
+  },
 
   didSetupUser(user) {
     this.update();
@@ -16,8 +38,9 @@ export default CurrentUser.extend({
       email: get(user, 'username'),
       id: get(user, 'id')
     };
-    get(this, 'raven').callRaven('setUserContext', [data]);
+    this.get('raven').callRaven('setUserContext', [data]);
     set(this, 'metrics.context.userId', get(user, 'id'));
+    this.get('fullStory').identify(get(user, 'id'));
   },
 
   didSetupOrganization(organization) {
