@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { getOwner } from '@ember/application';
 
 export default Route.extend({
   session: service(),
@@ -16,7 +15,7 @@ export default Route.extend({
     }
 
     let authenticator = 'authenticator:jwt-login';
-    return get(this, 'session')
+    return this.get('session')
       .authenticate(authenticator, token)
       .then(() => {
         if (u) {

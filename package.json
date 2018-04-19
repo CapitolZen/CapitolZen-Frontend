@@ -24,6 +24,10 @@
     "*.scss": [
       "prettier --write",
       "git add"
+    ],
+    "*.hbs": [
+      "prettier --write",
+      "git add"
     ]
   },
   "dependencies": {
