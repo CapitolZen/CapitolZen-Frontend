@@ -139,6 +139,7 @@ Router.map(function() {
     this.route('bills', { path: ':id/bills' });
     this.route('bill', { path: ':id/bill/:wrapper' });
   });
+  this.route('pages');
 });
 
 export default Router;

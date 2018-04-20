@@ -11,6 +11,7 @@ export default CurrentUser.extend({
   features: service(),
   flashMessages: service(),
   network: service(),
+  fullStory: service(),
 
   init() {
     this._super(...arguments);
