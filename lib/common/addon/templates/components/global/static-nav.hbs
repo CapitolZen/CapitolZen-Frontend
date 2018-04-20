@@ -8,11 +8,11 @@
 </div>
 
 {{#bs-nav class="user-menu-wrapper" type="" as |nav|}}
-  {{#nav.dropdown tagName="li" class="nav-item" as |dd|}}
+  {{#nav.dropdown class="nav-item" renderInPlace=false as |dd|}}
     {{#dd.toggle}}
       {{user/user-avatar user=currentUser.user size=26}} <span class="d-none d-md-inline">{{currentUser.user.name}}</span>
     {{/dd.toggle}}
-    {{#dd.menu align="right" as |menu|}}
+    {{#dd.menu as |menu|}}
       {{#menu.item}}
         <span class="dropdown-item-title">
               Organization
