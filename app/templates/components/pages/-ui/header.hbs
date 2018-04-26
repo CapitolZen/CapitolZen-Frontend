@@ -35,8 +35,8 @@
       {{#dd.toggle class="admin-menu-toggle"}}Manage Page <span class="caret"></span>{{/dd.toggle}}
       {{#dd.menu as |ddm|}}
         {{#ddm.item}}{{#ddm.link-to "app"}}Home{{/ddm.link-to}}{{/ddm.item}}
-        {{#ddm.item}}{{#ddm.link-to "groups.detail.pages" page.group.id}}Post Update{{/ddm.link-to}}{{/ddm.item}}
-        {{#ddm.item}}{{#ddm.link-to "groups.detail" page.group.id}}Edit{{/ddm.link-to}}{{/ddm.item}}
+        {{#ddm.item}}{{#ddm.link-to "page-admin.updates" page.id}}Post Update{{/ddm.link-to}}{{/ddm.item}}
+        {{#ddm.item}}{{#ddm.link-to "page-admin.detail" page.id}}Edit{{/ddm.link-to}}{{/ddm.item}}
       {{/dd.menu}}
     {{/bs-dropdown}}
   </div>
