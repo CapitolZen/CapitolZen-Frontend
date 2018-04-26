@@ -104,6 +104,19 @@ Router.map(function() {
       this.route('upload');
     });
 
+    // Page Management
+    this.route(
+      'page-admin',
+      { path: 'pages', resetNamespace: true },
+      function() {
+        this.route('index', { path: '' });
+        this.route('detail', { path: '/:id/edit' });
+        this.route('updates', { path: '/:id/updates' });
+        this.route('update', { path: '/:id/updates/:update' });
+        this.route('add');
+      }
+    );
+
     //
     // Labs
     this.route('labs', { resetNamespace: true }, function() {
@@ -139,7 +152,6 @@ Router.map(function() {
     this.route('bills', { path: ':id/bills' });
     this.route('bill', { path: ':id/bill/:wrapper' });
   });
-  this.route('pages');
 });
 
 export default Router;

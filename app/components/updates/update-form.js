@@ -16,16 +16,18 @@ export default FormComponent.extend({
     if (get(this, 'update')) {
       return get(this, 'update');
     } else {
-      return get(this, 'store').createRecord('update', {
-        page: get(this, 'page'),
-        group: get(this, 'page.group'),
-        organization: get(this, 'page.group.organization'),
-        user: get(this, 'currentUser.user'),
-        document: false
-      });
+      return this.createNewModel();
     }
   }),
-
+  createNewModel() {
+    return get(this, 'store').createRecord('update', {
+      page: get(this, 'page'),
+      group: get(this, 'page.group'),
+      organization: get(this, 'page.group.organization'),
+      user: get(this, 'currentUser.user'),
+      document: false
+    });
+  },
   searchWrappers: task(function*(term) {
     yield timeout(400);
     return get(this, 'store').query('wrapper', {
@@ -36,10 +38,15 @@ export default FormComponent.extend({
   callSuccess() {},
   onSubmitSuccess(model) {
     get(this, 'flashMessages').success('New update posted!');
+    if (this.isNew) {
+      let newModel = this.createNewModel();
+      this.set('model', newModel);
+      this.initFormData();
+    }
     run(() => {
       $('.mobiledoc-editor__editor').empty();
     });
-    get(this, 'callSuccess')(model);
+    this.callSuccess(model);
   },
   actions: {
     selectFile(file) {
