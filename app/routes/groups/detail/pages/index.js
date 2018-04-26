@@ -1,15 +1,21 @@
 import Route from '@ember/routing/route';
+import { hash } from 'rsvp';
 
 export default Route.extend({
   model() {
-    const parent_params = this.paramsFor('groups.detail');
-    return this.store.query('page', { group: parent_params.id }).then(data => {
-      return data.get('firstObject');
+    let { id } = this.paramsFor('groups.detail');
+    return hash({
+      pages: this.store.query('page', { group: id }),
+      group: this.store.findRecord('group', id)
     });
   },
-  afterModel(model = false) {
-    if (!model) {
-      this.transitionTo('groups.detail.pages.add');
+  afterModel({ pages, group }) {
+    if (!pages.length) {
+      this.transitionTo('page-admin.add', {
+        queryParams: { group: group.get('id') }
+      });
+    } else {
+      return { pages, group };
     }
   }
 });

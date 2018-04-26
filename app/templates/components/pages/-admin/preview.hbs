@@ -1,0 +1,14 @@
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    {{page.title}} | {{page.group.title}}
+  {{/b.header}}
+  {{#b.body}}
+    {{page.description}}
+  {{/b.body}}
+  {{#b.footer}}
+    {{#link-to "page-admin.updates" page.id class="mr-2"}}{{fa-icon "paper-plane"}} <strong>New
+      Post</strong>{{/link-to}}
+    {{#link-to "page-admin.detail" page.id class="mr-2"}}Edit{{/link-to}}
+    {{#link-to "page.updates" page.id class="mr-2"}}View{{/link-to}}
+  {{/b.footer}}
+{{/ui/ui-box}}

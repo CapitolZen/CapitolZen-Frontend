@@ -38,3 +38,15 @@
 .bg-0 {
   background: transparent !important;
 }
+
+$growth-factor: 6;
+
+@for $i from 1 through $growth-factor {
+  .flex-grow-#{$i} {
+    flex-grow: $i;
+  }
+
+  .flex-shrink-#{$i} {
+    flex-shrink: $i;
+  }
+}

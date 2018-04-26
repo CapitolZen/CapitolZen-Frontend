@@ -34,7 +34,7 @@
 
     {{/b.body}}
     {{#b.footer}}
-      {{bs-button defaultText="Post" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
+      {{bs-button defaultText="Post" disabled=submit.isRunning type="primary" pendingText="Saving..." buttonType="submit"}}
     {{/b.footer}}
   {{/ui/ui-box}}
 {{/bs-form}}

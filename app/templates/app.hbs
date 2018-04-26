@@ -11,6 +11,10 @@
       {{/menu.item}}
 
       {{#menu.item dismissOnClick=true}}
+        {{#link-to "page-admin.index"}}{{fa-icon "paper-plane"}} Pages{{/link-to}}
+      {{/menu.item}}
+
+      {{#menu.item dismissOnClick=true}}
         {{#link-to "todos"}}{{fa-icon "check-circle-o"}} To-Do's{{/link-to}}
       {{/menu.item}}
 
@@ -21,7 +25,6 @@
       {{#menu.item dismissOnClick=true}}
         {{#link-to "groups"}}{{fa-icon "address-book"}} {{features.clientLabelPlural}}{{/link-to}}
       {{/menu.item}}
-
 
       {{!--
       {{#menu.item dismissOnClick=true}}

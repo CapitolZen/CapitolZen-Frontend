@@ -1,0 +1,16 @@
+{{ui-page-property "Post Update to" model.title property="title"}}
+
+{{#global/page-title-actions}}
+  {{#link-to "page-admin.index"}}All Pages{{/link-to}}
+{{/global/page-title-actions}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      {{updates/update-form page=model isNew=true}}
+    </div>
+    <div class="col-md-4">
+      {{updates/update-stream page=model}}
+    </div>
+  </div>
+</div>
