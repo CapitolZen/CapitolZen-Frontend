@@ -9,7 +9,7 @@
 
 
       {{#each stream as |update|}}
-        {{#g.link "page-admin.update" update.page.id update.id class="d-flex justify-content-between"}}
+        {{#g.link linkUrl update.page.id update.id class="d-flex justify-content-between"}}
           <span>
             <strong>{{update.title}}</strong><br>
                 {{#if isGroup}}

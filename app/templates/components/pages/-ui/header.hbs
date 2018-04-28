@@ -17,12 +17,13 @@
             size=75
             class="img-thumbnail"
           }}
+          {{page.title}}
         </div>
       {{/link-to}}
     </div>
     {{#navbar.content class="justify-content-md-end"}}
       {{#navbar.nav as |nav|}}
-        {{#nav.item}}{{#nav.link-to "page.updates" page.id class="font-weight-bold"}}Updates{{/nav.link-to}}{{/nav.item}}
+        {{#nav.item}}{{#nav.link-to "page.updates" page.id class="font-weight-bold"}}All{{/nav.link-to}}{{/nav.item}}
         {{#nav.item}}{{#nav.link-to "page.bills" page.id class="font-weight-bold"}}Saved Bills{{/nav.link-to}}{{/nav.item}}
       {{/navbar.nav}}
     {{/navbar.content}}

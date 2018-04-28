@@ -14,5 +14,7 @@ export default DS.Model.extend(Copyable, {
   reports: DS.hasMany('reports'),
   document: DS.attr(),
   title: DS.attr('string'),
-  published: DS.attr('boolean', { defaultValue: true })
+  published: DS.attr('boolean', { defaultValue: true }),
+  next: DS.attr('string'),
+  prev: DS.attr('string')
 });
