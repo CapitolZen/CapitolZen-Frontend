@@ -13,7 +13,7 @@ export default Component.extend({
   stream: null,
   isAdmin: false,
   linkUrl: computed(function() {
-    return this.isAdmin ? 'link-admin.update' : 'page.update';
+    return this.isAdmin ? 'pages-admin.update' : 'page.update';
   }),
   didReceiveAttrs() {
     this._super(...arguments);
