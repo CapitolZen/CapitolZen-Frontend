@@ -12,6 +12,7 @@ export default Component.extend({
   page: null,
   stream: null,
   isAdmin: false,
+  externalAddedUpdates: false,
   linkUrl: computed(function() {
     return this.isAdmin ? 'pages-admin.update' : 'page.update';
   }),
@@ -23,6 +24,9 @@ export default Component.extend({
     );
     this.set('stream', A());
     this.get('loadStream').perform();
+    if (this.externalAddedUpdates) {
+      this.get('stream').addObjects(this.externalAddedUpdates);
+    }
   },
 
   instance: computed('group.id', 'page.id', function() {
