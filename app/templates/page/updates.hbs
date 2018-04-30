@@ -4,9 +4,6 @@
 
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-4">
-      {{updates/update-stream page=model}}
-    </div>
     <div class="col-md-8">
       {{#ui/ui-box as |b|}}
         {{#if model.headline}}
@@ -29,6 +26,9 @@
           {{model.description}}
         {{/b.body}}
       {{/ui/ui-box}}
+    </div>
+    <div class="col-md-4 order-md-first">
+      {{updates/update-stream page=model}}
     </div>
   </div>
 </div>
