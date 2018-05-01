@@ -3,9 +3,7 @@
     Guest Accounts
   {{/b.header}}
   {{#b.body}}
-    {{#each guests as |guest|}}
-      {{user/user-summary user=guest}}
-    {{/each}}
+
   {{/b.body}}
   {{#b.footer}}
     {{#bs-button onClick=(action (mut modal) true) type="primary"}}

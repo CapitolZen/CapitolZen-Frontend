@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-sm-4 col-lg-3 col-xl-2 border-right">
     {{#bs-form model=params onSubmit=(action "filter") as |form|}}
       {{form.element property="search" placeholder="Search"}}
       {{#form.element label="Status" property="published" useIcons=false as |el|}}
@@ -29,7 +29,7 @@
       </div>
     {{/bs-form}}
   </div>
-  <div class="col-md-8">
+  <div class="col-sm-8 col-lg-9 col-xl-10">
     <div style="height: 100vh">
       {{#ember-scrollable onScrolledToBottom=(action "scrolledBottom")}}
         {{#if queryRecords.isLoading}}
