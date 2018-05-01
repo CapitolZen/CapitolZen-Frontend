@@ -24,5 +24,17 @@ export default FormComponent.extend({
   onSubmitSuccess(model) {
     get(this, 'flashMessages').success('New Page Created!');
     get(this, 'router').transitionTo('page-admin.updates', model.get('id'));
+  },
+  actions: {
+    addUser(user) {
+      console.log(user);
+      debugger;
+      this.get('store').pushPayload('user', user);
+      let model = this.get('store').peekRecord('user', user.data.id);
+      this.get('changeset')
+        .get('viewers')
+        .pushObject(model);
+      this.set('openAddViewer', false);
+    }
   }
 });

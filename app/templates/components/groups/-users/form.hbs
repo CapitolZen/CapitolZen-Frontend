@@ -1,7 +1,0 @@
-{{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
-  {{form.element label="Name" property="name" controlType="text"}}
-  {{form.element label="Email Address" property="email" controlType="email"}}
-  {{#unless modal}}
-    {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
-  {{/unless}}
-{{/bs-form}}
