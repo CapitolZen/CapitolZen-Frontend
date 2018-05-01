@@ -26,14 +26,16 @@
       {{#ui/ui-box as |b|}}
         {{#b.header}}
           {{fa-icon "users"}} Manage Viewers
-          {{#bs-button
-            disabeld=openAddViewer
-            size="sm"
-            type="outline-secondary"
-            onClick=(action (mut openAddViewer) true)
-            class="float-right"}}
-            {{fa-icon "plus"}} Add
-          {{/bs-button}}
+          {{#if changeset.viewers.length}}
+            {{#bs-button
+              disabeld=openAddViewer
+              size="sm"
+              type="outline-secondary"
+              onClick=(action (mut openAddViewer) true)
+              class="float-right"}}
+              {{fa-icon "plus"}} Add
+            {{/bs-button}}
+          {{/if}}
         {{/b.header}}
         {{#b.body}}
           {{#each changeset.viewers as |guest|}}
