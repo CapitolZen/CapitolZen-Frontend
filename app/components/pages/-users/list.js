@@ -6,22 +6,23 @@ import { A } from '@ember/array';
 
 export default Component.extend({
   store: service(),
-  guests: false,
+  viewers: false,
+  page: false,
   init() {
     this._super(...arguments);
-    get(this, 'loadGuests').perform();
+    get(this, 'loadviewers').perform();
   },
   didReceiveAttrs() {
     this._super(...arguments);
-    set(this, 'guests', A());
+    set(this, 'viewers', A());
   },
-  loadGuests: task(function*() {
-    let guests = yield get(this, 'store').query('user', {
-      guest: get(this, 'group.id'),
+  loadviewers: task(function*() {
+    let viewers = yield get(this, 'store').query('user', {
+      viewer: get(this, 'page.id'),
       is_active: true
     });
 
-    get(this, 'guests').addObjects(guests);
+    get(this, 'viewers').addObjects(viewers);
   }),
   deleteUser: task(function*(user) {
     user.set('isActive', false);
@@ -38,13 +39,13 @@ export default Component.extend({
 
     user.change_status(payload);
 
-    get(this, 'guests').removeObject(user);
+    get(this, 'viewers').removeObject(user);
   }),
   actions: {
     submit(data) {
       set(this, 'modal', false);
       let model = get(this, 'store').push(data);
-      get(this, 'guests').addObject(model);
+      get(this, 'viewers').addObject(model);
     }
   }
 });

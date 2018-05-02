@@ -2,42 +2,33 @@
 
 {{pages/-ui/header page=model}}
 
-<div class="container">
-  {{#pages/-anon/display page=model}}
-    {{#ui/ui-box as |b|}}
-      {{#b.header}}
-        {{model.title}}
-      {{/b.header}}
-      {{#b.body}}
-        <p><strong>Prepared for:</strong> {{model.group.title}}</p>
-        {{#if model.description}}
-          <p>{{model.description}}</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      {{#ui/ui-box as |b|}}
+        {{#if model.headline}}
+          {{#b.header}}
+            {{model.headline}}
+          {{/b.header}}
         {{/if}}
-        <div class="media">
-          {{ember-initials
-            image=model.group.avatar
-            name=model.group.title
-            defaultName="?"
-            seedText=model.group.title
-            textColor="white"
-            fontSize=45
-            fontWeight=100
-            fontFamily="Helvetica Neue Light, Arial, sans-serif"
-            size=80
-            class="img-thumbnail rounded-circle mr-3"
-          }}
-          <div class="media-body">
-            <h6 class="mt-0">Contact:</h6>
-            <h6 class="mt-0 font-weight-light">{{model.author.name}}</h6>
-            <h6 class="mt-0" class="font-weight-light">
-              {{if model.author.jobTitle model.author.jobTitle}} {{model.organization.name}}
-            </h6>
-
-
+        {{#b.body}}
+          <div class="media">
+            {{user/user-avatar user=model.author class="mr-3" size=38 avatarRounded=true}}
+            <div class="media-body">
+              <h5 class="mt-0 text-secondary">Prepared By</h5>
+              <h5>
+                {{model.author.name}}
+              </h5>
+            </div>
           </div>
-        </div>
-      {{/b.body}}
-    {{/ui/ui-box}}
-
-  {{/pages/-anon/display}}
+        {{/b.body}}
+        {{#b.body}}
+          {{model.description}}
+        {{/b.body}}
+      {{/ui/ui-box}}
+    </div>
+    <div class="col-md-4 order-md-first">
+      {{updates/update-stream page=model}}
+    </div>
+  </div>
 </div>

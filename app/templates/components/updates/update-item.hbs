@@ -1,19 +1,23 @@
 
 {{#ui/ui-box as |b|}}
+  {{#b.header}}
+    {{update.title}}
+  {{/b.header}}
+
   {{#b.body}}
-    <div class="media">
-      {{user/user-avatar user=update.user class="mr-3" size=48 avatarRounded=true}}
-      <div class="media-body">
-        <h5 class="mt-0">{{update.title}}</h5>
-        <h6 class="mt-0" class="text-muted font-weight-light">{{tools/date-display update.created}}</h6>
-        {{#if update.document.doc}}
-          {{render-mobiledoc mobiledoc=update.document.doc}}
-        {{/if}}
-      </div>
-    </div>
+    {{#if update.document.doc}}
+      {{render-mobiledoc mobiledoc=update.document.doc}}
+    {{/if}}
   {{/b.body}}
 
-
+  {{#b.footer}}
+    <div class="media">
+      {{user/user-avatar user=update.user class="mr-3" size=38 avatarRounded=true}}
+      <div class="media-body">
+        <p>Prepared by {{update.user.name}}</p>
+      </div>
+    </div>
+  {{/b.footer}}
   {{#if (or update.files update.wrappers)}}
     {{#b.footer}}
       <h6>{{fa-icon "paperclip"}} Attachments</h6>

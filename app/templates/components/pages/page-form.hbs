@@ -1,28 +1,97 @@
 {{#bs-form model=changeset onSubmit=(action "submit") as |form|}}
-  {{#ui/ui-box as |b|}}
-    {{#b.body}}
-      {{form.element controlType="text" label="Page Title" property="title"}}
-      {{form.element controlType="textarea" label="Page Description" property="description"}}
-      {{#form.element controlType="power-select" label="Page Author" property="author"
-                      options=assignedToOptions as |el|}}
-        {{#el.control searchEnabled=false as |item|}}
-          {{user/user-select-label user=item}}
-        {{/el.control}}
-      {{/form.element}}
-      {{#form.element controlType="power-select" label="Visibility" property="visibility" options=visibilityOptions as |el|}}
-        {{#el.control searchEnabled=false as |item|}}
-          {{#if (eq item "organization")}}
-            Just people in my organization
+
+  <div class="row">
+    <div class="col-md-8">
+      {{#ui/ui-box as |b|}}
+        {{#b.header}}
+          {{fa-icon "laptop"}} Content
+        {{/b.header}}
+        {{#b.body}}
+          {{form.element controlType="text" label="Page Title" property="title"}}
+          {{#form.element controlType="power-select" label=features.clientLabel property="group" as |el|}}
+            {{#el.control search=(perform searchGroups) as |item|}}
+              {{item.title}}
+            {{/el.control}}
+          {{/form.element}}
+          {{#form.element controlType="power-select" label="Page Author" property="author"
+                          options=assignedToOptions as |el|}}
+            {{#el.control searchEnabled=false as |item|}}
+              {{user/user-select-label user=item}}
+            {{/el.control}}
+          {{/form.element}}
+          {{form.element controlType="textarea" label="Page Description" property="description"}}
+        {{/b.body}}
+      {{/ui/ui-box}}
+
+      {{#ui/ui-box as |b|}}
+        {{#b.header}}
+          {{fa-icon "users"}} Manage Viewers
+          {{#if changeset.viewers.length}}
+            {{#bs-button
+              disabeld=openAddViewer
+              size="sm"
+              type="outline-secondary"
+              onClick=(action (mut openAddViewer) true)
+              class="float-right"}}
+              {{fa-icon "plus"}} Add
+            {{/bs-button}}
           {{/if}}
-          {{#if (eq item "anyone")}}
-            Anyone with the link
-          {{/if}}
-        {{/el.control}}
-      {{/form.element}}
-      {{form.element controlType="x-toggle" property="published" label="Published" options=(hash showLabels=false theme="light")}}
-    {{/b.body}}
-    {{#b.footer}}
-      {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..." buttonType="submit"}}
-    {{/b.footer}}
-  {{/ui/ui-box}}
+        {{/b.header}}
+        {{#b.body}}
+          {{#each changeset.viewers as |guest|}}
+            {{user/user-summary user=guest}}
+          {{else}}
+            <div class="text-center">
+              {{#bs-button type="link" onClick=(action (mut openAddViewer) true)}}
+                {{fa-icon "plus"}} Add Viewer
+              {{/bs-button}}
+            </div>
+          {{/each}}
+        {{/b.body}}
+      {{/ui/ui-box}}
+    </div>
+    <div class="col-md-4">
+      {{#ui/ui-box as |b|}}
+        {{#b.body}}
+          {{form.element controlType="x-toggle" property="published" label="Published"
+                         options=(hash showLabels=false theme="light")}}
+          {{#form.element controlType="power-select" label="Visibility" property="visibility"
+                          options=visibilityOptions as |el|}}
+            {{#el.control searchEnabled=false as |item|}}
+              {{#if (eq item "organization")}}
+                Just Viewers
+              {{/if}}
+              {{#if (eq item "anyone")}}
+                Anyone with the link
+              {{/if}}
+            {{/el.control}}
+          {{/form.element}}
+
+
+
+        {{/b.body}}
+        {{#b.footer}}
+          {{bs-button defaultText="Save" disabled=disableSubmit type="primary" pendingText="Saving..."
+                      buttonType="submit"}}
+        {{/b.footer}}
+      {{/ui/ui-box}}
+    </div>
+  </div>
+
 {{/bs-form}}
+
+
+{{#bs-modal open=openAddViewer onHidden=(action (mut openAddViewer) false) as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      Add Guest Account
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{pages/-users/form page=page onSubmit=(action "addUser") modal=true}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button type="primary" onClick=(action modal.submit)}}Save{{/bs-button}}
+    {{#bs-button onClick=(action modal.close) type="link"}}Cancel{{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

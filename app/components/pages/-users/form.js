@@ -7,13 +7,14 @@ import { task } from 'ember-concurrency';
 
 export default FormComponent.extend({
   ajax: service(),
+  store: service(),
   flashMessages: service(),
   model: computed('group', function() {
     return EmberObject.create({
       email: '',
       name: '',
-      group: get(this, 'group.id'),
-      organization: get(this, 'group.organization.id')
+      page: get(this, 'page.id'),
+      organization: get(this, 'page.organization.id')
     });
   }),
   validator: UserValidation,
@@ -23,14 +24,13 @@ export default FormComponent.extend({
     let props = changeset.getProperties([
       'email',
       'name',
-      'group',
+      'page',
       'organization'
     ]);
 
-    let { data } = yield get(this, 'ajax').post('users/create_guest/', {
+    let response = yield this.get('ajax').post('users/create_guest/', {
       data: props
     });
-
-    get(this, 'onSubmit')(data);
+    get(this, 'onSubmit')(response);
   })
 });

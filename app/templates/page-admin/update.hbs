@@ -1,0 +1,9 @@
+{{ui-page-property model.title property="title"}}
+
+{{#global/page-title-actions}}
+  {{#link-to "page-admin.updates" model.page.id}}View All{{/link-to}}
+{{/global/page-title-actions}}
+
+<div class="container">
+  {{updates/update-form update=model}}
+</div>

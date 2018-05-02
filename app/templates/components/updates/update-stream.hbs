@@ -1,0 +1,36 @@
+
+
+{{#ui/ui-box as |b|}}
+  {{#b.header}}
+    {{if loadStream.isRunning "Loading Updates" "Latest Updates"}}
+  {{/b.header}}
+  {{#b.body}}
+    {{#bs/list-group flush=true as |g|}}
+
+
+      {{#each stream as |update|}}
+        {{#g.link linkUrl update.page.id update.id class="d-flex justify-content-between"}}
+          <span>
+            <strong>{{update.title}}</strong><br>
+                {{#if isGroup}}
+                  <span class="text-secondary">{{update.group.title}}</span><br>
+                {{/if}}
+          </span>
+          <span class="text-secondary">{{moment-from-now update.created}}</span>
+        {{/g.link}}
+      {{else}}
+        {{#if loadStream.isIdle}}
+          {{#g.item class="d-flex justify-content-center"}}
+            <span class="text-secondary">Write your first update!</span>
+          {{/g.item}}
+        {{/if}}
+      {{/each}}
+
+      {{#if loadStream.isRunning}}
+        {{#g.item class="d-flex justify-content-center"}}
+          {{ui/inline-loading}}
+        {{/g.item}}
+      {{/if}}
+    {{/bs/list-group}}
+  {{/b.body}}
+{{/ui/ui-box}}

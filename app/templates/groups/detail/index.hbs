@@ -5,7 +5,7 @@
     {{fa-icon "floppy-o"}} Saved Bills
   {{/link-to}}
   {{#link-to "groups.detail.pages" model.group.id class="btn btn-link"}}
-    {{fa-icon "paper-plane"}} Updates
+    {{fa-icon "paper-plane"}} Pages
   {{/link-to}}
   {{#link-to "bills.add" class="btn btn-link"}}
     {{fa-icon "briefcase"}} Add Draft
@@ -75,9 +75,6 @@
           {{/b.body}}
         {{/ui/ui-box}}
 
-      {{/tab.pane}}
-      {{#tab.pane title="Contacts"}}
-        {{groups/-users/list group=model.group}}
       {{/tab.pane}}
       {{#tab.pane title="Recent Bills"}}
         {{#ui/ui-box as |b|}}

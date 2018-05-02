@@ -6,38 +6,15 @@
   {{/link-to}}
 
 {{/global/page-title-actions}}
-
+{{log model}}
 <div class="row">
   <div class="col-md-8">
-    {{updates/update-list page=model}}
+    {{#each model.pages as |page|}}
+      {{pages/-admin/preview page=page}}
+
+    {{/each}}
   </div>
   <div class="col-md-4">
-    {{#ui/ui-box as |b|}}
-      {{#b.header}}
-        Page Details
-      {{/b.header}}
-      {{#b.body}}
-        <dl>
-          <dt>Page Title</dt>
-          <dd>{{model.title}}</dd>
-          <dt>Visibility</dt>
-          <dd>{{if (eq model.visibility "organization") "Just people in my organization" "Anyone with the link"}}</dd>
-          <dt>Status</dt>
-          <dd>{{if model.published "Published" "Draft"}}</dd>
-          <dt>Created</dt>
-          <dd>{{tools/date-display model.created}}</dd>
-          {{#if model.description}}
-            <dt>Description</dt>
-            <dd>{{model.description}}</dd>
-          {{/if}}
-        </dl>
-      {{/b.body}}
-      {{#b.footer class="d-flex justify-content-between"}}
-        <strong>
-          {{#link-to "groups.detail.pages.edit" model.group.id model.id}}Edit{{/link-to}}
-        </strong>
-        {{#link-to "page.updates" model.id}}View{{/link-to}}
-      {{/b.footer}}
-    {{/ui/ui-box}}
+    {{updates/update-stream isAdmin=true group=model.group}}
   </div>
 </div>

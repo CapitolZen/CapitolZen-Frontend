@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-sm-4 col-lg-3 col-xl-2 border-right">
+    {{#bs-form model=params onSubmit=(action "filter") as |form|}}
+      {{form.element property="search" placeholder="Search"}}
+      {{#form.element label="Status" property="published" useIcons=false as |el|}}
+        {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
+                           onChange=(action (mut el.value)) as |bg|}}
+          {{#bg.button type="default" value='1'}}Published{{/bg.button}}
+          {{#bg.button type="default" value=0}}Drafts{{/bg.button}}
+          {{#bg.button type="default" value=null}}All{{/bg.button}}
+        {{/bs-button-group}}
+      {{/form.element}}
+      {{#form.element label="Visibility" property="visibility" as |el|}}
+        {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
+                           onChange=(action (mut el.value)) as |bg|}}
+          {{#bg.button type="default" value='organization'}}{{features.clientLabel}}{{/bg.button}}
+          {{#bg.button type="default" value="anyone"}}Public{{/bg.button}}
+          {{#bg.button type="default" value=null}}Any{{/bg.button}}
+        {{/bs-button-group}}
+      {{/form.element}}
+
+      <div class="d-flex">
+        {{bs-button class="flex-grow-1" defaultText="Filter" pendingText="Saving..." type="primary"
+                    buttonType="submit"}}
+
+        {{#bs-button class="flex-grow-1" type="link" onClick=(action "clearFilters")}}
+          {{fa-icon "times"}} Reset
+        {{/bs-button}}
+      </div>
+    {{/bs-form}}
+  </div>
+  <div class="col-sm-8 col-lg-9 col-xl-10">
+    <div style="height: 100vh">
+      {{#ember-scrollable onScrolledToBottom=(action "scrolledBottom")}}
+        {{#if queryRecords.isLoading}}
+          {{ui/loading-animation}}
+        {{else}}
+          {{#each results as |record|}}
+            {{pages/-admin/preview page=record}}
+          {{else}}
+            {{#if queryRecords.isIdle}}
+              {{#ui/ui-box as |b|}}
+                {{#b.header}}
+                  No Results Found
+                {{/b.header}}
+              {{/ui/ui-box}}
+            {{/if}}
+          {{/each}}
+        {{/if}}
+
+      {{/ember-scrollable}}
+    </div>
+    
+  </div>
+</div>

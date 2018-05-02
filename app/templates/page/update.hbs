@@ -1,11 +1,61 @@
 {{ui-page-property model.title property="title"}}
 
 {{pages/-ui/header page=model.page}}
-{{pages/-ui/title page=model.page}}
 
 
 <div class="container">
-  {{#pages/-anon/display page=model.page}}
-    {{updates/update-item update=model}}
-  {{/pages/-anon/display}}
+
+  <div class="row mt-5">
+
+    <div class="col-md-8">
+      {{#ui/ui-box class="p-0 border-0" as |b|}}
+        {{#b.body}}
+          <div class="row">
+            <div class="col-1">
+              {{#if model.prev}}
+                {{#link-to "page.update" model.prev}}
+                  {{fa-icon "arrow-left"}}
+                  <span class="sr-only">Previous</span>
+                {{/link-to}}
+              {{/if}}
+            </div>
+            <div class="col-10 text-center">
+              {{moment-format model.created}}
+            </div>
+            <div class="col-1">
+              {{#if model.next}}
+                {{#link-to "page.update" model.next}}
+                  {{fa-icon "arrow-right"}}
+                  <span class="sr-only">next</span>
+                {{/link-to}}
+              {{/if}}
+            </div>
+          </div>
+        {{/b.body}}
+      {{/ui/ui-box}}
+      {{updates/update-item class="mt-3" update=model}}
+    </div>
+
+    <div class="col-md-4 order-md-first">
+      {{#ui/ui-box class="border-0" as |b|}}
+        {{#b.header}}
+          About
+        {{/b.header}}
+        {{#b.body}}
+          {{model.page.description}}
+        {{/b.body}}
+        {{#b.body}}
+          <div class="media">
+            {{user/user-avatar user=model.page.author class="mr-3" size=38 avatarRounded=true}}
+            <div class="media-body">
+              <h6 class="mt-0 text-secondary">Contact</h6>
+              <h6 class="text-secondary">
+                {{model.page.author.name}}
+              </h6>
+            </div>
+          </div>
+        {{/b.body}}
+      {{/ui/ui-box}}
+    </div>
+  </div>
 </div>
