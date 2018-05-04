@@ -1,2 +1,2 @@
-<a href="{{row.url}}" class="btn btn-primary text-white" target="_blank"> {{fa-icon "download"}} Download</a>
-{{#bs/link-button 'files.detail' row.id type="secondary"}} {{fa-icon "view"}} View {{/bs/link-button}}
+<a href="{{row.url}}" class="font-weight-bold" target="_blank"> {{fa-icon "download"}} Download</a>
+{{#link-to "files.detail" row.id}}{{fa-icon "view"}} View{{/link-to}}

@@ -8,9 +8,10 @@ import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 
 const FileCard = FormComponent.extend({
   flashMessages: service(),
+  router: service(),
   file: null,
   isEditing: false,
-  previewUrl: alias('file.previewUrl'),
+  previewSrc: alias('file.previewSrc'),
   name: alias('file.name'),
   url: alias('file.url'),
   created: alias('file.created'),
@@ -35,7 +36,12 @@ const FileCard = FormComponent.extend({
       this.toggleProperty('isEditing');
     },
     deleteFile() {
-      get(this, 'model').destroyRecord();
+      get(this, 'model')
+        .destroyRecord()
+        .then(() => {
+          this.get('flashMessages').success('File Deleted');
+          this.get('router').transitionTo('files');
+        });
     }
   }
 });

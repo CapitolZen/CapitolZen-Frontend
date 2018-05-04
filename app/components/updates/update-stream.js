@@ -14,7 +14,7 @@ export default Component.extend({
   isAdmin: false,
   externalAddedUpdates: false,
   linkUrl: computed(function() {
-    return this.isAdmin ? 'pages-admin.update' : 'page.update';
+    return this.isAdmin ? 'page-admin.update' : 'page.update';
   }),
   didReceiveAttrs() {
     this._super(...arguments);

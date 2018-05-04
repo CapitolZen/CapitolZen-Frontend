@@ -28,7 +28,8 @@ export default Component.extend({
     },
     {
       label: 'View',
-      cellComponent: 'files/-cell/file-actions'
+      cellComponent: 'files/-cell/file-actions',
+      align: 'center'
     }
   ],
   actions: {
