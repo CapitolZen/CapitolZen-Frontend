@@ -1,22 +1,29 @@
 
-
 {{#ui/ui-box as |b|}}
+
   {{#b.header}}
     {{#if isEditing}}
       Edit
     {{else}}
-      {{name}}
+      {{name}}   <strong class="small text-muted">Modified: {{tools/date-display modified}}</strong>
     {{/if}}
   {{/b.header}}
 
   {{#unless isEditing}}
     {{#b.body}}
-      <h6 class="card-subtitle mb-2 text-muted">Modified: {{tools/date-display modified}}</h6>
-      <p class="card-text">{{description}}</p>
+      <div class="media">
+        {{#if previewSrc}}
+          <img src="{{previewSrc}}" class="img-fluid w-25 img-thumbnail mr-3" alt="File Preview Image">
+        {{/if}}
+        <div class="media-body">
+          <p class="card-text">{{description}}</p>
+        </div>
+      </div>
+
     {{/b.body}}
     {{#b.footer}}
-      <a href="{{url}}" class="btn btn-primary text-white" target="_blank"> {{fa-icon "download"}} View</a>
-      {{#bs-button type="light" onClick=(action "toggleEditing")}}Edit{{/bs-button}}
+      <a href="{{url}}" class="font-weight-bold" target="_blank"> {{fa-icon "download"}} View</a>
+      {{#bs-button type="link" onClick=(action "toggleEditing")}}Edit{{/bs-button}}
 
     {{/b.footer}}
   {{else}}
@@ -26,8 +33,11 @@
       {{form.element controlType="textarea" label="description" property="description"}}
     {{/b.body}}
     {{#b.footer}}
-      {{bs-button defaultText="Update" type="primary" buttonType="submit"}}
-      {{bs-button defaultText="Delete" type="danger" onClick=(action "deleteFile") class="pull-right"}}
+      {{#bs-button type="primary" buttonType="submit"}}
+        {{fa-icon "save"}} Save
+      {{/bs-button}}
+      {{bs-button defaultText="Cancel" type="link" onClick=(action "toggleEditing")}}
+      {{bs-button defaultText="Delete" type="outline-danger" onClick=(action "deleteFile") class="pull-right"}}
     {{/b.footer}}
   {{/bs-form}}
   {{/unless}}
