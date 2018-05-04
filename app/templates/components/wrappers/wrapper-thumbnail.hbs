@@ -1,0 +1,15 @@
+{{#ui/ui-box class="border-top-0" as |b|}}
+  {{#b.header class="pb-0"}}<h6>{{displayTitle}}</h6>{{/b.header}}
+  {{#b.body class="pt-0"}}
+    <ul class="list-unstyled small">
+      <li>{{wrappers/wrapper-position wrapper=wrapper}}</li>
+      <li>{{moment-format wrapper.bill.lastActionDate "M/D/YYYY"}}</li>
+      <li></li>
+    </ul>
+  {{/b.body}}
+  {{#if page}}
+    {{#b.footer class="text-center p-1"}}
+      {{#link-to "page.bill" page.id wrapper.id class="font-weight-bold small"}}View{{/link-to}}
+    {{/b.footer}}
+  {{/if}}
+{{/ui/ui-box}}

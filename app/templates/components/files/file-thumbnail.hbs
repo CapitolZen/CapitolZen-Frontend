@@ -1,0 +1,6 @@
+{{#ui/ui-box class="border-top-0" as |b|}}
+  <img src="{{url}}" alt="Preview of {{file.name}}" class="card-img-top">
+  {{#b.footer class="text-center p-1"}}
+    <a href="{{url}}" class="font-weight-bold small" target="_blank"> {{fa-icon "download"}} Download</a>
+  {{/b.footer}}
+{{/ui/ui-box}}

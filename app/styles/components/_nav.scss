@@ -129,3 +129,7 @@
   border: 0;
   box-shadow: 1px 0 1px #c4c4c4;
 }
+
+.in-box-pills > .active > a {
+  @extend .text-primary;
+}

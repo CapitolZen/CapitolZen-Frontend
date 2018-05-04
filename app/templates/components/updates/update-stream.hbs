@@ -6,8 +6,6 @@
   {{/b.header}}
   {{#b.body}}
     {{#bs/list-group flush=true as |g|}}
-
-
       {{#each stream as |update|}}
         {{#g.link linkUrl update.page.id update.id class="d-flex justify-content-between"}}
           <span>
