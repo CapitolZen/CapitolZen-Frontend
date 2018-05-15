@@ -1,20 +1,10 @@
-<div class="card-body">
-  <div class="title">
-    <h4 class="card-title">{{bill.stateId}} <small>{{bill.sponsor.fullName}}
-      <span class="badge badge-default">{{bill.sponsor.party}}</span></small></h4>
-    <h6 class="card-subtitle"></h6>
-  </div>
-  <div class="bill-detail-body row flex-md-column justify-content-lg-between flex-lg-row">
-    <div class="details col-lg-8">
-      <p class="card-text">{{bill.title}}</p>
-    </div>
-    <div class="col-lg-4">
-      <div class="btn-group float-lg-right">
-        {{#link-to "bills.detail" bill.id class="btn btn-secondary btn-block"}}View{{/link-to}}
-        {{bills/add-to-group bills=bill buttonType="primary"}}
-      </div>
-    </div>
-
-  </div>
-
-</div>
+{{#ui/ui-box as |b|}}
+{{#b.header}}{{bill.stateId}} <small>{{bill.sponsor.fullName}}</small>{{/b.header}}
+{{#b.body}}
+  <p>{{bill.title}}</p>
+{{/b.body}}
+{{#b.footer class="d-flex justify-content-around"}}
+    {{bills/add-to-group bills=bill buttonType="link" fullWidth=false}}
+    {{#link-to "bills.detail" bill.id class="btn btn-link"}}View{{/link-to}}
+{{/b.footer}}
+{{/ui/ui-box}}

@@ -40,7 +40,6 @@ export default Component.extend({
     }
 
     this.set('_queryCache', queryJSON);
-    console.log(this.params);
     this.get('router').transitionTo({ queryParams: params });
     this.get('queryRecords').perform(params);
   },

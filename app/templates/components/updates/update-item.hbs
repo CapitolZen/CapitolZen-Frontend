@@ -31,14 +31,14 @@
         {{#tab.pane elementId="pane1" title="Files"}}
           <div class="row">
             {{#each update.files as |file|}}
-              {{files/file-thumbnail file class="col-3"}}
+              {{files/file-thumbnail file class="col-6 col-md-3"}}
             {{/each}}
           </div>
         {{/tab.pane}}
         {{#tab.pane elementId="pane2" title="Saved Bills"}}
           <div class="row">
             {{#each update.wrappers as |wrapper|}}
-              {{wrappers/wrapper-thumbnail wrapper page=update.page class="col-3"}}
+              {{wrappers/wrapper-thumbnail wrapper page=update.page class="col-6 col-md-3"}}
             {{/each}}
           </div>
         {{/tab.pane}}
