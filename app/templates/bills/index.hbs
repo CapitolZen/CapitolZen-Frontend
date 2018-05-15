@@ -3,5 +3,4 @@
 {{#global/page-title-actions}}
   {{#link-to "bills.add"}}{{fa-icon "briefcase"}} Add Draft{{/link-to}}
 {{/global/page-title-actions}}
-
-{{bills/-list/table model=model canMultiselect=true recordType="bill"}}
+{{bills/-list/facets filters=params _page=page}}

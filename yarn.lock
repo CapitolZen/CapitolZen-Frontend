@@ -4281,7 +4281,7 @@ ember-component-inbound-actions@1.2.1:
   dependencies:
     ember-cli-babel "^5.1.7"
 
-ember-composable-helpers@^2.0.1:
+ember-composable-helpers@^2.0.1, ember-composable-helpers@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ember-composable-helpers/-/ember-composable-helpers-2.1.0.tgz#71f75ab2de1c696d21939b5f9dcc62eaf2c947e5"
   dependencies:
