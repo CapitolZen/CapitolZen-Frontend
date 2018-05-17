@@ -16,7 +16,8 @@ export default Route.extend({
       'page.updates',
       'page.update',
       'page.bills',
-      'page.bill'
+      'page.bill',
+      'page.wrapper'
     ];
     let id;
     allowedRoutes.forEach(r => {
