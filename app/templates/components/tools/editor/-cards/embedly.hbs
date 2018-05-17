@@ -1,0 +1,4 @@
+{{#if editCard}}
+  {{#bs-button type="link" onClick=(action editCard) class="float-right"}}{{fa-icon "pencil"}}{{/bs-button}}
+{{/if}}
+<a data-card-controls="0" href={{payload.link}} class="embedly-card"></a>

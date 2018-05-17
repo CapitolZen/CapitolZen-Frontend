@@ -65,6 +65,18 @@
 }
 
 //
+// Card Editing
+//////////////////////////////////////////
+.__mobiledoc-card {
+  margin: 1rem 2rem;
+  width: 90%;
+
+  [id^='mobiledoc-editor-card'] {
+    width: 100%;
+  }
+}
+
+//
 // Experimental Editor
 //////////////////////////////////////////
 .koenig-editor {

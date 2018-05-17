@@ -39,6 +39,10 @@
   background: transparent !important;
 }
 
+.bg-lighter {
+  background-color: $cz-white;
+}
+
 $growth-factor: 6;
 
 @for $i from 1 through $growth-factor {

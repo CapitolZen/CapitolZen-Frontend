@@ -1,37 +1,43 @@
-{{#mobiledoc-editor mobiledoc=content
-                    autofocus=true
-                    spellcheck=true
-                    on-change=(action "mobileDocUpdated")
-                    class="note-editor d-flex flex-column-reverse"
-as |editor|}}
-  <div class="toolbar d-flex justify-content-between p-1">
-    <div class="col-4">
-      <div class="btn-group">
-        {{#mobiledoc-markup-button editor=editor for="strong" class="btn btn-link"}}
-          {{fa-icon "bold"}}
-        {{/mobiledoc-markup-button}}
-        {{#mobiledoc-markup-button editor=editor for="em" class="btn btn-link"}}
-          {{fa-icon "italic"}}
-        {{/mobiledoc-markup-button}}
-        {{#mobiledoc-section-button editor=editor for="ul" class="btn btn-link"}}
-          {{fa-icon "list"}}
-        {{/mobiledoc-section-button}}
-        {{#mobiledoc-section-button editor=editor for="ol" class="btn btn-link"}}
-          {{fa-icon "list-ol"}}
-        {{/mobiledoc-section-button}}
+<div class="text-editor-wrapper" onclick={{action "focusEditor"}}>
+
+  {{#mobiledoc-editor mobiledoc=content
+                      spellcheck=true
+                      cards=(mobiledoc-component-cards)
+                      atoms=(mobiledoc-component-atoms)
+                      on-change=(action "mobileDocUpdated")
+                      did-create-editor=(action "didCreateEditor")
+                      class="note-editor d-flex flex-column-reverse"
+  as |editor|}}
+    <div class="toolbar d-flex justify-content-between p-1">
+      <div class="col-4">
+        <div class="btn-group">
+          {{#mobiledoc-markup-button editor=editor for="strong" class="btn btn-link"}}
+            {{fa-icon "bold"}}
+          {{/mobiledoc-markup-button}}
+          {{#mobiledoc-markup-button editor=editor for="em" class="btn btn-link"}}
+            {{fa-icon "italic"}}
+          {{/mobiledoc-markup-button}}
+          {{#mobiledoc-section-button editor=editor for="ul" class="btn btn-link"}}
+            {{fa-icon "list"}}
+          {{/mobiledoc-section-button}}
+          {{#mobiledoc-section-button editor=editor for="ol" class="btn btn-link"}}
+            {{fa-icon "list-ol"}}
+          {{/mobiledoc-section-button}}
+          {{#bs-button type="link" onClick=(action "addCard" 'tools/editor/-cards/embedly')}}Embed{{/bs-button}}
+        </div>
+      </div>
+      <div class="col-4 pt-1">
+        <div class="pull-right btn-group btn-group-sm">
+          {{#unless autoSave}}
+            <button class="btn btn-primary" {{action "saveDocument"}}>{{if isNew "Add" "Save"}}</button>
+          {{/unless}}
+          {{#unless isNew}}
+            <button class="btn btn-secondary" {{action "cancelDocument"}}>Cancel</button>
+            <button class="btn btn-warning" {{action "deleteDocument"}}>Delete</button>
+          {{/unless}}
+        </div>
       </div>
     </div>
-    <div class="col-4 pt-1">
-      <div class="pull-right btn-group btn-group-sm">
-        {{#unless autoSave}}
-          <button class="btn btn-primary" {{action "saveDocument"}}>{{if isNew "Add" "Save"}}</button>
-        {{/unless}}
-        {{#unless isNew}}
-          <button class="btn btn-secondary" {{action "cancelDocument"}}>Cancel</button>
-          <button class="btn btn-warning" {{action "deleteDocument"}}>Delete</button>
-        {{/unless}}
-      </div>
-    </div>
-  </div>
-{{/mobiledoc-editor}}
+  {{/mobiledoc-editor}}
+</div>
 

@@ -6,7 +6,7 @@
 
   {{#b.body class="pb-0"}}
     {{#if update.document.doc}}
-      {{render-mobiledoc mobiledoc=update.document.doc}}
+      {{render-mobiledoc mobiledoc=update.document.doc cardNames=(mobiledoc-card-names) atomNames=(mobiledoc-atom-names)}}
     {{/if}}
   {{/b.body}}
 
