@@ -1,0 +1,26 @@
+<div class="embedly-editor p-2">
+  <h5>Add Saved Bill</h5>
+  <div class="form-group">
+    <label for="linkInput">Link Address</label>
+    {{input type="text" class="form-control" value=link aria-describedby="linkHelp" placeholder="URL"}}
+    <small id="linkHelp" class="form-text text-muted">We'll automatically embed a preview of this link.</small>
+  </div>
+</div>
+<div class="card-editor__footer d-flex justify-content-end">
+  {{#bs-dropdown as |dd|}}
+    {{#bs-button type="outline-secondary" onClick=(action "save" (hash link=link comment=comment))
+                 class="font-weight-bold"}}Save{{/bs-button}}
+    {{#dd.button type="outline-secondary"}}{{/dd.button}}
+    {{#dd.menu as |menu|}}
+      {{#menu.item}}
+        {{#bs-button type="link" onClick=(action cancelCard) class="dropdown-item"}}{{fa-icon "ban"}}
+          Cancel{{/bs-button}}
+      {{/menu.item}}
+      {{#menu.item}}
+        {{#bs-button type="link" onClick=(action removeCard) class="text-danger dropdown-item"}}{{fa-icon "trash-o"}}
+          Delete{{/bs-button}}
+      {{/menu.item}}
+    {{/dd.menu}}
+  {{/bs-dropdown}}
+
+</div>

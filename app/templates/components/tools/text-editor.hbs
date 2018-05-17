@@ -17,26 +17,44 @@
           {{#mobiledoc-markup-button editor=editor for="em" class="btn btn-link"}}
             {{fa-icon "italic"}}
           {{/mobiledoc-markup-button}}
-          {{#mobiledoc-section-button editor=editor for="ul" class="btn btn-link"}}
-            {{fa-icon "list"}}
-          {{/mobiledoc-section-button}}
-          {{#mobiledoc-section-button editor=editor for="ol" class="btn btn-link"}}
-            {{fa-icon "list-ol"}}
-          {{/mobiledoc-section-button}}
-          {{#bs-button type="link" onClick=(action "addCard" 'tools/editor/-cards/embedly')}}Embed{{/bs-button}}
+          {{#bs-dropdown as |dd|}}
+            {{#mobiledoc-section-button editor=editor class="btn btn-link" for="h3"}}
+              {{fa-icon "header"}}
+            {{/mobiledoc-section-button}}
+            {{#dd.button type="link"}}{{/dd.button}}
+            {{#dd.menu as |menu|}}
+              {{#menu.item}}
+                {{#mobiledoc-section-button editor=editor for="ul" class="btn btn-link"}}
+                  {{fa-icon "list"}} List
+                {{/mobiledoc-section-button}}
+              {{/menu.item}}
+              {{#menu.item}}
+                {{#mobiledoc-section-button editor=editor for="ol" class="btn btn-link"}}
+                  {{fa-icon "list-ol"}} Numbered List
+                {{/mobiledoc-section-button}}
+              {{/menu.item}}
+            {{/dd.menu}}
+          {{/bs-dropdown}}
+
+
+
+          {{#bs-button type="link" onClick=(action "addCard" 'tools/editor/-cards/embedly') class="font-weight-bold"}}{{fa-icon "link"}} Embed{{/bs-button}}
+          {{#bs-button type="link" onClick=(action "addCard" 'tools/editor/-cards/wrapper') class="font-weight-bold"}}{{fa-icon "file"}} Bill{{/bs-button}}
         </div>
       </div>
-      <div class="col-4 pt-1">
-        <div class="pull-right btn-group btn-group-sm">
-          {{#unless autoSave}}
-            <button class="btn btn-primary" {{action "saveDocument"}}>{{if isNew "Add" "Save"}}</button>
-          {{/unless}}
-          {{#unless isNew}}
-            <button class="btn btn-secondary" {{action "cancelDocument"}}>Cancel</button>
-            <button class="btn btn-warning" {{action "deleteDocument"}}>Delete</button>
-          {{/unless}}
+      {{#if (or autoSave isNew)}}
+        <div class="col-4 pt-1">
+          <div class="pull-right btn-group btn-group-sm">
+            {{#unless autoSave}}
+              <button class="btn btn-primary" {{action "saveDocument"}}>{{if isNew "Add" "Save"}}</button>
+            {{/unless}}
+            {{#unless isNew}}
+              <button class="btn btn-secondary" {{action "cancelDocument"}}>Cancel</button>
+              <button class="btn btn-warning" {{action "deleteDocument"}}>Delete</button>
+            {{/unless}}
+          </div>
         </div>
-      </div>
+      {{/if}}
     </div>
   {{/mobiledoc-editor}}
 </div>

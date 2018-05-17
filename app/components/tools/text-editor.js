@@ -16,7 +16,6 @@ export default Component.extend(EKMixin, {
   content: null,
 
   init() {
-    console.log(BLANK_DOC);
     this._super(...arguments);
     if (!this.content) {
       this.set('content', BLANK_DOC);
@@ -57,31 +56,15 @@ export default Component.extend(EKMixin, {
     get(this, 'deleteAction')(args);
     this.destroy();
   },
-  insertParagraph(after = true) {
-    if (!this.editor) {
-      return;
-    }
 
-    let position = after ? 'tail' : 'head';
-
-    let editor = this.editor;
-    let section = editor.post.toRange()[position].section;
-
-    // create a blank paragraph at the top of the editor unless it's already
-    // a blank paragraph
-    if (section.isListItem || !section.isBlank || section.text !== '') {
-      editor.run(postEditor => {
-        let { builder } = postEditor;
-        let newPara = builder.createMarkupSection('p');
-
-        postEditor.insertSectionBefore(
-          section.parent.sections,
-          newPara,
-          section
-        );
-      });
-    }
+  insertSection() {
+    this.editor.run(postEditor => {
+      let newSection = postEditor.builder.createMarkupSection('p');
+      postEditor.insertSectionAtEnd(newSection);
+      postEditor.setRange(newSection.tailPosition());
+    });
   },
+
   actions: {
     mobileDocUpdated(doc) {
       console.log(doc);
@@ -96,7 +79,7 @@ export default Component.extend(EKMixin, {
     addCard(cardName, payload) {
       assert('Please provide a valid card name', cardName);
       this.editor.insertCard(cardName, payload, true);
-      this.insertParagraph();
+      this.insertSection();
     },
     saveDocument() {
       this.save();
@@ -107,9 +90,7 @@ export default Component.extend(EKMixin, {
     deleteDocument() {
       this.delete();
     },
-    didInsertCard() {
-      this.insertParagraph();
-    },
+
     focusEditor(event) {
       if (
         event.target.tagName === 'ARTICLE' &&
