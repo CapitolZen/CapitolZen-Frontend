@@ -98,6 +98,10 @@ export default Component.extend(EKMixin, {
       this.delete();
     },
 
+    didSaveCard(props) {
+      console.log(props);
+    },
+
     focusEditor(event) {
       if (
         event.target.tagName === 'ARTICLE' &&

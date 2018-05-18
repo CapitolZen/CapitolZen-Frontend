@@ -41,6 +41,10 @@
 
 .note-editor .toolbar {
   border-top: 1px solid $cz-grey-lt;
+
+  .btn-link.active {
+    background-color: $light !important;
+  }
 }
 
 .note-add-wrapper {

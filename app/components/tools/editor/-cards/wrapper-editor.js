@@ -14,8 +14,8 @@ export default Component.extend({
     'rounded'
   ],
   wrapper: null,
-  groupId: alias('payload.editorContext.groupId'),
-  pageId: alias('payload.editorContext.pageId'),
+  groupId: alias('payload.editorContext.group-id'),
+  pageId: alias('payload.editorContext.page-id'),
   didReceiveAttrs() {
     this._super(...arguments);
     console.log(this.payload);
@@ -36,6 +36,8 @@ export default Component.extend({
       let props = { wrapperId: this.get('wrapper.id'), pageId: this.pageId };
       this.saveCard(props);
       this.cancelCard();
+      props.cardName = 'wrapper';
+      this.sendAction('didSaveCard', props);
     }
   }
 });
