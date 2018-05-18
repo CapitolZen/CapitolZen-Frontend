@@ -5,7 +5,6 @@ import { on } from '@ember/object/evented';
 import { run } from '@ember/runloop';
 import { BLANK_DOC } from '../../utils/doc-factory';
 import { assert } from '@ember/debug';
-
 import $ from 'jquery';
 
 export default Component.extend(EKMixin, {
@@ -14,6 +13,7 @@ export default Component.extend(EKMixin, {
   autoSave: false,
   editor: false,
   content: null,
+  options: null,
 
   init() {
     this._super(...arguments);
@@ -76,8 +76,15 @@ export default Component.extend(EKMixin, {
     didCreateEditor(editor) {
       this.set('editor', editor);
     },
-    addCard(cardName, payload) {
+    addCard(cardName, payload = {}) {
       assert('Please provide a valid card name', cardName);
+      //can't add default params here because actions send `null` rather than `undefined`
+      if (!payload) {
+        payload = {};
+      }
+
+      payload.editorContext = this.context;
+
       this.editor.insertCard(cardName, payload, true);
       this.insertSection();
     },

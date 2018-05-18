@@ -5,8 +5,7 @@
     {{/b.header}}
     {{#b.body}}
       {{form.element controlType="text" property="title" placeholder="Headline"}}
-      {{form.element controlType="mobiledoc" property="document"}}
-
+      {{form.element controlType="mobiledoc" property="document" options=(hash groupId=changeset.group.id pageId=changeset.page.id)}}
       {{#form.element controlType="power-select-multiple" property="wrappers" label="Saved Bills" options=(hash isNew=isNew) as |el|}}
         {{#el.control search=(perform searchWrappers) as |item|}}
           <div class="d-flex justify-content-between">

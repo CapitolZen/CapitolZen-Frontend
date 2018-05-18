@@ -32,7 +32,7 @@ export default FormComponent.extend({
     yield timeout(400);
     return get(this, 'store').query('wrapper', {
       search: term,
-      group: get(this, 'update.group.id')
+      group: get(this, 'model.group.id')
     });
   }),
   callSuccess() {},

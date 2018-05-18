@@ -4,7 +4,8 @@ import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-c
 export function mobiledocComponentCards() {
   return [
     createComponentCard('tools/editor/-cards/image'),
-    createComponentCard('tools/editor/-cards/embedly')
+    createComponentCard('tools/editor/-cards/embedly'),
+    createComponentCard('tools/editor/-cards/wrapper')
   ];
 }
 
