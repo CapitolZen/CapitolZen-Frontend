@@ -19,6 +19,7 @@ export default FormComponent.extend({
       return this.createNewModel();
     }
   }),
+  isNew: alias('model.isNew'),
   createNewModel() {
     return get(this, 'store').createRecord('update', {
       page: get(this, 'page'),

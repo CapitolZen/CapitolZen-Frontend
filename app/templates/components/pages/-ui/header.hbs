@@ -21,7 +21,7 @@
         </div>
       {{/link-to}}
     </div>
-    {{#navbar.content}}
+    {{#navbar.content class="justify-content-end"}}
       {{#navbar.nav as |nav|}}
         {{#nav.item}}{{#nav.link-to "page.updates" page.id class="font-weight-bold"}}All{{/nav.link-to}}{{/nav.item}}
         {{#nav.item}}{{#nav.link-to "page.bills" page.id class="font-weight-bold"}}Saved Bills{{/nav.link-to}}{{/nav.item}}

@@ -8,44 +8,15 @@
     {{#if update.document.doc}}
       {{render-mobiledoc mobiledoc=update.document.doc cardNames=(mobiledoc-card-names) atomNames=(mobiledoc-atom-names)}}
     {{/if}}
+
+    {{#if update.files}}
+      <h6>{{fa-icon "paperclip"}} Attachments</h6>
+      {{#each update.files as |file|}}
+        {{files/file-thumbnail file class="col-6 col-md-3"}}
+      {{/each}}
+    {{/if}}
   {{/b.body}}
 
-  {{#b.body class="pt-0"}}
-    {{#bs-tab customTabs=true as |tab|}}
-      {{#bs-nav type="pills" class="in-box-pills mb-1" as |nav|}}
-        {{#if update.files.length}}
-          {{#nav.item active=(bs-eq tab.activeId "pane1")}}
-            <a href="#pane1" class="nav-link" role="tab" {{action tab.select "pane1"}}> {{fa-icon "paperclip"}}
-              Files</a>
-          {{/nav.item}}
-        {{/if}}
-        {{#if update.wrappers}}
-          {{#nav.item active=(bs-eq tab.activeId "pane2")}}
-            <a href="#pane2" class="nav-link" role="tab" {{action tab.select "pane2"}}> {{fa-icon "book"}} Saved
-              Bills</a>
-          {{/nav.item}}
-        {{/if}}
-      {{/bs-nav}}
-
-      <div class="tab-content">
-        {{#tab.pane elementId="pane1" title="Files"}}
-          <div class="row">
-            {{#each update.files as |file|}}
-              {{files/file-thumbnail file class="col-6 col-md-3"}}
-            {{/each}}
-          </div>
-        {{/tab.pane}}
-        {{#tab.pane elementId="pane2" title="Saved Bills"}}
-          <div class="row">
-            {{#each update.wrappers as |wrapper|}}
-              {{wrappers/wrapper-thumbnail wrapper page=update.page class="col-6 col-md-3"}}
-            {{/each}}
-          </div>
-        {{/tab.pane}}
-      </div>
-
-    {{/bs-tab}}
-  {{/b.body}}
   {{#b.footer}}
     <div class="media">
       {{user/user-avatar user=update.user class="mr-3" size=38 avatarRounded=true}}
