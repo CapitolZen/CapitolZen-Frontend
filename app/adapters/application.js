@@ -18,20 +18,13 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   }),
 
   authorize(xhr) {
-    let { idToken, tokenType } = this.get('session.data.authenticated');
-    xhr.setRequestHeader('Authorization', `${tokenType} ${idToken}`);
+    let idToken = this.get('session.data.authenticated.data.token');
+    xhr.setRequestHeader('Authorization', `Bearer ${idToken}`);
 
     if (this.get('session.data.currentOrganizationId')) {
       xhr.setRequestHeader(
         'X-Organization',
-        this.get('currentUser.organization.id')
-      );
-    }
-
-    if (this.get('currentUser.organization.id')) {
-      xhr.setRequestHeader(
-        'X-Organization',
-        this.get('currentUser.organization.id')
+        this.get('session.data.currentOrganizationId')
       );
     }
 
