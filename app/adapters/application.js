@@ -9,7 +9,6 @@ import ENV from '../config/environment';
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   session: service(),
   namespace: '',
-  authorizer: 'authorizer:application',
   pathForType: function(type) {
     const underscored = underscore(type);
     return pluralize(underscored);
@@ -18,13 +17,35 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     return ENV.APP.API_HOST;
   }),
 
-  headers: computed('session', 'session.data.currentPageId', function() {
-    if (!this.get('session.isAuthenticated')) {
-      console.log('hello');
-      let page = this.get('session.data.currentPageId');
-      return { 'X-Page': page };
+  authorize(xhr) {
+    let { idToken, tokenType } = this.get('session.data.authenticated');
+    xhr.setRequestHeader('Authorization', `${tokenType} ${idToken}`);
+
+    if (this.get('session.data.currentOrganizationId')) {
+      xhr.setRequestHeader(
+        'X-Organization',
+        this.get('currentUser.organization.id')
+      );
     }
-    return {};
+
+    if (this.get('currentUser.organization.id')) {
+      xhr.setRequestHeader(
+        'X-Organization',
+        this.get('currentUser.organization.id')
+      );
+    }
+
+    if (this.get('session.data.currentPageId')) {
+      xhr.setRequestHeader('X-Page', this.get('session.data.currentPageId'));
+    }
+  },
+
+  headers: computed('session', 'session.data.currentPageId', function() {
+    let headers = {};
+    if (!this.get('session.isAuthenticated')) {
+      headers['X-Page'] = this.get('session.data.currentPageId');
+    }
+    return headers;
   }),
 
   // Deals with django

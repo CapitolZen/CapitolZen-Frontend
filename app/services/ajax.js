@@ -12,18 +12,17 @@ export default AjaxService.extend({
   }),
 
   headers: computed('session.data.authenticated.idToken', {
-    get() {
-      if (!this.get('session.isAuthenticated')) {
-        return {};
+    headers: computed(
+      'session.data.authenticated.data.token',
+      'currentUser.organization.id',
+      function() {
+        let headers = {};
+        headers.Authorization = `Bearer ${this.get(
+          'session.data.authenticated.data.token'
+        )}`;
+        headers['X-Organization'] = this.get('currentUser.organization.id');
+        return headers;
       }
-      let headers = {};
-      this.get('session').authorize(
-        'authorizer:application',
-        (headerName, headerValue) => {
-          headers[headerName] = headerValue;
-        }
-      );
-      return headers;
-    }
+    )
   })
 });

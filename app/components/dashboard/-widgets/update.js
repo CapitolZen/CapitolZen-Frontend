@@ -11,8 +11,10 @@ export default Component.extend({
   store: service(),
   currentUser: service(),
   flashMessages: service(),
+  cardList: null,
   init() {
     this._super(...arguments);
+    this.set('cardList', ['tools/editor/-cards/embedly']);
     this.get('fetchGroups').perform();
     this._setupModel();
   },

@@ -1,0 +1,7 @@
+<figure class="figure">
+  <img src={{html-safe payload.imgSrc}} alt="" class="figure-img img-fluid rounded">
+  <figcaption class="figure-caption">{{payload.caption}}</figcaption>
+</figure>
+{{#if editCard}}
+  {{bs-button defaultText="Edit Card" type="link" onClick=(action editCard)}}
+{{/if}}

@@ -150,7 +150,8 @@ Router.map(function() {
     this.route('updates', { path: ':id' });
     this.route('update', { path: ':id/:update' });
     this.route('bills', { path: ':id/bills' });
-    this.route('bill', { path: ':id/bill/:wrapper' });
+    this.route('bill', { path: ':id/bill/:bill' });
+    this.route('wrapper', { path: ':id/bill/saved/:wrapper' });
   });
 });
 
