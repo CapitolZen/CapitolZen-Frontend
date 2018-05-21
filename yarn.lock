@@ -4606,9 +4606,9 @@ ember-invoke-action@^1.4.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-junkdrawer@^0.7.2:
+ember-junkdrawer@mwisner/ember-junkdrawer#master:
   version "0.7.2"
-  resolved "https://registry.yarnpkg.com/ember-junkdrawer/-/ember-junkdrawer-0.7.2.tgz#4c865beae199b3880154f91b42e8952b2dd87c7e"
+  resolved "https://codeload.github.com/mwisner/ember-junkdrawer/tar.gz/3ee33068fb89393cb9e86bfdd193eb5ff74a1052"
   dependencies:
     broccoli-debug "^0.6.3"
     broccoli-funnel "^2.0.1"
