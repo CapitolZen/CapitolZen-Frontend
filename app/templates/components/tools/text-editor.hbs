@@ -2,8 +2,7 @@
 
   {{#mobiledoc-editor mobiledoc=content
                       spellcheck=true
-                      cards=(mobiledoc-component-cards)
-                      atoms=(mobiledoc-component-atoms)
+                      cards=cardComponentList
                       on-change=(action "mobileDocUpdated")
                       did-create-editor=(action "didCreateEditor")
                       class="note-editor d-flex flex-column-reverse"
@@ -36,10 +35,26 @@
             {{/dd.menu}}
           {{/bs-dropdown}}
 
+          {{#bs-dropdown as |dd|}}
+            {{#dd.button type="link"}}{{fa-icon "thumb-tack"}}{{/dd.button}}
+            {{#dd.menu as |menu|}}
+              {{#each cardList as |card|}}
+                {{#menu.item}}
+                  {{#bs-button type="link" onClick=(action "addCard" card)
+                               class="font-weight-bold"}}
+                    {{#if (eq card 'tools/editor/-cards/embedly')}}
+                      {{fa-icon "link"}} Embed
+                    {{/if}}
+                    {{#if (eq card 'tools/editor/-cards/wrapper')}}
+                      {{fa-icon "file"}} Bill
+                    {{/if}}
+                  {{/bs-button}}
 
-
-          {{#bs-button type="link" onClick=(action "addCard" 'tools/editor/-cards/embedly') class="font-weight-bold"}}{{fa-icon "link"}} Embed{{/bs-button}}
-          {{#bs-button type="link" onClick=(action "addCard" 'tools/editor/-cards/wrapper') class="font-weight-bold"}}{{fa-icon "file"}} Bill{{/bs-button}}
+                {{/menu.item}}
+              {{/each}}
+            {{/dd.menu}}
+          {{/bs-dropdown}}
+          
         </div>
       </div>
       {{#if (or autoSave isNew)}}

@@ -18,4 +18,10 @@ const DocFactory = EmberObject.extend({
   mobileDoc: alias('_doc')
 });
 
+export const CARDS = [
+  //'tools/editor/-cards/image',
+  'tools/editor/-cards/embedly',
+  'tools/editor/-cards/wrapper'
+];
+
 export { DocFactory };

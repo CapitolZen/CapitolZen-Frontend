@@ -37,10 +37,6 @@ module.exports = function(environment) {
     preventDuplicates: true
   };
 
-  ENV.junkDrawer = {
-    defaultPageTitle: 'Capitol Zen'
-  };
-
   ENV.stripe = {
     publishableKey: 'pk_test_2Ft7dlWczuYcNEc6LUtHqcZ9'
   };
@@ -155,7 +151,8 @@ module.exports = function(environment) {
 
   ENV['ember-junkdrawer'] = {
     enableIntercom: false,
-    enableFeatures: false
+    enableFeatures: false,
+    defaultPageTitle: 'Capitol Zen'
   };
 
   return ENV;

@@ -1,11 +1,8 @@
 import { helper } from '@ember/component/helper';
+import { CARDS } from '../utils/doc-factory';
 
 export function mobiledocCardNames() {
-  return [
-    'tools/editor/-cards/image',
-    'tools/editor/-cards/embedly',
-    'tools/editor/-cards/wrapper'
-  ];
+  return cards;
 }
 
 export default helper(mobiledocCardNames);

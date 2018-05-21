@@ -3,7 +3,8 @@ import Component from '@ember/component';
 import { EKMixin, keyUp, keyDown, keyPress } from 'ember-keyboard';
 import { on } from '@ember/object/evented';
 import { run } from '@ember/runloop';
-import { BLANK_DOC } from '../../utils/doc-factory';
+import { BLANK_DOC, CARDS } from '../../utils/doc-factory';
+import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-card';
 import { assert } from '@ember/debug';
 import $ from 'jquery';
 
@@ -24,6 +25,16 @@ export default Component.extend(EKMixin, {
 
   activateKeyboard: on('init', function() {
     set(this, 'keyboardActivated', true);
+  }),
+
+  cardList: computed('context', function() {
+    return this.getWithDefault('context.cardList', CARDS);
+  }),
+
+  cardComponentList: computed('cardList', function() {
+    return this.get('cardList').map(card => {
+      return createComponentCard(card);
+    });
   }),
 
   saveKey: on(keyDown('Enter+cmd'), function(event) {
@@ -77,7 +88,10 @@ export default Component.extend(EKMixin, {
       this.set('editor', editor);
     },
     addCard(cardName, payload = {}) {
-      assert('Please provide a valid card name', cardName);
+      assert(
+        'Please provide a valid card name',
+        this.get('cardList').includes(cardName)
+      );
       //can't add default params here because actions send `null` rather than `undefined`
       if (!payload) {
         payload = {};
