@@ -50,7 +50,9 @@ export default DS.Model.extend({
     get() {
       return this.get('notificationPreferences.wrapper-updated');
     },
-    set(key, value) {}
+    set(key, value) {
+      return value;
+    }
   }),
   committeeNotifications: computed('notificationPreferences', {
     get() {

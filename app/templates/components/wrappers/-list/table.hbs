@@ -7,6 +7,13 @@
   postTableSetup=(action "postTableSetup")
   recordType=recordType as |t| }}
 
+  {{#t.boxHeader}}
+    {{#bs-button type="link" onClick=(perform downloadWrappers) class="float-right"}}
+      {{fa-icon "download"}}
+      {{#bs-tooltip placement="bottom"}}Download{{/bs-tooltip}}
+    {{/bs-button}}
+  {{/t.boxHeader}}
+
   {{#if filtering}}
     {{#t.filter defaultRecordQuery=defaultRecordQuery preFilterAlter=(action "preFilterAlter") as |filter|}}
       {{filter.element label="Search" controlType="text" property="search"}}

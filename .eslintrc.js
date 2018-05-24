@@ -5,7 +5,7 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['ember'],
-  extends: ['eslint:recommended', 'plugin:ember/recommended'],
+  extends: ['eslint:recommended', 'prettier', 'plugin:ember/recommended'],
   env: {
     browser: true
   },
@@ -37,11 +37,7 @@ module.exports = {
       }
     }
   ],
-  extends: ['prettier'],
-  env: {
-    browser: true
-  },
-  rules: {},
+
   globals: {
     Promise: true,
     document: true,
