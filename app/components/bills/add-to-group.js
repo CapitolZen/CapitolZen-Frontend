@@ -34,7 +34,7 @@ export default Component.extend({
   fullWidth: true,
   buttonSize: false,
   displayText: true,
-  buttonType: 'outline-secondary',
+  buttonType: 'link',
   menuAlign: 'right',
   isMobile: alias('media.isMobile'),
   buttonText: alias('defaultButtonText'),

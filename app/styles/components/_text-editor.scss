@@ -41,6 +41,10 @@
 
 .note-editor .toolbar {
   border-top: 1px solid $cz-grey-lt;
+
+  .btn-link.active {
+    background-color: $light !important;
+  }
 }
 
 .note-add-wrapper {
@@ -62,6 +66,18 @@
 .mobiledoc-form.disabled {
   background: $gray-200;
   pointer-events: none;
+}
+
+//
+// Card Editing
+//////////////////////////////////////////
+.__mobiledoc-card {
+  margin: 1rem 2rem;
+  width: 90%;
+
+  [id^='mobiledoc-editor-card'] {
+    width: 100%;
+  }
 }
 
 //

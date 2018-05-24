@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-4">
+    {{#if media.isMobile}}
+      {{#bs-button type="light" onClick=(toggle-action facetsCollapsed this)}}
+        {{fa-icon "plus"}} See All
+      {{/bs-button}}
+    {{/if}}
+    {{#bs-collapse collapsed=facetsCollapsed}}
+      {{#bs-form model=filters onSubmit=(action "submitFilters") as |form|}} 
+        {{form.element label="Keyword" property="search" placeholder="Keyword"}}
+        {{#form.element label="Party" property="sponsor_party" useIcons=false as |el|}}
+          {{#bs-button-group class="btn-group-vertical" justified=true value=el.value type="radio"
+                              onChange=(action (mut el.value)) as |bg|}}
+            {{#bg.button type="default" value=null}}Any{{/bg.button}}
+            {{#bg.button type="default" value='republican'}}Republican{{/bg.button}}
+            {{#bg.button type="default" value='democrat'}}Democratic{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        <div class="d-flex">
+          {{bs-button class="flex-grow-1" defaultText="Filter" pendingText="Saving..." type="primary"
+                      buttonType="submit"}}
+
+          {{#bs-button class="flex-grow-1" type="link" onClick=(action "resetFilters")}}
+            {{fa-icon "times"}} Reset
+          {{/bs-button}}
+        </div>
+      {{/bs-form}}
+    {{/bs-collapse}}
+  </div>
+  <div class="col-md-8">
+    {{#if query.isIdle}}
+        {{#each model as |bill|}}
+          {{bills/bill-preview bill=bill}}
+        {{else}}
+            {{#ui/ui-box as |b|}}
+              {{#b.header}} No Results {{/b.header}}
+            {{/ui/ui-box}}
+        {{/each}}
+      {{else}}
+        {{ui/loading-animation}}
+    {{/if}}
+    
+    {{#if query.isIdle}}
+      <nav aria-label="page navigation" class="mt-3 d-flex justify-content-center">
+      <ul class="pagination">
+        {{#if (gt currentPage 1)}}
+          <li class="page-item">
+            <a class="page-link" onclick={{action "decreasePage"}}>{{fa-icon "chevron-left"}}</a>
+          </li>          
+        {{/if}}
+        <li class="page-item">
+          <li class="page-item">
+            <a class="page-link" onclick={{action "goToPage" 1}}>1</a>
+          </li> 
+        </li>
+        {{#if (gt currentPage 10)}}
+          <li class="page-item"><span class="page-link disabled">...</span></li>
+        {{/if}}
+        
+        {{#each (range minPageDisplay maxPageDisplay) as |number|}}        
+          <li class="page-item">
+           <a class="page-link" onclick={{action "goToPage" number}}>{{number}}</a>
+          </li>
+        {{/each}}
+        {{#if (gt totalPages maxPageDisplay)}}
+          <li class="page-item"><span class="page-link disabled">...</span></li>
+          <li class="page-item">
+          
+            <a class="page-link" onclick={{action "goToPage" totalPages}}>{{totalPages}}</a>
+          </li>
+        {{/if}}
+        {{#if (lt currentPage totalPages)}}
+          <li class="page-item">
+            <a class="page-link" onclick={{action "increasePage"}}>{{fa-icon "chevron-right"}}</a>
+          </li>          
+        {{/if}}
+      </ul>
+    </nav>
+    {{/if}}
+  </div>
+  
+</div>

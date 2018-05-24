@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 
-export default Component.extend({
+const Embedly = Component.extend({
   rawUrl: '',
 
   actions: {
@@ -10,3 +10,9 @@ export default Component.extend({
     }
   }
 });
+
+Embedly.reopenClass({
+  positionalParams: ['rawUrl']
+});
+
+export default Embedly;

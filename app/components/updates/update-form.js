@@ -19,6 +19,7 @@ export default FormComponent.extend({
       return this.createNewModel();
     }
   }),
+  isNew: alias('model.isNew'),
   createNewModel() {
     return get(this, 'store').createRecord('update', {
       page: get(this, 'page'),
@@ -32,7 +33,7 @@ export default FormComponent.extend({
     yield timeout(400);
     return get(this, 'store').query('wrapper', {
       search: term,
-      group: get(this, 'update.group.id')
+      group: get(this, 'model.group.id')
     });
   }),
   callSuccess() {},

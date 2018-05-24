@@ -21,7 +21,7 @@
         </div>
       {{/link-to}}
     </div>
-    {{#navbar.content class="justify-content-md-end"}}
+    {{#navbar.content class="justify-content-end"}}
       {{#navbar.nav as |nav|}}
         {{#nav.item}}{{#nav.link-to "page.updates" page.id class="font-weight-bold"}}All{{/nav.link-to}}{{/nav.item}}
         {{#nav.item}}{{#nav.link-to "page.bills" page.id class="font-weight-bold"}}Saved Bills{{/nav.link-to}}{{/nav.item}}
@@ -35,9 +35,12 @@
     {{#bs-dropdown as |dd|}}
       {{#dd.toggle class="admin-menu-toggle"}}Manage Page <span class="caret"></span>{{/dd.toggle}}
       {{#dd.menu as |ddm|}}
+        {{#if updateId}}
+          {{#ddm.item}}{{#ddm.link-to "page-admin.update" page.id updateId}}Edit{{/ddm.link-to}}{{/ddm.item}}
+        {{/if}}
         {{#ddm.item}}{{#ddm.link-to "app"}}Home{{/ddm.link-to}}{{/ddm.item}}
         {{#ddm.item}}{{#ddm.link-to "page-admin.updates" page.id}}Post Update{{/ddm.link-to}}{{/ddm.item}}
-        {{#ddm.item}}{{#ddm.link-to "page-admin.detail" page.id}}Edit{{/ddm.link-to}}{{/ddm.item}}
+        {{#ddm.item}}{{#ddm.link-to "page-admin.detail" page.id}}Page Settings{{/ddm.link-to}}{{/ddm.item}}
       {{/dd.menu}}
     {{/bs-dropdown}}
   </div>

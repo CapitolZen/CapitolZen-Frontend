@@ -5,25 +5,26 @@ import AjaxService from 'ember-ajax/services/ajax';
 
 export default AjaxService.extend({
   session: service(),
+  currentUser: service(),
   contentType: 'application/json; charset=utf-8',
 
   host: computed(function() {
     return ENV.APP.API_HOST;
   }),
 
-  headers: computed('session.data.authenticated.idToken', {
-    get() {
-      if (!this.get('session.isAuthenticated')) {
-        return {};
-      }
+  headers: computed(
+    'session.data.authenticated.data.token',
+    'currentUser.organization.id',
+    function() {
       let headers = {};
-      this.get('session').authorize(
-        'authorizer:application',
-        (headerName, headerValue) => {
-          headers[headerName] = headerValue;
-        }
-      );
+      headers.Authorization = `Bearer ${this.get(
+        'session.data.authenticated.data.token'
+      )}`;
+
+      if (this.get('currentUser.organization.id')) {
+        headers['X-Organization'] = this.get('currentUser.organization.id');
+      }
       return headers;
     }
-  })
+  )
 });

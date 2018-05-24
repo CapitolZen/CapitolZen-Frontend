@@ -18,7 +18,7 @@
 
           {{#unless fetchGroups.isRunning}}
             {{form.element controlType="text" property="title" placeholder="Headline" disabled=disableSubmit}}
-            {{form.element controlType="mobiledoc" property="document" disabled=disableSubmit}}
+            {{form.element controlType="mobiledoc" property="document" disabled=disableSubmit options=(hash cardList=cardList)}}
           {{/unless}}
 
         {{/b.body}}

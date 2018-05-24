@@ -5,15 +5,7 @@
     {{/b.header}}
     {{#b.body}}
       {{form.element controlType="text" property="title" placeholder="Headline"}}
-      {{form.element controlType="mobiledoc" property="document"}}
-
-      {{#form.element controlType="power-select-multiple" property="wrappers" label="Saved Bills" options=(hash isNew=isNew) as |el|}}
-        {{#el.control search=(perform searchWrappers) as |item|}}
-          <div class="d-flex justify-content-between">
-            {{item.bill.stateId}} {{wrappers/wrapper-position wrapper=item canEdit=false class="d-inline"}}
-          </div>
-        {{/el.control}}
-      {{/form.element}}
+      {{form.element controlType="mobiledoc" property="document" options=(hash groupId=changeset.group.id pageId=changeset.page.id)}}
 
       <h6>{{fa-icon "paperclip"}} Attachments</h6>
       {{#unless hideFiles}}
@@ -34,7 +26,7 @@
 
     {{/b.body}}
     {{#b.footer}}
-      {{bs-button defaultText="Post" disabled=submit.isRunning type="primary" pendingText="Saving..." buttonType="submit"}}
+      {{bs-button defaultText=(if isNew "Post" "Save") disabled=submit.isRunning type="primary" pendingText="Saving..." buttonType="submit"}}
     {{/b.footer}}
   {{/ui/ui-box}}
 {{/bs-form}}
