@@ -62,15 +62,15 @@ export default CurrentUser.extend({
 
   intercomData: computed('currentUser', function() {
     return {
-      name: get(this, 'currentUser.name'),
-      email: get(this, 'currentUser.username'),
-      user_id: get(this, 'currentUser.id'),
-      user_is_admin: get(this, 'currentUser.user_is_admin'),
-      user_is_staff: get(this, 'currentUser.user_is_staff'),
+      name: this.get('currentUser.name'),
+      email: this.get('currentUser.username'),
+      user_id: this.get('currentUser.id'),
+      user_is_admin: this.get('currentUser.user_is_admin'),
+      user_is_staff: this.get('currentUser.user_is_staff'),
       company: {
-        id: get(this, 'currentUser.currentOrganization.id'),
-        name: get(this, 'currentUser.currentOrganization.name'),
-        is_active: get(this, 'currentUser.currentOrganization.isActive')
+        id: this.get('currentUser.currentOrganization.id'),
+        name: this.get('currentUser.currentOrganization.name'),
+        is_active: this.get('currentUser.currentOrganization.isActive')
       }
     };
   }),

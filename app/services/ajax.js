@@ -11,21 +11,19 @@ export default AjaxService.extend({
     return ENV.APP.API_HOST;
   }),
 
-  headers: computed('session.data.authenticated.idToken', {
-    headers: computed(
-      'session.data.authenticated.data.token',
-      'currentUser.organization.id',
-      function() {
-        let headers = {};
-        headers.Authorization = `Bearer ${this.get(
-          'session.data.authenticated.data.token'
-        )}`;
+  headers: computed(
+    'session.data.authenticated.data.token',
+    'currentUser.organization.id',
+    function() {
+      let headers = {};
+      headers.Authorization = `Bearer ${this.get(
+        'session.data.authenticated.data.token'
+      )}`;
 
-        if (this.get('currentUser.organization.id')) {
-          headers['X-Organization'] = this.get('currentUser.organization.id');
-        }
-        return headers;
+      if (this.get('currentUser.organization.id')) {
+        headers['X-Organization'] = this.get('currentUser.organization.id');
       }
-    )
-  })
+      return headers;
+    }
+  )
 });
