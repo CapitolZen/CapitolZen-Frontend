@@ -1,14 +1,28 @@
 import Component from '@ember/component';
-import moment from 'moment';
 import { computed, get, set } from '@ember/object';
+import { task } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
+
+const actionCellComponent = { component: 'wrappers/-list/cell/actions' };
 
 export default Component.extend({
+  ajax: service(),
+  currentUser: service(),
   recordType: 'wrapper',
   sort: 'stateId',
   filtering: true,
   group: null,
   groupId: null,
-  actionCellComponent: { component: 'wrappers/-list/cell/actions' },
+  tableOptions: null,
+  init() {
+    this._super(...arguments);
+    this.set('tableOptions', {
+      height: '65vh',
+      canSelect: true,
+      responsive: true
+    });
+  },
+
   defaultRecordQuery: computed(function() {
     let query = {};
 
@@ -27,15 +41,7 @@ export default Component.extend({
     return query;
   }),
 
-  tableOptions: {
-    height: '65vh',
-    canSelect: true,
-    responsive: true
-  },
-
   columns: computed('actionCellComponent', function() {
-    let actionCellComponent = this.get('actionCellComponent');
-
     let columns = [
       {
         width: '40px',
@@ -86,7 +92,22 @@ export default Component.extend({
 
     return columns;
   }),
+  downloadWrappers: task(function*() {
+    let group = this.get('group.id'),
+      title = `${this.get('group.title')} Saved Bills`;
 
+    let {
+      data: { url }
+    } = yield this.get('ajax').post('/reports/generate/', {
+      data: { group, title }
+    });
+
+    let link = document.createElement('a');
+    link.setAttribute('href', url);
+
+    link.click();
+    this.get('currentUser').event('report:download');
+  }),
   actions: {
     /**
      * Post Table Setup Hook
