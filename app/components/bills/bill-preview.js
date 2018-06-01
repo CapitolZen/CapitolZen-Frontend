@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['card', 'w100'],
+  classNames: ['w100'],
   bill: null
 });
