@@ -1,6 +1,6 @@
 import { set, get, computed } from '@ember/object';
 import Component from '@ember/component';
-import { EKMixin, keyUp, keyDown, keyPress } from 'ember-keyboard';
+import { EKMixin, keyDown } from 'ember-keyboard';
 import { on } from '@ember/object/evented';
 import { run } from '@ember/runloop';
 import { BLANK_DOC, CARDS } from '../../utils/doc-factory';
@@ -78,7 +78,6 @@ export default Component.extend(EKMixin, {
 
   actions: {
     mobileDocUpdated(doc) {
-      console.log(doc);
       set(this, 'doc', doc);
       if (get(this, 'autoSave')) {
         this.save();
@@ -112,9 +111,7 @@ export default Component.extend(EKMixin, {
       this.delete();
     },
 
-    didSaveCard(props) {
-      console.log(props);
-    },
+    didSaveCard(/*props*/) {},
 
     focusEditor(event) {
       if (
@@ -123,8 +120,6 @@ export default Component.extend(EKMixin, {
       ) {
         let { post } = this.editor;
         let range = post.toRange();
-        console.log('sup');
-        console.log(range);
         this.editor.focus();
         event.preventDefault();
         this.editor.run(postEditor => {

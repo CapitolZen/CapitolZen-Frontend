@@ -13,7 +13,6 @@ export default Component.extend({
   },
   actions: {
     billAdded({ wrapper }) {
-      console.log(get(this, 'wrapperList'));
       get(this, 'wrapperList').pushObject(wrapper);
     }
   }

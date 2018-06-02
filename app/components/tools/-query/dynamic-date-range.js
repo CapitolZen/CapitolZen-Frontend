@@ -8,7 +8,6 @@ export default Component.extend({
     let [key] = Object.keys(value);
     if (key) {
       let parts = key.split('bill__action_dates__');
-      console.log(parts);
       if (parts.length > 1) {
         let inputs = parts[1].split('__');
         set(this, 'lookupKey', inputs[0]);

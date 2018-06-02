@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { get, set, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
-import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import moment from 'moment';
 
@@ -25,7 +24,6 @@ export default Component.extend({
       params.page_size = get(this, 'pageSize');
     }
     let records = yield get(this, 'store').query('action', params);
-    console.log(records.get('meta'));
     set(this, 'meta', records.get('meta'));
     set(this, 'recordList', records);
   }),

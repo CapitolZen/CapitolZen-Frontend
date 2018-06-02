@@ -3,8 +3,6 @@ import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import { get, computed } from '@ember/object';
-import Changeset from 'ember-changeset';
-import lookupValidator from 'ember-changeset-validations';
 
 export default FormComponent.extend({
   ajax: service(),
@@ -42,7 +40,6 @@ export default FormComponent.extend({
    */
   submit: task(function*(changeset) {
     changeset.execute();
-    console.log(this.get('token'));
     this.set('model.token', this.get('token'));
     let payload = this.get('model');
 

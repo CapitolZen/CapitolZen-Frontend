@@ -79,32 +79,21 @@ export default Component.extend({
     set(this, 'reportLink', reportLink);
   }),
   saveRecords: task(function*() {
-    let report = get(this, 'report'),
-      reportLink = get(this, 'reportLink');
+    let report = get(this, 'report');
 
-    let saved = yield report.save();
-    console.log(saved);
+    yield report.save();
   }),
   actions: {
     submitReport() {
       // TODO add validations and dynamically submit this
       let report = get(this, 'report');
-      console.log(report);
-      report
-        .save()
-        .then(() => {
-          console.log('sup');
-        })
-        .catch(err => {
-          console.log(err);
-          alert(err);
-        });
+      report.save().catch(err => {
+        alert(err);
+      });
     },
     submitReportLink() {
       let report = get(this, 'report');
       report.save();
-      console.log(report);
-      debugger;
     }
   }
 });

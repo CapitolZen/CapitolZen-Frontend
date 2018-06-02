@@ -27,8 +27,6 @@ export default FormComponent.extend({
   },
   actions: {
     addUser(user) {
-      console.log(user);
-      debugger;
       this.get('store').pushPayload('user', user);
       let model = this.get('store').peekRecord('user', user.data.id);
       this.get('changeset')

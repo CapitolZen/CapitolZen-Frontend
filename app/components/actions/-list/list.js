@@ -121,7 +121,7 @@ export default Component.extend({
       set(this, 'currentPage', page);
       set(this, 'totalRecordCount', count);
     } catch (e) {
-      console.log(e);
+      console.log(e); // eslint-disable-line
     }
   }).drop(),
 

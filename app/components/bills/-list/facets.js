@@ -47,7 +47,6 @@ export default Component.extend({
   }),
 
   updateParams() {
-    console.log(this.filters);
     this.get('router').transitionTo({ queryParams: this.filters });
   },
 
@@ -102,7 +101,6 @@ export default Component.extend({
       this.updateParams();
     },
     goToPage(page) {
-      console.log(page);
       this.set('currentPage', page);
       this.updateParams();
     },

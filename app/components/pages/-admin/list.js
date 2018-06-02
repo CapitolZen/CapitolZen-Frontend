@@ -61,7 +61,6 @@ export default Component.extend({
       this.query();
     },
     filter(model) {
-      console.log(model);
       this.query();
     },
     clearFilters() {

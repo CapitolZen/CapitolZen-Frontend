@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { computed, get, set, observer } from '@ember/object';
-import { alias, filterBy } from '@ember/object/computed';
+import { computed, get, set } from '@ember/object';
+import { filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { A } from '@ember/array';
@@ -35,12 +35,11 @@ export default Component.extend({
       set(this, 'currentPage', page);
       set(this, 'totalRecordCount', count);
     } catch (e) {
-      console.log(e);
+      console.log(e); // eslint-ignore-line
     }
   }).drop(),
   recordsComplete: computed(
-    'windoc.scrollTop',
-    'windoc.scrollHeight',
+    'windoc.{scrollTop,scrollHeight}',
     'totalRecordCount',
     'model.[]',
     'actionList',
@@ -48,8 +47,7 @@ export default Component.extend({
       let top = get(this, 'windoc.scrollTop'),
         total = get(this, 'windoc.scrollHeight'),
         modelLength = get(this, 'model.length'),
-        totalServerCount = get(this, 'totalRecordCount'),
-        availableActions = get(this, 'actionList.length');
+        totalServerCount = get(this, 'totalRecordCount');
 
       if (top / total > 0.55 && modelLength < totalServerCount) {
         get(this, 'fetchRecords').perform();
