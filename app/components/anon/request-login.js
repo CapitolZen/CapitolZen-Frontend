@@ -21,7 +21,6 @@ export default Component.extend({
           this.set('success', true);
         })
         .catch(e => {
-          console.log(e);
           this.get('flashMessages').danger(
             'An error has occurred and our team is notified.'
           );

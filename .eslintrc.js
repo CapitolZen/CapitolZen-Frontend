@@ -9,7 +9,10 @@ module.exports = {
   env: {
     browser: true
   },
-  rules: {},
+  rules: {
+    'ember/avoid-leaking-state-in-ember-objects': 0,
+    'ember/no-on-calls-in-components': 0
+  },
   overrides: [
     // node files
     {
@@ -42,6 +45,10 @@ module.exports = {
     Promise: true,
     document: true,
     Raven: true,
-    embedly: true
+    embedly: true,
+    UserSnap: true,
+    window: true,
+    FileReader: true,
+    requestAnimationFrame: true
   }
 };

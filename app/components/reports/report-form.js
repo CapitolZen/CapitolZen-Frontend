@@ -125,7 +125,6 @@ export default Component.extend({
       return getWithDefault(this, 'model.layout', d);
     },
     set(key, value) {
-      console.log(value);
       return value;
     }
   }),
@@ -163,7 +162,6 @@ export default Component.extend({
       get(this, 'getWrappers').perform();
     },
     deleteFilterItem(obj) {
-      console.log(obj);
       let [key] = Object.keys(obj);
       let model = get(this, 'model');
       model.deleteFilter(key);
@@ -194,7 +192,7 @@ export default Component.extend({
           set(this, 'isSubmitting', true);
         })
         .catch(err => {
-          console.log(err);
+          console.log(err); // eslint-disable-line
           set(this, 'isSubmitting', false);
         });
     },

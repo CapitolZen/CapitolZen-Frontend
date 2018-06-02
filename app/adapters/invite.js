@@ -4,7 +4,7 @@ import { get } from '@ember/object';
 
 export default ApplicationAdapter.extend({
   session: service(),
-  urlForFindRecord(id, modelName, snapshot) {
+  urlForFindRecord(id) {
     if (get(this, 'session.isAuthenticated')) {
       return this._super(...arguments);
     } else {

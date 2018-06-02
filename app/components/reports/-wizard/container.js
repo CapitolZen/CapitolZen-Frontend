@@ -30,7 +30,6 @@ export default Component.extend({
   config: {},
   updateConfig(config) {
     let currentConfig = get(this, 'config');
-    console.log(config);
     currentConfig = Object.assign(currentConfig, config);
     set(this, 'config', currentConfig);
   },

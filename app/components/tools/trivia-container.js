@@ -30,7 +30,6 @@ export default Component.extend({
         get(this, 'questionStore').addObject(question);
       });
     } catch (err) {
-      console.log(err);
       set(this, 'isError', true);
     }
   }).on('init'),

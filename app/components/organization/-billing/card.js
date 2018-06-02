@@ -33,7 +33,6 @@ export default Component.extend({
       })
       .catch(e => {
         get(this, 'flashMessages').danger('Card Failed To Update');
-        console.log(e);
         throw e;
       });
 
@@ -61,7 +60,6 @@ export default Component.extend({
         })
         .catch(e => {
           get(this, 'flashMessages').danger('Card Failed To Update');
-          console.log(e);
           throw e;
         });
     }
