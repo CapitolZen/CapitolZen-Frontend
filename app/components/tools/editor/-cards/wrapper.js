@@ -12,6 +12,7 @@ export default Component.extend({
   wrapper: null,
   init() {
     this._super(...arguments);
+    console.log(this.get('payload'));
     this.get('setupData').perform();
   },
   setupData: task(function*() {

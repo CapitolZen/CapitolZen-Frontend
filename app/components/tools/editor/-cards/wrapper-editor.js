@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -15,10 +16,15 @@ export default Component.extend({
   ],
   wrapper: null,
   groupId: alias('payload.editorContext.group-id'),
-  pageId: alias('payload.editorContext.page-id'),
+  pageId: computed('payload.editorContext', function() {
+    if (this.get('payload.editorContext.page-id')) {
+      return this.get('payload.editorContext.page-id');
+    } else {
+      return this.get('payload.editorContext.pageId');
+    }
+  }),
   didReceiveAttrs() {
     this._super(...arguments);
-    console.log(this.payload);
     if (this.get('payload')) {
       this.set('wrapperId', this.get('payload.wrapperId'));
     }
@@ -33,11 +39,13 @@ export default Component.extend({
   }),
   actions: {
     save() {
-      let props = { wrapperId: this.get('wrapper.id'), pageId: this.pageId };
+      let props = {};
+      props['wrapper-id'] = this.get('wrapper.id');
+      props['page-id'] = this.pageId;
       this.saveCard(props);
       this.cancelCard();
       props.cardName = 'wrapper';
-      this.sendAction('didSaveCard', props);
+      this.sendAction('didSaveCard', props); // eslint-disable-line
     }
   }
 });
