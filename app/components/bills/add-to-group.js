@@ -144,9 +144,7 @@ export default Component.extend({
           this.incrementProperty('savedCount');
           get(this, 'currentUser').event('wrapper:saved');
         })
-        .catch(e => {
-          console.log(e);
-        });
+        .catch(e => {});
     } else {
       let promises = row.wrappers.map(wrapper => {
         wrapper.destroyRecord();

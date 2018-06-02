@@ -6,7 +6,6 @@ export default ApplicationAdapter.extend({
   session: service(),
   headers: computed('session', 'session.data.currentPageId', function() {
     if (!this.get('session.isAuthenticated')) {
-      console.log('hello');
       let page = this.get('session.data.currentPageId');
       return { 'X-Page': page };
     }

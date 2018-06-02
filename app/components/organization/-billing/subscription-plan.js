@@ -30,7 +30,6 @@ export default Component.extend({
   actions: {
     selectPlan(plan) {
       this.get('parentComponent').changeSelectedPlan(plan);
-      console.log(plan);
     }
   }
 });

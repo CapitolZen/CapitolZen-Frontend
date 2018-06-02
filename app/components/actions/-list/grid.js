@@ -25,7 +25,6 @@ export default Component.extend({
       params.page_size = get(this, 'pageSize');
     }
     let records = yield get(this, 'store').query('action', params);
-    console.log(records.get('meta'));
     set(this, 'meta', records.get('meta'));
     set(this, 'recordList', records);
   }),

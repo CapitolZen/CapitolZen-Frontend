@@ -42,7 +42,6 @@ export default FormComponent.extend({
    */
   submit: task(function*(changeset) {
     changeset.execute();
-    console.log(this.get('token'));
     this.set('model.token', this.get('token'));
     let payload = this.get('model');
 

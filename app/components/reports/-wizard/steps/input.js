@@ -49,7 +49,6 @@ export default Component.extend({
   }),
   parseInput: task(function*() {
     yield timeout(500);
-    console.log(get(this, 'billIds'));
   }),
 
   searchTask: task(function*(term) {

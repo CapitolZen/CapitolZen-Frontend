@@ -13,7 +13,6 @@ export default Component.extend({
   comment: null,
   didReceiveAttrs() {
     this._super(...arguments);
-    console.log(this);
     if (this.get('payload')) {
       this.set('link', this.get('payload.link'));
       this.set('comment', this.get('payload.comment'));
