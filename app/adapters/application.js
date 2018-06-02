@@ -19,7 +19,9 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
 
   authorize(xhr) {
     let idToken = this.get('session.data.authenticated.data.token');
-    xhr.setRequestHeader('Authorization', `Bearer ${idToken}`);
+    if (idToken) {
+      xhr.setRequestHeader('Authorization', `Bearer ${idToken}`);
+    }
 
     if (this.get('session.data.currentOrganizationId')) {
       xhr.setRequestHeader(
