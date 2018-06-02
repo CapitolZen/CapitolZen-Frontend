@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { get, set, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
-import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import moment from 'moment';
 
