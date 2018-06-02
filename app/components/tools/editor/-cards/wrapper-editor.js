@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 
 export default Component.extend({
@@ -14,18 +15,12 @@ export default Component.extend({
     'rounded'
   ],
   wrapper: null,
-  groupId: computed('payload.editorContext.{group-id,groupId}', function() {
-    if (this.get('payload.editorContext.group-id')) {
-      return this.get('payload.editorContext.group-id');
+  groupId: alias('payload.editorContext.group-id'),
+  pageId: computed('payload.editorContext', function() {
+    if (this.get('payload.editorContext.page-id')) {
+      return this.get('payload.editorContext.page-id');
     } else {
-      return this.get('payload.editorContext.groupId');
-    }
-  }),
-  pageId: computed('payload.{page-id,pageId}', function() {
-    if (this.get('payload.page-id')) {
-      return this.get('payload.page-id');
-    } else {
-      return this.get('payload.pageId');
+      return this.get('payload.editorContext.pageId');
     }
   }),
   didReceiveAttrs() {
@@ -46,7 +41,7 @@ export default Component.extend({
     save() {
       let props = {};
       props['wrapper-id'] = this.get('wrapper.id');
-      props['page-id'] = this.get('pageId');
+      props['page-id'] = this.pageId;
       this.saveCard(props);
       this.cancelCard();
       props.cardName = 'wrapper';

@@ -17,12 +17,9 @@ export default AjaxService.extend({
     'currentUser.organization.id',
     function() {
       let headers = {};
-
-      if (this.get('session.data.authenticated.data.token')) {
-        headers.Authorization = `Bearer ${this.get(
-          'session.data.authenticated.data.token'
-        )}`;
-      }
+      headers.Authorization = `Bearer ${this.get(
+        'session.data.authenticated.data.token'
+      )}`;
 
       if (this.get('currentUser.organization.id')) {
         headers['X-Organization'] = this.get('currentUser.organization.id');
