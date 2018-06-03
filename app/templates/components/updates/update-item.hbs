@@ -11,9 +11,11 @@
 
     {{#if update.files}}
       <h6>{{fa-icon "paperclip"}} Attachments</h6>
-      {{#each update.files as |file|}}
-        {{files/file-thumbnail file class="col-6 col-md-3"}}
-      {{/each}}
+      <div class="row">
+        {{#each update.files as |file|}}
+          {{files/file-thumbnail file class="col-6 col-md-3"}}
+        {{/each}}
+      </div>
     {{/if}}
   {{/b.body}}
 
