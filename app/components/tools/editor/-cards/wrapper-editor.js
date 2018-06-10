@@ -14,11 +14,11 @@ export default Component.extend({
     'rounded'
   ],
   wrapper: null,
-  groupId: computed('payload.editorContext.{group-id,groupId}', function() {
-    if (this.get('payload.editorContext.group-id')) {
-      return this.get('payload.editorContext.group-id');
+  groupId: computed('payload.{group-id,groupId}', function() {
+    if (this.get('payload.group-id')) {
+      return this.get('payload.group-id');
     } else {
-      return this.get('payload.editorContext.groupId');
+      return this.get('payload.groupId');
     }
   }),
   pageId: computed('payload.{page-id,pageId}', function() {
