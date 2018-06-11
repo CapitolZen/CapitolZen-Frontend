@@ -2,9 +2,8 @@ import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { A } from '@ember/array';
 import { get, set, computed } from '@ember/object';
-import { alias, sort } from '@ember/object/computed';
+import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { all } from 'rsvp';
 
 const Cosponsors = Component.extend({
   store: service(),

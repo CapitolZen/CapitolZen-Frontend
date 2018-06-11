@@ -1,12 +1,10 @@
 import Component from '@ember/component';
-import { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
-import { alias, gte, oneWay } from '@ember/object/computed';
+import { alias } from '@ember/object/computed';
 import { A } from '@ember/array';
-import { assert } from '@ember/debug';
 import { typeOf } from '@ember/utils';
-import { copy } from '@ember/object/internals';
 
 const filters = {
   search: '',

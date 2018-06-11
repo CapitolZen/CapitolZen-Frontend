@@ -2,7 +2,6 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { alias } from '@ember/object/computed';
-import { task } from 'ember-concurrency';
 
 export default Component.extend({
   classNames: ['bill-search-wrapper'],

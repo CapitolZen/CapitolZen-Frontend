@@ -5,7 +5,7 @@
     {{/b.header}}
     {{#b.body}}
       {{form.element controlType="text" property="title" placeholder="Headline"}}
-      {{form.element controlType="mobiledoc" property="document" options=(hash isNew=isNew groupId=changeset.group.id pageId=page.id)}}
+      {{form.element controlType="mobiledoc" property="document" options=(hash isNew=isNew groupId=changeset.group.id pageId=changeset.page.id)}}
 
       <h6>{{fa-icon "paperclip"}} Attachments</h6>
       {{#unless hideFiles}}
