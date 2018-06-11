@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
 import { computed, get } from '@ember/object';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
-import { alias } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { task, timeout } from 'ember-concurrency';
 import { run } from '@ember/runloop';
@@ -19,7 +18,7 @@ export default FormComponent.extend({
       return this.createNewModel();
     }
   }),
-  isNew: alias('model.isNew'),
+  isNew: false,
   createNewModel() {
     return get(this, 'store').createRecord('update', {
       page: get(this, 'page'),
