@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, set, computed } from '@ember/object';
+import { get, set } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import { empty } from '@ember/object/computed';

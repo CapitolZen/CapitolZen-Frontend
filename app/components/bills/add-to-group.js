@@ -3,8 +3,7 @@ import { computed, set, get } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { assert } from '@ember/debug';
-import { task, hash } from 'ember-concurrency';
-import { A, isArray } from '@ember/array';
+import { task } from 'ember-concurrency';
 import { all } from 'rsvp';
 import moment from 'moment';
 
@@ -136,7 +135,7 @@ export default Component.extend({
           })
           .save();
       });
-      all(promises)
+      yield all(promises)
         .then(wrappers => {
           set(row, 'wrappers', wrappers);
           set(row, 'selected', true);
@@ -144,13 +143,13 @@ export default Component.extend({
           this.incrementProperty('savedCount');
           get(this, 'currentUser').event('wrapper:saved');
         })
-        .catch(e => {});
+        .catch(() => {});
     } else {
       let promises = row.wrappers.map(wrapper => {
         wrapper.destroyRecord();
       });
 
-      all(promises).then(wrappers => {
+      yield all(promises).then(() => {
         set(row, 'wrappers', []);
       });
       set(row, 'selected', false);

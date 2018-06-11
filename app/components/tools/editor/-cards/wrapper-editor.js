@@ -21,6 +21,7 @@ export default Component.extend({
       return this.get('payload.editorContext.groupId');
     }
   }),
+  //Don't judge. I don't know what's going on.
   pageId: computed('payload.editorContext.{page-id,pageId}', function() {
     if (this.get('payload.editorContext.page-id')) {
       return this.get('payload.editorContext.page-id');
@@ -29,8 +30,12 @@ export default Component.extend({
       return this.get('payload.editorContext.pageId');
     }
 
-    if (this.get('_pageId')) {
-      return this._pageId;
+    if (this.get('payload.pageId')) {
+      return this.get('payload.pageId');
+    }
+
+    if (this.get('payload.page-id')) {
+      return this.get('payload.page-id');
     }
 
     return false;
@@ -54,6 +59,7 @@ export default Component.extend({
       let props = {};
       props['wrapper-id'] = this.get('wrapper.id');
       props['page-id'] = this.get('pageId');
+      console.log(props);
       this.saveCard(props);
       this.cancelCard();
       props.cardName = 'wrapper';

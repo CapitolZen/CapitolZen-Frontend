@@ -18,10 +18,16 @@ export default FormComponent.extend({
       return this.createNewModel();
     }
   }),
+  _page: computed('update', 'page', function() {
+    if (this.page) {
+      return this.page;
+    }
+    return this.get('update.page');
+  }),
   isNew: false,
   createNewModel() {
     return get(this, 'store').createRecord('update', {
-      page: get(this, 'page'),
+      page: get(this, '_page'),
       group: get(this, 'page.group'),
       organization: get(this, 'page.group.organization'),
       user: get(this, 'currentUser.user'),

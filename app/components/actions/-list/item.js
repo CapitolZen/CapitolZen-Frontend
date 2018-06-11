@@ -1,6 +1,5 @@
 import Component from '@ember/component';
-import { get, set, computed } from '@ember/object';
-import { alias } from '@ember/object/computed';
+import { get, computed } from '@ember/object';
 
 import InViewportMixin from 'ember-in-viewport';
 export default Component.extend(InViewportMixin, {

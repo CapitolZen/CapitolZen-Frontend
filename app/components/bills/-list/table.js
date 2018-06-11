@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { computed, set, get } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { assign } from '@ember/polyfills';
 
 export default Component.extend({
   media: service(),
