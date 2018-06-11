@@ -20,7 +20,7 @@ export default DS.Model.extend({
     'previewUrl',
     function() {
       let preview = this.previewUrl;
-      if (preview && JSON.parse(preview)) {
+      if (preview && preview !== 'false') {
         return preview;
       }
       return this.get('metadata.preview.preview.url');
