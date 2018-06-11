@@ -1,7 +1,7 @@
 import { inject as service } from '@ember/service';
 import { computed, get } from '@ember/object';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
-import { oneWay } from '@ember/object/computed';
+import { alias } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { task, timeout } from 'ember-concurrency';
 import { run } from '@ember/runloop';
@@ -19,7 +19,7 @@ export default FormComponent.extend({
       return this.createNewModel();
     }
   }),
-  isNew: oneWay('model.isNew'),
+  isNew: alias('model.isNew'),
   createNewModel() {
     return get(this, 'store').createRecord('update', {
       page: get(this, 'page'),
@@ -38,15 +38,18 @@ export default FormComponent.extend({
   }),
   callSuccess() {},
   onSubmitSuccess(model) {
-    get(this, 'flashMessages').success('New update posted!');
-    if (this.isNew) {
+    if (this.get('isNew')) {
+      this.get('flashMessages').success('New Update Posted!');
       let newModel = this.createNewModel();
       this.set('model', newModel);
       this.initFormData();
+      run(() => {
+        $('.mobiledoc-editor__editor').empty();
+      });
+    } else {
+      this.get('flashMessages').success('Update Saved!');
     }
-    run(() => {
-      $('.mobiledoc-editor__editor').empty();
-    });
+
     this.callSuccess(model);
   },
   actions: {
