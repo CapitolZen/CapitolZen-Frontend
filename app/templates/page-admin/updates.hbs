@@ -1,6 +1,7 @@
 {{ui-page-property "Post Update to" model.title property="title"}}
 
 {{#global/page-title-actions}}
+  {{#link-to "page.updates" model.id}}{{fa-icon "laptop"}} View{{/link-to}}
   {{#link-to "page-admin.index"}}{{fa-icon "columns"}} Pages{{/link-to}}
 {{/global/page-title-actions}}
 
