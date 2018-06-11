@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
 
 export default Component.extend({
   flashMessages: service(),
@@ -20,7 +19,7 @@ export default Component.extend({
           );
           this.set('success', true);
         })
-        .catch(e => {
+        .catch(() => {
           this.get('flashMessages').danger(
             'An error has occurred and our team is notified.'
           );

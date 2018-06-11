@@ -129,8 +129,7 @@ export default Component.extend({
    *
    */
   recordsComplete: computed(
-    'windoc.scrollTop',
-    'windoc.scrollHeight',
+    'windoc.{scrollTop,scrollHeight}',
     'totalRecordCount',
     'model.[]',
     function() {

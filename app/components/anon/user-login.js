@@ -1,6 +1,6 @@
 import userLogin from '../../validators/user-login';
 import { inject as service } from '@ember/service';
-import { get, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 

@@ -1,6 +1,6 @@
 import CurrentUser from 'ember-junkdrawer/services/current-user';
 import { inject as service } from '@ember/service';
-import { get, set, setProperties, computed } from '@ember/object';
+import { get, set, computed } from '@ember/object';
 import { assert } from '@ember/debug';
 import { A } from '@ember/array';
 

@@ -1,6 +1,6 @@
 import { sort } from '@ember/object/computed';
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
+import { get } from '@ember/object';
 
 export default Component.extend({
   sortedHistory: sort('bill.history', function(a, b) {

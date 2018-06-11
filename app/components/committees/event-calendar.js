@@ -29,7 +29,7 @@ export default Component.extend({
       return e.loadCommittee();
     });
 
-    let results = yield all(promises);
+    yield all(promises);
 
     eventModels.forEach(event => {
       let pojo = {
@@ -53,7 +53,7 @@ export default Component.extend({
     return 'light';
   }),
   actions: {
-    eventClick({ id }, jsView, view) {
+    eventClick({ id }) {
       set(this, 'selectedEventId', id);
       set(this, 'showModal', true);
     },
