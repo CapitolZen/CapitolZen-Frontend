@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { empty } from '@ember/object/computed';
-import { computed, get, set } from '@ember/object';
+import { get, set } from '@ember/object';
 
 export default Component.extend({
   isNew: empty('value'),

@@ -21,20 +21,27 @@ export default Component.extend({
       return this.get('payload.editorContext.groupId');
     }
   }),
-  pageId: computed('payload.{page-id,pageId}', function() {
-    if (this.get('payload.page-id')) {
-      return this.get('payload.page-id');
-    } else {
-      return this.get('payload.pageId');
+  pageId: computed('payload.editorContext.{page-id,pageId}', function() {
+    if (this.get('payload.editorContext.page-id')) {
+      return this.get('payload.editorContext.page-id');
     }
+    if (this.get('payload.editorContext.pageId')) {
+      return this.get('payload.editorContext.pageId');
+    }
+
+    if (this.get('_pageId')) {
+      return this._pageId;
+    }
+
+    return false;
   }),
   didReceiveAttrs() {
     this._super(...arguments);
     if (this.get('payload')) {
       this.set('wrapperId', this.get('payload.wrapperId'));
+      this.set('_pageId', this.get('payload.editorContext.pageId'));
     }
   },
-  loadWrapper: task(function*() {}),
   searchWrappers: task(function*(term) {
     yield timeout(400);
     return this.get('store').query('wrapper', {
