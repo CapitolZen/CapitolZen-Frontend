@@ -11,7 +11,8 @@ module.exports = {
   },
   rules: {
     'ember/avoid-leaking-state-in-ember-objects': 0,
-    'ember/no-on-calls-in-components': 0
+    'ember/no-on-calls-in-components': 0,
+    'ember/closure-actions': 0
   },
   overrides: [
     // node files

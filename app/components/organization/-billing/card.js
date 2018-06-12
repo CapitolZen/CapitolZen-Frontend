@@ -47,7 +47,7 @@ export default Component.extend({
       };
       yield this.get('organization')
         .updatesource(payload)
-        .then(data => {
+        .then(() => {
           if (this.get('standalone')) {
             get(this, 'flashMessages').success('Card Updated');
           }
