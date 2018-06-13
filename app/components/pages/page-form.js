@@ -1,5 +1,5 @@
 import { inject as service } from '@ember/service';
-import { computed, set, get } from '@ember/object';
+import { computed, get } from '@ember/object';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 import PageEdit from '../../validators/page-edit';
 import { alias } from '@ember/object/computed';

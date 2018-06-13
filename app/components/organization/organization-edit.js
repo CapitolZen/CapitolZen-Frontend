@@ -1,6 +1,5 @@
 import { inject as service } from '@ember/service';
 import { set, get, computed } from '@ember/object';
-import { isEmpty } from '@ember/utils';
 import OrganizationValidations from '../../validators/organization';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 

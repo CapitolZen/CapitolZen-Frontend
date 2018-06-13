@@ -1,6 +1,6 @@
 import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
-import { set, get, observer, computed } from '@ember/object';
+import { set, get, observer } from '@ember/object';
 export default Component.extend({
   tagName: 'span',
   classNames: ['badge'],

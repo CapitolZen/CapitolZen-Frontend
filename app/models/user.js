@@ -1,4 +1,4 @@
-import { set, get, computed } from '@ember/object';
+import { get, computed } from '@ember/object';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 

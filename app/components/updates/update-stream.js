@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 import { assert } from '@ember/debug';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
@@ -23,10 +23,8 @@ export default Component.extend({
       (this.group || this.page) && !(this.group && this.page)
     );
     this.set('stream', A());
+
     this.get('loadStream').perform();
-    if (this.externalAddedUpdates) {
-      this.get('stream').addObjects(this.externalAddedUpdates);
-    }
   },
 
   instance: computed('group.id', 'page.id', function() {
@@ -55,5 +53,8 @@ export default Component.extend({
     params[model] = instance.get('id');
     let updates = yield this.get('store').query('update', params);
     this.get('stream').addObjects(updates);
+    if (this.externalAddedUpdates) {
+      this.get('stream').addObjects([this.externalAddedUpdates]);
+    }
   })
 });

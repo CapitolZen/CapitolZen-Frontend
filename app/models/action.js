@@ -1,9 +1,6 @@
 import DS from 'ember-data';
 import { computed, get, set } from '@ember/object';
-import { alias } from '@ember/object/computed';
-import { singularize } from 'ember-inflector';
 import { assert } from '@ember/debug';
-import { capitalize } from '@ember/string';
 
 export default DS.Model.extend({
   created: DS.attr('string'),

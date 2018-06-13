@@ -3,7 +3,6 @@ import { get, set, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { assert } from '@ember/debug';
-import { or } from '@ember/object/computed';
 import { A } from '@ember/array';
 
 export default Component.extend({

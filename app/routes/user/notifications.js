@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
   currentUser: service('current-user'),
-  model(params) {
+  model() {
     return this.get('store').query('activity-group', {
       feed: 'user:current:notification'
     });

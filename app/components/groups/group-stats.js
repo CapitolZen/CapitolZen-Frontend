@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, set, computed } from '@ember/object';
+import { get, set } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
@@ -13,9 +13,9 @@ export default Component.extend({
     get(this, 'fetchStats').perform(id);
   },
   fetchStats: task(function*(id) {
-    let { data: { stats } } = yield get(this, 'ajax').request(
-      `groups/${id}/stats/`
-    );
+    let {
+      data: { stats }
+    } = yield get(this, 'ajax').request(`groups/${id}/stats/`);
     set(this, 'stats', stats);
   })
 });
