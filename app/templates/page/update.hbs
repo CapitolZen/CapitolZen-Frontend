@@ -15,7 +15,8 @@
               {{#if model.prev}}
                 {{#link-to "page.update" model.prev}}
                   {{fa-icon "arrow-left"}}
-                  <span class="sr-only">Previous</span>
+                  <span class="sr-only">Next</span>
+                  {{#bs-tooltip placement="bottom"}}Next{{/bs-tooltip}}
                 {{/link-to}}
               {{/if}}
             </div>
@@ -26,7 +27,8 @@
               {{#if model.next}}
                 {{#link-to "page.update" model.next}}
                   {{fa-icon "arrow-right"}}
-                  <span class="sr-only">next</span>
+                  <span class="sr-only">Previous</span>
+                  {{#bs-tooltip placement="bottom"}}Previous{{/bs-tooltip}}
                 {{/link-to}}
               {{/if}}
             </div>
