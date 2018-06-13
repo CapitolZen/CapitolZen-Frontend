@@ -1,5 +1,5 @@
 {{#basic-dropdown as |dd|}}
-  {{#dd.trigger class="btn btn-outline-secondary ml-1"}}
+  {{#dd.trigger class=(concat "btn " buttonClass " ml-1 ")}}
     {{fa-icon "search-plus"}} Add Bill
   {{/dd.trigger}}
   {{#dd.content class="dropdown-menu show"}}
