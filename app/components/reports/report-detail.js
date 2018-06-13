@@ -9,7 +9,6 @@ export default Component.extend({
   actions: {
     submit() {
       let report = get(this, 'model');
-      let groupId = get(report, 'group').get('id');
       get(this, 'store')
         .findRecord('report', report.get('id'), { backgroundReload: false })
         .then(r => {

@@ -5,7 +5,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Route.extend(AuthenticatedRouteMixin, {
   session: service(),
   currentUser: service(),
-  beforeModel(transition) {
+  beforeModel() {
     this._super(...arguments);
     let role = this.get('currentUser.user.organization_role');
     if (role === 'Guest') {

@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
-import EmberObject, { computed, set, get } from '@ember/object';
+import EmberObject, { computed, get } from '@ember/object';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
-import { alias } from '@ember/object/computed';
 import UserValidation from '../../../validators/invite';
 import { task } from 'ember-concurrency';
 

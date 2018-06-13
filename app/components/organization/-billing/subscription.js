@@ -166,7 +166,7 @@ export default Component.extend({
 
     return yield this.get('model.organization')
       .updatesubscription(payload)
-      .then(data => {
+      .then(() => {
         this.get('router').transitionTo('organization.billing');
         return true;
       })

@@ -26,8 +26,7 @@ export default Component.extend({
             `Notes added to ${results.length} bills`
           );
         })
-        .catch(err => {
-          console.error(err);
+        .catch(() => {
           get(this, 'flashMessages').danger(
             'There was a problem and our team has been notified.'
           );

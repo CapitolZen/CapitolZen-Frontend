@@ -1,6 +1,5 @@
 import { alias } from '@ember/object/computed';
 import { A } from '@ember/array';
-import { merge } from '@ember/polyfills';
 import Component from '@ember/component';
 import { getWithDefault, computed, set, get } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
@@ -64,10 +63,10 @@ export default Component.extend({
   }),
   availableRelationships: ['bill'],
   logoChoice: computed('m.preferences', {
-    get(key) {
+    get() {
       return get(this, 'model').get('logoChoice');
     },
-    set(key, value) {
+    set(_, value) {
       let m = get(this, 'model');
       set(m, 'logoChoice', value);
       return value;
@@ -79,9 +78,7 @@ export default Component.extend({
     'excludedWrappers.[]',
     'selectedGroup',
     function() {
-      let wrappers = get(this, 'wrapperList');
-      let excluded = get(this, 'excludedWrappers');
-      return wrappers;
+      return get(this, 'wrapperList');
     }
   ),
 
@@ -115,7 +112,7 @@ export default Component.extend({
 
       set(this, 'wrapperList', records);
     } catch (e) {
-      console.log(e);
+      throw e;
     }
   }),
 
@@ -191,11 +188,10 @@ export default Component.extend({
           this.get('router').transitionTo('reports');
           set(this, 'isSubmitting', true);
         })
-        .catch(err => {
-          console.log(err); // eslint-disable-line
+        .catch(() => {
           set(this, 'isSubmitting', false);
         });
     },
-    updatePublishDate(date) {}
+    updatePublishDate() {}
   }
 });

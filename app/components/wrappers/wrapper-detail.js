@@ -1,7 +1,6 @@
 import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
-import { set, get, getWithDefault, computed } from '@ember/object';
-import { isEmpty } from '@ember/utils';
+import { set, get, getWithDefault } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 
@@ -29,15 +28,10 @@ export default Component.extend({
         note.user = get(this, 'currentUser.user');
       }
 
-      wrapper
-        .saveNote(note)
-        .then(() => {
-          get(this, 'flashMessages').success('Note Saved!');
-          get(this, 'currentUser').event('wrapper:comment');
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      wrapper.saveNote(note).then(() => {
+        get(this, 'flashMessages').success('Note Saved!');
+        get(this, 'currentUser').event('wrapper:comment');
+      });
     },
     deleteNote({ docId }) {
       let wrapper = get(this, 'wrapper');
