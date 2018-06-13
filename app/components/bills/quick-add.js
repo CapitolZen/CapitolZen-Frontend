@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, set } from '@ember/object';
+import { get, set, computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import { empty } from '@ember/object/computed';
@@ -10,6 +10,10 @@ export default Component.extend({
   store: service(),
   currentUser: service(),
   isDisabled: empty('selected'),
+  type: 'link',
+  buttonClass: computed('type', function() {
+    return ` btn-${this.type} `;
+  }),
   init() {
     this._super(...arguments);
     assert('Must provide a valid `group`', get(this, 'group.id'));

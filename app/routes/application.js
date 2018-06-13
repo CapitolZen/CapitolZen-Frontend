@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-import { computed, set, get } from '@ember/object';
+import { computed } from '@ember/object';
 import ENV from 'capitolzen-client/config/environment';
 
 export default Route.extend(ApplicationRouteMixin, {
@@ -54,9 +54,8 @@ export default Route.extend(ApplicationRouteMixin, {
      * @param error
      * @param transition
      */
-    error(error, transition) {
+    error(error) {
       if (error.errors) {
-        console.error(error.errors);
         if (ENV.environment === 'production') {
           if (parseInt(error.errors[0].status) === 404) {
             this.transitionTo('not-found');

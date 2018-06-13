@@ -3,7 +3,6 @@ export default Service.extend({
   request: service(),
   currentUser: service(),
   getLogoUploadUrl(orgId = false) {
-    let id = orgId || this.get('currentUser.organization').get('id');
     return this.get('request').request(`organizations/${orgId}/logo_upload/`);
   },
 

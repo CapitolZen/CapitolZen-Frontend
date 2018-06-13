@@ -8,10 +8,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      {{updates/update-form page=model isNew=true}}
+      {{updates/update-form callSuccess=(action "didAddUpdate") page=model isNew=true}}
     </div>
     <div class="col-md-4">
-      {{updates/update-stream isAdmin=true page=model}}
+      {{updates/update-stream externalAddedUpdates=addedUpdate isAdmin=true page=model}}
     </div>
   </div>
 </div>

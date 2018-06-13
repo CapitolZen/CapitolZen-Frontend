@@ -3,6 +3,7 @@
 {{#global/page-title-actions}}
   {{#link-to "page.update" model.page.id model.id}}{{fa-icon "laptop"}} View{{/link-to}}
   {{#link-to "page-admin.updates" model.page.id}}{{fa-icon "list-alt"}} Updates{{/link-to}}
+  {{bills/quick-add group=model.group class="btn-link"}}
 {{/global/page-title-actions}}
 
 <div class="container">

@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { set, get } from '@ember/object';
+import { set } from '@ember/object';
 export default Route.extend({
   breadCrumb: {},
   model({ bill }) {

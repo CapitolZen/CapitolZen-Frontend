@@ -1,6 +1,5 @@
 import { inject as service } from '@ember/service';
-import { computed, set, get } from '@ember/object';
-import { typeOf, isEmpty } from '@ember/utils';
+import { computed, get } from '@ember/object';
 import FormComponent from 'ember-junkdrawer/components/form/changeset-form';
 import ClientValidations from '../../validators/client';
 
@@ -13,12 +12,12 @@ export default FormComponent.extend({
   validator: ClientValidations,
   model: computed(function() {
     let group = get(this, 'group');
-    set(group, 'organization', get(this, 'organization'));
+    group.set('organization', this.organization);
     return group;
   }),
 
   assignedToOptions: computed(function() {
-    return this.get('store').query('user', {});
+    return this.get('store').query('user', { is_active: true });
   }),
 
   /**

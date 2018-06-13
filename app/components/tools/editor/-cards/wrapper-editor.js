@@ -59,7 +59,7 @@ export default Component.extend({
       let props = {};
       props['wrapper-id'] = this.get('wrapper.id');
       props['page-id'] = this.get('pageId');
-      console.log(props);
+      props['editorContext'] = this.get('payload.editorContext');
       this.saveCard(props);
       this.cancelCard();
       props.cardName = 'wrapper';

@@ -19,9 +19,7 @@ export default Component.extend({
   send: task(function*() {
     assert('Must provide a report model', get(this, 'report'));
     let reportId = get(this, 'report.id');
-    let response = yield get(this, 'request').request(
-      `reports/${reportId}/send_report/`
-    );
+    yield this.get('ajax').request(`reports/${reportId}/send_report/`);
 
     get(this, 'flashMessages').success(
       'Report emailed to you. Check your inbox shortly!'

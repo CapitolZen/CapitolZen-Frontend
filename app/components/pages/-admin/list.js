@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { task, timeout } from 'ember-concurrency';
-import { A } from '@ember/array';
+import { task } from 'ember-concurrency';
 
 const defaultFilters = {
   search: null,
@@ -60,7 +59,7 @@ export default Component.extend({
     scrolledBottom() {
       this.query();
     },
-    filter(model) {
+    filter() {
       this.query();
     },
     clearFilters() {

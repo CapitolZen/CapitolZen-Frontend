@@ -25,18 +25,15 @@ export default Component.extend({
     if (currentPage) {
       params['page'] = currentPage;
     }
-    try {
-      let records = yield get(this, 'store').query('action', params);
-      get(this, 'model').addObjects(records);
-      let meta = records.get('meta');
-      let { pages, page, count } = meta.pagination;
-      page++;
-      set(this, 'totalPages', pages);
-      set(this, 'currentPage', page);
-      set(this, 'totalRecordCount', count);
-    } catch (e) {
-      console.log(e); // eslint-ignore-line
-    }
+
+    let records = yield get(this, 'store').query('action', params);
+    get(this, 'model').addObjects(records);
+    let meta = records.get('meta');
+    let { pages, page, count } = meta.pagination;
+    page++;
+    set(this, 'totalPages', pages);
+    set(this, 'currentPage', page);
+    set(this, 'totalRecordCount', count);
   }).drop(),
   recordsComplete: computed(
     'windoc.{scrollTop,scrollHeight}',

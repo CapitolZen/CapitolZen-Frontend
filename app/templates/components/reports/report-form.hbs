@@ -32,25 +32,6 @@
               {{/power-select}}
             {{/form.element}}
 
-            {{#form.element label="Filters" property="filter"}}
-              <p>
-                <strong>Add New Filter</strong><br>
-
-                {{#unless addFilterItem}}
-                  {{#bs-button type="outline-secondary" onClick=(action (mut addFilterItem) true)}}
-                    {{fa-icon "plus"}} Add Filter
-                  {{/bs-button}}
-                {{else}}
-                  {{tools/filter-item isNew=true isEditing=true update=(action "updateFilterItem")}}
-                {{/unless}}
-              </p>
-              <hr class="my-1">
-              {{#each filterList as |filter|}}
-                {{tools/filter-item value=filter isEditing=false update=(action "updateFilterItem") delete=(action "deleteFilterItem")}}
-              {{/each}}
-
-            {{/form.element}}
-
           {{else}}
             Select {{features.clientLabel}} to continue
           {{/if}}
