@@ -20,7 +20,10 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   authorize(xhr) {
     let idToken = this.get('session.data.authenticated.data.token');
     if (idToken) {
-      xhr.setRequestHeader('Authorization', `Bearer ${idToken}`);
+      let { exp, orig_iat } = this.getTokenData(idToken);
+      if (exp >= orig_iat) {
+        xhr.setRequestHeader('Authorization', `Bearer ${idToken}`);
+      }
     }
 
     if (this.get('session.data.currentOrganizationId')) {
@@ -66,5 +69,15 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
       url += '/';
     }
     return url;
+  },
+  getTokenData(token) {
+    let payload = token.split('.')[1];
+    let tokenData = decodeURIComponent(window.escape(atob(payload)));
+
+    try {
+      return JSON.parse(tokenData);
+    } catch (e) {
+      return tokenData;
+    }
   }
 });
