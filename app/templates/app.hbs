@@ -1,78 +1,15 @@
-{{#burger-menu animation="push" itemAnimation="stack" open=menuState locked=locked as |burger|}}
-  {{#burger.menu itemTagName="li" as |menu|}}
-    <a class="close" {{action burger.state.actions.close}}><i aria-hidden="true" class="fa fa-close"></i></a>
-    <h2>
-      Menu
-    </h2>
-    <ul>
-
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "dashboard"}}{{fa-icon "tachometer"}} Dashboard{{/link-to}}
-      {{/menu.item}}
-
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "page-admin.index"}}{{fa-icon "columns"}} Pages{{/link-to}}
-      {{/menu.item}}
-
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "todos"}}{{fa-icon "check-circle-o"}} To-Do's{{/link-to}}
-      {{/menu.item}}
-
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills"}}{{fa-icon "book"}} All Bills{{/link-to}}
-      {{/menu.item}}
-
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "groups"}}{{fa-icon "address-book"}} {{features.clientLabelPlural}}{{/link-to}}
-      {{/menu.item}}
-
-      {{!--
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills.search"}}Search{{/link-to}}
-      {{/menu.item}}
-      --}}
-
-      {{!--
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "bills.saved"}}Saved Bills{{/link-to}}
-      {{/menu.item}}
-      --}}
-
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "committees.index"}}{{fa-icon "calendar-check-o"}} Committees{{/link-to}}
-      {{/menu.item}}
-
-      {{#menu.item dismissOnClick=true}}
-        {{#link-to "files"}}{{fa-icon "cloud"}} Files{{/link-to}}
-      {{/menu.item}}
-
-      {{#menu.item dismissOnClick=true}}
-        <a href="#" {{action (action (mut helpModal) true) on="click"}}>
-          {{fa-icon "question-circle"}} <span>Help</span>
-        </a>
-      {{/menu.item}}
-
-    </ul>
-  {{/burger.menu}}
-  {{#burger.outlet}}
-    {{global/static-nav toggler=(action "toggleMenuState") menuState=menuState}}
-    {{global/app-page-title}}
-    <div id="sticky-header-container">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      {{#ui/ui-box as |b|}}
+        {{#b.header}}
+          Thank You
+        {{/b.header}}
+        {{#b.body}}
+          <p>Capitol Zen has ceased operations.</p>
+          <p>Thank you for your support!</p>
+        {{/b.body}}
+      {{/ui/ui-box}}
     </div>
-    <div class="app-container">
-      <div class="content-container container-fluid">
-        {{#each flashMessages.queue as |flash|}}
-          {{flash-message flash=flash}}
-        {{/each}}
-        {{outlet}}
-      </div>
-    </div>
-    {{global/app-footer}}
-  {{/burger.outlet}}
-{{/burger-menu}}
-
-{{!--
-  Modals
---}}
-{{global/help-modal open=helpModal onHidden=(action (mut helpModal) false)}}
-{{intercom-io}}
+  </div>
+</div>
