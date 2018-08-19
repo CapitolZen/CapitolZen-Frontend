@@ -19,20 +19,6 @@ export default Route.extend(ApplicationRouteMixin, {
   }),
 
   /**
-   *
-   */
-  beforeModel() {
-    return this.get('currentUser')
-      .initApp()
-      .then(data => {
-        if (data === 'invalidate' && this.get('session.isAuthenticated')) {
-          this.get('session').invalidate();
-          this.transitionTo('anon.login');
-        }
-      });
-  },
-
-  /**
    * After the user has been authenticated
    */
   sessionAuthenticated() {
